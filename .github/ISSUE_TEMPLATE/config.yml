@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
-  - name: GitHub Security Bug Bounty
-    url: https://bounty.github.com/
-    about: Please report security vulnerabilities here.
+  - name: Report a Security Vulnerability (Private)
+    url: https://github.com/autobutler-org/quark.autobutler.org/security/advisories/new
+    about: For exploitable vulnerabilities — file a private advisory, not a public issue.
+  - name: Something wrong with Quark itself?
+    url: https://github.com/autobutler-org/quark/issues/new/choose
+    about: This tracker is for the website. Bugs in the product belong in the product repository.
