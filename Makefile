@@ -18,7 +18,7 @@ JS_EXEC ?= npm
 JS_INSTALL ?= install
 
 MAIN ?= ./src/main.ts
-EXE ?= ./build/main.js
+OUT_DIR ?= ./dist
 
 NODE_VERSION := $(shell cat .nvmrc 2>/dev/null)
 NVM_DIR ?= $(HOME)/.nvm
@@ -56,7 +56,7 @@ setup/js: ## Install Node.js via nvm and project dependencies
 build: build/ts ## Build codebase
 
 .PHONY: build/ts
-build/ts: ## Compile TypeScript
+build/ts: ## Typecheck and bundle with Vite
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
@@ -65,33 +65,36 @@ build/ts: ## Compile TypeScript
 .PHONY: clean
 clean: ## Clean build artifacts
 	rm -rf \
-		./build \
-		./tmp
+		$(OUT_DIR) \
+		./node_modules/.vite \
+		./node_modules/.tmp
 
-##@ Run
-
-.PHONY: run
-run: ## Run the application (dev mode)
+.PHONY: serve
+serve: ## Run the Vite dev server
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
 	$(JS_EXEC) run dev
 
-.PHONY: watch
-watch: ## Watch for changes and recompile
-	if ! [[ -d ./node_modules ]]; then \
-		$(JS_EXEC) $(JS_INSTALL); \
-	fi
-	$(JS_EXEC) run watch
+.PHONY: serve/prod
+serve/prod: build ## Serve the production build locally
+	$(JS_EXEC) run preview
 
 ##@ Testing
 
 .PHONY: test
-test: ## Run tests
+test: ## Run tests once
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
 	$(JS_EXEC) run test
+
+.PHONY: test/watch
+test/watch: ## Run tests in watch mode
+	if ! [[ -d ./node_modules ]]; then \
+		$(JS_EXEC) $(JS_INSTALL); \
+	fi
+	$(JS_EXEC) run test:watch
 
 ##@ Dependencies
 
@@ -103,7 +106,7 @@ deps: ## Install dependencies
 upgrade: upgrade/ts ## Upgrade all dependencies
 
 .PHONY: upgrade/ts
-upgrade/ts: ## Upgrade TypeScript dependencies
+upgrade/ts: ## Upgrade npm dependencies
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
@@ -116,7 +119,7 @@ upgrade/ts: ## Upgrade TypeScript dependencies
 check: check/ts ## Check code quality
 
 .PHONY: check/ts
-check/ts: ## Check TypeScript code quality (lint + types)
+check/ts: ## Check code quality (eslint, vue-tsc, prettier, markdown)
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
@@ -126,7 +129,7 @@ check/ts: ## Check TypeScript code quality (lint + types)
 lint: lint/ts ## Lint codebase
 
 .PHONY: lint/ts
-lint/ts: ## Lint TypeScript code
+lint/ts: ## Lint TypeScript and Vue code
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
@@ -136,7 +139,7 @@ lint/ts: ## Lint TypeScript code
 format: format/ts ## Format code
 
 .PHONY: format/ts
-format/ts: ## Format TypeScript code (Prettier)
+format/ts: ## Format code (Prettier)
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
@@ -146,7 +149,7 @@ format/ts: ## Format TypeScript code (Prettier)
 fix: fix/ts ## Fix lint and format errors
 
 .PHONY: fix/ts
-fix/ts: ## Fix TypeScript lint and format errors
+fix/ts: ## Fix lint and format errors
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi

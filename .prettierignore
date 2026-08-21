@@ -1,4 +1,5 @@
 node_modules/
-build/
 dist/
+coverage/
 *.lock
+package-lock.json
