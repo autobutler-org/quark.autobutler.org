@@ -19,19 +19,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout code
+        uses: actions/checkout@v7
 
-      - name: Set up Node.js
+      - name: Set up Node
         uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: npm
 
       - name: Install dependencies
-        run: make deps
+        run: npm ci
 
       - name: Build
-        run: make build
+        run: npm run build
 
-      - name: Test
-        run: make test
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .output/public
