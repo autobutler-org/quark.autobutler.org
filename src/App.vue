@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
+import LandingPage from "./components/LandingPage.vue";
 </script>
 
 <template>
   <main>
-    <HelloWorld msg="quark.autobutler.org" />
+    <LandingPage />
   </main>
 </template>
