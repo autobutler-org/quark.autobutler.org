@@ -1,0 +1,47 @@
+{
+  "name": "template-typescript",
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/main.ts",
+    "start": "node build/main.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "watch": "tsc --watch",
+    "check-updates": "ncu -u",
+    "lint:eslint": "eslint src",
+    "lint:types": "tsc --noEmit",
+    "lint:prettier": "prettier --check .",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"!node_modules/**\"",
+    "lint": "concurrently -m1 npm:lint:*",
+    "fix:eslint": "eslint src --fix",
+    "fix:prettier": "prettier --write .",
+    "fix:md": "markdownlint-cli2 --fix \"**/*.md\" \"!node_modules/**\"",
+    "fix": "concurrently -m1 npm:fix:*"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.1.2",
+    "@types/sqlite3": "^5.1.0",
+    "concurrently": "^10.0.4",
+    "eslint": "^10.8.0",
+    "jiti": "^2.7.0",
+    "markdownlint-cli2": "^0.23.2",
+    "npm-check-updates": "^23.0.0",
+    "prettier": "^3.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.66.0",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^6.0.1"
+  }
+}
