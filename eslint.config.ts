@@ -1,6 +1,20 @@
-import eslint from "@eslint/js";
-import tseslint from "typescript-eslint";
+import pluginVitest from "@vitest/eslint-plugin";
+import skipFormatting from "@vue/eslint-config-prettier/skip-formatting";
+import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
+import { globalIgnores } from "eslint/config";
+import pluginVue from "eslint-plugin-vue";
 
-export default tseslint.config(eslint.configs.recommended, tseslint.configs.recommended, {
-  ignores: ["build/**", "node_modules/**"],
-});
+export default defineConfigWithVueTs(
+  {
+    name: "app/files-to-lint",
+    files: ["**/*.{ts,mts,tsx,vue}"],
+  },
+  globalIgnores(["**/dist/**", "**/coverage/**", "**/node_modules/**"]),
+  pluginVue.configs["flat/essential"],
+  vueTsConfigs.recommended,
+  {
+    ...pluginVitest.configs.recommended,
+    files: ["src/**/__tests__/*"],
+  },
+  skipFormatting
+);

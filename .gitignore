@@ -2,9 +2,9 @@
 node_modules/
 
 # Build
-build/
 dist/
-tmp/
+dist-ssr/
+coverage/
 
 # TypeScript
 *.tsbuildinfo
@@ -19,6 +19,3 @@ tmp/
 .vscode/
 *.swp
 *.swo
-
-# Database
-*.sqlite
