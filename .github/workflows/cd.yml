@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: Continuous Deployment
+  cancel-in-progress: false
+
 jobs:
   package:
     runs-on: ubuntu-latest
