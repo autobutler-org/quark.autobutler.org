@@ -1,16 +1,86 @@
+/*
+ * Design tokens. Component styles reference these rather than repeating
+ * literals. Media-query breakpoints stay literal because custom properties are
+ * not allowed in media conditions; keep them in sync with --breakpoint-* below.
+ */
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
   font-family:
     system-ui,
     -apple-system,
     "Segoe UI",
     sans-serif;
   line-height: 1.5;
+
+  /* Backgrounds */
+  --color-bg: #171717;
+  --color-bg-end: #232323;
+
+  /* Text */
+  --color-text: rgba(255, 255, 255, 0.82);
+  --color-text-strong: #fff;
+  --color-text-bright: rgba(255, 255, 255, 0.9);
+  --color-text-muted: rgba(255, 255, 255, 0.7);
+  --color-text-subtle: rgba(255, 255, 255, 0.6);
+  --color-text-faint: rgba(255, 255, 255, 0.55);
+
+  /* Accent */
+  --color-accent: rgba(0, 187, 255, 0.9);
+  --color-accent-strong: rgba(0, 187, 255, 0.85);
+  --color-accent-deep: rgba(0, 149, 255, 0.75);
+  --color-accent-border: rgba(0, 187, 255, 0.5);
+  --color-accent-faint: rgba(0, 187, 255, 0.4);
+  --color-accent-glow: rgba(0, 187, 255, 0.16);
+  --color-accent-hover: rgba(0, 255, 170, 0.9);
+  --color-warm-glow: rgba(210, 180, 140, 0.14);
+
+  /* Surfaces and borders */
+  --color-surface: rgba(255, 255, 255, 0.05);
+  --color-surface-subtle: rgba(255, 255, 255, 0.04);
+  --color-surface-hover: rgba(255, 255, 255, 0.08);
+  --color-surface-strong: rgba(255, 255, 255, 0.1);
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-soft: rgba(255, 255, 255, 0.15);
+  --color-border-strong: rgba(255, 255, 255, 0.2);
+
+  /* Elevation */
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --shadow-accent: 0 4px 15px rgba(0, 187, 255, 0.25);
+  --shadow-accent-hover: 0 6px 22px rgba(0, 187, 255, 0.45);
+
+  /* Gradients */
+  --gradient-page: linear-gradient(135deg, var(--color-bg), var(--color-bg-end));
+  --gradient-heading: linear-gradient(135deg, #ffffff, rgba(255, 255, 255, 0.75));
+  --gradient-accent: linear-gradient(135deg, var(--color-accent-strong), var(--color-accent-deep));
+
+  /* Shape */
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 50%;
+
+  /* Layout */
+  --content-width: 62rem;
+  --prose-width: 46rem;
+  --lede-width: 40rem;
+  --gutter: 1.5rem;
+  --section-gap: 4rem;
+  --breakpoint-sm: 640px;
+
+  /* Motion */
+  --transition: 0.3s ease;
+  --transition-fast: 0.2s ease;
+  --lift: translateY(-5px);
+  --lift-sm: translateY(-2px);
 }
 
 body {
-  display: grid;
   margin: 0;
   min-height: 100vh;
-  place-items: center;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
