@@ -17,8 +17,7 @@ endif
 JS_EXEC ?= npm
 JS_INSTALL ?= install
 
-MAIN ?= ./src/main.ts
-OUT_DIR ?= ./dist
+OUT_DIR ?= ./.output
 
 NODE_VERSION := $(shell cat .nvmrc 2>/dev/null)
 NVM_DIR ?= $(HOME)/.nvm
@@ -56,29 +55,38 @@ setup/js: ## Install Node.js via nvm and project dependencies
 build: build/ts ## Build codebase
 
 .PHONY: build/ts
-build/ts: ## Typecheck and bundle with Vite
+build/ts: ## Typecheck and bundle with Nuxt
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
 	$(JS_EXEC) run build
 
+.PHONY: generate
+generate: ## Statically generate the deployable site (what CI/CD ship)
+	if ! [[ -d ./node_modules ]]; then \
+		$(JS_EXEC) $(JS_INSTALL); \
+	fi
+	$(JS_EXEC) run generate
+
 .PHONY: clean
 clean: ## Clean build artifacts
 	rm -rf \
 		$(OUT_DIR) \
+		./.nuxt \
+		./.data \
 		./node_modules/.vite \
 		./node_modules/.tmp
 
 .PHONY: serve
-serve: ## Run the Vite dev server
+serve: ## Run the Nuxt dev server
 	if ! [[ -d ./node_modules ]]; then \
 		$(JS_EXEC) $(JS_INSTALL); \
 	fi
 	$(JS_EXEC) run dev
 
 .PHONY: serve/prod
-serve/prod: build ## Serve the production build locally
-	$(JS_EXEC) run preview
+serve/prod: generate ## Serve the generated static site locally
+	npx serve $(OUT_DIR)/public
 
 ##@ Testing
 
