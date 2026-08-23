@@ -1,21 +1,34 @@
-# Dependencies
-node_modules/
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+dist-ssr
 
-# Build
-dist/
-dist-ssr/
-coverage/
+# Node dependencies
+node_modules
 
 # TypeScript
 *.tsbuildinfo
 
-# Environment
-.env
-*.env.local
+# Coverage
+coverage
 
-# Editor
-.DS_Store
+# Logs
+logs
 *.log
-.vscode/
+
+# Misc
+.DS_Store
+.fleet
+.idea
 *.swp
 *.swo
+.vscode/
+
+# Local env files
+.env
+.env.*
+!.env.example

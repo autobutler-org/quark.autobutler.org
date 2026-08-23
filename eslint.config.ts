@@ -1,20 +1,25 @@
 import pluginVitest from "@vitest/eslint-plugin";
-import skipFormatting from "@vue/eslint-config-prettier/skip-formatting";
-import { defineConfigWithVueTs, vueTsConfigs } from "@vue/eslint-config-typescript";
-import { globalIgnores } from "eslint/config";
-import pluginVue from "eslint-plugin-vue";
 
-export default defineConfigWithVueTs(
-  {
-    name: "app/files-to-lint",
-    files: ["**/*.{ts,mts,tsx,vue}"],
-  },
-  globalIgnores(["**/dist/**", "**/coverage/**", "**/node_modules/**"]),
-  pluginVue.configs["flat/essential"],
-  vueTsConfigs.recommended,
+import { withNuxt } from "./.nuxt/eslint.config.mjs";
+
+export default withNuxt(
   {
     ...pluginVitest.configs.recommended,
-    files: ["src/**/__tests__/*"],
+    files: ["**/__tests__/*"],
   },
-  skipFormatting
+  {
+    rules: {
+      // Prettier and this rule fight over void elements (<img>, <hr>) —
+      // defer to Prettier's formatting, same as the sibling autobutler.org
+      // config.
+      "vue/html-self-closing": [
+        "off",
+        {
+          html: { void: "any", normal: "never", component: "always" },
+          svg: "always",
+          math: "always",
+        },
+      ],
+    },
+  }
 );

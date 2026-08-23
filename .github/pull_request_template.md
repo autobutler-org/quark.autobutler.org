@@ -20,10 +20,11 @@ One paragraph. What changed and why.
 
 ## Surface
 
-- [ ] Page copy (`src/content/copy.ts`)
-- [ ] Components (`src/components/`)
-- [ ] Global styles / design tokens (`src/assets/`)
-- [ ] Page shell / SEO metadata (`index.html`)
+- [ ] Landing page copy (`data/copy.ts`)
+- [ ] Docs content (`content/docs/`)
+- [ ] Components (`components/`)
+- [ ] Global styles / design tokens (`assets/`)
+- [ ] Site meta / SEO metadata (`nuxt.config.ts`, per-page `useSeoMeta`)
 - [ ] CI / workflows
 - [ ] Docs / meta files only
 
@@ -31,7 +32,7 @@ One paragraph. What changed and why.
 
 - [ ] `make check` passes
 - [ ] `make test` passes
-- [ ] `make build` succeeds
+- [ ] `make generate` succeeds (the static site CI/CD actually ships)
 - [ ] Checked in a browser at desktop and mobile widths (note the widths below)
 - [ ] Includes new automated tests
 - [ ] No visual change (logic, docs, or tooling only)
@@ -42,7 +43,7 @@ One paragraph. What changed and why.
 
 - [ ] Every feature described is one Quark actually ships
 - [ ] No new analytics, embeds, remote fonts, or third-party scripts
-- [ ] `index.html` metadata still matches the hero copy
+- [ ] `nuxt.config.ts` metadata still matches the hero copy
 
 ## Bot Review Guidance
 

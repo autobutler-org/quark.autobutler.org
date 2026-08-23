@@ -1,38 +1,43 @@
 # quark.autobutler.org
 
-A Vue 3 single-page app built with Vite, typechecked with `vue-tsc`, and
-tested with Vitest.
+The public marketing and documentation site for Quark, built with
+[Nuxt](https://nuxt.com) and [`@nuxt/content`](https://content.nuxt.com),
+typechecked with `vue-tsc`, and tested with Vitest.
 
 Run `make` to see every target.
 
 ```sh
-make setup   # install nvm, Node, and dependencies
-make run     # start the Vite dev server
-make build   # typecheck and bundle to ./dist
-make test    # run tests
-make check   # lint, typecheck, and format checks
-make fix     # apply lint and format fixes
+make setup    # install nvm, Node, and dependencies
+make serve    # start the Nuxt dev server
+make generate # statically generate the deployable site
+make test     # run tests
+make check    # lint, typecheck, and format checks
+make fix      # apply lint and format fixes
 ```
 
 ## Layout
 
-| Path              | What lives there                       |
-| ----------------- | -------------------------------------- |
-| `index.html`      | Vite entry point                       |
-| `src/main.ts`     | App bootstrap                          |
-| `src/App.vue`     | Root component                         |
-| `src/components/` | Components and their `__tests__` specs |
-| `src/assets/`     | Global styles and static assets        |
-| `public/`         | Files copied verbatim into the build   |
-| `vite.config.ts`  | Vite and Vitest configuration          |
+| Path                | What lives there                                                       |
+| ------------------- | ---------------------------------------------------------------------- |
+| `app.vue`           | Root layout: header, background, `<NuxtPage />`, footer                |
+| `pages/`            | Route components (`index.vue`, `docs/index.vue`, `docs/[...slug].vue`) |
+| `components/`       | Components and their `__tests__` specs                                 |
+| `content/docs/`     | Docs content, authored in Markdown and rendered via `@nuxt/content`    |
+| `data/copy.ts`      | Typed landing-page copy and outbound links                             |
+| `assets/`           | Global styles and static assets                                        |
+| `public/`           | Files copied verbatim into the build                                   |
+| `nuxt.config.ts`    | Nuxt configuration (site meta, `@nuxt/content` options)                |
+| `content.config.ts` | `@nuxt/content` collection definitions                                 |
+| `vitest.config.ts`  | Vitest-only Vite config for mounting components in isolation           |
 
-`@/` is aliased to `src/`, in both Vite and TypeScript.
+`~/` and `@/` are aliased to the project root, matching Nuxt's defaults.
 
 ## Environment
 
-Copy `.env.example` to `.env` and adjust. Only `VITE_`-prefixed variables reach
+Copy `.env.example` to `.env` and adjust. Only `NUXT_PUBLIC_`-prefixed variables reach
 client code; anything else stays build-time only.
 
 ## Deployment
 
-CI builds the app and CD publishes `dist/` to GitHub Pages on pushes to `main`.
+CI generates the static site (`nuxt generate`) and tests it; CD does the same and publishes
+`.output/public` to GitHub Pages on pushes to `main`.

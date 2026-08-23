@@ -27,8 +27,11 @@ jobs:
           node-version-file: .nvmrc
           cache: npm
 
+      - name: Install node-gyp
+        run: npm install -g node-gyp
+
       - name: Install dependencies
-        run: make deps
+        run: npm ci
 
       - name: Check formatting
         run: |
