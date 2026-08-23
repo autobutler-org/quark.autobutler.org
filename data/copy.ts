@@ -13,6 +13,11 @@ export interface Feature {
   readonly body: string;
 }
 
+export interface ShowcaseImage {
+  readonly src: string;
+  readonly alt: string;
+}
+
 export interface Step {
   readonly title: string;
   readonly body: string;
@@ -48,6 +53,13 @@ export const hero = {
     "files, and documents, on hardware you own, in a room you can walk into.",
   primary: { label: "Read the code", href: repoUrl } as Link,
   secondary: { label: "See how it works", href: "#how" } as Link,
+} as const;
+
+export const productShowcase = {
+  images: [
+    { src: "/assets/product/files.webp", alt: "Browsing files and photos in Quark's file browser" },
+    { src: "/assets/product/casing.webp", alt: "The Quark device" },
+  ] as readonly ShowcaseImage[],
 } as const;
 
 export const manifesto = {
@@ -147,6 +159,22 @@ export const callToAction = {
     "for a repair or an upgrade, or do it yourself. Add a drive, swap a drive, take one out. " +
     "It is yours to manage as you please.",
   action: { label: "Get started on GitHub", href: repoUrl } as Link,
+} as const;
+
+/**
+ * Same Mailchimp list as autobutler.org's homepage — one list, more places to
+ * join it. Unlike autobutler.org, this form does not load Mailchimp's remote
+ * CSS/JS bundle: it's a plain HTML form post, styled locally with our own
+ * tokens. Mailchimp still validates and processes the submission server-side
+ * without the client-side script.
+ */
+export const newsletter = {
+  heading: "Want updates?",
+  poweredBy: "Powered by Mailchimp",
+  action:
+    "https://autobutler.us5.list-manage.com/subscribe/post?u=83e0cf2d6edd852308ba6671f&id=a3382ba074&f_id=00a0c2e1f0",
+  honeypotName: "b_83e0cf2d6edd852308ba6671f_a3382ba074",
+  submitLabel: "Subscribe",
 } as const;
 
 export const docsIndex = {

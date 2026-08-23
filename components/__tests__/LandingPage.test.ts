@@ -13,7 +13,7 @@ describe("LandingPage", () => {
   it("renders each section exactly once", () => {
     const wrapper = mount(LandingPage);
     expect(wrapper.findAll("h1")).toHaveLength(1);
-    expect(wrapper.findAll("section")).toHaveLength(5);
+    expect(wrapper.findAll("section")).toHaveLength(7);
   });
 
   it("links out to the product repository", () => {
