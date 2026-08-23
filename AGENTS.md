@@ -179,6 +179,9 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
 
 ## Content and copy
 
+- **[`BRANDING.md`](BRANDING.md)** is the source of truth for naming, voice,
+  and mission — check it before writing or reviewing customer-facing copy.
+  It's mirrored in `autobutler.org`; keep both copies in sync.
 - The product is **Quark**. It is published by the AutoButler project, so
   "AutoButler" is correct when referring to the org or the sibling site — not
   when referring to this product.
