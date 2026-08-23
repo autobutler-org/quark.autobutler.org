@@ -23,6 +23,8 @@ or a prompt follow-up.
 - **`Quark`** is the product name. Plain, no suffix — not "Quark by
   AutoButler," not "the Quark device" in headlines. `Quark` in both headline
   and body copy.
+- **Always capitalize `Quark`**, mid-sentence included — it's a proper
+  noun here, not the subatomic particle. Never lowercase it to "quark."
 - **`AutoButler`** is the company only — the LLC that builds and sells
   Quark. It is **not** a product or software name anymore. Don't write "the
   AutoButler app," "the AutoButler platform," or "AutoButler automation" —
