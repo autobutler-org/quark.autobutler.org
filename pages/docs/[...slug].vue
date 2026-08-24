@@ -26,6 +26,12 @@ const sortedDocs = computed(() =>
 useSeoMeta({
   title: () => `${doc.value?.title ?? "Docs"} — Quark`,
   description: () => doc.value?.description ?? undefined,
+  ogTitle: () => `${doc.value?.title ?? "Docs"} — Quark`,
+  ogDescription: () => doc.value?.description ?? undefined,
+  ogUrl: () => `https://quark.autobutler.org${route.path}`,
+  ogType: "article",
+  twitterTitle: () => `${doc.value?.title ?? "Docs"} — Quark`,
+  twitterDescription: () => doc.value?.description ?? undefined,
 });
 </script>
 

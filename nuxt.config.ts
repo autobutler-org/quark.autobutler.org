@@ -30,7 +30,14 @@ export default defineNuxtConfig({
         { property: "og:image:height", content: "912" },
         { property: "og:image:alt", content: "The Quark logo" },
         { name: "twitter:card", content: "summary" },
+        { name: "twitter:title", content: "Quark — Data Autonomy For Everyone" },
+        {
+          name: "twitter:description",
+          content:
+            "A plug-and-play home cloud device. Your photos and files, stored on your own hardware.",
+        },
         { name: "twitter:image", content: "https://quark.autobutler.org/quark.png" },
+        { name: "theme-color", content: "#00bbff" },
       ],
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
