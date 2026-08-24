@@ -19,6 +19,12 @@ const sortedDocs = computed(() =>
 useSeoMeta({
   title: `${docsIndex.heading} — Quark`,
   description: docsIndex.lede,
+  ogTitle: `${docsIndex.heading} — Quark`,
+  ogDescription: docsIndex.lede,
+  ogUrl: "https://quark.autobutler.org/docs",
+  ogType: "website",
+  twitterTitle: `${docsIndex.heading} — Quark`,
+  twitterDescription: docsIndex.lede,
 });
 </script>
 
