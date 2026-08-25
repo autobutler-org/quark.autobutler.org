@@ -23,7 +23,7 @@ useSeoMeta({
 
     <div class="launch">
       <p class="badge">
-        🚀 <strong>{{ signup.launch.badge }}</strong>
+        <strong>{{ signup.launch.badge }}</strong>
       </p>
       <p>{{ signup.launch.body }}</p>
     </div>

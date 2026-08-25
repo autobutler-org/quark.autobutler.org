@@ -256,7 +256,7 @@ export const signup = {
     "We're still building Quark and planning to launch this summer. Sign up to be notified when we're ready to ship.",
   launch: {
     badge: "Coming Summer 2026",
-    body: "We're working hard to bring you the best self-hosted storage solution. Stay tuned.",
+    body: "We'll email the list the day it's available to order.",
   },
 } as const;
 
