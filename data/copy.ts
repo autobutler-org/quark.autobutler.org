@@ -36,6 +36,7 @@ export const masthead = {
   wordmark: "Quark",
   links: [
     { label: "Docs", href: "/docs" },
+    { label: "Support", href: "/support" },
     { label: "Source", href: repoUrl },
     { label: "AutoButler", href: orgSiteUrl },
   ] as readonly Link[],
@@ -175,6 +176,82 @@ export const newsletter = {
     "https://autobutler.us5.list-manage.com/subscribe/post?u=83e0cf2d6edd852308ba6671f&id=a3382ba074&f_id=00a0c2e1f0",
   honeypotName: "b_83e0cf2d6edd852308ba6671f_a3382ba074",
   submitLabel: "Subscribe",
+} as const;
+
+export interface HelpLink {
+  readonly icon: string;
+  readonly title: string;
+  readonly description: string;
+  readonly href: string;
+  readonly external?: boolean;
+}
+
+export const support = {
+  heading: "Support",
+  helpHeading: "Need help?",
+  helpIntro: "Check our documentation first — most questions are answered there.",
+  helpLinks: [
+    {
+      icon: "🚀",
+      title: "Getting Started",
+      description: "Set up your Quark for the first time",
+      href: "/docs/getting-started",
+    },
+    {
+      icon: "🛠️",
+      title: "Troubleshooting",
+      description: "Common issues and how to fix them",
+      href: "/docs/help",
+    },
+    {
+      icon: "💬",
+      title: "GitHub Issues",
+      description: "Ask questions and report problems",
+      href: `${repoUrl}/issues`,
+      external: true,
+    },
+    {
+      icon: "🐙",
+      title: "GitHub",
+      description: "Browse source, file issues, and contribute",
+      href: repoUrl,
+      external: true,
+    },
+  ] as readonly HelpLink[],
+  reportHeading: "Report an issue",
+  reportIntroPrefix:
+    "Found a bug? Report it directly to our GitHub issue tracker. Or, if you have a feature request, head to",
+  featureRequestLink: {
+    label: "our feature request page",
+    href: `${repoUrl}/issues/new?template=feature.yaml`,
+  } as Link,
+  reportIntroSuffix: ".",
+  githubIssuesUrl: `${repoUrl}/issues/new`,
+  form: {
+    titleLabel: "Bug/Feature Title *",
+    titlePlaceholder: "Brief description of the bug",
+    componentLabel: "Component(s) Affected",
+    componentOptions: [
+      "N/A",
+      "Files",
+      "Photos",
+      "Documents",
+      "Spreadsheets",
+      "Vault",
+      "Health",
+      "General UI",
+      "Backend",
+    ] as readonly string[],
+    whatHappenedLabel: "What happened? *",
+    whatHappenedPlaceholder: "Describe the bug and what you expected to happen...",
+    browsersLabel: "Browser(s)",
+    browserOptions: ["Firefox", "Chrome", "Safari", "Microsoft Edge", "Other"] as readonly string[],
+    urlLabel: "URL of Problem",
+    urlPlaceholder: "https://example.com or local URL",
+    logsLabel: "Relevant Log Output",
+    logsPlaceholder: "Paste any error messages or logs here...",
+    submitLabel: "Open GitHub Issue",
+  },
 } as const;
 
 export const docsIndex = {
