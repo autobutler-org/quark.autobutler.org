@@ -16,7 +16,6 @@ import { support } from "~/data/copy";
         :rel="link.external ? 'noopener' : undefined"
         :aria-label="`${link.title} — ${link.description}`"
       >
-        <span class="icon" aria-hidden="true">{{ link.icon }}</span>
         <span class="title">{{ link.title }}</span>
         <span class="desc">{{ link.description }}</span>
       </a>
@@ -67,11 +66,6 @@ h2 {
   background: var(--color-surface-hover);
   border-color: var(--color-accent-border);
   transform: translateY(-2px);
-}
-
-.icon {
-  font-size: 1.5rem;
-  line-height: 1;
 }
 
 .title {

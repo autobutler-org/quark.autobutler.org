@@ -179,7 +179,6 @@ export const newsletter = {
 } as const;
 
 export interface HelpLink {
-  readonly icon: string;
   readonly title: string;
   readonly description: string;
   readonly href: string;
@@ -192,26 +191,22 @@ export const support = {
   helpIntro: "Check our documentation first — most questions are answered there.",
   helpLinks: [
     {
-      icon: "🚀",
       title: "Getting Started",
       description: "Set up your Quark for the first time",
       href: "/docs/getting-started",
     },
     {
-      icon: "🛠️",
       title: "Troubleshooting",
       description: "Common issues and how to fix them",
       href: "/docs/help",
     },
     {
-      icon: "💬",
       title: "GitHub Issues",
       description: "Ask questions and report problems",
       href: `${repoUrl}/issues`,
       external: true,
     },
     {
-      icon: "🐙",
       title: "GitHub",
       description: "Browse source, file issues, and contribute",
       href: repoUrl,
