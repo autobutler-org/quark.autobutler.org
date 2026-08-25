@@ -4,7 +4,7 @@ import { masthead } from "~/data/copy";
 
 <template>
   <header class="masthead">
-    <span class="wordmark">{{ masthead.wordmark }}</span>
+    <a href="/" class="wordmark">{{ masthead.wordmark }}</a>
     <nav aria-label="Site">
       <a v-for="link in masthead.links" :key="link.href" :href="link.href">
         {{ link.label }}
@@ -31,6 +31,13 @@ import { masthead } from "~/data/copy";
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.wordmark:hover {
+  color: var(--color-text-strong);
+  text-decoration: none;
 }
 
 nav {
