@@ -30,4 +30,15 @@ describe("NewsletterSignup", () => {
     const wrapper = mount(NewsletterSignup);
     expect(wrapper.html()).not.toContain("mailchimp.com");
   });
+
+  it("shows its own heading by default, for embedding on the landing page", () => {
+    const wrapper = mount(NewsletterSignup);
+    expect(wrapper.find("h2").exists()).toBe(true);
+  });
+
+  it("can hide its heading, for a page that provides its own", () => {
+    const wrapper = mount(NewsletterSignup, { props: { showHeading: false } });
+    expect(wrapper.find("h2").exists()).toBe(false);
+    expect(wrapper.get("section").attributes("aria-label")).toBe(newsletter.heading);
+  });
 });

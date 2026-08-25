@@ -39,6 +39,7 @@ export const masthead = {
     { label: "Support", href: "/support" },
     { label: "Source", href: repoUrl },
     { label: "AutoButler", href: orgSiteUrl },
+    { label: "Sign Up", href: "/signup" },
   ] as readonly Link[],
 } as const;
 
@@ -246,6 +247,16 @@ export const support = {
     logsLabel: "Relevant Log Output",
     logsPlaceholder: "Paste any error messages or logs here...",
     submitLabel: "Open GitHub Issue",
+  },
+} as const;
+
+export const signup = {
+  heading: "Sign up for early access",
+  intro:
+    "We're still building Quark and planning to launch this summer. Sign up to be notified when we're ready to ship.",
+  launch: {
+    badge: "Coming Summer 2026",
+    body: "We'll email the list the day it's available to order.",
   },
 } as const;
 

@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import { newsletter } from "~/data/copy";
+
+withDefaults(defineProps<{ showHeading?: boolean }>(), {
+  showHeading: true,
+});
 </script>
 
 <template>
-  <section class="newsletter" aria-labelledby="newsletter-heading">
+  <section
+    class="newsletter"
+    :aria-labelledby="showHeading ? 'newsletter-heading' : undefined"
+    :aria-label="showHeading ? undefined : newsletter.heading"
+  >
     <form class="form" :action="newsletter.action" method="post" target="_blank" novalidate>
-      <h2 id="newsletter-heading">{{ newsletter.heading }}</h2>
+      <h2 v-if="showHeading" id="newsletter-heading">{{ newsletter.heading }}</h2>
       <p class="powered-by">{{ newsletter.poweredBy }}</p>
       <div class="field">
         <label for="mce-EMAIL">Email Address</label>
