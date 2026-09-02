@@ -23,4 +23,34 @@ describe("SiteHeader", () => {
     }
     expect(hrefs).toContain("/docs");
   });
+
+  it("starts with the mobile menu collapsed", () => {
+    const wrapper = mount(SiteHeader);
+    expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("false");
+    expect(wrapper.get("nav").classes()).not.toContain("open");
+  });
+
+  it("opens the menu when the hamburger button is clicked", async () => {
+    const wrapper = mount(SiteHeader);
+    await wrapper.get("button.menu-toggle").trigger("click");
+    expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("true");
+    expect(wrapper.get("nav").classes()).toContain("open");
+  });
+
+  it("closes the menu when the hamburger button is clicked again", async () => {
+    const wrapper = mount(SiteHeader);
+    const button = wrapper.get("button.menu-toggle");
+    await button.trigger("click");
+    await button.trigger("click");
+    expect(button.attributes("aria-expanded")).toBe("false");
+    expect(wrapper.get("nav").classes()).not.toContain("open");
+  });
+
+  it("closes the menu when a nav link is clicked", async () => {
+    const wrapper = mount(SiteHeader);
+    await wrapper.get("button.menu-toggle").trigger("click");
+    await wrapper.get("nav a").trigger("click");
+    expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("false");
+    expect(wrapper.get("nav").classes()).not.toContain("open");
+  });
 });
