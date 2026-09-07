@@ -27,16 +27,16 @@ Quark only works on your local network — this is by design to keep your files 
 
 ---
 
-## Cirrus — Your Files
+## Files
 
-![Cirrus Files](/assets/docs/files.webp)
+![Files browser](/assets/docs/files.webp)
 
-Cirrus is the file browser. Think of it like a Google Drive or iCloud interface, except everything lives on your
+Files is the file browser. Think of it like a Google Drive or iCloud interface, except everything lives on your
 hardware at home.
 
 ### Browsing your files
 
-When you open Cirrus you'll see your files and folders listed. You can:
+When you open Files you'll see your files and folders listed. You can:
 
 - **Click a folder** to open it
 - **Click a file** to download or preview it (images and common file types open in a viewer)
@@ -47,7 +47,7 @@ When you open Cirrus you'll see your files and folders listed. You can:
 
 ![View Selection](/assets/docs/view-buttons.webp)
 
-Cirrus has three layouts — pick whichever works best for what you're doing:
+Files has three layouts — pick whichever works best for what you're doing:
 
 - **List** — a compact row-by-row view, good for lots of files
 - **Grid** — larger thumbnails, good for photos
@@ -56,7 +56,7 @@ Cirrus has three layouts — pick whichever works best for what you're doing:
 
 ### Searching for a file
 
-Click the **search icon** in the top bar and type a filename. Cirrus will search across all your connected storage.
+Click the **search icon** in the top bar and type a filename. Files will search across all your connected storage.
 
 ---
 

@@ -64,7 +64,7 @@ recovery phrase shown exactly once. Write it down. It's the only way to reset yo
 
 ## API
 
-The REST API is at `/api/v1/`. Swagger UI is at `http://<host>/swagger`.
+The REST API is at `/api/v0/`. Swagger UI is at `http://<host>/swagger`.
 
 ### Authentication
 
@@ -73,13 +73,13 @@ All endpoints require a session token except `/auth/setup`, `/auth/login`,
 
 ```bash
 # Login
-curl -s -X POST http://localhost/api/v1/auth/login \
+curl -s -X POST http://localhost/api/v0/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username":"you","password":"your-password"}'
 # → {"token":"<64-char hex token>"}
 
 # Use the token
-curl http://localhost/api/v1/health \
+curl http://localhost/api/v0/health \
   -H "Authorization: Bearer <token>"
 ```
 
@@ -90,13 +90,13 @@ Tokens are valid for 30 days. Pass them as `Authorization: Bearer <token>` or as
 
 | Method | Path                                        | What it does                                   |
 | ------ | ------------------------------------------- | ---------------------------------------------- |
-| GET    | `/api/v1/health`                            | System health (CPU, memory, disk, temperature) |
-| GET    | `/api/v1/cirrus`                            | List files                                     |
-| POST   | `/api/v1/cirrus/upload/{path}`              | Upload a file                                  |
-| GET    | `/api/v1/storage/devices/status`            | List storage devices                           |
-| PATCH  | `/api/v1/storage/devices/{devicePath}/name` | Rename a device                                |
-| GET    | `/api/v1/version`                           | Installed version                              |
-| POST   | `/api/v1/version/latest`                    | Update to latest release                       |
+| GET    | `/api/v0/health`                            | System health (CPU, memory, disk, temperature) |
+| GET    | `/api/v0/files`                             | List files                                     |
+| POST   | `/api/v0/files/upload/{path}`               | Upload a file                                  |
+| GET    | `/api/v0/storage/devices/status`            | List storage devices                           |
+| PATCH  | `/api/v0/storage/devices/{devicePath}/name` | Rename a device                                |
+| GET    | `/api/v0/version`                           | Installed version                              |
+| POST   | `/api/v0/version/latest`                    | Update to latest release                       |
 
 ---
 
