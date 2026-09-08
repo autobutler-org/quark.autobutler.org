@@ -3,7 +3,7 @@ title: Nerd Notes
 description: Technical overview of Quark — stack, architecture, installation, and development.
 navigation:
   title: Nerd Notes
-  order: 6
+  order: 7
 ---
 
 # Nerd Notes
