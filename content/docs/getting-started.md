@@ -133,7 +133,7 @@ and uploading from your phone on the home network.
 ## Vault
 
 Quark includes an encrypted password vault on your hardware. Full how-to is coming after Photos. Until then: use a
-strong master password, write down the recovery phrase, and see the [Security Guide](/docs/security-guide).
+strong master password (there is no forgot-password), and see the [Security Guide](/docs/security-guide).
 
 ---
 
