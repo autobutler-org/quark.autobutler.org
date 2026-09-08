@@ -8,7 +8,8 @@ navigation:
 
 # Things You Should Know
 
-Quark is built so your files stay private by default. "Private by design" is not the same as "impossible to lose." This page is the short list every owner should actually do.
+Quark is built so your files stay private by default. "Private by design" is not the same as "impossible to lose." This
+page is the short list every owner should actually do.
 
 None of this is scary. You've probably done most of it for other important things already.
 
@@ -16,7 +17,9 @@ None of this is scary. You've probably done most of it for other important thing
 
 ## Your master password
 
-The vault — where Quark keeps sensitive things like credentials — is encrypted with your master password. That uses Argon2id, which is slow on purpose. A stolen drive is still a bad day, but a reasonable password makes cracking the vault a miserable project for an attacker.
+The vault — where Quark keeps sensitive things like credentials — is encrypted with your master password. That uses
+Argon2id, which is slow on purpose. A stolen drive is still a bad day, but a reasonable password makes cracking the
+vault a miserable project for an attacker.
 
 What "reasonable" means here:
 
@@ -26,7 +29,8 @@ What "reasonable" means here:
 
 A passphrase like `correct-horse-battery-staple` beats `P@ssw0rd1`. Longer beats clever.
 
-There is no "forgot password" button. Your master password is not sent to us, not stored in a recoverable form, and not something we can reset. If you forget it, the vault is gone. Write it down on paper and put the paper somewhere safe.
+There is no "forgot password" button. Your master password is not sent to us, not stored in a recoverable form, and not
+something we can reset. If you forget it, the vault is gone. Write it down on paper and put the paper somewhere safe.
 
 ---
 
@@ -39,7 +43,8 @@ At setup, Quark showed you a short recovery phrase. That phrase can unlock the v
 - Do not put it in a Google Doc, Dropbox, or iCloud note. That undoes the point.
 - Make sure a trusted person knows where it is.
 
-You only see this phrase once at setup. If you still have your password and lost the phrase, you can generate a new one in Settings → Security.
+You only see this phrase once at setup. If you still have your password and lost the phrase, you can generate a new one
+in Settings → Security.
 
 ---
 
@@ -51,7 +56,8 @@ Quark stores your files. Quark is also a physical box. Boxes fail, flood, and bu
 - **2** different kinds of storage (for example Quark's drive + an external USB)
 - **1** copy that is not in the same building
 
-Quark can help with copies on attached drives. The offsite copy is on you — a drive at a relative's house that you swap now and then is enough.
+Quark can help with copies on attached drives. The offsite copy is on you — a drive at a relative's house that you swap
+now and then is enough.
 
 No backup plan can save you from having no backup.
 
@@ -67,7 +73,8 @@ No backup plan can save you from having no backup.
 
 ## Network security
 
-By default, Quark is for your local network. It does not need the public internet to do its main job, and it is not meant to be reachable from a coffee shop WiFi.
+By default, Quark is for your local network. It does not need the public internet to do its main job, and it is not
+meant to be reachable from a coffee shop WiFi.
 
 In practice:
 
@@ -75,7 +82,8 @@ In practice:
 - Do not hand your WiFi password to people you do not trust
 - Quark's routine outside contact is software updates; the code is public if you want to look
 
-Remote access from outside your home is coming later. It is not a live feature to configure today. When it ships, we will document it carefully — including how to treat those credentials like keys to your house.
+Remote access from outside your home is coming later. It is not a live feature to configure today. When it ships, we
+will document it carefully — including how to treat those credentials like keys to your house.
 
 ---
 
@@ -106,8 +114,10 @@ Same idea as a spare house key with a neighbor.
 To be direct about the limits:
 
 - It does not scan uploads for viruses. It stores what you give it.
-- It does not stop physical theft of the box. Vault encryption protects vault data; ordinary files on the drive are a different story unless you have turned on stronger file encryption (not a current default to lean on).
-- It does not save you if your WiFi password is shared with the wrong person. Someone on your network can reach Quark. Your password still protects sensitive areas, but browsing files is part of the product.
+- It does not stop physical theft of the box. Vault encryption protects vault data; ordinary files on the drive are a
+  different story unless you have turned on stronger file encryption (not a current default to lean on).
+- It does not save you if your WiFi password is shared with the wrong person. Someone on your network can reach Quark.
+  Your password still protects sensitive areas, but browsing files is part of the product.
 
 Knowing the limits is part of using the thing honestly.
 
