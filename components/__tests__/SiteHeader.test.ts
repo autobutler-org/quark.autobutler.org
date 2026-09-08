@@ -4,6 +4,10 @@ import { describe, expect, it } from "vitest";
 import SiteHeader from "../SiteHeader.vue";
 import { masthead } from "~/data/copy";
 
+function suppressNavigation(anchor: Element): void {
+  anchor.addEventListener("click", (event) => event.preventDefault());
+}
+
 describe("SiteHeader", () => {
   it("shows the Quark wordmark", () => {
     const wrapper = mount(SiteHeader);
@@ -49,7 +53,9 @@ describe("SiteHeader", () => {
   it("closes the menu when a nav link is clicked", async () => {
     const wrapper = mount(SiteHeader);
     await wrapper.get("button.menu-toggle").trigger("click");
-    await wrapper.get("nav a").trigger("click");
+    const link = wrapper.get("nav a");
+    suppressNavigation(link.element);
+    await link.trigger("click");
     expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("false");
     expect(wrapper.get("nav").classes()).not.toContain("open");
   });
