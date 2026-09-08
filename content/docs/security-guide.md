@@ -34,19 +34,6 @@ something we can reset. If you forget it, the vault is gone. Write it down on pa
 
 ---
 
-## Your recovery phrase
-
-At setup, Quark showed you a short recovery phrase. That phrase can unlock the vault if you lose the master password.
-
-- Write it on paper. Not a sticky note on the monitor.
-- Store it like you would a will or insurance papers — locked drawer, fireproof box, safety deposit box.
-- Do not put it in a Google Doc, Dropbox, or iCloud note. That undoes the point.
-- Make sure a trusted person knows where it is.
-
-You only see this phrase once at setup. If you still have your password and lost the phrase, you can generate a new one
-in Settings → Security.
-
----
 
 ## The 3-2-1 backup rule
 
@@ -91,7 +78,7 @@ will document it carefully — including how to treat those credentials like key
 
 If something happens to you, can your family get to the photos?
 
-1. Keep login and master password (or recovery phrase) with your important papers.
+1. Keep login and master password with your important papers.
 2. Tell a trusted person where Quark is and how to find that info.
 3. A trusted-contact feature is on the roadmap; it is not live yet.
 
@@ -126,7 +113,7 @@ Knowing the limits is part of using the thing honestly.
 ## The short version
 
 1. Strong master password, written down, stored safely.
-2. Recovery phrase somewhere physical and boring.
+2. Master password written down somewhere physical and boring.
 3. External backup drive; swap it now and then.
 4. WPA2/WPA3 on WiFi.
 5. Tell someone you trust how to get in if you cannot.
