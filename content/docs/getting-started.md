@@ -8,7 +8,8 @@ navigation:
 
 # Getting Started
 
-This guide is day-to-day Quark — set up the box, open it from your phone or laptop, and move files around. No terminal required.
+This guide is day-to-day Quark — set up the box, open it from your phone or laptop, and move files around. No terminal
+required.
 
 ---
 
@@ -26,10 +27,12 @@ Steps:
 1. Plug Quark into power and into your router.
 2. Attach your USB storage.
 3. Wait a minute for it to come up.
-4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the hostname you were given at setup).
+4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
+   hostname you were given at setup).
 5. Create your owner account when the setup screen asks. Write down the recovery phrase — you only see it once.
 
-If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
+If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
+[Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
 
 ---
 
@@ -64,7 +67,8 @@ Cirrus has three layouts — pick whichever works best for what you're doing:
 
 - **List** — a compact row-by-row view, good for lots of files
 - **Grid** — larger thumbnails, good for photos
-- **Unified / Per-device** — toggle between seeing all your storage devices as one combined view, or seeing each device separately
+- **Unified / Per-device** — toggle between seeing all your storage devices as one combined view, or seeing each device
+  separately
 
 ### Searching for a file
 
@@ -101,7 +105,9 @@ Right-click (or long-press on mobile) any file or folder to open the action menu
 
 ### Delete and trash
 
-Deleted files go to an on-device trash and stay recoverable for about 30 days, then they're gone. This is not a full Google Drive–style trash product with a polished recycle-bin UI yet — treat restore as available for that window, and don't count on it forever.
+Deleted files go to an on-device trash and stay recoverable for about 30 days, then they're gone. This is not a full
+Google Drive–style trash product with a polished recycle-bin UI yet — treat restore as available for that window, and
+don't count on it forever.
 
 ---
 
@@ -117,13 +123,15 @@ Quark can manage multiple storage devices (hard drives, USB drives) connected to
 
 ## Photos
 
-The Photos section shows your images organized by time. A dedicated Photos / phone backup guide is next in this docs pass. For now: keep photos on your Quark storage and browse them here.
+The Photos section shows your images organized by time. A dedicated Photos / phone backup guide is next in this docs
+pass. For now: keep photos on your Quark storage and browse them here.
 
 ---
 
 ## Vault
 
-Quark includes an encrypted password vault on your hardware. Full how-to is coming after Photos. Until then: use a strong master password, write down the recovery phrase, and see the [Security Guide](/docs/security-guide).
+Quark includes an encrypted password vault on your hardware. Full how-to is coming after Photos. Until then: use a
+strong master password, write down the recovery phrase, and see the [Security Guide](/docs/security-guide).
 
 ---
 
@@ -143,16 +151,20 @@ If anything looks off (disk nearly full, temperature very high), this is where y
 
 The Settings page lets you:
 
-- **Toggle automatic updates** — turn on to have Quark update itself overnight when a new version is available; turn off if you want to control updates manually
-- **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with the team
+- **Toggle automatic updates** — turn on to have Quark update itself overnight when a new version is available; turn off
+  if you want to control updates manually
+- **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with the
+  team
 
-Quark's routine contact with the public internet is checking for software updates. Optional features you turn on later (remote access when it ships, imports you start yourself) are separate from that default.
+Quark's routine contact with the public internet is checking for software updates. Optional features you turn on later
+(remote access when it ships, imports you start yourself) are separate from that default.
 
 ---
 
 ## Logging out
 
-Click your username or the settings icon and choose **Log out** when you're done. This is good practice on shared devices.
+Click your username or the settings icon and choose **Log out** when you're done. This is good practice on shared
+devices.
 
 ---
 
