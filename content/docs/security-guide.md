@@ -1,6 +1,6 @@
 ---
 title: Things You Should Know (Security Guide)
-description: Practical security guidance for Quark owners — written in plain English, not jargon.
+description: Practical security guidance for Quark owners — written in plain English, not jargon
 navigation:
   title: Security Guide
   order: 7
@@ -8,158 +8,117 @@ navigation:
 
 # Things You Should Know
 
-Quark is designed so your files stay private by default. But "private by design" doesn't mean "impossible to
-lose." This page covers a handful of things every Quark owner should do.
+Quark is built so your files stay private by default. "Private by design" is not the same as "impossible to lose." This page is the short list every owner should actually do.
 
-None of this is scary. You've probably done most of it already for other important things in your life.
+None of this is scary. You've probably done most of it for other important things already.
 
 ---
 
-## Your Master Password
+## Your master password
 
-The vault — where Quark stores sensitive things like credentials and recovery phrases — is encrypted with your
-master password. That encryption is done with Argon2id, a modern algorithm designed to be slow on purpose. Even if
-someone stole your Quark's hard drive, cracking the vault would take them years of compute time if your password is
-reasonable.
+The vault — where Quark keeps sensitive things like credentials — is encrypted with your master password. That uses Argon2id, which is slow on purpose. A stolen drive is still a bad day, but a reasonable password makes cracking the vault a miserable project for an attacker.
 
-**What makes a reasonable password:**
+What "reasonable" means here:
 
 - At least 12 characters
-- Not a dictionary word on its own
-- Not something you've used elsewhere
+- Not a single dictionary word
+- Not a password you reuse elsewhere
 
-A passphrase like `correct-horse-battery-staple` is better than `P@ssw0rd1` — longer beats cleverer.
+A passphrase like `correct-horse-battery-staple` beats `P@ssw0rd1`. Longer beats clever.
 
-**There is no "forgot password" button.** This is intentional. Your master password is never sent anywhere, never
-stored, and never recoverable by anyone — including us. If you forget it, the vault is gone. Write it down
-somewhere physical and store it safely.
+There is no "forgot password" button. Your master password is not sent to us, not stored in a recoverable form, and not something we can reset. If you forget it, the vault is gone. Write it down on paper and put the paper somewhere safe.
 
 ---
 
-## Your Recovery Phrase
+## Your recovery phrase
 
-When you first set up Quark, it gave you a 6-word recovery phrase. That phrase is your emergency key — it can
-unlock the vault if you forget your master password.
+At setup, Quark showed you a short recovery phrase. That phrase can unlock the vault if you lose the master password.
 
-**What to do with it:**
+- Write it on paper. Not a sticky note on the monitor.
+- Store it like you would a will or insurance papers — locked drawer, fireproof box, safety deposit box.
+- Do not put it in a Google Doc, Dropbox, or iCloud note. That undoes the point.
+- Make sure a trusted person knows where it is.
 
-- Write it on paper. Not a sticky note.
-- Store it somewhere you'd store an important document — a fireproof box, a filing cabinet with a lock, or a
-  safety deposit box.
-- Do **not** store it in a Google Doc, Dropbox, or iCloud note. That defeats the purpose.
-- Make sure your spouse or a trusted person knows where it is. If something happens to you, they'll need it.
-
-You only see this phrase once. If you've lost it and still have your password, you can generate a new one in
-Settings → Security.
+You only see this phrase once at setup. If you still have your password and lost the phrase, you can generate a new one in Settings → Security.
 
 ---
 
-## The 3-2-1 Backup Rule
+## The 3-2-1 backup rule
 
-Quark stores your files. But Quark is a physical device that can fail, flood, or burn.
+Quark stores your files. Quark is also a physical box. Boxes fail, flood, and burn.
 
-The 3-2-1 rule is simple:
+- **3** copies of anything you care about
+- **2** different kinds of storage (for example Quark's drive + an external USB)
+- **1** copy that is not in the same building
 
-- **3** copies of your data
-- **2** different storage types (e.g., Quark's internal drive + an external USB drive)
-- **1** offsite copy (e.g., a hard drive at a relative's house)
+Quark can help with copies on attached drives. The offsite copy is on you — a drive at a relative's house that you swap now and then is enough.
 
-Quark helps with the first two: it can mirror your files to an attached external drive automatically. The third
-copy is on you. A USB drive at your parents' house that you swap out once a month is enough.
-
-There is no backup strategy that can save you from _no backup at all._
+No backup plan can save you from having no backup.
 
 ---
 
-## Physical Security
+## Physical security
 
-Quark is a small computer that holds your files. Treat it accordingly.
-
-**Where to put it:**
-
-- Inside your home, not in an unheated garage or shed where it can overheat or freeze
-- Off the floor — water and flooding are real risks
-- Out of sight if possible — you don't need to advertise that there's a storage device on your network
-
-**Your backup drives:**
-
-- Don't keep your only backup drive right next to Quark. If there's a fire or a break-in, you lose both.
-- A fireproof bag or small safe is a worthwhile investment for a drive holding years of family photos.
+- Keep Quark indoors, off the floor, somewhere that does not freeze or bake
+- Out of casual sight is fine; you do not need to advertise a storage box on the network
+- Do not store your only backup drive next to Quark. Fire and theft take pairs.
 
 ---
 
-## Network Security
+## Network security
 
-Quark runs on your local network. It does not need the public internet to function, and by default it's not
-reachable from outside your home.
+By default, Quark is for your local network. It does not need the public internet to do its main job, and it is not meant to be reachable from a coffee shop WiFi.
 
-**What this means in practice:**
+In practice:
 
-- Someone sitting at a coffee shop cannot reach your Quark.
-- Your ISP cannot see your files (they flow entirely on your local network).
-- Quark doesn't "call home" to any servers beyond checking for updates. Our code is public if you want to verify.
+- Password-protect your WiFi with WPA2 or WPA3
+- Do not hand your WiFi password to people you do not trust
+- Quark's routine outside contact is software updates; the code is public if you want to look
 
-**What you need to do:**
-
-- Password-protect your WiFi with WPA2 or WPA3. If it's still open, fix that first.
-- Don't give your WiFi password to people you don't trust.
-- If you enable remote access via Tailscale, treat your Tailscale account as carefully as your Quark password — it's
-  the key to your network.
+Remote access from outside your home is coming later. It is not a live feature to configure today. When it ships, we will document it carefully — including how to treat those credentials like keys to your house.
 
 ---
 
-## Estate Planning
+## Estate planning
 
-If something happens to you, can your family access the files you've stored?
+If something happens to you, can your family get to the photos?
 
-Consider:
+1. Keep login and master password (or recovery phrase) with your important papers.
+2. Tell a trusted person where Quark is and how to find that info.
+3. A trusted-contact feature is on the roadmap; it is not live yet.
 
-1. **Writing down** your Quark login and master password (or recovery phrase) and storing them with your
-   important documents — will, insurance policies, that kind of thing.
-2. **Telling a trusted person** where Quark is, what it does, and where the login info is stored.
-3. **Quark's trusted contact feature** (coming soon) will let you designate someone who can request access after a
-   configurable waiting period.
-
-This isn't morbid — it's the same reason you keep a spare key with a neighbor.
+Same idea as a spare house key with a neighbor.
 
 ---
 
-## If You Think Your Device Was Compromised
+## If you think someone got in
 
-If you suspect someone unauthorized has accessed your Quark:
-
-1. **Change your password immediately.** Go to Settings → Security → Change Password.
-2. **Review active sessions.** Settings → Security → Sessions shows every device currently logged in. Revoke
-   anything you don't recognize.
-3. **Rotate your API tokens** if you use them.
-4. **Change your WiFi password** if you suspect your network was the entry point.
-5. **Review your files** for anything unexpected — deletions, new folders, modified timestamps.
-
-If you use Tailscale for remote access, also rotate your Tailscale auth keys and remove any unrecognized nodes from
-your tailnet.
+1. Change your password — Settings → Security → Change Password.
+2. Review active sessions and revoke anything you do not recognize.
+3. Rotate any API tokens you use.
+4. Change your WiFi password if the network may have been the path in.
+5. Skim files for odd deletions, new folders, or weird timestamps.
 
 ---
 
-## What Quark Does Not Do
+## What Quark does not do
 
 To be direct about the limits:
 
-- **It doesn't scan for viruses or malware** in your uploaded files. It stores what you give it.
-- **It doesn't protect against physical theft** of the device — if someone takes the hardware, encryption protects
-  the vault, but your files are readable unless you've enabled per-file encryption (a future feature).
-- **It doesn't protect you if your WiFi password is compromised.** Someone on your network can reach Quark. The
-  password prompt protects specific sensitive areas, but not file browsing.
+- It does not scan uploads for viruses. It stores what you give it.
+- It does not stop physical theft of the box. Vault encryption protects vault data; ordinary files on the drive are a different story unless you have turned on stronger file encryption (not a current default to lean on).
+- It does not save you if your WiFi password is shared with the wrong person. Someone on your network can reach Quark. Your password still protects sensitive areas, but browsing files is part of the product.
 
-Knowing the limits helps you make good decisions about what you store and how.
+Knowing the limits is part of using the thing honestly.
 
 ---
 
-## The Short Version
+## The short version
 
-1. Pick a strong master password. Write it down. Store it safely.
-2. Keep your recovery phrase somewhere physical and fireproof.
-3. Set up an external backup drive. Swap it out periodically.
-4. Use WPA2/WPA3 on your WiFi.
-5. Tell someone you trust how to access things if you can't.
+1. Strong master password, written down, stored safely.
+2. Recovery phrase somewhere physical and boring.
+3. External backup drive; swap it now and then.
+4. WPA2/WPA3 on WiFi.
+5. Tell someone you trust how to get in if you cannot.
 
-That's it. Quark handles the rest.
+Quark handles the rest of the day-to-day.
