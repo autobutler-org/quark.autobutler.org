@@ -34,7 +34,6 @@ something we can reset. If you forget it, the vault is gone. Write it down on pa
 
 ---
 
-
 ## The 3-2-1 backup rule
 
 Quark stores your files. Quark is also a physical box. Boxes fail, flood, and burn.
