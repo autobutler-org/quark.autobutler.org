@@ -123,8 +123,11 @@ Quark can manage multiple storage devices (hard drives, USB drives) connected to
 
 ## Photos
 
-The Photos section shows your images organized by time. A dedicated Photos / phone backup guide is next in this docs
-pass. For now: keep photos on your Quark storage and browse them here.
+The Photos section shows your images organized by time. See [Photos](/docs/photos) for browsing
+and uploading from your phone on the home network.
+
+---
+
 
 ---
 
