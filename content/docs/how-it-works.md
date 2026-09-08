@@ -8,25 +8,33 @@ navigation:
 
 # How Quark Works
 
-Quark is a small device on your home network. It stores your files on drives you own. By default, your content stays on hardware you control.
+Quark is a small device on your home network. It stores your files on drives you own. By default, your content stays on
+hardware you control.
 
 ## Your files, your network
 
-Phones, laptops, and tablets on your home WiFi talk to your router. The router talks to Quark. Quark talks to your drive. Your files are on that drive — not on a Google server, not on an Apple server, not in a data center you will never visit.
+Phones, laptops, and tablets on your home WiFi talk to your router. The router talks to Quark. Quark talks to your
+drive. Your files are on that drive — not on a Google server, not on an Apple server, not in a data center you will
+never visit.
 
 ## How this is different from iCloud or Google Photos
 
-With typical cloud storage, your photos and files travel over the internet to a computer you don't own. They come back when you ask for them. Convenient. Also rented.
+With typical cloud storage, your photos and files travel over the internet to a computer you don't own. They come back
+when you ask for them. Convenient. Also rented.
 
-With Quark, day-to-day use is local. Files move over your own WiFi to a box in your house. You own the hardware. You own the data.
+With Quark, day-to-day use is local. Files move over your own WiFi to a box in your house. You own the hardware. You own
+the data.
 
-If we offer an optional backup or sync service later, it would require your explicit opt-in. It would not be the default, and it would not be forced.
+If we offer an optional backup or sync service later, it would require your explicit opt-in. It would not be the
+default, and it would not be forced.
 
 ## Accessing from outside your home (coming soon)
 
 We are building a way to reach your files when you are not on home WiFi — work, travel, phone data.
 
-That feature is not available yet. When it ships, the goal is a private, encrypted path between your devices and your Quark, with your actual file data staying under your control — not sitting on our servers as a hosted cloud. We will document how it works in plain English when it is ready to use. Until then, Quark is for your home network.
+That feature is not available yet. When it ships, the goal is a private, encrypted path between your devices and your
+Quark, with your actual file data staying under your control — not sitting on our servers as a hosted cloud. We will
+document how it works in plain English when it is ready to use. Until then, Quark is for your home network.
 
 ## What Quark stores
 
