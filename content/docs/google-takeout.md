@@ -3,7 +3,7 @@ title: Migrating from Google — Google Takeout Guide
 description: How to export your data from Google and import it into Quark using Google Takeout
 navigation:
   title: Google Takeout Guide
-  order: 5
+  order: 6
 ---
 
 # Migrating from Google — Google Takeout Guide
