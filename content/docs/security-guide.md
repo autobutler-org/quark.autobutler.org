@@ -3,7 +3,7 @@ title: Things You Should Know (Security Guide)
 description: Practical security guidance for Quark owners — written in plain English, not jargon
 navigation:
   title: Security Guide
-  order: 7
+  order: 8
 ---
 
 # Things You Should Know
