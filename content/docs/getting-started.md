@@ -141,6 +141,7 @@ phone on the home network.
 Quark includes an encrypted password vault on your hardware. See [Vault](/docs/vault) for soft-launch
 setup (master password only — no recovery phrase). Details on limits live in the
 [Security Guide](/docs/security-guide).
+
 ---
 
 ## Health
