@@ -45,8 +45,6 @@ and put the paper somewhere you will look.
 
 ---
 
----
-
 ## The 3-2-1 backup rule
 
 Quark stores your files. Quark is also a physical box, and boxes fail, flood, and get stolen.
@@ -110,15 +108,13 @@ This is not morbid. It is the same reason you leave a spare key with a neighbor.
 
 ## If you think someone got in
 
-Quark has no API keys or app passwords to hunt down and rotate. Access is a username, a password, and the sessions that
-password created — so the reset is short:
+Quark has no API keys or app passwords to hunt down and rotate. Access is your username and password, on your own
+network, so the response is mostly physical and it is short:
 
-1. Change your Quark password from Settings if you can still sign in, and review active sessions — revoke anything
-   you do not recognize.
+1. Unplug Quark from the router. Nothing reaches it while it is off the network, and that buys you time to work out
+   what happened.
 2. Change your WiFi password if the network was the likely way in.
 3. Look through your files for odd deletions, unfamiliar folders, or timestamps that do not match anything you did.
-
-If you cannot sign in safely, unplug Quark from the router. Nothing reaches it while it is off the network.
 
 ---
 
