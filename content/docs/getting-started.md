@@ -34,8 +34,8 @@ Steps:
 3. Wait a minute for it to come up.
 4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
    hostname you were given at setup).
-5. Create your owner account when the setup screen asks. Quark shows you a six-word recovery phrase once — write it
-   down. It is what resets your password if you forget it.
+5. Create your owner account when the setup screen asks. Pick a password you will remember — there is no
+   forgot-password flow for that account.
 
 If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
 [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
