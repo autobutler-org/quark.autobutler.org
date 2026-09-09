@@ -24,7 +24,7 @@ Migrating from Google? See the [Google Takeout guide](/docs/google-takeout).
 
 ## Adding photos from your phone (soft-launch)
 
-On your home Wi‑Fi, with Quark reachable on the local network:
+On your home WiFi, with Quark reachable on the local network:
 
 1. Open Quark (phone app or browser) and sign in.
 2. Go to Photos.

@@ -19,17 +19,23 @@ What you need:
 
 - Your Quark device (or a supported box you've installed Quark on)
 - A free ethernet port on your home router (preferred) or WiFi if your setup uses that
-- A USB drive or hard drive for storage
 - A phone or computer on the same home network
+
+Worth having, though not required to finish setup:
+
+- **A spare USB drive or external hard drive.** Quark works fine without one, but everything then lives on a single
+  device. If that device fails, the files go with it. A second drive you copy the irreplaceable folders onto is the
+  cheapest insurance there is — see the [Security Guide](/docs/security-guide).
 
 Steps:
 
 1. Plug Quark into power and into your router.
-2. Attach your USB storage.
+2. Attach any extra storage you want Quark to manage.
 3. Wait a minute for it to come up.
 4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
    hostname you were given at setup).
-5. Create your owner account when the setup screen asks. Write down the recovery phrase — you only see it once.
+5. Create your owner account when the setup screen asks. Quark shows you a six-word recovery phrase once — write it
+   down. It is what resets your password if you forget it.
 
 If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
 [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
@@ -105,9 +111,11 @@ Right-click (or long-press on mobile) any file or folder to open the action menu
 
 ### Delete and trash
 
-Deleted files go to an on-device trash and stay recoverable for about 30 days, then they're gone. This is not a full
-Google Drive–style trash product with a polished recycle-bin UI yet — treat restore as available for that window, and
-don't count on it forever.
+Deleted files go to a trash folder on the device and stay recoverable for about 30 days. After that they are purged
+for good.
+
+Treat that as a 30-day window to change your mind, not as a recycle bin you can leave things in. The polished
+Google Drive–style trash view is still to come.
 
 ---
 
@@ -123,17 +131,16 @@ Quark can manage multiple storage devices (hard drives, USB drives) connected to
 
 ## Photos
 
-The Photos section shows your images organized by time. See [Photos](/docs/photos) for browsing
-and uploading from your phone on the home network.
-
----
+The Photos section shows your images organized by time. See [Photos](/docs/photos) for browsing and uploading from your
+phone on the home network.
 
 ---
 
 ## Vault
 
-Quark includes an encrypted password vault on your hardware. Full how-to is coming after Photos. Until then: use a
-strong master password (there is no forgot-password), and see the [Security Guide](/docs/security-guide).
+Quark includes an encrypted password vault that lives on your hardware. The full how-to is coming after Photos. Until
+then, the one thing to know: the vault has no forgot-password button, so pick a master password you will remember and
+write it down. The [Security Guide](/docs/security-guide) covers why, and what to do about it.
 
 ---
 

@@ -42,7 +42,32 @@ When you plug in a drive, Quark keeps things in ordinary folders:
 
 - **Photos and videos** — from your phone or computer, browsable by date
 - **Documents** — PDFs, notes, spreadsheets, whatever you keep
-- **Backups** — a second copy on another drive when you set that up
 - **Media** — books, videos, and files from any device on your network
 
-Everything is real files in real folders. No proprietary lock-in. Unplug the drive and your stuff is still your stuff.
+Everything is real files in real folders. No proprietary lock-in.
+
+## The files live on the drive, not in the box
+
+This is the part worth understanding, because it is the reason the rest of the pitch holds up.
+
+Quark is the thing that serves your files. The drive is the thing that holds them. Your photos and documents are written
+to the storage device as normal files in normal folders, and they stay there whether or not Quark is running.
+
+So if the box dies, gets replaced, or you simply unplug the drive and carry it to a laptop, your files are still there
+and still readable. Nothing is trapped in a database or a format only we can open. Swap the box, keep the files.
+
+## Backups (coming soon)
+
+Persisting on the drive is not the same as being backed up. A drive is one copy in one building, and one copy is the
+copy that gets lost.
+
+Quark does not yet do this for you. Automatic copies to a second drive is a feature we are building, and we would rather
+ship it late than ship something that quietly stops working and takes your only backup with it. When it lands, the
+shape we are aiming for is:
+
+- A second drive attached to Quark that holds a full copy of what matters
+- Copies that run on their own, on a schedule, without you remembering to start them
+- Somewhere obvious in the app that tells you the last copy actually finished
+
+Until then, the copying is manual and the plan is the ordinary one: a second drive, and a third copy somewhere that is
+not your house. See the [Security Guide](/docs/security-guide) for the 3-2-1 version of that.

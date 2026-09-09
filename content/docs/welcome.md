@@ -41,6 +41,7 @@ Ready? See the [Getting Started](/docs/getting-started) guide.
 ## Need help?
 
 - **[Getting Started](/docs/getting-started)** — day-to-day use
+- **[How It Works](/docs/how-it-works)** — local-first, explained plainly
 - **[Help & Support](/docs/help)** — troubleshooting and how to reach us
 - **[Security Guide](/docs/security-guide)** — passwords, backups, and what Quark does not do
 
