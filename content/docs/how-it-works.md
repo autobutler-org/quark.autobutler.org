@@ -58,12 +58,17 @@ and still readable. Nothing is trapped in a database or a format only we can ope
 
 ## Backups (coming soon)
 
-Persisting on the drive is not the same as being backed up. A drive is one copy in one building, and one copy is the
-copy that gets lost.
+Persisting on the drive is not the same as being backed up, and this is the honest tradeoff of keeping your files at
+home: nobody else can read them, and nobody else is quietly keeping a spare copy for you either. Google does that second
+part on your behalf, and charges you for it in a currency you may not want to keep paying.
 
-Quark does not yet do this for you. Automatic copies to a second drive is a feature we are building, and we would rather
-ship it late than ship something that quietly stops working and takes your only backup with it. When it lands, the
-shape we are aiming for is:
+It is a solved problem, though, and you solve it once. Copy the irreplaceable folders onto a second drive and keep that
+drive somewhere a bad day cannot reach — a fireproof box, a relative's house. Do that and the tradeoff costs you an
+afternoon rather than your photos.
+
+Quark does not do the copying for you yet. Automatic copies to a second drive is a feature we are building, and we would
+rather ship it late than ship something that quietly stops working and takes your only backup with it. When it lands,
+the shape we are aiming for is:
 
 - A second drive attached to Quark that holds a full copy of what matters
 - Copies that run on their own, on a schedule, without you remembering to start them

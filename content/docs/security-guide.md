@@ -17,8 +17,14 @@ None of this is scary. You have already done most of it for other important thin
 
 ## Your master password
 
-The vault — where Quark keeps passwords and other sensitive notes — is encrypted with a master password you choose. The
-encryption uses Argon2id, which is deliberately slow, so guessing at it is expensive.
+The vault — where Quark keeps passwords and other sensitive notes — is locked with a master password you choose. Quark
+never stores that password anywhere. The password itself is what scrambles the vault, which is why nobody, us included,
+can open it without you.
+
+Unscrambling is deliberately slow. That sounds like a flaw and it is actually the whole trick: anyone guessing at your
+password has to redo that slow work on every single guess, so a program that could otherwise try millions of passwords a
+second gets dragged down to a handful. It turns "crack it over lunch" into "crack it over several lifetimes." (The
+method is called Argon2id, if you ever want to read up on it.)
 
 Be sensible here rather than paranoid. Quark sits in your house, on your own network, so the realistic risk is not a
 stranger with a cracking rig. It is you forgetting the password. A phrase you will actually remember, written on a card
@@ -58,7 +64,7 @@ Write the phrase on paper and keep it with your important documents.
 Quark stores your files. Quark is also a physical box, and boxes fail, flood, and get stolen.
 
 - **3** copies of anything you would miss
-- **2** different kinds of storage — Quark's drive plus an external USB, say
+- **2** different kinds of storage, like Quark's drive plus an external USB
 - **1** copy that is not in the same building
 
 Automatic mirroring between drives is not a shipped feature yet, so a second copy today means attaching a second drive
