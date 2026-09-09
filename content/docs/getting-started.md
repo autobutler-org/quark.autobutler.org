@@ -34,8 +34,7 @@ Steps:
 3. Wait a minute for it to come up.
 4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
    hostname you were given at setup).
-5. Create your owner account when the setup screen asks. Quark shows you a six-word recovery phrase once — write it
-   down. It is what resets your password if you forget it.
+5. Create your owner account when the setup screen asks. Pick a password you will remember, and write it down.
 
 If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
 [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
@@ -138,9 +137,9 @@ phone on the home network.
 
 ## Vault
 
-Quark includes an encrypted password vault that lives on your hardware. The full how-to is coming after Photos. Until
-then, the one thing to know: the vault has no forgot-password button, so pick a master password you will remember and
-write it down. The [Security Guide](/docs/security-guide) covers why, and what to do about it.
+Quark includes an encrypted password vault on your hardware. See [Vault](/docs/vault) for soft-launch
+setup (master password only — no recovery phrase). Details on limits live in the
+[Security Guide](/docs/security-guide).
 
 ---
 
