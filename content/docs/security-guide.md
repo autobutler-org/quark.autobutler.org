@@ -45,7 +45,6 @@ and put the paper somewhere you will look.
 
 ---
 
-
 ---
 
 ## The 3-2-1 backup rule
