@@ -45,17 +45,6 @@ and put the paper somewhere you will look.
 
 ---
 
-## Your recovery phrase
-
-Your Quark login and your vault master password are two different things, and only one of them has a safety net.
-
-When you set Quark up, it showed you a six-word recovery phrase, once. That phrase resets your **login password** if you
-forget it: enter it on the recovery screen, choose a new password, and Quark signs out every device that was logged in.
-That last part matters — it is also the fastest way to remove someone you did not invite.
-
-The recovery phrase does not open the vault. Nothing opens the vault except the master password.
-
-Write the phrase on paper and keep it with your important documents.
 
 ---
 
@@ -110,7 +99,7 @@ you kept behind it — bank, email, all of it — so treat that password the way
 
 Handle it like any other important document:
 
-1. Write down the Quark login, the six-word recovery phrase, and the vault master password.
+1. Write down the Quark login and the vault master password.
 2. Store them where your will is stored — a fireproof box, a safe deposit box, or with the attorney who holds the will.
 3. Tell one person you trust that Quark exists, what is on it, and where those papers are.
 
@@ -125,12 +114,12 @@ This is not morbid. It is the same reason you leave a spare key with a neighbor.
 Quark has no API keys or app passwords to hunt down and rotate. Access is a username, a password, and the sessions that
 password created — so the reset is short:
 
-1. Reset your password from the recovery screen using your six-word recovery phrase. This signs out every logged-in
-   device at once, including whoever you are worried about.
+1. Change your Quark password from Settings if you can still sign in, and review active sessions — revoke anything
+   you do not recognize.
 2. Change your WiFi password if the network was the likely way in.
 3. Look through your files for odd deletions, unfamiliar folders, or timestamps that do not match anything you did.
 
-If you cannot get to the recovery screen, unplug Quark from the router. Nothing reaches it while it is off the network.
+If you cannot sign in safely, unplug Quark from the router. Nothing reaches it while it is off the network.
 
 ---
 
@@ -151,7 +140,7 @@ Knowing the limits helps you make good decisions about what you store and how.
 ## The short version
 
 1. Pick a master password you will remember. Write it down. Store it safely.
-2. Keep your six-word recovery phrase on paper with your important documents.
+2. Keep your Quark login password written down with your important documents.
 3. Copy the irreplaceable things to a second drive, and keep one copy out of the house.
 4. Use WPA2 or WPA3 on your WiFi.
 5. Tell someone you trust how to get in if you cannot.
