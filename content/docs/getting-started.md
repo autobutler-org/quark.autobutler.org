@@ -138,10 +138,9 @@ phone on the home network.
 
 ## Vault
 
-Quark includes an encrypted password vault that lives on your hardware. The full how-to is coming after Photos. Until
-then, the one thing to know: the vault has no forgot-password button, so pick a master password you will remember and
-write it down. The [Security Guide](/docs/security-guide) covers why, and what to do about it.
-
+Quark includes an encrypted password vault on your hardware. See [Vault](/docs/vault) for soft-launch
+setup (master password only — no recovery phrase). Details on limits live in the
+[Security Guide](/docs/security-guide).
 ---
 
 ## Health
