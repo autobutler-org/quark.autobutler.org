@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-description: Get up and running with Quark — adding files, managing storage, and finding your way around
+description: Get up and running with Quark — setup, files, and finding your way around
 navigation:
   title: Getting Started
   order: 2
@@ -8,31 +8,55 @@ navigation:
 
 # Getting Started
 
-This guide walks you through everything you need to know to use Quark day-to-day. No technical knowledge required.
+This guide is day-to-day Quark — set up the box, open it from your phone or laptop, and move files around. No terminal
+required.
 
 ---
 
-## Accessing Quark
+## Set up the hardware (non-nerd path)
 
-Once Quark is set up on your home network, you can reach it from any device on your WiFi:
+What you need:
 
-1. Open a browser on your phone, tablet, or computer
-2. Go to **`http://quark.home.local`** (or whatever hostname your device was given during setup)
+- Your Quark device (or a supported box you've installed Quark on)
+- A free ethernet port on your home router (preferred) or WiFi if your setup uses that
+- A phone or computer on the same home network
+
+Worth having, though not required to finish setup:
+
+- **A spare USB drive or external hard drive.** Quark works fine without one, but everything then lives on a single
+  device. If that device fails, the files go with it. A second drive you copy the irreplaceable folders onto is the
+  cheapest insurance there is — see the [Security Guide](/docs/security-guide).
+
+Steps:
+
+1. Plug Quark into power and into your router.
+2. Attach any extra storage you want Quark to manage.
+3. Wait a minute for it to come up.
+4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
+   hostname you were given at setup).
+5. Create your owner account when the setup screen asks. Quark shows you a six-word recovery phrase once — write it
+   down. It is what resets your password if you forget it.
+
+If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
+[Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
+
+---
+
+## Accessing Quark day to day
+
+1. Open a browser on a device on your home WiFi
+2. Go to **`http://quark.home.local`** (or your hostname)
 3. Log in with your username and password
 
 > **Tip:** Bookmark the address so you don't have to type it every time.
 
-If you can't reach the address, make sure Quark is powered on and connected to the same WiFi network you're on.
-Quark only works on your local network — this is by design to keep your files private.
+Quark is built for your home network by default — that's intentional.
 
 ---
 
-## Cirrus — Your Files
+## Cirrus — your files
 
-![Cirrus Files](/assets/docs/files.webp)
-
-Cirrus is the file browser. Think of it like a Google Drive or iCloud interface, except everything lives on your
-hardware at home.
+Cirrus is the file browser. Same idea as Google Drive or iCloud, except the files are on your drive at home.
 
 ### Browsing your files
 
@@ -45,24 +69,20 @@ When you open Cirrus you'll see your files and folders listed. You can:
 
 ### Changing the view
 
-![View Selection](/assets/docs/view-buttons.webp)
-
 Cirrus has three layouts — pick whichever works best for what you're doing:
 
 - **List** — a compact row-by-row view, good for lots of files
 - **Grid** — larger thumbnails, good for photos
-- **Unified / Per-device** — toggle between seeing all your storage devices as one combined view, or seeing each
-  device separately
+- **Unified / Per-device** — toggle between seeing all your storage devices as one combined view, or seeing each device
+  separately
 
 ### Searching for a file
 
-Click the **search icon** in the top bar and type a filename. Cirrus will search across all your connected storage.
+Click the search icon in the top bar and type a filename. Cirrus will search across all your connected storage.
 
 ---
 
-## Uploading Files
-
-To add files to Quark:
+## Uploading files
 
 1. Navigate to the folder you want to upload into
 2. Click the **Upload** button in the top bar
@@ -73,7 +93,7 @@ You can upload multiple files at once. Large files may take a moment depending o
 
 ---
 
-## Creating Folders
+## Creating folders
 
 1. Navigate to where you want the new folder
 2. Click the **New** button in the top bar
@@ -81,32 +101,46 @@ You can upload multiple files at once. Large files may take a moment depending o
 
 ---
 
-## Moving and Renaming Files
+## Moving, renaming, and deleting
 
 Right-click (or long-press on mobile) any file or folder to open the action menu. From there you can:
 
 - **Rename** — change the name
 - **Move** — move it to a different folder or storage device
-- **Delete** — remove it permanently
+- **Delete** — remove it
 
-> **Note:** Deleting files is permanent. There is no recycle bin.
+### Delete and trash
+
+Deleted files go to a trash folder on the device and stay recoverable for about 30 days. After that they are purged
+for good.
+
+Treat that as a 30-day window to change your mind, not as a recycle bin you can leave things in. The polished
+Google Drive–style trash view is still to come.
 
 ---
 
-## Storage Devices
+## Storage devices
 
 Quark can manage multiple storage devices (hard drives, USB drives) connected to it. If you have more than one:
 
-- Use the **Unified view** to see everything in one place
-- Use the **Per-device view** to see what's on each drive separately
+- Use the **Unified** view to see everything in one place
+- Use the **Per-device** view to see what's on each drive separately
 - When uploading, you may be prompted to choose which device to upload to
 
 ---
 
 ## Photos
 
-The Photos section shows your images organized by time. You can browse, view, and download your photos from here.
-Photos works best when your images are stored in a dedicated photos folder on your storage device.
+The Photos section shows your images organized by time. See [Photos](/docs/photos) for browsing and uploading from your
+phone on the home network.
+
+---
+
+## Vault
+
+Quark includes an encrypted password vault that lives on your hardware. The full how-to is coming after Photos. Until
+then, the one thing to know: the vault has no forgot-password button, so pick a master password you will remember and
+write it down. The [Security Guide](/docs/security-guide) covers why, and what to do about it.
 
 ---
 
@@ -126,21 +160,26 @@ If anything looks off (disk nearly full, temperature very high), this is where y
 
 The Settings page lets you:
 
-- **Toggle automatic updates** — turn on to have Quark update itself overnight when a new version is available;
-  turn off if you want to control updates manually
-- **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with
-  the team
+- **Toggle automatic updates** — turn on to have Quark update itself overnight when a new version is available; turn off
+  if you want to control updates manually
+- **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with the
+  team
+
+Quark's routine contact with the public internet is checking for software updates. Optional features you turn on later
+(remote access when it ships, imports you start yourself) are separate from that default.
 
 ---
 
-## Logging Out
+## Logging out
 
 Click your username or the settings icon and choose **Log out** when you're done. This is good practice on shared
 devices.
 
 ---
 
-## Next Steps
+## Next steps
 
-- **[Help & Support](/docs/help)** — troubleshooting and how to get in touch
-- **[Nerd Notes](/docs/nerd-notes)** — technical details for self-hosters and tinkerers
+- [Help & Support](/docs/help) — troubleshooting and how to get in touch
+- [Security Guide](/docs/security-guide) — passwords, backups, and limits
+- [How It Works](/docs/how-it-works) — local-first explained plainly
+- [Google Takeout](/docs/google-takeout) — moving Photos/Drive exports onto Quark

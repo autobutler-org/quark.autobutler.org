@@ -1,6 +1,6 @@
 ---
 title: How Quark Works
-description: How your files stay on your home network — no cloud required
+description: How Quark keeps your files on hardware you control by default — local-first, on your home network
 navigation:
   title: How It Works
   order: 4
@@ -8,47 +8,71 @@ navigation:
 
 # How Quark Works
 
-Quark is a small device that sits on your home network and stores your files on hard drives you own. Nothing leaves
-your house.
-
-Here's what that looks like.
+Quark is a small device on your home network. It stores your files on drives you own. By default, your content stays on
+hardware you control.
 
 ## Your files, your network
 
-Every device on your home WiFi — phone, laptop, tablet — talks to your home router, and the router talks to Quark,
-which talks to your drive. Your files are stored on the hard drive you plug in — not on Google's servers, not on
-Apple's servers, not anywhere else.
+Phones, laptops, and tablets on your home WiFi talk to your router. The router talks to Quark. Quark talks to your
+drive. Your files are on that drive — not on a Google server, not on an Apple server, not in a data center you will
+never visit.
 
 ## How this is different from iCloud or Google Photos
 
-With cloud storage, your photos and files travel over the internet to a server you don't own. Every photo you take,
-every document you save — it all goes to someone else's computer first, and back again when you want it.
+With typical cloud storage, your photos and files travel over the internet to a computer you don't own. They come back
+when you ask for them. Convenient. Also rented.
 
-With Quark, your files go straight to a device sitting in your home over your own WiFi. There's no round trip to
-someone else's data center. You own the hardware, you own the data.
+With Quark, day-to-day use is local. Files move over your own WiFi to a box in your house. You own the hardware. You own
+the data.
+
+If we offer an optional backup or sync service later, it would require your explicit opt-in. It would not be the
+default, and it would not be forced.
 
 ## Accessing from outside your home (coming soon)
 
-We're adding the ability to access your files from anywhere — at work, traveling, or on your phone's data
-connection.
+We are building a way to reach your files when you are not on home WiFi — work, travel, phone data.
 
-When you set up Quark, your phone and your device establish a private, encrypted tunnel between them. This happens
-automatically — you don't need to configure anything.
-
-A small coordination server only helps your phone and your Quark find each other. Once they're connected, all your
-actual data travels directly between them — encrypted, and never passing through our servers.
-
-Think of it like FaceTime — Apple helps your devices find each other, but your actual call goes directly between
-them.
+That feature is not available yet. When it ships, the goal is a private, encrypted path between your devices and your
+Quark, with your actual file data staying under your control — not sitting on our servers as a hosted cloud. We will
+document how it works in plain English when it is ready to use. Until then, Quark is for your home network.
 
 ## What Quark stores
 
-When you plug a drive into Quark, it organizes your files into a simple structure:
+When you plug in a drive, Quark keeps things in ordinary folders:
 
-- **Photos & Videos** — Synced from your phone or uploaded from your computer. Organized by date, easy to browse.
-- **Documents** — PDFs, spreadsheets, notes — anything you want to keep safe on your own hardware.
-- **Backups** — Back up one drive to another with a single tap, so you always have a second copy.
-- **Books & Media** — Read EPUBs, watch videos, and browse your files from any device on your network.
+- **Photos and videos** — from your phone or computer, browsable by date
+- **Documents** — PDFs, notes, spreadsheets, whatever you keep
+- **Media** — books, videos, and files from any device on your network
 
-Everything is stored in plain folders on your drive. No proprietary format, no lock-in. If you ever want to unplug
-and move to something else, your files are just files.
+Everything is real files in real folders. No proprietary lock-in.
+
+## The files live on the drive, not in the box
+
+This is the part worth understanding, because it is the reason the rest of the pitch holds up.
+
+Quark is the thing that serves your files. The drive is the thing that holds them. Your photos and documents are written
+to the storage device as normal files in normal folders, and they stay there whether or not Quark is running.
+
+So if the box dies, gets replaced, or you simply unplug the drive and carry it to a laptop, your files are still there
+and still readable. Nothing is trapped in a database or a format only we can open. Swap the box, keep the files.
+
+## Backups (coming soon)
+
+Persisting on the drive is not the same as being backed up, and this is the honest tradeoff of keeping your files at
+home: nobody else can read them, and nobody else is quietly keeping a spare copy for you either. Google does that second
+part on your behalf, and charges you for it in a currency you may not want to keep paying.
+
+It is a solved problem, though, and you solve it once. Copy the irreplaceable folders onto a second drive and keep that
+drive somewhere a bad day cannot reach — a fireproof box, a relative's house. Do that and the tradeoff costs you an
+afternoon rather than your photos.
+
+Quark does not do the copying for you yet. Automatic copies to a second drive is a feature we are building, and we would
+rather ship it late than ship something that quietly stops working and takes your only backup with it. When it lands,
+the shape we are aiming for is:
+
+- A second drive attached to Quark that holds a full copy of what matters
+- Copies that run on their own, on a schedule, without you remembering to start them
+- Somewhere obvious in the app that tells you the last copy actually finished
+
+Until then, the copying is manual and the plan is the ordinary one: a second drive, and a third copy somewhere that is
+not your house. See the [Security Guide](/docs/security-guide) for the 3-2-1 version of that.
