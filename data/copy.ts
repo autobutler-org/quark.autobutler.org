@@ -13,11 +13,6 @@ export interface Feature {
   readonly body: string;
 }
 
-export interface ShowcaseImage {
-  readonly src: string;
-  readonly alt: string;
-}
-
 export interface Step {
   readonly title: string;
   readonly body: string;
@@ -55,13 +50,6 @@ export const hero = {
     "files, and documents, on hardware you own, in a room you can walk into.",
   primary: { label: "Read the code", href: repoUrl } as Link,
   secondary: { label: "See how it works", href: "#how" } as Link,
-} as const;
-
-export const productShowcase = {
-  images: [
-    { src: "/assets/product/files.webp", alt: "Browsing files and photos in Quark's file browser" },
-    { src: "/assets/product/casing.webp", alt: "The Quark device" },
-  ] as readonly ShowcaseImage[],
 } as const;
 
 export const manifesto = {
