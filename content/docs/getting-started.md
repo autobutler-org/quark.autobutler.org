@@ -173,6 +173,11 @@ The Settings page lets you:
   if you want to control updates manually
 - **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with the
   team
+- **Delete account** — under Account, remove your login from this Quark (separate from wiping the box)
+- **Reset this Quark** — under Reset, factory-reset the appliance when that is what you actually mean
+
+Deleting an account and resetting the Quark are different on purpose: one removes your login; the other can wipe data on
+the device. Read the confirmations carefully.
 
 Quark's routine contact with the public internet is checking for software updates. Optional features you turn on later
 (remote access when it ships, imports you start yourself) are separate from that default.
