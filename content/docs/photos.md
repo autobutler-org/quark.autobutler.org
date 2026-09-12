@@ -42,6 +42,8 @@ not available yet.
 
 - A big first upload can take a while on WiFi. That's normal.
 - Keep Quark powered on and the drive attached while large uploads finish.
+- On iPhone or iPad, uploading from **Files** can also offer **Photos** as a source, so you do not have to export into
+  Files first.
 - Irreplaceable photos still deserve a second physical copy — see the
   [Security guide](/docs/security-guide)'s 3-2-1 note.
 
