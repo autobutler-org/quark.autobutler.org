@@ -106,15 +106,25 @@ Right-click (or long-press on mobile) any file or folder to open the action menu
 
 - **Rename** — change the name
 - **Move** — move it to a different folder or storage device
-- **Delete** — remove it
+- **Delete** — send it to Trash
 
-### Delete and trash
+### Trash
 
-Deleted files go to a trash folder on the device and stay recoverable for about 30 days. After that they are purged
-for good.
+Deleted files and folders go to **Trash** — open it from the app drawer. Each row shows where the item came from and
+how many days are left before Quark removes it for good.
 
-Treat that as a 30-day window to change your mind, not as a recycle bin you can leave things in. The polished
-Google Drive–style trash view is still to come.
+From Trash you can:
+
+- **Restore** — put it back where it was (if something new already sits at that path, move or rename the new thing
+  first; restore will not overwrite)
+- **Delete permanently** — remove it now, with a confirm step
+- **Empty trash** — clear everything shown (also confirms)
+
+You can open folders inside Trash to browse what was inside them. Files in Trash do not preview or open — they are
+only there to restore or let go.
+
+Items stay recoverable for about **30 days**, then an automatic sweep deletes them for good. Treat that window as a
+change-your-mind period, not long-term storage.
 
 ---
 
