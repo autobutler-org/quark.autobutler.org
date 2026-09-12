@@ -110,11 +110,20 @@ Right-click (or long-press on mobile) any file or folder to open the action menu
 
 ### Delete and trash
 
-Deleted files go to a trash folder on the device and stay recoverable for about 30 days. After that they are purged
-for good.
+Deleted files and folders move to **Trash** on the device — they are not gone immediately. Open **Trash** from the
+app drawer to see them.
 
-Treat that as a 30-day window to change your mind, not as a recycle bin you can leave things in. The polished
-Google Drive–style trash view is still to come.
+From Trash you can:
+
+- **Restore** an item back to where it came from
+- **Delete permanently** when you are sure (this asks for confirmation)
+- **Empty trash** to clear everything at once (also asks for confirmation)
+
+Each row shows where the item lived and roughly how many days are left. Items stay recoverable for about **30 days**,
+then Quark purges them for good. Treat that as a window to change your mind, not as long-term storage.
+
+Trashed files do not open for preview or editing — restore them first if you need to look. Trashed folders can still be
+browsed inside Trash.
 
 ---
 
@@ -163,6 +172,11 @@ The Settings page lets you:
   if you want to control updates manually
 - **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with the
   team
+- **Delete account** — under Account, remove your login from this Quark (separate from wiping the box)
+- **Reset this Quark** — under Reset, factory-reset the appliance when that is what you actually mean
+
+Deleting an account and resetting the Quark are different on purpose: one removes your login; the other can wipe data on
+the device. Read the confirmations carefully.
 
 Quark's routine contact with the public internet is checking for software updates. Optional features you turn on later
 (remote access when it ships, imports you start yourself) are separate from that default.
