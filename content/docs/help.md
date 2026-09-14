@@ -43,6 +43,12 @@ remote access so you won't need a third-party VPN to reach it from outside your 
 Try refreshing the page. If they still don't appear, check that your upload completed successfully (the progress
 indicator should have reached 100%). Very large files can take a minute.
 
+### I deleted a file
+
+Open **Trash** from the app drawer. You can restore it for about 30 days, or delete it permanently.
+Trash is a change-your-mind window, not a forever recycle bin. See
+[Getting Started](/docs/getting-started).
+
 ---
 
 ## Get Help
