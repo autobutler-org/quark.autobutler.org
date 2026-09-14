@@ -241,10 +241,10 @@ export const support = {
 export const signup = {
   heading: "Sign up for early access",
   intro:
-    "We're still building Quark and planning to launch this summer. Sign up to be notified when we're ready to ship.",
+    "We're building Quark and opening friends-and-family access in early 2027. Sign up to be notified when we're ready to ship.",
   launch: {
-    badge: "Coming Summer 2026",
-    body: "We're working hard to bring you the best self-hosted storage solution. Stay tuned.",
+    badge: "Friends & family — early 2027",
+    body: "Join the waitlist for Quark. At-cost friends-and-family first; public when it's ready.",
   },
 } as const;
 
