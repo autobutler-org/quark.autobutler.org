@@ -58,7 +58,7 @@ export const manifesto = {
     "Every photo you take and every document you write ends up on a hard drive in a " +
       "building you have never visited, owned by a company that charges you rent for the " +
       "privilege and reads your files to train something. Quark is the other option. It is " +
-      "plug-and-play, there is no subscription, and no model is trained on your family photos.",
+      "plug-and-play, there is no subscription by default, and no model is trained on your family photos.",
     "You buy the hardware once. By default your content stays on hardware you control, on " +
       "your home network. If you want a copy somewhere else, you make one — mail a drive to " +
       "your grandmother, keep a second one at work, whatever you decide. Nobody makes that " +
