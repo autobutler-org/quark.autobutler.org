@@ -59,10 +59,10 @@ export const manifesto = {
       "building you have never visited, owned by a company that charges you rent for the " +
       "privilege and reads your files to train something. Quark is the other option. It is " +
       "plug-and-play, there is no subscription, and no model is trained on your family photos.",
-    "You buy the hardware once. Your data is backed up automatically and never leaves the " +
-      "house. If you want a copy somewhere else, you make one — mail a drive to your " +
-      "grandmother, keep a second one at work, whatever you decide. Nobody makes that choice " +
-      "for you.",
+    "You buy the hardware once. By default your content stays on hardware you control, on " +
+      "your home network. If you want a copy somewhere else, you make one — mail a drive to " +
+      "your grandmother, keep a second one at work, whatever you decide. Nobody makes that " +
+      "choice for you.",
     "And when you want out, there is no export process, no download-your-data request, no " +
       "waiting for an archive to be prepared. You unplug the drive.",
   ] as readonly string[],
@@ -91,8 +91,8 @@ export const howItWorks = {
     {
       title: "Open the app",
       body:
-        "Install the app on your phone, or just visit the address in a browser. Photos " +
-        "start backing up on their own.",
+        "Install the app on your phone, or just visit the address in a browser. Browse your " +
+        "files, and upload the photos you pick.",
     },
   ] as readonly Step[],
   footnote:
@@ -112,8 +112,8 @@ export const features = {
     {
       name: "Photos",
       body:
-        "Your camera roll backs itself up as soon as you get home. Albums, favorites, and " +
-        "full-resolution originals — not a compressed copy someone else keeps.",
+        "Albums, favorites, and full-resolution originals on your own drive — not a " +
+        "compressed copy someone else keeps. On your home network, upload the photos you pick.",
     },
     {
       name: "Documents",
