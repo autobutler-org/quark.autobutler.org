@@ -95,9 +95,6 @@ export const howItWorks = {
         "start backing up on their own.",
     },
   ] as readonly Step[],
-  footnote:
-    "It runs on a Raspberry Pi or any Linux box you already have. The server is Go, the " +
-    "app is Flutter, and the database is a single SQLite file on your drive.",
 } as const;
 
 export const features = {
