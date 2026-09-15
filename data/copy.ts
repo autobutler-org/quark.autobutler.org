@@ -55,15 +55,17 @@ export const hero = {
 export const manifesto = {
   heading: "The convenience of the cloud, the privacy of your home.",
   paragraphs: [
-    "Why trust your data to anyone besides yourself? Store your photos, documents, " +
-      "anything else on devices where you can see them. Quark is the alternative to " +
-      "renting from a cloud provider, or being locked into a subscription.",
-    "Want to remove your data from the internet? Just unplug it. You can control every " +
-      "part of how the data moves and lock it down as much as you like.",
-    "We never collect any data. We don't use your photos to train AI. And we don't take " +
-      "money from investors, so we are free to continue our mission of safe, transparent, " +
-      "honest internet and data. Don't believe us? You can look at the code itself — " +
-      "written by two internet security experts.",
+    "Most of your photos and documents end up on a hard drive in a building you've never " +
+      "visited, owned by a company that charges rent and trains models on what you store. " +
+      "Quark is the other option: plug-and-play hardware you own, no subscription by " +
+      "default, and no model trained on your family photos.",
+    "You buy the hardware once. By default your content stays on hardware you control, on " +
+      "your home network. If you want a copy somewhere else, you make one — mail a drive to " +
+      "your grandmother, keep a second one at work, whatever you decide. Nobody makes that " +
+      "choice for you.",
+    "And when you want out, there is no export process, no download-your-data request, no " +
+      "waiting for an archive. You unplug the drive. Don't take our word for it — the code " +
+      "is public.",
   ] as readonly string[],
   funding: "No venture capital. Funded by ordinary people who wanted this to exist.",
   openSource: {
@@ -90,8 +92,8 @@ export const howItWorks = {
     {
       title: "Open the app",
       body:
-        "Install the app on your phone, or just visit the address in a browser. Photos " +
-        "start backing up on their own.",
+        "Install the app on your phone, or just visit the address in a browser. Browse your " +
+        "files, and upload the photos you pick.",
     },
   ] as readonly Step[],
   footnote:
@@ -111,8 +113,8 @@ export const features = {
     {
       name: "Photos",
       body:
-        "Your camera roll backs itself up as soon as you get home. Albums, favorites, and " +
-        "full-resolution originals — not a compressed copy someone else keeps.",
+        "Albums, favorites, and full-resolution originals on your own drive — not a " +
+        "compressed copy someone else keeps. On your home network, upload the photos you pick.",
     },
     {
       name: "Documents",
