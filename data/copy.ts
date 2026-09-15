@@ -178,11 +178,21 @@ export const support = {
   heading: "Support",
   helpHeading: "Need help?",
   helpIntro: "Check our documentation first — most questions are answered there.",
+  /**
+   * Ordered as a support funnel: set it up, move your data in, fix a problem,
+   * then ask a human. Exactly one entry points at GitHub — a second one only
+   * split the same destination across two cards.
+   */
   helpLinks: [
     {
       title: "Getting Started",
       description: "Set up your Quark for the first time",
       href: "/docs/getting-started",
+    },
+    {
+      title: "Moving from Google",
+      description: "Bring your photos and files over with Google Takeout",
+      href: "/docs/google-takeout",
     },
     {
       title: "Troubleshooting",
@@ -193,12 +203,6 @@ export const support = {
       title: "GitHub Issues",
       description: "Ask questions and report problems",
       href: `${repoUrl}/issues`,
-      external: true,
-    },
-    {
-      title: "GitHub",
-      description: "Browse source, file issues, and contribute",
-      href: repoUrl,
       external: true,
     },
   ] as readonly HelpLink[],
