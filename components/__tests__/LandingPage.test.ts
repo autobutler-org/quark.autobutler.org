@@ -24,13 +24,26 @@ describe("LandingPage", () => {
 
   it("sends every outbound link to an https destination", () => {
     const wrapper = mount(LandingPage);
+    // In-page anchors (#how) and site-relative paths (/signup) are not outbound.
     const external = wrapper
       .findAll("a")
       .map((anchor) => anchor.attributes("href") ?? "")
-      .filter((href) => !href.startsWith("#"));
+      .filter((href) => !href.startsWith("#") && !href.startsWith("/"));
     expect(external.length).toBeGreaterThan(0);
     for (const href of external) {
       expect(href).toMatch(/^https:\/\//);
+    }
+  });
+
+  it("keeps internal links site-relative rather than absolute", () => {
+    const wrapper = mount(LandingPage);
+    const internal = wrapper
+      .findAll("a")
+      .map((anchor) => anchor.attributes("href") ?? "")
+      .filter((href) => href.startsWith("/"));
+    expect(internal.length).toBeGreaterThan(0);
+    for (const href of internal) {
+      expect(href).not.toMatch(/^\/\//);
     }
   });
 });
