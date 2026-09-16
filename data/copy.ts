@@ -150,7 +150,12 @@ export const callToAction = {
     "Instead of renting a slice of someone else's data center, you own the whole thing. Pay " +
     "for a repair or an upgrade, or do it yourself. Add a drive, swap a drive, take one out. " +
     "It is yours to manage as you please.",
-  action: { label: "Get started on GitHub", href: repoUrl } as Link,
+  /**
+   * Deliberately not GitHub: this is the bottom-of-page conversion for a
+   * non-technical reader, and the repo is not where they start. The hero's
+   * "Read the code" button is the intentional GitHub entry point.
+   */
+  action: { label: "Get started", href: "/signup" } as Link,
 } as const;
 
 /**
