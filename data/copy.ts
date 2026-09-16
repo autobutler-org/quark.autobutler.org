@@ -259,7 +259,22 @@ export const signup = {
 export const docsIndex = {
   heading: "Documentation",
   lede: "Everything you need to set up, use, and understand Quark.",
+  searchLabel: "Search the docs",
+  searchPlaceholder: "Search titles and page text",
+  clearLabel: "Clear search",
+  previewHeading: "Start here",
+  allHeading: "All docs",
+  resultsHeading: "Results",
+  noResults: "No docs match that search.",
+  /**
+   * A function rather than a string so the plural stays in this file with the
+   * rest of the copy instead of being assembled in the template.
+   */
+  resultCount: (count: number): string => (count === 1 ? "1 doc matches" : `${count} docs match`),
 } as const;
+
+/** How many docs the "Start here" preview shows above the full listing. */
+export const docsPreviewCount = 4;
 
 export const footer = {
   note: "Quark is built by the AutoButler project. MIT-0 licensed.",
