@@ -97,9 +97,6 @@ export const howItWorks = {
         "files, and upload the photos you pick.",
     },
   ] as readonly Step[],
-  footnote:
-    "It runs on a Raspberry Pi or any Linux box you already have. The server is Go, the " +
-    "app is Flutter, and the database is a single SQLite file on your drive.",
 } as const;
 
 export const features = {

@@ -12,7 +12,6 @@ import { howItWorks } from "~/data/copy";
         <p>{{ step.body }}</p>
       </li>
     </ol>
-    <p class="footnote">{{ howItWorks.footnote }}</p>
   </section>
 </template>
 
@@ -42,7 +41,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
   gap: 2rem;
-  margin: 0 0 2.5rem;
+  margin: 0;
   padding: 0;
   list-style: none;
   text-align: left;
@@ -72,13 +71,5 @@ h3 {
 .steps p {
   margin: 0;
   line-height: 1.65;
-}
-
-.footnote {
-  max-width: var(--lede-width);
-  margin: 0 auto;
-  color: var(--color-text-subtle);
-  font-size: 0.98rem;
-  line-height: 1.7;
 }
 </style>
