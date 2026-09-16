@@ -31,4 +31,16 @@ describe("HelpLinks", () => {
       expect(anchor?.attributes("target")).toBeUndefined();
     }
   });
+
+  it("offers GitHub exactly once", () => {
+    const githubLinks = support.helpLinks.filter((link) => link.href.includes("github.com"));
+    expect(githubLinks).toHaveLength(1);
+  });
+
+  it("has no duplicate destinations or titles", () => {
+    const hrefs = support.helpLinks.map((link) => link.href);
+    const titles = support.helpLinks.map((link) => link.title);
+    expect(new Set(hrefs).size).toBe(hrefs.length);
+    expect(new Set(titles).size).toBe(titles.length);
+  });
 });
