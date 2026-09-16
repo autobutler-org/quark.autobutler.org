@@ -107,6 +107,9 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
   outbound URLs. Landing-page components import from here; they do not
   hardcode copy. (Docs prose lives in `content/docs/*.md` instead — this
   split exists because docs are long-form Markdown, not short UI strings.)
+- `utils/`: pure TypeScript logic that pages use but that needs no Nuxt
+  runtime (currently `docsSearch.ts`, the docs index search). Keeping it here
+  lets `utils/__tests__/` cover it with plain Vitest.
 - `assets/`: global styles and bundled static assets.
 - `public/`: files copied verbatim into the build (favicon, `quark.png`,
   `public/assets/docs/` images referenced from docs content).
@@ -280,5 +283,5 @@ postinstall` / `nuxt prepare` to (re)generate it), not something to hand-copy
   Anything else stays build-time only, and nothing secret belongs in either —
   the bundle is public.
 - Scope manual edits to `app.vue`, `pages/`, `components/`, `content/docs/`,
-  `data/`, `assets/`, `public/`, and intentional configuration files
+  `data/`, `utils/`, `assets/`, `public/`, and intentional configuration files
   (`nuxt.config.ts`, `content.config.ts`, etc.).

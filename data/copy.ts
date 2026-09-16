@@ -252,7 +252,7 @@ export const docsIndex = {
   heading: "Documentation",
   lede: "Everything you need to set up, use, and understand Quark.",
   searchLabel: "Search the docs",
-  searchPlaceholder: "Search by title or description",
+  searchPlaceholder: "Search titles and page text",
   clearLabel: "Clear search",
   previewHeading: "Start here",
   allHeading: "All docs",
