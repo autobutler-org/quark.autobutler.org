@@ -86,9 +86,8 @@ export const howItWorks = {
       title: "Attach storage",
       body:
         "Any external USB drive works. Use the one in your desk drawer, or buy a bigger " +
-        "one later and add it. This step is optional, but we strongly recommend it: " +
-        "without a drive you get the small amount of built-in storage, and what is on it " +
-        "goes with the device if the device fails.",
+        "one later and add it. A drive is optional but recommended — it is where your " +
+        "photos and files have room to grow.",
     },
     {
       title: "Open the app",
