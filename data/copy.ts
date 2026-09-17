@@ -61,7 +61,7 @@ export const manifesto = {
     "Want your data off the internet? Just unplug it. By default your files stay on " +
       "hardware you own, and you control how the data moves and lock it down as much as " +
       "you like.",
-    "Quark has no analytics and no tracking. By default your files stay on your drive, so " +
+    "Quark has no analytics and no tracking. Your files stay on your own drive, so " +
       "we don't receive them — there is nothing of yours for us to collect, and nothing of " +
       "yours to train a model on. We don't take money from investors either, so we are free " +
       "to continue our mission of safe, transparent, honest internet and data. Don't " +
