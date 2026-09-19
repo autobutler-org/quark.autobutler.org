@@ -48,7 +48,7 @@ export const hero = {
   lede:
     "Quark is a small box that turns a USB drive into your own cloud. Photos, " +
     "files, and documents, on hardware you own, in a room you can walk into.",
-  primary: { label: "Read the code", href: repoUrl } as Link,
+  primary: { label: "Sign up", href: "/signup" } as Link,
   secondary: { label: "See how it works", href: "#how" } as Link,
 } as const;
 
@@ -147,8 +147,8 @@ export const callToAction = {
     "It is yours to manage as you please.",
   /**
    * Deliberately not GitHub: this is the bottom-of-page conversion for a
-   * non-technical reader, and the repo is not where they start. The hero's
-   * "Read the code" button is the intentional GitHub entry point.
+   * non-technical reader, and the repo is not where they start. Source stays
+   * in the masthead; the hero primary now matches this signup path.
    */
   action: { label: "Get started", href: "/signup" } as Link,
 } as const;
