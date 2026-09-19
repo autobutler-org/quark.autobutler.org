@@ -43,7 +43,6 @@ remote access so you won't need a third-party VPN to reach it from outside your 
 Try refreshing the page. If they still don't appear, check that your upload completed successfully (the progress
 indicator should have reached 100%). Very large files can take a minute.
 
-
 ### Someone else in the house wants an account
 
 On the login screen they can **request access**. An admin (the owner account from setup, or another admin) opens
