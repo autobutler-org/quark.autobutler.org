@@ -57,15 +57,13 @@ export const manifesto = {
   paragraphs: [
     "Why trust your data to anyone besides yourself? Store your photos, documents, " +
       "anything else on devices where you can see them. Quark is the alternative to " +
-      "renting from a cloud provider, or being locked into someone else's subscription.",
+      "renting from a cloud provider — with no subscription by default.",
     "By default your files stay on hardware you own, on your home network. You control " +
       "how the data moves, and you can lock things down as much as you like — including " +
       "unplugging the box from the network when you want it offline.",
-    "Quark has no analytics and no tracking. Your files stay on your own drive, so " +
-      "we don't receive them — there is nothing of yours for us to collect, and nothing of " +
-      "yours to train a model on. We don't take money from investors either, so we are free " +
-      "to continue our mission of safe, transparent, honest internet and data. Don't " +
-      "believe us? The code is public — read it yourself.",
+    "We don't train models on your photos. Your files stay on your own drive by default, " +
+      "and the product is open source so you can verify what it does. Funded without " +
+      "venture capital, by people who wanted this to exist.",
   ] as readonly string[],
   funding: "No venture capital. Funded by ordinary people who wanted this to exist.",
   openSource: {
