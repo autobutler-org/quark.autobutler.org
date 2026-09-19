@@ -43,6 +43,12 @@ remote access so you won't need a third-party VPN to reach it from outside your 
 Try refreshing the page. If they still don't appear, check that your upload completed successfully (the progress
 indicator should have reached 100%). Very large files can take a minute.
 
+### Someone else in the house wants an account
+
+On the login screen they can **request access**. An admin (the owner account from setup, or another admin) opens
+**Users** in the drawer and approves the request — or creates an account there directly. See
+[Getting Started](/docs/getting-started#household-accounts).
+
 ### I deleted a file
 
 Open **Trash** from the app drawer. You can restore it for about 30 days, or delete it permanently.

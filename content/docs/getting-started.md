@@ -34,7 +34,8 @@ Steps:
 3. Wait a minute for it to come up.
 4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
    hostname you were given at setup).
-5. Create your owner account when the setup screen asks. Pick a password you will remember, and write it down.
+5. Create your **owner** account when the setup screen asks. That first account is the admin for this Quark. Pick a
+   password you will remember, and write it down.
 
 If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
 [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
@@ -50,8 +51,23 @@ If the page won't load: same WiFi as Quark, Quark powered on, try restarting the
 > **Tip:** Bookmark the address so you don't have to type it every time.
 
 Quark is built for your home network by default — that's intentional.
-
 ---
+
+## Household accounts
+
+One Quark on your home network can have more than one login. Soft-launch framing is still a single household device —
+remote access from outside the house is not live yet.
+
+- **Owner / admin** — the account created at setup. Admins see a **Users** page in the drawer.
+- **Request an account** — someone else on the same home WiFi can open the login screen and request access. An admin
+  approves (or declines) the request from Users.
+- **Admin create** — an admin can also add an account directly from Users, without waiting for a request.
+- **Disable / re-enable / delete** — admins can turn an account off, turn it back on, or remove the login. Deleting an
+  account removes that person's sign-in; it is not the same as wiping the Quark or emptying Trash. Read the
+  confirmations in the app carefully.
+
+Until sharing tools ship more broadly, treat access as per-login on the home network. Each person sees **their own**
+Trash list when they delete files they can reach.
 
 ## Cirrus — your files
 
@@ -110,8 +126,9 @@ Right-click (or long-press on mobile) any file or folder to open the action menu
 
 ### Trash
 
-Deleted files and folders go to **Trash** — open it from the app drawer. Each row shows where the item came from and
-how many days are left before Quark removes it for good.
+Deleted files and folders go to **Trash** — open it from the app drawer. You see the items from your own deletes
+(and anything else your login can reach in Trash). Each row shows where the item came from and how many days are left
+before Quark removes it for good.
 
 From Trash you can:
 
