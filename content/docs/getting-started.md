@@ -51,6 +51,7 @@ If the page won't load: same WiFi as Quark, Quark powered on, try restarting the
 > **Tip:** Bookmark the address so you don't have to type it every time.
 
 Quark is built for your home network by default — that's intentional.
+
 ---
 
 ## Household accounts
