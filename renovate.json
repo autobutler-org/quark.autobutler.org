@@ -1,11 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "packageRules": [
-    {
-      "description": "TypeScript 7 is the Go-ported compiler with a restructured package (no more typescript/lib/tsc export). vue-tsc and typescript-eslint don't support it yet; revisit once they do.",
-      "matchPackageNames": ["typescript"],
-      "matchUpdateTypes": ["major"],
-      "enabled": false
-    }
-  ]
+  "extends": ["github>autobutler-org/renovate-config"]
 }
