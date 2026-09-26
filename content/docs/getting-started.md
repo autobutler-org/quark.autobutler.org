@@ -190,9 +190,9 @@ setup (master password only — no recovery phrase). Details on limits live in t
 
 ---
 
-## System (devices, health, jobs)
+## System (storage, health, jobs)
 
-**System** in the drawer combines devices, health, and background jobs in one place with tabs:
+**System** in the drawer combines storage, health, and background jobs in one place with tabs:
 
 - **Storage** — attached drives and related storage info
 - **Health** — disk usage, temperature, and other readings that flag when something needs attention
