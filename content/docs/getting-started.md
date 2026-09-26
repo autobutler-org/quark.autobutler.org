@@ -194,7 +194,7 @@ setup (master password only — no recovery phrase). Details on limits live in t
 
 **System** in the drawer combines devices, health, and background jobs in one place with tabs:
 
-- **Devices** — attached storage and related device info
+- **Storage** — attached drives and related storage info
 - **Health** — disk usage, temperature, and other readings that flag when something needs attention
 - **Jobs** — queued work such as video conversion
 
