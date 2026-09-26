@@ -32,8 +32,10 @@ Steps:
 1. Plug Quark into power and into your router.
 2. Attach any extra storage you want Quark to manage.
 3. Wait a minute for it to come up.
-4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
-   hostname you were given at setup).
+4. On a phone or computer already on that home WiFi, open a browser and go to **`https://quark.local`** (or
+   `http://quark.home.local` if that is what your install prints). On the iOS or Android app, **Add Quark** can list
+   Quarks it finds on the local network — tap one instead of typing an address. Typing remains the fallback (and is how
+   the browser and desktop builds work).
 5. Create your **owner** account when the setup screen asks. That first account is the admin for this Quark. Pick a
    password you will remember, and write it down.
 
@@ -45,12 +47,14 @@ If the page won't load: same WiFi as Quark, Quark powered on, try restarting the
 ## Accessing Quark day to day
 
 1. Open a browser on a device on your home WiFi
-2. Go to **`http://quark.home.local`** (or your hostname)
+2. Go to **`https://quark.local`** (or your hostname)
 3. Log in with your username and password
 
-> **Tip:** Bookmark the address so you don't have to type it every time.
+> **Tip:** Bookmark the address so you don't have to type it every time. On phone apps, use **Add Quark** to pick a
+> discovered device, or switch Quarks from the drawer header when you have more than one saved.
 
-Quark is built for your home network by default — that's intentional.
+Quark is built for your home network by default — that's intentional. Access from outside the house is still
+**coming soon** and is not documented as live here.
 
 ---
 
@@ -59,7 +63,7 @@ Quark is built for your home network by default — that's intentional.
 One Quark on your home network can have more than one login. Soft-launch framing is still a single household device —
 remote access from outside the house is not live yet.
 
-- **Owner / admin** — the account created at setup. Admins see a **Users** page in the drawer.
+- **Owner / admin** — the account created at setup. Admins see a **Users** page in the drawer (accounts and groups).
 - **Request an account** — someone else on the same home WiFi can open the login screen and request access. An admin
   approves (or declines) the request from Users.
 - **Admin create** — an admin can also add an account directly from Users, without waiting for a request.
@@ -67,8 +71,21 @@ remote access from outside the house is not live yet.
   account removes that person's sign-in; it is not the same as wiping the Quark or emptying Trash. Read the
   confirmations in the app carefully.
 
-Until sharing tools ship more broadly, treat access as per-login on the home network. Each person sees **their own**
-Trash list when they delete files they can reach.
+Each person lands in **their own** files home and sees **their own** Trash list for deletes they can reach.
+
+---
+
+## Sharing and groups
+
+On the same Quark (still your home network):
+
+- **Share a file or folder** — from Cirrus or a viewer, use **Share** to grant another household account access.
+- **Shared with me** — when someone has shared roots with you, a shortcut appears so you can open them without hunting.
+- **Groups** — admins create and manage groups on the **Users** page (members, rename, delete). Quark creates a
+  protected folder for each group so members have a shared place that is not anyone's personal home.
+
+Sharing is between logins on your Quark. It is not a public internet link, and it is not remote access from outside the
+house.
 
 ## Cirrus — your files
 
@@ -124,6 +141,8 @@ Right-click (or long-press on mobile) any file or folder to open the action menu
 - **Rename** — change the name
 - **Move** — move it to a different folder or storage device
 - **Delete** — send it to Trash
+- **Share** — grant another household account access (see [Sharing and groups](#sharing-and-groups))
+- **Convert video** — on video files, queue a conversion job (same flow as from the video viewer)
 
 ### Trash
 
@@ -171,31 +190,31 @@ setup (master password only — no recovery phrase). Details on limits live in t
 
 ---
 
-## Health
+## System (devices, health, jobs)
 
-The Health page shows you how Quark is doing:
+**System** in the drawer combines devices, health, and background jobs in one place with tabs:
 
-- **Disk usage** — how much storage space is used vs. available
-- **Temperature** — the device's current temperature (important for small devices like a Raspberry Pi)
-- **Uptime** — how long the device has been running
+- **Devices** — attached storage and related device info
+- **Health** — disk usage, temperature, and other readings that flag when something needs attention
+- **Jobs** — queued work such as video conversion
 
-If anything looks off (disk nearly full, temperature very high), this is where you'll see it first.
+If anything looks off (disk nearly full, temperature very high), Health is where you'll see it first.
 
 ---
 
 ## Settings
 
-The Settings page lets you:
+Settings is split into tabs. Day-to-day items include:
 
-- **Toggle automatic updates** — turn on to have Quark update itself overnight when a new version is available; turn off
-  if you want to control updates manually
+- **Automatic updates** — turn on to have Quark update itself overnight when a new version is available; turn off if you
+  want to control updates manually
 - **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with the
   team
-- **Delete account** — under Account, remove your login from this Quark (separate from wiping the box)
-- **Reset this Quark** — under Reset, factory-reset the appliance when that is what you actually mean
-
-Deleting an account and resetting the Quark are different on purpose: one removes your login; the other can wipe data on
-the device. Read the confirmations carefully.
+- **Account and data** — drill-down for **Delete account** (every login) and, for admins, **Reset this Quark**. Both ask
+  for your account password before they proceed. Deleting an account removes your login; resetting can wipe data on the
+  device. They are different on purpose — read the confirmations carefully.
+- **Repair installation** — admins can re-apply system setup when an install needs fixing (exact label may vary by
+  build)
 
 Quark's routine contact with the public internet is checking for software updates. Optional features you turn on later
 (remote access when it ships, imports you start yourself) are separate from that default.
