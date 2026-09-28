@@ -47,20 +47,37 @@ indicator should have reached 100%). Very large files can take a minute.
 ### Someone else in the house wants an account
 
 On the login screen they can **request access**. An admin (the owner account from setup, or another admin) opens
-**Users** in the drawer and approves the request — or creates an account there directly. See
-[Getting Started](/docs/getting-started#household-accounts).
+**Users** in the drawer and approves the request — or creates an account there directly. See [Getting Started](/docs/getting-started#household-accounts) and
+[Accounts, homes, and sharing](/docs/accounts).
 
 ### How do I share a folder with someone in the house?
 
 Both of you need accounts on the same Quark. Open the file or folder in Cirrus (or a viewer), choose **Share**, and
 pick their account. They will see it under **Shared with me** when grants exist. Admins can also put people in a
-**group** so they share a group folder. See [Getting Started](/docs/getting-started#sharing-and-groups).
+**group** so they share a group folder. See [Getting Started](/docs/getting-started#sharing-and-groups) and
+[Accounts, homes, and sharing](/docs/accounts#sharing).
 
 ### I deleted a file
 
 Open **Trash** from the app drawer. You can restore it for about 30 days, or delete it permanently.
 Trash is a change-your-mind window, not a forever recycle bin. See
 [Getting Started](/docs/getting-started).
+
+
+### What is the difference between a member and an admin?
+
+Admins see **Users** and **Vault** and manage accounts. Members do not. Full map:
+[Accounts, homes, and sharing](/docs/accounts).
+
+### Where did Shared with me go?
+
+It only shows up when someone has shared something *with you*. Shares you made for others stay under your own
+files. Details: [Accounts, homes, and sharing](/docs/accounts#sharing).
+
+### Client connections vs storage devices?
+
+**Settings → Network** lists client sessions (browsers/apps). **System → Storage** lists USB drives on the box.
+They are not the same list — [Accounts, homes, and sharing](/docs/accounts#sessions-vs-storage-devices).
 
 ### I want to delete my account or reset the Quark
 
