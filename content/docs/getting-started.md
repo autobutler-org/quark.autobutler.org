@@ -60,6 +60,10 @@ Quark is built for your home network by default — that's intentional. Access f
 
 ## Household accounts
 
+For the full map (member vs admin, homes/`everyone`, share levels, sessions vs storage, remote), see
+[Accounts, homes, and sharing](/docs/accounts).
+
+
 One Quark on your home network can have more than one login. Soft-launch framing is still a single household device —
 remote access from outside the house is not live yet.
 
