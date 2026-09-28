@@ -99,10 +99,11 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
   auto-imports from here, but keep explicit imports in landing-page
   components for now, matching the existing style.
 - `components/__tests__/`: Vitest specs, named `<Component>.test.ts`.
-- `content/docs/`: docs content, one Markdown file per page, with
-  `title`/`description`/`navigation.{title,order}` frontmatter. This is
-  compiled into the site at build time by `@nuxt/content` — do not hand-roll
-  a second content pipeline.
+- `content/docs/`: docs content in nested folders (Start here / Things you can
+  do / …), one Markdown file per page, with `title`/`description`/
+  `navigation.{title,order}` frontmatter. Sidebar IA lives in `data/docsNav.ts`
+  (folder labels, task cards, redirects). Compiled by `@nuxt/content` — do not
+  hand-roll a second content pipeline.
 - `data/copy.ts`: every string that appears on the landing page, plus the
   outbound URLs. Landing-page components import from here; they do not
   hardcode copy. (Docs prose lives in `content/docs/*.md` instead — this
@@ -239,10 +240,10 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
 - Markdown files are linted by `markdownlint-cli2`; see `.markdownlint.yaml`
   for the active rules (that file is the source of truth — currently a
   120-column wrap, MD033/MD041 disabled).
-- Docs content in `content/docs/*.md` needs `title`, `description`, and
-  `navigation: { title, order }` frontmatter — `order` controls sidebar/index
-  ordering. Every doc must be reachable both from `/docs` (the index) and
-  from another doc's nav, or it's effectively unlisted.
+- Docs content in `content/docs/**/*.md` needs `title`, `description`, and
+  `navigation: { title, order }` frontmatter — `order` is within-folder only;
+  folder membership and home task cards come from `data/docsNav.ts`. Every doc
+  should appear in that nav (or it is effectively unlisted).
 - Run `make fix` to apply the mechanical fixes, then reflow long lines by hand.
 
 ## Pull request and commit conventions (always follow this)

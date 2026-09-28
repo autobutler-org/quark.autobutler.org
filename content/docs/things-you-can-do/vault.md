@@ -1,12 +1,14 @@
 ---
-title: Vault
+title: Keep private files safe
 description: Keep passwords on your Quark — encrypted on your drive, unlocked with a master password
 navigation:
-  title: Vault
-  order: 9
+  title: Keep private files safe
+  order: 5
 ---
 
-# Vault
+# Keep private files safe
+
+**Goal:** store passwords and sensitive notes on your own drive, locked with a master password only you know.
 
 Quark's vault is a place to store passwords and other sensitive notes on hardware you own.
 It lives on your drive, encrypted. It is not a password manager running on our servers.
@@ -31,5 +33,5 @@ vault data is gone. That is intentional.
 
 ## Related
 
-- [Security Guide](/docs/security-guide) — master password, 3-2-1 backups, limits
-- [Getting Started](/docs/getting-started)
+- [Security Guide](/docs/nerd-notes/security-guide) — master password, 3-2-1 backups, limits
+- [Getting Started](/docs/start-here/getting-started)

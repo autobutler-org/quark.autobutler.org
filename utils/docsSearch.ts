@@ -161,17 +161,24 @@ const excerptAround = (content: string, terms: readonly string[]): string => {
   return `${start > 0 ? "…" : ""}${content.slice(start, end)}${end < content.length ? "…" : ""}`;
 };
 
+export interface SearchOptions {
+  /** Extra score for docs whose path matches (e.g. task pages). */
+  readonly boostPath?: (path: string) => boolean;
+}
+
 /**
  * Filters `docs` to those containing every search term somewhere — nav title,
  * title, description, a heading, or body text — and ranks them.
  *
  * Title matches outrank description matches, which outrank body-only
- * matches; ties keep the order `docs` arrived in.
+ * matches; ties keep the order `docs` arrived in. Optional `boostPath`
+ * adds score for task-oriented pages.
  */
 export const searchDocs = <T extends SearchableDoc>(
   docs: readonly T[],
   sections: readonly DocSection[],
-  query: string
+  query: string,
+  options: SearchOptions = {}
 ): readonly DocMatch<T>[] => {
   const terms = searchTerms(query);
   if (terms.length === 0) return [];
@@ -196,10 +203,11 @@ export const searchDocs = <T extends SearchableDoc>(
 
     if (!includesAll(`${titles} ${description} ${body}`, terms)) return [];
 
-    const score = terms.reduce(
-      (total, term) => total + (titles.includes(term) ? 3 : description.includes(term) ? 2 : 1),
-      0
-    );
+    const score =
+      terms.reduce(
+        (total, term) => total + (titles.includes(term) ? 3 : description.includes(term) ? 2 : 1),
+        0
+      ) + (options.boostPath?.(doc.path) ? 2 : 0);
 
     if (includesAll(`${titles} ${description}`, terms)) return [{ match: { doc }, score }];
 

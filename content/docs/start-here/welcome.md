@@ -36,14 +36,14 @@ We're on Reddit at [r/autobutler](https://www.reddit.com/r/autobutler/) if you w
 
 ## Getting started
 
-Ready? See the [Getting Started](/docs/getting-started) guide.
+Ready? See the [Getting Started](/docs/start-here/getting-started) guide.
 
 ## Need help?
 
-- **[Getting Started](/docs/getting-started)** — day-to-day use
-- **[How It Works](/docs/how-it-works)** — local-first, explained plainly
-- **[Help & Support](/docs/help)** — troubleshooting and how to reach us
-- **[Security Guide](/docs/security-guide)** — passwords, backups, and what Quark does not do
+- **[Getting Started](/docs/start-here/getting-started)** — day-to-day use
+- **[How It Works](/docs/start-here/how-it-works)** — local-first, explained plainly
+- **[Help & Support](/docs/if-something-goes-wrong/help)** — troubleshooting and how to reach us
+- **[Security Guide](/docs/nerd-notes/security-guide)** — passwords, backups, and what Quark does not do
 
 ## Legal
 

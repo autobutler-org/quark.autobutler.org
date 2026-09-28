@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { docsIndex, docsPreviewCount } from "~/data/copy";
+import DocsSoftLaunchChip from "~/components/DocsSoftLaunchChip.vue";
+import { docsIndex } from "~/data/copy";
+import { docsSecondaryLinks, docsTaskCards, isDocsTaskPath } from "~/data/docsNav";
 import { searchDocs, searchTerms, sectionsFromBody, type SearchableDoc } from "~/utils/docsSearch";
 
 const { data: docs } = await useAsyncData("docs-index", () =>
@@ -22,18 +24,39 @@ const sortedDocs = computed(() =>
     .sort((a, b) => (a.navigation?.order ?? 999) - (b.navigation?.order ?? 999))
 );
 
-/** The first few by `navigation.order` — a curated set is still an open decision. */
-const previewDocs = computed(() => sortedDocs.value.slice(0, docsPreviewCount));
-
 const query = ref("");
+const searchInput = ref<HTMLInputElement | null>(null);
 const isSearching = computed(() => searchTerms(query.value).length > 0);
 const matchingDocs = computed(() =>
-  searchDocs(sortedDocs.value, sections.value ?? [], query.value)
+  searchDocs(sortedDocs.value, sections.value ?? [], query.value, {
+    boostPath: isDocsTaskPath,
+  })
 );
 
 const clearSearch = () => {
   query.value = "";
 };
+
+const onGlobalKeydown = (event: KeyboardEvent) => {
+  if (event.key !== "/" || event.metaKey || event.ctrlKey || event.altKey) return;
+  const target = event.target as HTMLElement | null;
+  if (
+    target &&
+    (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable)
+  ) {
+    return;
+  }
+  event.preventDefault();
+  searchInput.value?.focus();
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", onGlobalKeydown);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("keydown", onGlobalKeydown);
+});
 
 useSeoMeta({
   title: `${docsIndex.heading} — Quark`,
@@ -57,6 +80,7 @@ useSeoMeta({
       <div class="search-field">
         <input
           id="docs-search"
+          ref="searchInput"
           v-model="query"
           type="search"
           class="search-input"
@@ -67,6 +91,7 @@ useSeoMeta({
           {{ docsIndex.clearLabel }}
         </button>
       </div>
+      <p class="hint">{{ docsIndex.searchHint }}</p>
       <p class="count" role="status" aria-live="polite">
         {{ isSearching ? docsIndex.resultCount(matchingDocs.length) : "" }}
       </p>
@@ -96,23 +121,36 @@ useSeoMeta({
     </template>
 
     <template v-else>
-      <h2 class="section-heading">{{ docsIndex.previewHeading }}</h2>
-      <div class="grid">
-        <NuxtLink v-for="doc in previewDocs" :key="doc.path" :to="doc.path" class="card">
-          <h3>{{ doc.navigation?.title || doc.title }}</h3>
-          <p>{{ doc.description }}</p>
+      <h2 class="section-heading">{{ docsIndex.tasksHeading }}</h2>
+      <div class="grid tasks">
+        <NuxtLink
+          v-for="card in docsTaskCards"
+          :key="card.path"
+          :to="card.path"
+          class="card task-card"
+          :class="{ muted: card.comingSoon }"
+        >
+          <div class="card-top">
+            <h3>{{ card.title }}</h3>
+            <DocsSoftLaunchChip v-if="card.softLaunch" kind="soft-launch" />
+            <DocsSoftLaunchChip v-else-if="card.comingSoon" kind="coming-soon" />
+          </div>
+          <p>{{ card.outcome }}</p>
         </NuxtLink>
       </div>
 
-      <h2 class="section-heading">{{ docsIndex.allHeading }}</h2>
-      <ul class="all-docs">
-        <li v-for="doc in sortedDocs" :key="doc.path">
-          <NuxtLink :to="doc.path" class="row">
-            <span class="row-title">{{ doc.navigation?.title || doc.title }}</span>
-            <span class="row-desc">{{ doc.description }}</span>
-          </NuxtLink>
-        </li>
-      </ul>
+      <h2 class="section-heading secondary-heading">{{ docsIndex.secondaryHeading }}</h2>
+      <div class="secondary">
+        <NuxtLink
+          v-for="link in docsSecondaryLinks"
+          :key="link.path"
+          :to="link.path"
+          class="secondary-link"
+        >
+          <span class="secondary-title">{{ link.title }}</span>
+          <span class="secondary-outcome">{{ link.outcome }}</span>
+        </NuxtLink>
+      </div>
     </template>
   </section>
 </template>
@@ -128,7 +166,7 @@ useSeoMeta({
 
 h1 {
   margin: 0 0 var(--gutter);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 600;
   line-height: 1.2;
   color: var(--color-text-strong);
@@ -142,12 +180,12 @@ h1 {
   max-width: var(--lede-width);
   margin: 0 0 2rem;
   font-size: 1.15rem;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--color-text-muted);
 }
 
 .search {
-  margin: 0 0 2.5rem;
+  margin: 0 0 2.75rem;
 }
 
 .search-label {
@@ -168,12 +206,14 @@ h1 {
 .search-input {
   flex: 1 1 16rem;
   min-width: 0;
-  padding: 0.75rem 1rem;
+  min-height: 2.75rem;
+  padding: 0.85rem 1.1rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   background: var(--color-surface);
   color: inherit;
   font: inherit;
+  font-size: 1.05rem;
 }
 
 .search-input::placeholder {
@@ -202,58 +242,88 @@ h1 {
   border-color: var(--color-accent-border);
 }
 
+.hint {
+  margin: 0.55rem 0 0;
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+}
+
 .count {
-  margin: 0.6rem 0 0;
+  margin: 0.4rem 0 0;
   min-height: 1.2em;
   font-size: 0.9rem;
   color: var(--color-text-subtle);
 }
 
 .section-heading {
-  margin: 0 0 1.25rem;
-  font-size: 1.25rem;
+  margin: 0 0 1.35rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--color-text-strong);
 }
 
+.secondary-heading {
+  margin-top: 0.5rem;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  gap: 1.35rem;
   margin-bottom: 3rem;
+}
+
+.tasks {
+  margin-bottom: 3.25rem;
 }
 
 .card {
   display: block;
-  padding: 1.5rem;
+  padding: 1.65rem 1.5rem;
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   text-decoration: none;
   color: inherit;
+  min-height: 7.5rem;
+  box-sizing: border-box;
   transition:
     background var(--transition-fast),
     border-color var(--transition-fast),
-    transform var(--transition-fast);
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .card:hover {
   background: var(--color-surface-hover);
   border-color: var(--color-accent-border);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.card.muted {
+  opacity: 0.85;
+}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.65rem;
+  margin-bottom: 0.65rem;
 }
 
 .card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
+  margin: 0;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-text-strong);
 }
 
 .card p {
   margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--color-text-muted);
 }
 
@@ -278,40 +348,42 @@ h1 {
   color: var(--color-text-strong);
 }
 
-.all-docs {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid var(--color-border);
+.secondary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+  gap: 0.85rem;
+  margin-bottom: 1rem;
 }
 
-.row {
+.secondary-link {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1rem;
-  align-items: baseline;
-  padding: 0.9rem 0.25rem;
-  border-bottom: 1px solid var(--color-border);
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-subtle);
   text-decoration: none;
   color: inherit;
-  transition: background var(--transition-fast);
+  min-height: 2.75rem;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
-.row:hover {
+.secondary-link:hover {
   background: var(--color-surface-hover);
+  border-color: var(--color-accent-border);
 }
 
-.row-title {
-  flex: 0 0 auto;
+.secondary-title {
   font-weight: 600;
   color: var(--color-text-strong);
 }
 
-.row-desc {
-  flex: 1 1 14rem;
-  min-width: 0;
+.secondary-outcome {
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--color-text-muted);
 }
 

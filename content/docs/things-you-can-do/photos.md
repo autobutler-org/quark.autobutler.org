@@ -1,12 +1,12 @@
 ---
-title: Photos
+title: Back up photos
 description: Browse photos on your Quark and upload from your phone on the home network
 navigation:
-  title: Photos
-  order: 5
+  title: Back up photos
+  order: 1
 ---
 
-# Photos
+# Back up photos
 
 Quark's Photos library is for pictures and videos that live on your drive at home.
 Full-resolution originals, albums, favorites — browsable from any device on your home
@@ -20,7 +20,7 @@ network.
 - See images that already live on your Quark storage (including ones you uploaded or
   imported)
 
-Migrating from Google? See the [Google Takeout guide](/docs/google-takeout).
+Migrating from Google? See the [Google Takeout guide](/docs/things-you-can-do/google-takeout).
 
 ## Adding photos from your phone (soft-launch)
 
@@ -45,10 +45,10 @@ not available yet.
 - On iPhone or iPad, uploading from **Files** can also offer **Photos** as a source, so you do not have to export into
   Files first.
 - Irreplaceable photos still deserve a second physical copy — see the
-  [Security guide](/docs/security-guide)'s 3-2-1 note.
+  [Security guide](/docs/nerd-notes/security-guide)'s 3-2-1 note.
 
 ## Related
 
-- [Getting Started](/docs/getting-started)
-- [Google Takeout](/docs/google-takeout)
-- [Security Guide](/docs/security-guide)
+- [Getting Started](/docs/start-here/getting-started)
+- [Google Takeout](/docs/things-you-can-do/google-takeout)
+- [Security Guide](/docs/nerd-notes/security-guide)
