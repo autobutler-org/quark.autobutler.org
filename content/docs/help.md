@@ -47,7 +47,8 @@ indicator should have reached 100%). Very large files can take a minute.
 ### Someone else in the house wants an account
 
 On the login screen they can **request access**. An admin (the owner account from setup, or another admin) opens
-**Users** in the drawer and approves the request — or creates an account there directly. See [Getting Started](/docs/getting-started#household-accounts) and
+**Users** in the drawer and approves the request — or creates an account there directly. See [Getting
+Started](/docs/getting-started#household-accounts) and
 [Accounts, homes, and sharing](/docs/accounts).
 
 ### How do I share a folder with someone in the house?
