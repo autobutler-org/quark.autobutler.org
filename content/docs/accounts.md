@@ -1,6 +1,7 @@
 ---
 title: Accounts, homes, and sharing
-description: Member vs admin, homes and groups, share levels, admin Users lifecycle, sessions vs storage vs Vault, and how to get access on your Quark
+description: Member vs admin, homes and groups, share levels, admin Users lifecycle, sessions vs storage vs Vault, and
+how to get access on your Quark
 navigation:
   title: Accounts & sharing
   order: 2.5
@@ -107,12 +108,12 @@ Sharing is not remote access. It does not put your files on the public internet.
 
 Four different places — do not mix them up:
 
-| Looking for… | Go here |
-| --- | --- |
-| Logins, requests, groups | **Users** (admins) |
-| Browsers/apps signed in (sessions) | **Settings → Network** → connected clients |
-| USB drives on the box | **System → Storage** (or Settings → General → Storage devices) |
-| Password vault | **Vault** in the drawer (admins) |
+| Looking for…                       | Go here                                                        |
+| ---------------------------------- | -------------------------------------------------------------- |
+| Logins, requests, groups           | **Users** (admins)                                             |
+| Browsers/apps signed in (sessions) | **Settings → Network** → connected clients                     |
+| USB drives on the box              | **System → Storage** (or Settings → General → Storage devices) |
+| Password vault                     | **Vault** in the drawer (admins)                               |
 
 - **Connected clients** — request count, last seen. Admins can revoke a client when the UI offers Delete/revoke; that
   device signs in again.
@@ -125,7 +126,7 @@ Four different places — do not mix them up:
 
 Both live under **Settings → Account → Account and data**, which is why they feel close.
 
-- **Delete account** — available to every login. Removes *that* person's sign-in (and signs them out everywhere). It is
+- **Delete account** — available to every login. Removes _that_ person's sign-in (and signs them out everywhere). It is
   not a full wipe of the box. Confirmations ask for the account password.
 - **Reset this Quark** — **admin only**. Resets the installation / Quark data. Attached drives are left alone unless the
   reset flow says otherwise — read every confirmation carefully. If the UI mentions choosing what happens to drives,
