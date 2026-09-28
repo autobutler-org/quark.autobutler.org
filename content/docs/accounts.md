@@ -1,6 +1,6 @@
 ---
 title: Accounts, homes, and sharing
-description: Member vs admin, homes and groups, share levels, sessions vs storage, and how to get access on your Quark
+description: Member vs admin, homes and groups, share levels, admin Users lifecycle, sessions vs storage vs Vault, and how to get access on your Quark
 navigation:
   title: Accounts & sharing
   order: 2.5
@@ -30,7 +30,39 @@ shared with them.
 Account invites and the Users page are admin-only. If you need a new login or a password reset for someone else, ask an
 admin in the house.
 
-## Homes and groups
+## For admins: Users page
+
+Open **Users** in the drawer. Two tabs: **Accounts** and **Groups**.
+
+### Account lifecycle
+
+- **Add user** — create a login with an initial password (no request needed).
+- **Make admin** / **Remove admin** — give or take admin. The last active admin cannot remove their own admin — Quark
+  needs at least one.
+- **Turn off** / turn back on — disables sign-in without deleting the account. Files and shares stay as they were.
+- **Delete** (from the account actions) — removes that login. This is not the same as Reset this Quark (see below).
+
+Your own row is marked **You** and has no actions menu on Accounts.
+
+### Account requests
+
+On Accounts, admins can allow people on the home WiFi to **request access** from the login screen.
+
+- Flip the switch that allows requests when you want the household to self-serve asks.
+- **Approve** or **Deny** each waiting request. After you act, the row leaves the waiting list.
+- Soft-launch note: there is no request history yet — once approved or denied, it is gone from the list. If you need a
+  paper trail, write it down yourself for now.
+
+### Groups
+
+On the **Groups** tab, create a group, rename it, delete it, and manage who is in it.
+
+- Each group gets a folder under `groups/` that members can use together.
+- **everyone** is built in: every account is in it, it has no actions menu, and its folder is `groups/everyone`.
+- Adding or removing someone from a group updates what they see under Groups in Files without them hunting for a share
+  sheet — and what was shared with that group follows membership.
+
+## Homes and groups (Files view)
 
 In Files you will see paths that look like folders. They are the mental model for multi-user Quark:
 
@@ -71,18 +103,36 @@ stay under your own files and the share sheet.
 
 Sharing is not remote access. It does not put your files on the public internet.
 
-## Sessions vs storage devices
+## Clients, storage, Vault, and accounts
 
-Two different lists, easy to mix up:
+Four different places — do not mix them up:
 
-- **Settings → Network → connected client devices** — browsers and apps that have talked to this Quark (request count,
-  last seen). Admins can revoke a device from that list when the UI offers Delete/revoke; that client has to sign in
-  again.
-- **System → Storage** (from the drawer, or Settings → General → Storage devices) — the USB drives and disks plugged
-  into the box: mount status, space used, rename, backup. That is hardware, not "who is logged in."
+| Looking for… | Go here |
+| --- | --- |
+| Logins, requests, groups | **Users** (admins) |
+| Browsers/apps signed in (sessions) | **Settings → Network** → connected clients |
+| USB drives on the box | **System → Storage** (or Settings → General → Storage devices) |
+| Password vault | **Vault** in the drawer (admins) |
 
-If you are looking for "who is signed in on the living-room iPad," start on Network. If you are looking for "is the
-backup drive mounted," start on Storage.
+- **Connected clients** — request count, last seen. Admins can revoke a client when the UI offers Delete/revoke; that
+  device signs in again.
+- **Storage** — mount status, space, rename, backup. Hardware disks, not people.
+- **Vault** — encrypted passwords on your drive, unlocked with a master password. Separate from Files homes and from
+  account management. See [Vault](/docs/vault).
+- **Accounts** — who may sign in to this Quark. Deleting a login is not unmounting a drive and is not emptying Vault.
+
+## Delete account vs Reset this Quark
+
+Both live under **Settings → Account → Account and data**, which is why they feel close.
+
+- **Delete account** — available to every login. Removes *that* person's sign-in (and signs them out everywhere). It is
+  not a full wipe of the box. Confirmations ask for the account password.
+- **Reset this Quark** — **admin only**. Resets the installation / Quark data. Attached drives are left alone unless the
+  reset flow says otherwise — read every confirmation carefully. If the UI mentions choosing what happens to drives,
+  that choice is in the reset steps themselves, not on the Delete account button.
+
+If you only meant to remove one person's login, use Delete account (or an admin **Delete** on Users). If you meant to
+wipe the Quark setup, that is Reset — and only an admin should touch it.
 
 ## Remote access
 
@@ -102,9 +152,6 @@ Until remote ships, stay on the same home WiFi as the Quark.
    password.
 3. **Need help as a member** — you cannot open Users yourself. Ask an admin in the house for a new account, a password
    reset, or a share. For "I deleted a file," Trash, or other how-tos, see [Help](/docs/help).
-
-Deleting your own account (Settings → Account → Account and data) removes your login. It is not the same as wiping the
-Quark. Resetting the whole box is admin-only.
 
 ## Related
 
