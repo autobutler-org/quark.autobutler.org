@@ -2,8 +2,8 @@
 title: How Quark Works
 description: How Quark keeps your files on hardware you control by default — local-first, on your home network
 navigation:
-  title: How It Works
-  order: 4
+  title: How Quark works
+  order: 3
 ---
 
 # How Quark Works
@@ -75,4 +75,4 @@ the shape we are aiming for is:
 - Somewhere obvious in the app that tells you the last copy actually finished
 
 Until then, the copying is manual and the plan is the ordinary one: a second drive, and a third copy somewhere that is
-not your house. See the [Security Guide](/docs/security-guide) for the 3-2-1 version of that.
+not your house. See the [Security Guide](/docs/nerd-notes/security-guide) for the 3-2-1 version of that.

@@ -189,19 +189,19 @@ export const support = {
    */
   helpLinks: [
     {
-      title: "Getting Started",
+      title: "Set up Quark",
       description: "Set up your Quark for the first time",
-      href: "/docs/getting-started",
+      href: "/docs/start-here/getting-started",
     },
     {
       title: "Moving from Google",
       description: "Bring your photos and files over with Google Takeout",
-      href: "/docs/google-takeout",
+      href: "/docs/things-you-can-do/google-takeout",
     },
     {
       title: "Troubleshooting",
       description: "Common issues and how to fix them",
-      href: "/docs/help",
+      href: "/docs/if-something-goes-wrong/help",
     },
     {
       title: "GitHub Issues",
@@ -257,13 +257,14 @@ export const signup = {
 } as const;
 
 export const docsIndex = {
-  heading: "Documentation",
-  lede: "Everything you need to set up, use, and understand Quark.",
+  heading: "What do you want to do?",
+  lede: "Plain-language guides for everyday Quark tasks — plus setup help and deeper notes when you need them.",
   searchLabel: "Search the docs",
-  searchPlaceholder: "Search titles and page text",
+  searchPlaceholder: "Try “photos” or “invite”",
+  searchHint: "Press / to focus search",
   clearLabel: "Clear search",
-  previewHeading: "Start here",
-  allHeading: "All docs",
+  tasksHeading: "I want to…",
+  secondaryHeading: "Also useful",
   resultsHeading: "Results",
   noResults: "No docs match that search.",
   /**
@@ -272,9 +273,6 @@ export const docsIndex = {
    */
   resultCount: (count: number): string => (count === 1 ? "1 doc matches" : `${count} docs match`),
 } as const;
-
-/** How many docs the "Start here" preview shows above the full listing. */
-export const docsPreviewCount = 4;
 
 export const footer = {
   note: "Quark is built by the AutoButler project. MIT-0 licensed.",

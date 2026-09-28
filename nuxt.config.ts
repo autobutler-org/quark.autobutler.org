@@ -7,6 +7,17 @@ export default defineNuxtConfig({
   nitro: {
     static: true,
   },
+  routeRules: {
+    "/docs/welcome": { redirect: "/docs/start-here/welcome" },
+    "/docs/getting-started": { redirect: "/docs/start-here/getting-started" },
+    "/docs/how-it-works": { redirect: "/docs/start-here/how-it-works" },
+    "/docs/photos": { redirect: "/docs/things-you-can-do/photos" },
+    "/docs/google-takeout": { redirect: "/docs/things-you-can-do/google-takeout" },
+    "/docs/vault": { redirect: "/docs/things-you-can-do/vault" },
+    "/docs/help": { redirect: "/docs/if-something-goes-wrong/help" },
+    "/docs/nerd-notes": { redirect: "/docs/nerd-notes/overview" },
+    "/docs/security-guide": { redirect: "/docs/nerd-notes/security-guide" },
+  },
   app: {
     head: {
       title: "Quark — Data Autonomy For Everyone",

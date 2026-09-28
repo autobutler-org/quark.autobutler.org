@@ -251,3 +251,12 @@ describe("highlight", () => {
     expect(highlight("nothing here", ["vault"])).toEqual([{ text: "nothing here", match: false }]);
   });
 });
+
+describe("searchDocs boostPath", () => {
+  it("ranks boosted paths above equal title matches when scores would tie", () => {
+    const results = searchDocs(docs, sections, "photos", {
+      boostPath: (path) => path.includes("/photos"),
+    });
+    expect(results[0]?.doc.path).toBe("/docs/photos");
+  });
+});

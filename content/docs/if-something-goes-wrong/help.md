@@ -1,12 +1,12 @@
 ---
-title: Help & Support
+title: Help & troubleshooting
 description: Get help and support for Quark
 navigation:
-  title: Help
-  order: 3
+  title: Help & troubleshooting
+  order: 1
 ---
 
-# Help & Support
+# Help & troubleshooting
 
 ---
 
@@ -21,7 +21,7 @@ navigation:
 
 ### I'm getting an error when I try to install Quark
 
-Make sure you're using the installer for your operating system and architecture. The [nerd notes](/docs/nerd-notes)
+Make sure you're using the installer for your operating system and architecture. The [nerd notes](/docs/nerd-notes/overview)
 page has installation details. If you're still stuck,
 [open a GitHub issue](https://github.com/autobutler-org/quark/issues) and someone will help.
 
@@ -47,7 +47,7 @@ indicator should have reached 100%). Very large files can take a minute.
 
 Open **Trash** from the app drawer. You can restore it for about 30 days, or delete it permanently.
 Trash is a change-your-mind window, not a forever recycle bin. See
-[Getting Started](/docs/getting-started).
+[Getting Started](/docs/start-here/getting-started).
 
 ---
 

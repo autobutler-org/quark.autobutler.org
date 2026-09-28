@@ -1,9 +1,5 @@
 <script setup lang="ts">
-interface DocSummary {
-  path: string;
-  title: string;
-  navigation?: { title?: string; order?: number };
-}
+import DocsSidebar from "~/components/DocsSidebar.vue";
 
 const route = useRoute();
 
@@ -14,14 +10,6 @@ const { data: doc } = await useAsyncData(`doc-${route.path}`, () =>
 if (!doc.value) {
   throw createError({ statusCode: 404, statusMessage: "Doc not found" });
 }
-
-const { data: allDocs } = await useAsyncData("docs-nav", () => queryCollection("docs").all());
-
-const sortedDocs = computed(() =>
-  ((allDocs.value ?? []) as unknown as DocSummary[])
-    .slice()
-    .sort((a, b) => (a.navigation?.order ?? 999) - (b.navigation?.order ?? 999))
-);
 
 useSeoMeta({
   title: () => `${doc.value?.title ?? "Docs"} — Quark`,
@@ -36,76 +24,41 @@ useSeoMeta({
 </script>
 
 <template>
-  <article class="doc">
-    <nav class="doc-nav" aria-label="Documentation">
-      <NuxtLink to="/docs">All docs</NuxtLink>
-      <NuxtLink
-        v-for="item in sortedDocs"
-        :key="item.path"
-        :to="item.path"
-        :class="{ current: item.path === route.path }"
-      >
-        {{ item.navigation?.title || item.title }}
-      </NuxtLink>
-    </nav>
-    <div class="prose">
+  <div class="doc-shell">
+    <aside class="doc-aside">
+      <DocsSidebar :current-path="route.path" />
+    </aside>
+    <article class="prose">
       <ContentRenderer v-if="doc" :value="doc" />
-    </div>
-  </article>
+    </article>
+  </div>
 </template>
 
 <style scoped>
-.doc {
+.doc-shell {
   width: 100%;
-  max-width: var(--content-width);
+  max-width: 72rem;
   margin: 0 auto;
   padding: 5rem var(--gutter) var(--section-gap);
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 14rem 1fr;
-  gap: 3rem;
+  grid-template-columns: 17rem minmax(0, 1fr);
+  gap: 2.5rem;
   align-items: start;
 }
 
-.doc-nav {
+.doc-aside {
   position: sticky;
   top: 5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.doc-nav a {
-  padding: 0.4rem 0.6rem;
-  border-radius: var(--radius-md);
-  color: var(--color-text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast);
-}
-
-.doc-nav a:first-child {
-  font-weight: 600;
-  color: var(--color-text-strong);
-  margin-bottom: 0.5rem;
-}
-
-.doc-nav a:hover {
-  color: var(--color-text-strong);
-  background: var(--color-surface-hover);
-}
-
-.doc-nav a.current {
-  color: var(--color-accent);
-  background: var(--color-surface);
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
 }
 
 .prose {
   min-width: 0;
   max-width: var(--prose-width);
-  line-height: 1.75;
+  font-size: 1.125rem;
+  line-height: 1.65;
   color: var(--color-text);
 }
 
@@ -117,12 +70,12 @@ useSeoMeta({
 }
 
 .prose :deep(h1) {
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
   margin: 0 0 1.5rem;
 }
 
 .prose :deep(h2) {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   margin: 2.5rem 0 1rem;
 }
 
@@ -152,12 +105,12 @@ useSeoMeta({
 }
 
 .prose :deep(li) {
-  margin: 0.35rem 0;
+  margin: 0.4rem 0;
 }
 
 .prose :deep(blockquote) {
   margin: 0 0 1.25rem;
-  padding: 0.75rem 1rem;
+  padding: 0.85rem 1.1rem;
   border-left: 3px solid var(--color-accent-border);
   background: var(--color-surface-subtle);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
@@ -210,18 +163,20 @@ useSeoMeta({
   height: auto;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
 }
 
 @media (max-width: 768px) {
-  .doc {
+  .doc-shell {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    padding-top: 4rem;
   }
 
-  .doc-nav {
+  .doc-aside {
     position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
+    max-height: none;
+    overflow: visible;
   }
 }
 </style>
