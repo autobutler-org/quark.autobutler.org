@@ -10,7 +10,7 @@ navigation:
 
 Quark is a household device: more than one person can have a login on the same box. This page is the plain-language map of who sees what, where your files live, and how sharing works between people in the house.
 
-Soft-launch framing still matters: **remote access from outside your home network is not live yet.** Treat Quark as a home-WiFi product until that ships. Sharing here means between accounts on *your* Quark — not a public internet link.
+Soft-launch framing still matters: **remote access from outside your home network is not live yet.** Treat Quark as a home-WiFi product until that ships. Sharing here means between accounts on _your_ Quark — not a public internet link.
 
 For first-time setup, start with [Getting Started](/docs/getting-started).
 
@@ -52,7 +52,7 @@ Share a parent folder and everything inside inherits that access. On a child ite
 
 ### Shared with me
 
-**Shared with me** appears only when someone else (or a group you are in) has shared roots with you. It lists inbound shares — "Shared by …" — so you can open them without hunting. Shares *you* made outbound do not show up there; those stay under your own files and the share sheet.
+**Shared with me** appears only when someone else (or a group you are in) has shared roots with you. It lists inbound shares — "Shared by …" — so you can open them without hunting. Shares _you_ made outbound do not show up there; those stay under your own files and the share sheet.
 
 Sharing is not remote access. It does not put your files on the public internet.
 
@@ -69,7 +69,7 @@ If you are looking for "who is signed in on the living-room iPad," start on Netw
 
 **Not live for soft launch.** Reaching Quark from outside the house is still coming soon.
 
-When remote access ships, **admins** will be the ones who turn it on and manage it under Settings → Network. Members should not need a setup path for Tailscale or similar — if you only see a status line and no way to configure it, that is expected for a non-admin (and today the feature itself is not turned on for friends-and-family).
+When remote access ships, **admins** will be the ones who turn it on and manage it under Settings → Network. Members should not need a setup path — if you only see a status line and no way to configure it, that is expected for a non-admin (and today the feature itself is not turned on for friends-and-family).
 
 Until remote ships, stay on the same home WiFi as the Quark.
 

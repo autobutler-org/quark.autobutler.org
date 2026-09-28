@@ -63,7 +63,6 @@ Open **Trash** from the app drawer. You can restore it for about 30 days, or del
 Trash is a change-your-mind window, not a forever recycle bin. See
 [Getting Started](/docs/getting-started).
 
-
 ### What is the difference between a member and an admin?
 
 Admins see **Users** and **Vault** and manage accounts. Members do not. Full map:
@@ -71,7 +70,7 @@ Admins see **Users** and **Vault** and manage accounts. Members do not. Full map
 
 ### Where did Shared with me go?
 
-It only shows up when someone has shared something *with you*. Shares you made for others stay under your own
+It only shows up when someone has shared something _with you_. Shares you made for others stay under your own
 files. Details: [Accounts, homes, and sharing](/docs/accounts#sharing).
 
 ### Client connections vs storage devices?
