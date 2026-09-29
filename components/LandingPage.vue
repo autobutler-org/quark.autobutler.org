@@ -5,6 +5,7 @@ import HeroSection from "./HeroSection.vue";
 import HowItWorks from "./HowItWorks.vue";
 import ManifestoSection from "./ManifestoSection.vue";
 import NewsletterSignup from "./NewsletterSignup.vue";
+import UpcomingFeatures from "./UpcomingFeatures.vue";
 </script>
 
 <template>
@@ -13,6 +14,7 @@ import NewsletterSignup from "./NewsletterSignup.vue";
     <ManifestoSection />
     <HowItWorks />
     <FeatureGrid />
+    <UpcomingFeatures />
     <CallToAction />
     <NewsletterSignup />
   </div>

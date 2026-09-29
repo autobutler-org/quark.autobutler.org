@@ -177,6 +177,37 @@ export const features = {
   ] as readonly Feature[],
 } as const;
 
+/**
+ * Features in review in the product repo, shown after the feature grid so the
+ * page can pre-announce without implying either one is available today. Both
+ * ship behind a Beta badge in the app, so the label here matches what a user
+ * would actually see. Remove an entry when it ships and promote it to
+ * `features` above.
+ */
+export const upcoming = {
+  heading: "In the works",
+  lede:
+    "Two features are in review now. Neither is in your hands yet, and we would rather " +
+    "tell you what is coming than pretend the product is finished.",
+  badge: "Beta",
+  items: [
+    {
+      name: "Chat",
+      body:
+        "Messaging for your household, end-to-end encrypted. The Quark stores messages it " +
+        "cannot read \u2014 not as a policy we promise, but as math: the keys live on your " +
+        "devices. Take someone's access away and the channel's key is replaced.",
+    },
+    {
+      name: "Calendar",
+      body:
+        "A shared calendar for the house, on your own hardware. Day, week and month views, " +
+        "repeating events, and reminders \u2014 without handing your family's schedule to an " +
+        "advertising company.",
+    },
+  ] as readonly Feature[],
+} as const;
+
 export const callToAction = {
   heading: "The cloud, in your home.",
   body:
