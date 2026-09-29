@@ -133,6 +133,42 @@ export const features = {
         "with a password only you have.",
     },
     {
+      name: "Accounts and sharing",
+      body:
+        "Everyone in the house gets their own account and their own private space. Share a " +
+        "folder with a person or the whole household, and nothing else is visible.",
+    },
+    {
+      name: "Remote access",
+      body:
+        "Reach your files from work, from a trip, from phone data. Off until you turn it " +
+        "on, and it is a private encrypted path to your own box \u2014 not a copy on our servers.",
+    },
+    {
+      name: "Search",
+      body:
+        "Find a file by name, or by what is written inside it. Documents and spreadsheets " +
+        "are searched by their contents, not just their titles.",
+    },
+    {
+      name: "Trash",
+      body:
+        "Deleting something puts it in the trash instead of destroying it, so a misclick is " +
+        "an inconvenience rather than a loss. Restore it whenever you notice.",
+    },
+    {
+      name: "Video and audio",
+      body:
+        "Play what is on the drive in the browser. Trim a clip, save a still frame, or " +
+        "convert a file the rest of your devices refuse to open.",
+    },
+    {
+      name: "Apps for your phone",
+      body:
+        "iOS and Android apps that find your Quark on the WiFi by themselves, so there is " +
+        "no address to type. Currently in testing.",
+    },
+    {
       name: "System",
       body:
         "See how much space is left, which drives are attached, and what the Quark is busy " +
