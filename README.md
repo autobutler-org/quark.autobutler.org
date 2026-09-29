@@ -34,8 +34,8 @@ make fix      # apply lint and format fixes
 
 ## Environment
 
-Copy `.env.example` to `.env` and adjust. Only `NUXT_PUBLIC_`-prefixed variables reach
-client code; anything else stays build-time only.
+The site needs no environment variables. If you add one, only `NUXT_PUBLIC_`-prefixed
+variables reach client code, and nothing secret belongs in either — the bundle is public.
 
 ## Deployment
 
