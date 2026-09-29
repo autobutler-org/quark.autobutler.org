@@ -20,12 +20,13 @@ room you can walk into. Think Google Drive or iCloud, except the default is that
 By default, Quark works on your home network. Devices on your WiFi talk to Quark through your router. Your files live on
 the drive you plugged in.
 
-We are working on secure ways to reach Quark when you're away from home. That is not live yet. Until it is, treat Quark
-as a home-network product: same WiFi, password on your network, and you're set.
+You can also reach Quark when you are away from home. Remote access is off until an admin turns it on, and when it is
+on, your devices and your Quark join one small private network of their own. Your files still live on your drive — we do
+not hold a copy. See [How It Works](/docs/how-it-works) for the plain-English version.
 
-The only routine contact Quark makes with the public internet is checking for software updates. (If you later enable
-remote access when that ships, or start an import yourself, that is separate from the default.) Don't take our word for
-it — the code is public on [GitHub](https://github.com/autobutler-org/quark).
+With remote access off, the only routine contact Quark makes with the public internet is checking for software updates.
+(Turning on remote access, or starting an import yourself, is separate from that default.) Don't take our word for it —
+the code is public on [GitHub](https://github.com/autobutler-org/quark).
 
 ## How can we trust you?
 

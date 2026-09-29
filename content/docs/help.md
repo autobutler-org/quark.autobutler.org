@@ -16,8 +16,16 @@ navigation:
 
 - Make sure Quark is powered on
 - Make sure you're on the same WiFi network as your Quark device
-- Try `http://quark.home.local` — if you changed the hostname during setup, use that instead
+- Try `https://quark.local` — if you changed the hostname during setup, use that instead
 - Try restarting your router and your Quark device
+
+### My browser says the connection is not private
+
+Expected, and safe to continue past. Click **Advanced**, then **Proceed** (on Safari, **Show Details**, then **visit this
+website**). Quark encrypts the connection with a certificate it makes for itself on first boot; the warning means no
+public certificate authority countersigned it, which none can do for a device on your own WiFi. The
+[Getting Started guide](/docs/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it at
+length.
 
 ### I'm getting an error when I try to install Quark
 

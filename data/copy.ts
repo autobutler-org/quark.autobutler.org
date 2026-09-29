@@ -133,10 +133,10 @@ export const features = {
         "with a password only you have.",
     },
     {
-      name: "Health",
+      name: "System",
       body:
-        "See how much space is left, which drives are attached, and whether anything needs " +
-        "attention, without reading a log file.",
+        "See how much space is left, which drives are attached, and what the Quark is busy " +
+        "with, without reading a log file.",
     },
   ] as readonly Feature[],
 } as const;
@@ -230,7 +230,10 @@ export const support = {
       "Documents",
       "Spreadsheets",
       "Vault",
-      "Health",
+      "System",
+      "Accounts & Sharing",
+      "Remote access",
+      "Mobile app",
       "General UI",
       "Backend",
     ] as readonly string[],

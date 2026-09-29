@@ -25,16 +25,23 @@ when you ask for them. Convenient. Also rented.
 With Quark, day-to-day use is local. Files move over your own WiFi to a box in your house. You own the hardware. You own
 the data.
 
-If we offer an optional backup or sync service later, it would require your explicit opt-in. It would not be the
-default, and it would not be forced.
+Remote access, when you turn it on, is a private path to that same box — not a copy of your files on our hardware. If we
+ever offer an optional backup or sync service, it would require your explicit opt-in. It would not be the default, and
+it would not be forced.
 
-## Accessing from outside your home (coming soon)
+## Accessing from outside your home
 
-We are building a way to reach your files when you are not on home WiFi — work, travel, phone data.
+You can reach your files when you are not on home WiFi — work, travel, phone data.
 
-That feature is not available yet. When it ships, the goal is a private, encrypted path between your devices and your
-Quark, with your actual file data staying under your control — not sitting on our servers as a hosted cloud. We will
-document how it works in plain English when it is ready to use. Until then, Quark is for your home network.
+An admin turns remote access on from Settings, and it stays off until someone does. When it is on, your Quark and the
+devices you pair join one small private network that belongs to your household alone, and traffic between them is
+encrypted end to end. Each Quark gets its own network; households are not pooled together.
+
+The part that matters: this is a private path to your box, not a hosted cloud. Your files stay on your drive. We do not
+store a copy of them, and we cannot read what moves across the tunnel.
+
+You can also pair a device without being an admin — any signed-in account can add its own. Turning remote access off
+again is one switch, and the Quark drops off the network.
 
 ## What Quark stores
 

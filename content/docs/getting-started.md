@@ -32,19 +32,37 @@ Steps:
 1. Plug Quark into power and into your router.
 2. Attach any extra storage you want Quark to manage.
 3. Wait a minute for it to come up.
-4. On a phone or computer already on that home WiFi, open a browser and go to **`http://quark.home.local`** (or the
+4. On a phone or computer already on that home WiFi, open a browser and go to **`https://quark.local`** (or the
    hostname you were given at setup).
-5. Create your owner account when the setup screen asks. Pick a password you will remember, and write it down.
+5. Your browser will warn you that the connection is not private. That is expected — see
+   [below](#your-browser-warns-you-the-connection-is-not-private). Continue past it.
+6. Create your owner account when the setup screen asks. Pick a password you will remember, and write it down.
 
 If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
 [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
+
+### Your browser warns you the connection is not private
+
+The first time you open Quark, your browser shows a warning — "Your connection is not private," or a crossed-out
+padlock. Click **Advanced**, then **Proceed**. On Safari, **Show Details**, then **visit this website**.
+
+This is the one place where owning your own hardware is slightly less smooth than renting someone else's, so it is worth
+understanding rather than just clicking through.
+
+Quark encrypts the connection from the moment you plug it in, using a certificate it generates for itself on first boot.
+The encryption is real. What your browser is objecting to is that nobody _vouched_ for the certificate — normally a
+certificate authority on the public internet does that, and it can only do so for a public address. Your Quark lives on
+your WiFi and has no public address, which is the entire point of it.
+
+So the warning means "this certificate was not countersigned by a stranger," not "this connection is insecure." On your
+own network, talking to your own box, you are the one vouching for it. Your browser will remember once you proceed.
 
 ---
 
 ## Accessing Quark day to day
 
 1. Open a browser on a device on your home WiFi
-2. Go to **`http://quark.home.local`** (or your hostname)
+2. Go to **`https://quark.local`** (or your hostname)
 3. Log in with your username and password
 
 > **Tip:** Bookmark the address so you don't have to type it every time.
