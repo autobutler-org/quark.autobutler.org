@@ -7,8 +7,15 @@ interface DocSummary {
 
 const route = useRoute();
 
-const { data: doc } = await useAsyncData(`doc-${route.path}`, () =>
-  queryCollection("docs").path(route.path).first()
+/**
+ * Content paths are stored without a trailing slash, but GitHub Pages serves
+ * each prerendered doc at its directory URL (`/docs/foo/`). Normalize once so
+ * the payload key and the query match either form.
+ */
+const docPath = route.path.replace(/\/+$/, "") || "/";
+
+const { data: doc } = await useAsyncData(`doc-${docPath}`, () =>
+  queryCollection("docs").path(docPath).first()
 );
 
 if (!doc.value) {
@@ -28,7 +35,7 @@ useSeoMeta({
   description: () => doc.value?.description ?? undefined,
   ogTitle: () => `${doc.value?.title ?? "Docs"} — Quark`,
   ogDescription: () => doc.value?.description ?? undefined,
-  ogUrl: () => `https://quark.autobutler.org${route.path}`,
+  ogUrl: () => `https://quark.autobutler.org${docPath}`,
   ogType: "article",
   twitterTitle: () => `${doc.value?.title ?? "Docs"} — Quark`,
   twitterDescription: () => doc.value?.description ?? undefined,
@@ -43,7 +50,7 @@ useSeoMeta({
         v-for="item in sortedDocs"
         :key="item.path"
         :to="item.path"
-        :class="{ current: item.path === route.path }"
+        :class="{ current: item.path === docPath }"
       >
         {{ item.navigation?.title || item.title }}
       </NuxtLink>
