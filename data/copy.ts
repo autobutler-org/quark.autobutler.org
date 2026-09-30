@@ -346,6 +346,18 @@ export const docsIndex = {
 /** How many docs the "Start here" preview shows above the full listing. */
 export const docsPreviewCount = 4;
 
+/** Shown by the root `error.vue` for any thrown error, including a missing doc. */
+export const errorPage = {
+  notFoundHeading: "Page not found",
+  notFoundBody: "There's nothing at this address. It may have moved, or the link may be wrong.",
+  errorHeading: "Something went wrong",
+  errorBody: "This page failed to load. Try again, or head somewhere else.",
+  links: [
+    { label: "Home", href: "/" },
+    { label: "Documentation", href: "/docs" },
+  ] as readonly Link[],
+} as const;
+
 export const footer = {
   note: "Quark is built by the AutoButler project. MIT-0 licensed.",
   links: [
