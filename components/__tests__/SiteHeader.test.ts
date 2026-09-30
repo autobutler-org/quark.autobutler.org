@@ -49,7 +49,10 @@ describe("SiteHeader", () => {
   it("closes the menu when a nav link is clicked", async () => {
     const wrapper = mount(SiteHeader);
     await wrapper.get("button.menu-toggle").trigger("click");
-    await wrapper.get("nav a").trigger("click");
+    const link = wrapper.get("nav a");
+    // Cancel jsdom's navigation, which it doesn't implement and logs noisily.
+    link.element.addEventListener("click", (event) => event.preventDefault());
+    await link.trigger("click");
     expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("false");
     expect(wrapper.get("nav").classes()).not.toContain("open");
   });
