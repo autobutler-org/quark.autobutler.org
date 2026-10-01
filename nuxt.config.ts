@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   css: ["~/assets/main.css"],
   nitro: {
     static: true,
+    prerender: {
+      routes: ["/sitemap.xml"],
+    },
   },
   app: {
     head: {
