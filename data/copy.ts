@@ -57,7 +57,7 @@ export const manifesto = {
   paragraphs: [
     "Why trust your data to anyone besides yourself? Store your photos, documents, " +
       "anything else on devices where you can see them. Quark is the alternative to " +
-      "renting from a cloud provider — with no subscription by default.",
+      "renting from a cloud provider — with no subscription.",
     "By default your files stay on hardware you own, on your home network. You control " +
       "how the data moves, and you can lock things down as much as you like — including " +
       "unplugging the box from the network when you want it offline.",
