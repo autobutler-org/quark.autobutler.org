@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "Quark is a plug-and-play home cloud device. Your photos, files, and documents on hardware you own — no subscriptions, no data mining, no big tech.",
+            "Quark is a plug-and-play home cloud device. Your photos, files, and documents on hardware you own — local by default, no data mining, no big tech.",
         },
         { property: "og:site_name", content: "Quark" },
         { property: "og:type", content: "website" },
