@@ -40,7 +40,7 @@ Open **Users** in the drawer. Two tabs: **Accounts** and **Groups**.
 - **Add user** — create a login with an initial password (no request needed).
 - **Make admin** / **Remove admin** — give or take admin. The last active admin cannot remove their own admin — Quark
   needs at least one.
-- **Turn off** / turn back on — disables sign-in without deleting the account. Files and shares stay as they were.
+- **Disable** / **Enable** — stops sign-in without deleting the account. Files and shares stay as they were. A disabled login shows as **Disabled**.
 - **Delete** (from the account actions) — removes that login. This is not the same as Reset this Quark (see below).
 
 Your own row is marked **You** and has no actions menu on Accounts.
@@ -111,12 +111,12 @@ Four different places — do not mix them up:
 | Looking for…                       | Go here                                                        |
 | ---------------------------------- | -------------------------------------------------------------- |
 | Logins, requests, groups           | **Users** (admins)                                             |
-| Browsers/apps signed in (sessions) | **Settings → Network** → connected clients                     |
+| Browsers/apps signed in (sessions) | **Settings → Account → Sessions**                              |
 | USB drives on the box              | **System → Storage** (or Settings → General → Storage devices) |
 | Password vault                     | **Vault** in the drawer (admins)                               |
 
-- **Connected clients** — request count, last seen. Admins can revoke a client when the UI offers Delete/revoke; that
-  device signs in again.
+- **Sessions** — each sign-in for this account, with the current one marked **This session**. Sign out one session, or
+  **Sign out everywhere else**.
 - **Storage** — mount status, space, rename, backup. Hardware disks, not people.
 - **Vault** — encrypted passwords on your drive, unlocked with a master password. Separate from Files homes and from
   account management. See [Vault](/docs/vault).
