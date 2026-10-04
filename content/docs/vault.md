@@ -24,7 +24,6 @@ auto-detect and Bitwarden. Proton Pass imports **login** items only — notes, a
 cards are left out. Importing passwords does not replace the vault master password, and it
 is not account recovery.
 
-
 There is no forgot-password button for the vault. If you forget the master password, that
 vault data is gone. That is intentional.
 
