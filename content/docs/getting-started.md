@@ -231,13 +231,11 @@ If anything looks off (disk nearly full, temperature very high), this is where y
 Settings is split into tabs. Everyone sees **General**, **Account**, **Network**, **Updates** and **About**. Admins also
 get a **Features** tab while something is in beta.
 
-<<<<<<< HEAD
-
 - **General** — which Quark the app connects to, theme, and a link to your drives
 - **Account** — **Sign out** and a list of your **Sessions**, where you can sign out a session you no longer use
 - **Network** — remote access and connected devices
-- **Updates** — the installed version and available updates. Turning on **automatic updates** (Quark updates itself
-  overnight when a new version is available) is an admin setting; leave it off if you want to control updates manually
+- **Updates** — the installed version and available updates, and where an admin installs one. There is also an
+  **Automatic updates** switch (admins only), but it does not make Quark update itself yet; see below
 - **About** — the app's version, Help & Support, and the terms
 - **Features** — admins only, and only while Quark has a beta feature: a switch to turn each one on or off
 
@@ -251,7 +249,7 @@ Deleting an account and resetting the Quark are different on purpose: one remove
 the device. Read the confirmations carefully.
 
 Quark does not update itself in this version, and the **Automatic updates** switch on the Updates tab does not change
-that. Updating is the manual step above, so look in on the Updates tab now and then.
+that. Updating is a manual step an admin starts from that tab, so look in on the Updates tab now and then.
 
 Security fixes for the operating system underneath are different: they install on their own, with no setting to turn
 on. They leave the kernel — the core of the operating system — as it is, and they never restart the box by themselves.
