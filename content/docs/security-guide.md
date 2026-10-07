@@ -83,9 +83,9 @@ In practice:
 - Quark's routine contact with the outside world is checking for software updates, and the code is public if you want to
   read it
 
-Reaching your files from outside the house is coming later. It is not something to configure today. When it does ship it
-will be off until you turn it on, and you can turn it back off again — or never touch it at all. Lock Quark down as far
-as you like; everything it does on your home network still works.
+Reaching your files from outside the house is off until an admin turns on remote access, and an admin can turn it back
+off again — or never touch it at all. Lock Quark down as far as you like; everything it does on your home network still
+works.
 
 ---
 

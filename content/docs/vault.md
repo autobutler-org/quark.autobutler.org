@@ -25,8 +25,7 @@ vault data is gone. That is intentional.
 ## What this is not
 
 - Not a browser-extension autofill suite (do not expect that yet)
-- Not reachable from outside your home network until remote access ships — and even then,
-  only if you turn that on
+- Not reachable from outside your home network unless an admin turns on remote access
 - Not a hosted cloud password product
 
 ## Related
