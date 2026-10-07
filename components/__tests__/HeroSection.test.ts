@@ -2,13 +2,21 @@ import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 
 import HeroSection from "../HeroSection.vue";
-import { hero } from "~/data/copy";
+import { hero, repoUrl } from "~/data/copy";
 
 describe("HeroSection", () => {
   it("renders the headline and lede", () => {
     const wrapper = mount(HeroSection);
     expect(wrapper.get("h1").text()).toBe(hero.headline);
     expect(wrapper.text()).toContain(hero.lede);
+  });
+
+  it("leads with sign-up, leaving the code to the masthead's Source link", () => {
+    const wrapper = mount(HeroSection);
+    const primary = wrapper.get("a.primary");
+    expect(primary.text()).toBe(hero.primary.label);
+    expect(primary.attributes("href")).toBe("/signup");
+    expect(primary.attributes("href")).not.toContain(repoUrl);
   });
 
   it("renders the brand mark with intrinsic dimensions", () => {

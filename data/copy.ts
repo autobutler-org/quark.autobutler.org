@@ -50,7 +50,7 @@ export const hero = {
   lede:
     "Quark is a small box that turns a USB drive into your own cloud. Photos, " +
     "files, and documents, on hardware you own, in a room you can walk into.",
-  primary: { label: "Read the code", href: repoUrl } as Link,
+  primary: { label: "Sign up", href: "/signup" } as Link,
   secondary: { label: "See how it works", href: "#how" } as Link,
 } as const;
 
@@ -60,9 +60,9 @@ export const manifesto = {
     "Why trust your data to anyone besides yourself? Store your photos, documents, " +
       "anything else on devices where you can see them. Quark is the alternative to " +
       "renting from a cloud provider, or being locked into someone else's subscription.",
-    "Want your data off the internet? Just unplug it. By default your files stay on " +
-      "hardware you own, and you control how the data moves and lock it down as much as " +
-      "you like.",
+    "By default, your files stay on hardware you own, in your home, and Quark works on " +
+      "your home network without the internet. Remote access stays off until an admin turns " +
+      "it on, so you control how the data moves and lock it down as much as you like.",
     "Quark has no analytics and no tracking. Your files stay on your own drive, so " +
       "we don't receive them — there is nothing of yours for us to collect, and nothing of " +
       "yours to train a model on. We don't take money from investors either, so we are free " +
@@ -209,9 +209,9 @@ export const callToAction = {
     "for a repair or an upgrade, or do it yourself. Add a drive, swap a drive, take one out. " +
     "It is yours to manage as you please.",
   /**
-   * Deliberately not GitHub: this is the bottom-of-page conversion for a
-   * non-technical reader, and the repo is not where they start. The hero's
-   * "Read the code" button is the intentional GitHub entry point.
+   * Deliberately not GitHub: like the hero's primary button, this is a
+   * sign-up for a non-technical reader, and the repo is not where they start.
+   * The masthead's "Source" link is the intentional GitHub entry point.
    */
   action: { label: "Get started", href: "/signup" } as Link,
 } as const;

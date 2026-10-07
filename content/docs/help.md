@@ -35,9 +35,11 @@ page has installation details. If you're still stuck,
 
 ### Quark doesn't work with my VPN
 
-This is expected. Quark runs entirely on your local network — connecting through a VPN routes traffic outside your
-home, so the two conflict. Disable your VPN when accessing Quark on your home network. (We're working on built-in
-remote access so you won't need a third-party VPN to reach it from outside your home.)
+This is expected. Quark runs on your local network, and connecting through a VPN routes traffic outside your home, so
+the two conflict. Disable your VPN when accessing Quark on your home network.
+
+Quark also has built-in remote access, separate from your VPN. An admin turns it on from Settings → Network. See
+[How It Works](/docs/how-it-works) for what it does today.
 
 ### I'm having performance issues
 
