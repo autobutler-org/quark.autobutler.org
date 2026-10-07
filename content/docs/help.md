@@ -41,9 +41,9 @@ remote access so you won't need a third-party VPN to reach it from outside your 
 
 ### I'm having performance issues
 
-1. Check the **Health** page in Quark — high disk usage or high temperatures can cause slowdowns
-2. In Settings, click **Export Performance Metrics** — this saves recent health data to a `metrics.sqlite` file
-3. Share that file in a [GitHub issue](https://github.com/autobutler-org/quark/issues) or email it to
+1. Open **System** from the app drawer and check the **Health** tab — high disk usage or high temperatures can cause
+   slowdowns
+2. Share what you see in a [GitHub issue](https://github.com/autobutler-org/quark/issues) or email it to
    [support@autobutler.org](mailto:support@autobutler.org) and we'll take a look
 
 ### My files aren't showing up after I uploaded them

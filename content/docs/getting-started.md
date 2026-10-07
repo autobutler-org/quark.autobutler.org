@@ -215,7 +215,8 @@ setup (master password only — no recovery phrase). Details on limits live in t
 
 ## Health
 
-The Health page shows you how Quark is doing:
+Health is a tab on the **System** page. Open **System** from the app drawer; it has three tabs: **Health**, **Storage**
+and **Jobs**. The Health tab shows you how Quark is doing:
 
 - **Disk usage** — how much storage space is used vs. available
 - **Temperature** — the device's current temperature (important for small devices like a Raspberry Pi)
@@ -227,16 +228,24 @@ If anything looks off (disk nearly full, temperature very high), this is where y
 
 ## Settings
 
-The Settings page lets you:
+Settings is split into tabs. Everyone sees **General**, **Account**, **Network**, **Updates** and **About**. Admins also
+get a **Features** tab while something is in beta.
 
-- **Update Quark** — the Updates tab shows everyone the installed version. An admin can pick a newer version there and
-  click **Start update**. Quark downloads it, replaces itself, and restarts, so it is unavailable for a short while.
-- **Repair installation** — also on the Updates tab, for admins. If something is off after an update, this restarts
-  Quark and reapplies its system setup. Quark is unavailable for a few seconds.
-- **Export performance metrics** — saves recent health data to a file you can share if you're troubleshooting with the
-  team
-- **Delete account** — under Account, remove your login from this Quark (separate from wiping the box)
-- **Reset this Quark** — under Reset, factory-reset the appliance when that is what you actually mean
+<<<<<<< HEAD
+
+- **General** — which Quark the app connects to, theme, and a link to your drives
+- **Account** — **Sign out** and a list of your **Sessions**, where you can sign out a session you no longer use
+- **Network** — remote access and connected devices
+- **Updates** — the installed version and available updates. Turning on **automatic updates** (Quark updates itself
+  overnight when a new version is available) is an admin setting; leave it off if you want to control updates manually
+- **About** — the app's version, Help & Support, and the terms
+- **Features** — admins only, and only while Quark has a beta feature: a switch to turn each one on or off
+
+Deleting your account and resetting the Quark live behind the **Account and data** row at the bottom of the **Account**
+tab, so neither is a stray tap away:
+
+- **Delete account** — removes your login from this Quark (separate from wiping the box). Your files stay on the Quark.
+- **Reset this Quark** — admins only. Factory-resets the appliance when that is what you actually mean.
 
 Deleting an account and resetting the Quark are different on purpose: one removes your login; the other can wipe data on
 the device. Read the confirmations carefully.
