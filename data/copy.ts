@@ -11,6 +11,8 @@ export interface Link {
 export interface Feature {
   readonly name: string;
   readonly body: string;
+  /** Shown next to the name, matching the marker the app puts on the feature. */
+  readonly badge?: string;
 }
 
 export interface Step {
@@ -123,26 +125,28 @@ export const features = {
     {
       name: "Spreadsheets",
       body:
-        "Budgets, inventories, whatever you track. Same editor, same storage, no account " +
-        "required.",
+        "Budgets, inventories, whatever you track. Same editor, same storage, no outside " +
+        "account required.",
     },
     {
       name: "Vault",
       body:
-        "A password manager that lives on your hardware. Encrypted on the drive, unlocked " +
-        "with a password only you have.",
+        "A password manager that lives on your hardware. One vault per Quark, for its " +
+        "admins, encrypted on the drive and unlocked with one master password.",
     },
     {
       name: "Accounts and sharing",
       body:
-        "Everyone in the house gets their own account and their own private space. Share a " +
-        "folder with a person or the whole household, and nothing else is visible.",
+        "Everyone in the house gets their own account and a space that is private from the " +
+        "other members. Share a folder with a person or the whole household. Admins can " +
+        "open everything on the Quark.",
     },
     {
       name: "Remote access",
       body:
-        "Reach your files from work, from a trip, from phone data. Off until you turn it " +
-        "on, and it is a private encrypted path to your own box \u2014 not a copy on our servers.",
+        "An admin can put your Quark on a private encrypted network of its own \u2014 not a " +
+        "copy on our servers. Off until they turn it on. Joining that network from your " +
+        "phone or laptop is not in the app yet.",
     },
     {
       name: "Search",
@@ -174,36 +178,26 @@ export const features = {
         "See how much space is left, which drives are attached, and what the Quark is busy " +
         "with, without reading a log file.",
     },
-  ] as readonly Feature[],
-} as const;
-
-/**
- * Features in review in the product repo, shown after the feature grid so the
- * page can pre-announce without implying either one is available today. Both
- * ship behind a Beta badge in the app, so the label here matches what a user
- * would actually see. Remove an entry when it ships and promote it to
- * `features` above.
- */
-export const upcoming = {
-  heading: "In the works",
-  lede:
-    "Two features are in review now. Neither is in your hands yet, and we would rather " +
-    "tell you what is coming than pretend the product is finished.",
-  badge: "Beta",
-  items: [
+    /*
+     * Chat and Calendar are on by default in released builds and marked Beta in
+     * the app's drawer, so the badge here matches what a user actually sees.
+     * Drop the badge when the app drops its marker.
+     */
     {
       name: "Chat",
+      badge: "Beta",
       body:
         "Messaging for your household, end-to-end encrypted. The Quark stores messages it " +
-        "cannot read \u2014 not as a policy we promise, but as math: the keys live on your " +
-        "devices. Take someone's access away and the channel's key is replaced.",
+        "cannot read. Take someone's access away and the channel's key is replaced. An " +
+        "admin can turn chat off for everyone.",
     },
     {
       name: "Calendar",
+      badge: "Beta",
       body:
-        "A shared calendar for the house, on your own hardware. Day, week and month views, " +
-        "repeating events, and reminders \u2014 without handing your family's schedule to an " +
-        "advertising company.",
+        "One calendar the whole household shares, on your own hardware. Day, week and month " +
+        "views, repeating events, and reminders that show up in the app. An admin can turn " +
+        "it off for everyone.",
     },
   ] as readonly Feature[],
 } as const;
@@ -345,6 +339,18 @@ export const docsIndex = {
 
 /** How many docs the "Start here" preview shows above the full listing. */
 export const docsPreviewCount = 4;
+
+/** Shown by the root `error.vue` for any thrown error, including a missing doc. */
+export const errorPage = {
+  notFoundHeading: "Page not found",
+  notFoundBody: "There's nothing at this address. It may have moved, or the link may be wrong.",
+  errorHeading: "Something went wrong",
+  errorBody: "This page failed to load. Try again, or head somewhere else.",
+  links: [
+    { label: "Home", href: "/" },
+    { label: "Documentation", href: "/docs" },
+  ] as readonly Link[],
+} as const;
 
 export const footer = {
   note: "Quark is built by the AutoButler project. MIT-0 licensed.",

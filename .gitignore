@@ -31,4 +31,3 @@ logs
 # Local env files
 .env
 .env.*
-!.env.example

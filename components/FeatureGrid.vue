@@ -7,7 +7,10 @@ import { features } from "~/data/copy";
     <h2>{{ features.heading }}</h2>
     <ul class="grid">
       <li v-for="feature in features.items" :key="feature.name">
-        <h3>{{ feature.name }}</h3>
+        <div class="head">
+          <h3>{{ feature.name }}</h3>
+          <span v-if="feature.badge" class="badge">{{ feature.badge }}</span>
+        </div>
         <p>{{ feature.body }}</p>
       </li>
     </ul>
@@ -61,12 +64,31 @@ li:hover {
   box-shadow: var(--shadow-card);
 }
 
-h3 {
+.head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
   margin: 0 0 0.75rem;
+  flex-wrap: wrap;
+}
+
+h3 {
+  margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
   line-height: 1.2;
   color: var(--color-text-strong);
+}
+
+.badge {
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
 }
 
 p {
