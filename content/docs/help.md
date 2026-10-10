@@ -38,8 +38,8 @@ page has installation details. If you're still stuck,
 This is expected. Quark runs on your local network, and connecting through a VPN routes traffic outside your home, so
 the two conflict. Disable your VPN when accessing Quark on your home network.
 
-Quark also has built-in remote access, separate from your VPN. An admin turns it on from Settings → Network. See
-[How It Works](/docs/how-it-works) for what it does today.
+Built-in remote access, separate from your VPN, is coming soon — **Settings → Network** shows it as **Coming soon** for
+now. See [How It Works](/docs/how-it-works) for what it will do.
 
 ### I'm having performance issues
 

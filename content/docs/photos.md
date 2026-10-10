@@ -35,8 +35,8 @@ There is not a continuous Google Photos–style always-on camera-roll backup dae
 this release.
 
 The phone app is still early testing (not on the App Store / Play Store for everyone
-yet). Remote access from outside the house is off until an admin turns it on, and it is
-not required for this.
+yet). Remote access from outside the house is coming soon, and it is not required for
+this.
 
 ## Tips
 
