@@ -19,6 +19,11 @@ It lives on your drive, encrypted. It is not a password manager running on our s
 4. Import or export when you need to move a backup — if you export a protected backup, you
    choose a recovery password **at export time** (not a one-time phrase from setup).
 
+The import dialog also takes **Proton Pass CSV** and **Google Passwords CSV**, next to
+auto-detect and Bitwarden. Proton Pass imports **login** items only — notes, aliases, and
+cards are left out. Importing passwords does not replace the vault master password, and it
+is not account recovery.
+
 There is no forgot-password button for the vault. If you forget the master password, that
 vault data is gone. That is intentional.
 
