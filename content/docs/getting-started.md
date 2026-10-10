@@ -233,7 +233,7 @@ get a **Features** tab while something is in beta.
 
 - **General** — which Quark the app connects to, theme, and a link to your drives
 - **Account** — **Sign out** and a list of your **Sessions**, where you can sign out a session you no longer use
-- **Network** — remote access and connected devices
+- **Network** — remote access (shown as **Coming soon** for now) and connected devices
 - **Updates** — the installed version and available updates, and where an admin installs one. There is also an
   **Automatic updates** switch (admins only), but it does not make Quark update itself yet; see below
 - **About** — the app's version, Help & Support, and the terms
@@ -255,8 +255,8 @@ Security fixes for the operating system underneath are different: they install o
 on. They leave the kernel — the core of the operating system — as it is, and they never restart the box by themselves.
 
 Quark's routine contact with the public internet is fetching those operating system security fixes. It looks for new
-Quark versions only when someone opens the Updates tab. Optional features (remote access, which is off until an admin
-turns it on; imports you start yourself) are separate from that default.
+Quark versions only when someone opens the Updates tab. Optional features (remote access, which is coming soon and
+will stay off until an admin turns it on; imports you start yourself) are separate from that default.
 
 ---
 

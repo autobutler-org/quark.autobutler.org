@@ -144,9 +144,8 @@ export const features = {
     {
       name: "Remote access",
       body:
-        "An admin can put your Quark on a private encrypted network of its own \u2014 not a " +
-        "copy on our servers. Off until they turn it on. Joining that network from your " +
-        "phone or laptop is not in the app yet.",
+        "Not in the app yet: a private, encrypted path to your Quark from outside the house " +
+        "\u2014 not a copy on our servers. Once it ships, it stays off until an admin turns it on.",
     },
     {
       name: "Search",

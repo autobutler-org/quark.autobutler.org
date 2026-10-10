@@ -25,23 +25,21 @@ when you ask for them. Convenient. Also rented.
 With Quark, day-to-day use is local. Files move over your own WiFi to a box in your house. You own the hardware. You own
 the data.
 
-Remote access, when you turn it on, is a private path to that same box — not a copy of your files on our hardware. If we
-ever offer an optional backup or sync service, it would require your explicit opt-in. It would not be the default, and
-it would not be forced.
+Remote access, once it ships, is planned as a private path to that same box — not a copy of your files on our hardware.
+If we ever offer an optional backup or sync service, it would require your explicit opt-in. It would not be the
+default, and it would not be forced.
 
 ## Accessing from outside your home
 
-You can reach your files when you are not on home WiFi — work, travel, phone data.
+Remote access is coming soon. Today, Quark works on your home network: your phone or computer reaches it over your own
+WiFi. In the current release, **Settings → Network** shows remote access as **Coming soon**, so there is nothing to turn
+on yet.
 
-An admin turns remote access on from Settings, and it stays off until someone does. When it is on, your Quark and the
-devices you pair join one small private network that belongs to your household alone, and traffic between them is
-encrypted end to end. Each Quark gets its own network; households are not pooled together.
+Why not yet: the Quark side is built, but the app cannot bring your phone or laptop onto that private network yet.
 
-The part that matters: this is a private path to your box, not a hosted cloud. Your files stay on your drive. We do not
-store a copy of them, and we cannot read what moves across the tunnel.
-
-You can also pair a device without being an admin — any signed-in account can add its own. Turning remote access off
-again is one switch, and the Quark drops off the network.
+What it is meant to be when it ships: a private path to your box, not a hosted cloud. Your files stay on your drive, and
+we do not store a copy of them. It stays off until an admin turns it on, each Quark gets its own network rather than
+being pooled with other households, and turning it off again is one switch.
 
 ## What Quark stores
 
