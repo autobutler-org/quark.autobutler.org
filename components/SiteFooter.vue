@@ -10,6 +10,7 @@ import { footer } from "~/data/copy";
         {{ link.label }}
       </a>
     </nav>
+    <p class="fine-print">{{ footer.renderNote }}</p>
   </footer>
 </template>
 
@@ -32,6 +33,11 @@ import { footer } from "~/data/copy";
 
 p {
   margin: 0;
+}
+
+.fine-print {
+  flex-basis: 100%;
+  font-size: 0.8rem;
 }
 
 nav {

@@ -5,11 +5,13 @@ import HeroSection from "./HeroSection.vue";
 import HowItWorks from "./HowItWorks.vue";
 import ManifestoSection from "./ManifestoSection.vue";
 import NewsletterSignup from "./NewsletterSignup.vue";
+import ShellCarousel from "./ShellCarousel.vue";
 </script>
 
 <template>
   <div>
     <HeroSection />
+    <ShellCarousel />
     <ManifestoSection />
     <HowItWorks />
     <FeatureGrid />
