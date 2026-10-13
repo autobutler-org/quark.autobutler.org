@@ -54,6 +54,77 @@ export const hero = {
   secondary: { label: "See how it works", href: "#how" } as Link,
 } as const;
 
+/** One picture in the shell gallery. Width and height are the file's own, so the page does not shift. */
+export interface Slide {
+  readonly src: string;
+  readonly alt: string;
+  readonly caption: string;
+  readonly width: number;
+  readonly height: number;
+}
+
+/**
+ * Renders of the cases we are designing for the device. They are concept
+ * studies, not a product photo; `footer.renderNote` says so at the bottom of
+ * the page.
+ */
+export const shellGallery = {
+  heading: "A box that belongs on a shelf.",
+  previousLabel: "Previous picture",
+  nextLabel: "Next picture",
+  slides: [
+    {
+      src: "/assets/product/shell/pavilion-walnut-cane-wide.webp",
+      alt: "A walnut box with curved ribs over woven cane, standing on its side on a wooden shelf.",
+      caption: "Pavilion — walnut and cane",
+      width: 1600,
+      height: 900,
+    },
+    {
+      src: "/assets/product/shell/wave-lattice-walnut-detail.webp",
+      alt: "Close-up of a walnut lattice that rises and falls in a wave across the top of the box.",
+      caption: "Wave Lattice — walnut",
+      width: 1600,
+      height: 1280,
+    },
+    {
+      src: "/assets/product/shell/branches-walnut-linen-wide.webp",
+      alt: "A walnut box with branch-shaped cutouts over linen, standing on its side on a wooden shelf.",
+      caption: "Branches — walnut and linen",
+      width: 1600,
+      height: 900,
+    },
+    {
+      src: "/assets/product/shell/pavilion-walnut-cane-detail.webp",
+      alt: "Close-up of curved walnut ribs over a woven cane panel.",
+      caption: "Pavilion — walnut and cane",
+      width: 1600,
+      height: 1280,
+    },
+    {
+      src: "/assets/product/shell/wave-lattice-walnut-wide.webp",
+      alt: "A walnut box with a wave-shaped lattice on top, standing on its side on a wooden shelf.",
+      caption: "Wave Lattice — walnut",
+      width: 1600,
+      height: 900,
+    },
+    {
+      src: "/assets/product/shell/branches-walnut-linen-detail.webp",
+      alt: "Close-up of branch-shaped openings in walnut, with linen showing through.",
+      caption: "Branches — walnut and linen",
+      width: 1600,
+      height: 1280,
+    },
+    {
+      src: "/assets/product/shell/streamlines-birch-linen-wide.webp",
+      alt: "A birch box whose slats curve around a linen disc and a glowing wooden stone, standing on its side on a wooden shelf.",
+      caption: "Streamlines — birch and linen",
+      width: 1600,
+      height: 900,
+    },
+  ] as readonly Slide[],
+} as const;
+
 export const manifesto = {
   heading: "The convenience of the cloud, the privacy of your home.",
   paragraphs: [
@@ -354,6 +425,8 @@ export const errorPage = {
 
 export const footer = {
   note: "Quark is built by the AutoButler project. MIT-0 licensed.",
+  /** Fine print for the case renders in `shellGallery`, kept low on the page. */
+  renderNote: "Case pictures are concept renders. The designs are not final and not for sale yet.",
   links: [
     { label: "GitHub", href: repoUrl },
     { label: "Contributing", href: `${repoUrl}/blob/main/CONTRIBUTING.md` },
