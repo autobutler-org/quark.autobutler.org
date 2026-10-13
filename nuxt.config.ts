@@ -29,7 +29,7 @@ export default defineNuxtConfig({
         {
           property: "og:description",
           content:
-            "A plug-and-play home cloud device. Your photos and files, stored on your own hardware.",
+            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
         },
         { property: "og:url", content: "https://quark.autobutler.org" },
         { property: "og:image", content: "https://quark.autobutler.org/quark.png" },
@@ -44,7 +44,7 @@ export default defineNuxtConfig({
         {
           name: "twitter:description",
           content:
-            "A plug-and-play home cloud device. Your photos and files, stored on your own hardware.",
+            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
         },
         { name: "twitter:image", content: "https://quark.autobutler.org/quark.png" },
         { name: "theme-color", content: "#00bbff" },
