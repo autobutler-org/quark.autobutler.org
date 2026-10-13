@@ -8,6 +8,7 @@ describe("HeroSection", () => {
   it("renders the headline and lede", () => {
     const wrapper = mount(HeroSection);
     expect(wrapper.get("h1").text()).toBe(hero.headline);
+    expect(wrapper.get(".subhead").text()).toBe(hero.subhead);
     expect(wrapper.text()).toContain(hero.lede);
   });
 

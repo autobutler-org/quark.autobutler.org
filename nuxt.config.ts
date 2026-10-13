@@ -12,20 +12,24 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Quark — Data Autonomy For Everyone",
+      htmlAttrs: { lang: "en" },
+      title: "Quark: Your Family Home Base, a Private Home Cloud",
       meta: [
         {
           name: "description",
           content:
-            "Quark is a plug-and-play home cloud device. Your photos, files, and documents on hardware you own — no subscriptions, no data mining, no big tech.",
+            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
         },
         { property: "og:site_name", content: "Quark" },
         { property: "og:type", content: "website" },
-        { property: "og:title", content: "Quark — Data Autonomy For Everyone" },
+        {
+          property: "og:title",
+          content: "Quark: Your Family Home Base, a Private Home Cloud",
+        },
         {
           property: "og:description",
           content:
-            "A plug-and-play home cloud device. Your photos and files, stored on your own hardware.",
+            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
         },
         { property: "og:url", content: "https://quark.autobutler.org" },
         { property: "og:image", content: "https://quark.autobutler.org/quark.png" },
@@ -33,11 +37,14 @@ export default defineNuxtConfig({
         { property: "og:image:height", content: "912" },
         { property: "og:image:alt", content: "The Quark logo" },
         { name: "twitter:card", content: "summary" },
-        { name: "twitter:title", content: "Quark — Data Autonomy For Everyone" },
+        {
+          name: "twitter:title",
+          content: "Quark: Your Family Home Base, a Private Home Cloud",
+        },
         {
           name: "twitter:description",
           content:
-            "A plug-and-play home cloud device. Your photos and files, stored on your own hardware.",
+            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
         },
         { name: "twitter:image", content: "https://quark.autobutler.org/quark.png" },
         { name: "theme-color", content: "#00bbff" },

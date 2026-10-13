@@ -14,6 +14,7 @@ import { hero } from "~/data/copy";
       fetchpriority="high"
     />
     <h1>{{ hero.headline }}</h1>
+    <p class="subhead">{{ hero.subhead }}</p>
     <p class="lede">{{ hero.lede }}</p>
     <div class="actions">
       <ActionButton :link="hero.primary" />
@@ -49,6 +50,12 @@ h1 {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.subhead {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .lede {
