@@ -132,8 +132,9 @@ export const manifesto = {
       "anything else on devices where you can see them. Quark is the alternative to " +
       "renting from a cloud provider, or being locked into someone else's subscription.",
     "By default, your files stay on hardware you own, in your home, and Quark works on " +
-      "your home network without the internet. Remote access stays off until an admin turns " +
-      "it on, so you control how the data moves and lock it down as much as you like.",
+      "your home network without the internet. Remote access is coming soon, and it will stay " +
+      "off until an admin turns it on, so you control how the data moves and lock it down as " +
+      "much as you like.",
     "Quark has no analytics and no tracking. Your files stay on your own drive, so " +
       "we don't receive them — there is nothing of yours for us to collect, and nothing of " +
       "yours to train a model on. We don't take money from investors either, so we are free " +
