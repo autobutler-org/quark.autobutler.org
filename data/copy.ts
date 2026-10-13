@@ -46,7 +46,8 @@ export const hero = {
    * so an alt here would only repeat it. Hence the empty alt.
    */
   logo: { src: "/quark.png", alt: "" },
-  headline: "Data autonomy for everyone.",
+  headline: "Your family home base",
+  subhead: "A private home cloud that plugs into your router.",
   lede:
     "Quark is a small box that turns a USB drive into your own cloud. Photos, " +
     "files, and documents, on hardware you own, in a room you can walk into.",
