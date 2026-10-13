@@ -10,6 +10,11 @@ describe("SiteFooter", () => {
     expect(wrapper.text()).toContain(footer.note);
   });
 
+  it("keeps the concept-render fine print at the bottom of the page", () => {
+    const wrapper = mount(SiteFooter);
+    expect(wrapper.text()).toContain(footer.renderNote);
+  });
+
   it("renders every footer link", () => {
     const wrapper = mount(SiteFooter);
     const hrefs = wrapper.findAll("a").map((anchor) => anchor.attributes("href"));
