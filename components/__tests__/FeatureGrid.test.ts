@@ -38,7 +38,8 @@ describe("FeatureGrid", () => {
   /*
    * Claims the product does not back: the vault is one per Quark and
    * admin-only, admins can open every folder, Sheets needs a Quark account,
-   * and nothing in the app puts a phone or laptop on the remote network yet.
+   * and release builds show remote access as Coming soon (quark #2882), so the
+   * tile must say it is not in the app yet.
    */
   it("does not overstate the Vault, Accounts, Spreadsheets or Remote access tiles", () => {
     expect(bodyOf("Vault")).not.toMatch(/only you have/i);
@@ -48,6 +49,7 @@ describe("FeatureGrid", () => {
     expect(bodyOf("Spreadsheets")).not.toMatch(/no account required/i);
     expect(bodyOf("Remote access")).not.toMatch(/from work|from a trip|phone data/i);
     expect(bodyOf("Remote access")).toMatch(/admin/i);
+    expect(bodyOf("Remote access")).toMatch(/not in the app yet/i);
   });
 
   it("does not present Chat or Calendar as unavailable or promise what is not built", () => {
