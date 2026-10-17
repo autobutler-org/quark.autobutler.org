@@ -196,6 +196,9 @@ Quark can manage multiple storage devices (hard drives, USB drives) connected to
 - Set it to **Per-device** to see what's on each drive separately
 - When uploading, you may be prompted to choose which device to upload to
 
+Your drives are listed on the **Storage** tab of the **System** page. See [Storage and Backups](/docs/storage-and-backups)
+for what Quark does with a plugged-in drive and how to back one up.
+
 ---
 
 ## Photos

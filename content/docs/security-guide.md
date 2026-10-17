@@ -53,8 +53,8 @@ Quark stores your files. Quark is also a physical box, and boxes fail, flood, an
 - **2** different kinds of storage, like Quark's drive plus an external USB
 - **1** copy that is not in the same building
 
-Automatic mirroring between drives is not a shipped feature yet, so a second copy today means attaching a second drive
-and copying the irreplaceable folders across yourself. The offsite copy is on you either way: a drive at a relative's
+Quark does not copy to a second drive on a schedule yet, but an admin can make that copy in the app with a
+[snapshot backup](/docs/storage-and-backups). The offsite copy is on you either way: a drive at a relative's
 house that you swap out every so often is enough.
 
 There is no backup strategy that can save you from _no backup at all._
