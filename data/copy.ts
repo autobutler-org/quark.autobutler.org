@@ -236,7 +236,7 @@ export const features = {
       name: "Video and audio",
       body:
         "Play what is on the drive in the browser. Trim a clip, save a still frame, or " +
-        "convert a file the rest of your devices refuse to open.",
+        "rewrap a video in another container, like MKV to MP4, without re-encoding it.",
     },
     {
       name: "Apps for your phone",

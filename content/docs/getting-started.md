@@ -117,6 +117,8 @@ You'll see your files and folders listed. You can:
   get a details view with **Download** and **Open with…** buttons.
 - **Use the breadcrumb bar** at the top to move back up the folder tree. A member's own folder is as far up as it goes.
 
+[File Types](/docs/file-types) lists which files open in Quark and which only download.
+
 ### Changing the view
 
 - **List** — a compact row-by-row view, good for lots of files
@@ -130,7 +132,9 @@ The views menu in the top bar holds the rest:
 
 ### Searching for a file
 
-Click the search icon in the top bar and type a filename. Files will search across all your connected storage.
+Click **Search** in the top bar and type part of a filename. Files finds files whose name contains what you typed,
+across all your drives. It matches names only, not what is written inside a file. To find a word inside a document or
+spreadsheet, search from the **Docs** or **Sheets** page instead. See [Files](/docs/files#searching).
 
 ---
 
@@ -142,6 +146,9 @@ Click the search icon in the top bar and type a filename. Files will search acro
 4. Wait for the upload to complete — a progress indicator will show you how it's going
 
 You can upload multiple files at once. Large files may take a moment, depending on your connection.
+
+Folder uploads, drag and drop, what happens when a name is already taken, and big files are covered in
+[Files](/docs/files#uploading).
 
 ---
 
@@ -164,6 +171,8 @@ you can:
 - **Download** — save a copy to the device you are using
 - **Move/Rename** — one entry for both: change the name, or move it somewhere else
 - **Share…** — give another account on this Quark access
+- **Version history** — earlier versions of a document, spreadsheet, or presentation, to preview or restore (files on
+  the internal drive only; see [Files](/docs/files#version-history))
 - **Delete** — send it to Trash
 
 A few entries only appear where they apply: **Extract here** on an archive, **Convert video** on a video, and
@@ -189,6 +198,9 @@ only there to restore or let go.
 
 Items stay recoverable for about **30 days**, then an automatic sweep deletes them for good. Treat that window as a
 change-your-mind period, not long-term storage.
+
+Trash still takes up space on the drive until it is emptied. More on bulk restore, multiple drives, and who sees what in
+[Files](/docs/files#trash).
 
 ---
 
@@ -284,6 +296,7 @@ or browser name to look for.
 
 ## Next steps
 
+- [Files](/docs/files) — uploads, downloads and archives, search, Trash, and version history
 - [Help & Support](/docs/help) — troubleshooting and how to get in touch
 - [Connecting](/docs/connecting) — finding your Quark, the phone apps, and the certificate
 - [Security Guide](/docs/security-guide) — passwords, backups, and limits
