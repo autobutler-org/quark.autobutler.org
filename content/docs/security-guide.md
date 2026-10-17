@@ -17,9 +17,13 @@ None of this is scary. You have already done most of it for other important thin
 
 ## Your master password
 
-The vault — where Quark keeps passwords and other sensitive notes — is locked with a master password you choose. Quark
-never stores that password anywhere. The password itself is what scrambles the vault, which is why nobody, us included,
-can open it without you.
+The vault — where Quark keeps passwords and other sensitive notes — is locked with a master password your Quark's admins
+choose. Quark never stores that password anywhere. The password itself is what scrambles the vault, which is why nobody,
+us included, can open it without the password.
+
+There is one vault per Quark, shared by its admins, so "without the password" means without someone who knows it. Any
+admin who knows it can open the vault, and while it is unlocked any admin can read it. It locks itself after 5 minutes
+without vault activity.
 
 Unscrambling is deliberately slow. That sounds like a flaw and it is actually the whole trick: anyone guessing at your
 password has to redo that slow work on every single guess, so a program that could otherwise try millions of passwords a
@@ -40,8 +44,9 @@ A reasonable master password is:
 `correct-horse-battery-staple` beats `P@ssw0rd1`. Longer beats clever.
 
 There is no "forgot password" button for the vault. Your master password is never sent to us, never stored in a form
-anyone can reverse, and not something we can reset. Forget it and the vault contents are gone. Write it down on paper
-and put the paper somewhere you will look.
+anyone can reverse, and not something we can reset. When you unlock the vault, the password goes to your own Quark over
+its encrypted connection, and the unscrambling happens there. Forget it and the vault contents are gone. Write it down on
+paper and put the paper somewhere you will look.
 
 ---
 
@@ -53,9 +58,10 @@ Quark stores your files. Quark is also a physical box, and boxes fail, flood, an
 - **2** different kinds of storage, like Quark's drive plus an external USB
 - **1** copy that is not in the same building
 
-Automatic mirroring between drives is not a shipped feature yet, so a second copy today means attaching a second drive
-and copying the irreplaceable folders across yourself. The offsite copy is on you either way: a drive at a relative's
-house that you swap out every so often is enough.
+Quark does not copy to a second drive on a schedule yet, but an admin can make that second copy in the app: set a drive's
+role to **Snapshot Backup** on **System → Storage**, then choose **Back Up**. It runs only when someone starts it, so start
+one every so often. The offsite copy is on you either way: a drive at a relative's house that you swap out every so often
+is enough.
 
 There is no backup strategy that can save you from _no backup at all._
 
@@ -80,8 +86,9 @@ In practice:
 
 - Password-protect your WiFi with WPA2 or WPA3
 - Do not hand your WiFi password to people you do not trust
-- Quark's routine contact with the outside world is checking for software updates, and the code is public if you want to
-  read it
+- Quark's routine contact with the outside world is fetching security fixes for the operating system underneath it. It
+  looks for new Quark versions only when someone opens the **Updates** tab in Settings. The code is public if you want
+  to read it
 
 Reaching your files from outside the house is not available yet — remote access is coming soon. When it ships, it stays
 off until an admin turns it on, and an admin can turn it back off again — or never touch it at all. Lock Quark down as
@@ -113,8 +120,13 @@ network, so the response is mostly physical and it is short:
 
 1. Unplug Quark from the router. Nothing reaches it while it is off the network, and that buys you time to work out
    what happened.
-2. Change your WiFi password if the network was the likely way in.
-3. Look through your files for odd deletions, unfamiliar folders, or timestamps that do not match anything you did.
+2. Change your WiFi password if the network was the likely way in, then plug Quark back in.
+3. From a device you trust, change your Quark password in **Settings → Account → Change password**. Then, on the same
+   tab, choose **Sign out everywhere else** under **Sessions** so no other session stays signed in.
+4. If you are an admin, check the accounts in **Settings → Account → Users and groups**. **Disable**, in an account's
+   menu, signs that person out everywhere and keeps them out until an admin enables it again. Their files stay as they
+   were.
+5. Look through your files for odd deletions, unfamiliar folders, or timestamps that do not match anything you did.
 
 ---
 
@@ -125,6 +137,8 @@ To be direct about the limits:
 - It does not scan uploads for viruses. It stores what you give it.
 - It does not stop someone carrying the box out of your house. The vault stays encrypted, but ordinary files on the
   drive would be readable to whoever is holding the drive.
+- It does not encrypt a vault export. **Export as JSON** and **Export as CSV** write every password in plain text, so
+  keep that file as safe as the passwords themselves.
 - It does not make your WiFi password safe to share. Someone on your network can reach Quark's login screen — but that
   is where they stop, because browsing your files still means guessing your password first.
 

@@ -207,8 +207,8 @@ phone on the home network.
 
 ## Vault
 
-Quark includes an encrypted password vault on your hardware. See [Vault](/docs/vault) for soft-launch
-setup (master password only — no recovery phrase). Details on limits live in the
+Quark includes an encrypted password vault on your hardware. It is for admins: there is one per Quark, shared by its
+admins. See [Vault](/docs/vault) for setup (master password only — no recovery phrase). Details on limits live in the
 [Security Guide](/docs/security-guide).
 
 ---
@@ -232,10 +232,10 @@ Settings is split into tabs. Everyone sees **General**, **Account**, **Network**
 get a **Features** tab while something is in beta.
 
 - **General** — which Quark the app connects to, theme, and a link to your drives
-- **Account** — **Sign out** and a list of your **Sessions**, where you can sign out a session you no longer use
+- **Account** — **Change password**, **Sign out**, and a list of your **Sessions**, where you can sign out a session you
+  no longer use
 - **Network** — remote access (shown as **Coming soon** for now) and connected devices
-- **Updates** — the installed version and available updates, and where an admin installs one. There is also an
-  **Automatic updates** switch (admins only), but it does not make Quark update itself yet; see below
+- **Updates** — the installed version and available updates, and where an admin installs one; see below
 - **About** — the app's version, Help & Support, and the terms
 - **Features** — admins only, and only while Quark has a beta feature: a switch to turn each one on or off
 
@@ -248,8 +248,8 @@ tab, so neither is a stray tap away:
 Deleting an account and resetting the Quark are different on purpose: one removes your login; the other can wipe data on
 the device. Read the confirmations carefully.
 
-Quark does not update itself in this version, and the **Automatic updates** switch on the Updates tab does not change
-that. Updating is a manual step an admin starts from that tab, so look in on the Updates tab now and then.
+Quark does not update itself in this version. Updating is a manual step an admin starts from the Updates tab, so look in
+on it now and then.
 
 Security fixes for the operating system underneath are different: they install on their own, with no setting to turn
 on. They leave the kernel — the core of the operating system — as it is, and they never restart the box by themselves.
@@ -272,6 +272,12 @@ or browser name to look for.
 
 - **Sign out** on a row ends that session. Whoever is using it has to sign in again.
 - **Sign out everywhere else** ends every session except the one you are using.
+
+### Changing your password
+
+**Settings → Account → Change password** asks for your current password and then the new one twice (at least 8
+characters). You stay signed in on the device you are using. If you are changing it because you think someone else
+knows it, follow up with **Sign out everywhere else** so no other session stays signed in.
 
 ---
 

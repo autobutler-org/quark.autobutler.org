@@ -61,7 +61,7 @@ to the storage device as normal files in normal folders, and they stay there whe
 So if the box dies, gets replaced, or you simply unplug the drive and carry it to a laptop, your files are still there
 and still readable. Nothing is trapped in a database or a format only we can open. Swap the box, keep the files.
 
-## Backups (coming soon)
+## Backups
 
 Persisting on the drive is not the same as being backed up, and this is the honest tradeoff of keeping your files at
 home: nobody else can read them, and nobody else is quietly keeping a spare copy for you either. Google does that second
@@ -71,13 +71,11 @@ It is a solved problem, though, and you solve it once. Copy the irreplaceable fo
 drive somewhere a bad day cannot reach — a fireproof box, a relative's house. Do that and the tradeoff costs you an
 afternoon rather than your photos.
 
-Quark does not do the copying for you yet. Automatic copies to a second drive is a feature we are building, and we would
-rather ship it late than ship something that quietly stops working and takes your only backup with it. When it lands,
-the shape we are aiming for is:
+Quark can do the copying for you, when someone asks it to. An admin sets a second drive's role to **Snapshot Backup**
+on **System → Storage**, then chooses **Back Up**, and Quark copies everything onto that drive. **Verify** checks the
+copy afterwards.
 
-- A second drive attached to Quark that holds a full copy of what matters
-- Copies that run on their own, on a schedule, without you remembering to start them
-- Somewhere obvious in the app that tells you the last copy actually finished
-
-Until then, the copying is manual and the plan is the ordinary one: a second drive, and a third copy somewhere that is
-not your house. See the [Security Guide](/docs/security-guide) for the 3-2-1 version of that.
+What it does not do yet is run on its own. Scheduled copies are a feature we are building, and we would rather ship it
+late than ship something that quietly stops working and takes your only backup with it. Until then, start a backup every
+so often, and keep a third copy somewhere that is not your house. See the [Security Guide](/docs/security-guide) for the
+3-2-1 version of that.
