@@ -281,3 +281,6 @@ or browser name to look for.
 - [Security Guide](/docs/security-guide) — passwords, backups, and limits
 - [How It Works](/docs/how-it-works) — local-first explained plainly
 - [Google Takeout](/docs/google-takeout) — moving Photos/Drive exports onto Quark
+- [Accounts and Sharing](/docs/accounts) — admins and members, homes, groups, and sharing
+- [Settings Reference](/docs/settings) — every Settings tab, and what Delete account and Reset erase
+- [System](/docs/system) — what Health's readings and limits mean, and what Jobs shows
