@@ -32,8 +32,8 @@ Steps:
 1. Plug Quark into power and into your router.
 2. Attach any extra storage you want Quark to manage.
 3. Wait a minute for it to come up.
-4. On a phone or computer already on that home WiFi, open a browser and go to **`https://quark.local`** (or the
-   hostname you were given at setup).
+4. On a phone or computer already on that home WiFi, open a browser and go to **`https://quark.local`**. If that
+   doesn't open, [Connecting](/docs/connecting#finding-your-quark) lists the other addresses to try.
 5. Your browser will warn you that the connection is not private. That is expected — see
    [below](#your-browser-warns-you-the-connection-is-not-private). Continue past it.
 6. Read the terms. They are the first screen, before anything else. The page opens with a plain-language summary —
@@ -54,7 +54,8 @@ The terms come up once per Quark. Connect to a different Quark and you are asked
 If a brand-new Quark shows you the sign-in screen instead of setup, click **First time here? Set up this Quark** under
 the form. Setup and sign-in both show which Quark you are connected to, so you can switch if the address is wrong.
 
-If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
+If the page won't load: same WiFi as Quark, Quark powered on, the address starts with `https://`, try restarting the
+router once. Still stuck? See
 [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
 
 ### Your browser warns you the connection is not private
@@ -65,13 +66,16 @@ padlock. Click **Advanced**, then **Proceed**. On Safari, **Show Details**, then
 This is the one place where owning your own hardware is slightly less smooth than renting someone else's, so it is worth
 understanding rather than just clicking through.
 
-Quark encrypts the connection from the moment you plug it in, using a certificate it generates for itself on first boot.
+Quark encrypts the connection from the moment you plug it in, using a certificate it makes for itself.
 The encryption is real. What your browser is objecting to is that nobody _vouched_ for the certificate — normally a
 certificate authority on the public internet does that, and it can only do so for a public address. Your Quark lives on
 your WiFi and has no public address, which is the entire point of it.
 
 So the warning means "this certificate was not countersigned by a stranger," not "this connection is insecure." On your
 own network, talking to your own box, you are the one vouching for it. Your browser will remember once you proceed.
+
+The warning comes back on a new browser or device, and about once a year when Quark replaces its certificate.
+[Connecting](/docs/connecting#the-certificate) lists every time you'll see it. The phone apps never show it.
 
 ---
 
@@ -113,6 +117,8 @@ You'll see your files and folders listed. You can:
   get a details view with **Download** and **Open with…** buttons.
 - **Use the breadcrumb bar** at the top to move back up the folder tree. A member's own folder is as far up as it goes.
 
+[File Types](/docs/file-types) lists which files open in Quark and which only download.
+
 ### Changing the view
 
 - **List** — a compact row-by-row view, good for lots of files
@@ -126,7 +132,9 @@ The views menu in the top bar holds the rest:
 
 ### Searching for a file
 
-Click the search icon in the top bar and type a filename. Files will search across all your connected storage.
+Click **Search** in the top bar and type part of a filename. Files finds files whose name contains what you typed,
+across all your drives. It matches names only, not what is written inside a file. To find a word inside a document or
+spreadsheet, search from the **Docs** or **Sheets** page instead. See [Files](/docs/files#searching).
 
 ---
 
@@ -137,7 +145,10 @@ Click the search icon in the top bar and type a filename. Files will search acro
 3. Choose your files from your device
 4. Wait for the upload to complete — a progress indicator will show you how it's going
 
-You can upload multiple files at once. Large files may take a moment depending on your home network speed.
+You can upload multiple files at once. Large files may take a moment, depending on your connection.
+
+Folder uploads, drag and drop, what happens when a name is already taken, and big files are covered in
+[Files](/docs/files#uploading).
 
 ---
 
@@ -160,6 +171,8 @@ you can:
 - **Download** — save a copy to the device you are using
 - **Move/Rename** — one entry for both: change the name, or move it somewhere else
 - **Share…** — give another account on this Quark access
+- **Version history** — earlier versions of a document, spreadsheet, or presentation, to preview or restore (files on
+  the internal drive only; see [Files](/docs/files#version-history))
 - **Delete** — send it to Trash
 
 A few entries only appear where they apply: **Extract here** on an archive, **Convert video** on a video, and
@@ -186,6 +199,9 @@ only there to restore or let go.
 Items stay recoverable for about **30 days**, then an automatic sweep deletes them for good. Treat that window as a
 change-your-mind period, not long-term storage.
 
+Trash still takes up space on the drive until it is emptied. More on bulk restore, multiple drives, and who sees what in
+[Files](/docs/files#trash).
+
 ---
 
 ## Storage devices
@@ -196,12 +212,15 @@ Quark can manage multiple storage devices (hard drives, USB drives) connected to
 - Set it to **Per-device** to see what's on each drive separately
 - When uploading, you may be prompted to choose which device to upload to
 
+Your drives are listed on the **Storage** tab of the **System** page. See [Storage and Backups](/docs/storage-and-backups)
+for what Quark does with a plugged-in drive and how to back one up.
+
 ---
 
 ## Photos
 
 The Photos section shows your images organized by time. See [Photos](/docs/photos) for browsing and uploading from your
-phone on the home network.
+phone.
 
 ---
 
@@ -277,10 +296,15 @@ or browser name to look for.
 
 ## Next steps
 
+- [Files](/docs/files) — uploads, downloads and archives, search, Trash, and version history
 - [Help & Support](/docs/help) — troubleshooting and how to get in touch
+- [Connecting](/docs/connecting) — finding your Quark, the phone apps, and the certificate
 - [Security Guide](/docs/security-guide) — passwords, backups, and limits
 - [How It Works](/docs/how-it-works) — local-first explained plainly
 - [Google Takeout](/docs/google-takeout) — moving Photos/Drive exports onto Quark
 - [Accounts and Sharing](/docs/accounts) — admins and members, homes, groups, and sharing
 - [Settings Reference](/docs/settings) — every Settings tab, and what Delete account and Reset erase
 - [System](/docs/system) — what Health's readings and limits mean, and what Jobs shows
+- [Docs](/docs/docs-editor) — writing, saving, and exporting documents
+- [Sheets](/docs/sheets) — spreadsheets, and bringing in CSV and Excel files
+- [Sheets formulas](/docs/sheets-formulas) — every function, and where formulas differ from Excel

@@ -17,15 +17,21 @@ navigation:
 - Make sure Quark is powered on
 - Make sure you're on the same WiFi network as your Quark device
 - Try `https://quark.local` — if you changed the hostname during setup, use that instead
+- Type `https://`, not `http://`. Quark doesn't answer on `http://`
+- Try `https://quark.lan` or the Quark's IP address from your router's device list. Android phones older than Android 12
+  can't open `.local` names
+- On an old browser or tablet, the page may never load: Quark needs TLS 1.3
 - Try restarting your router and your Quark device
+- [Connecting](/docs/connecting#when-it-wont-connect) has the full list, including the phone apps' messages
 
 ### My browser says the connection is not private
 
 Expected, and safe to continue past. Click **Advanced**, then **Proceed** (on Safari, **Show Details**, then **visit this
-website**). Quark encrypts the connection with a certificate it makes for itself on first boot; the warning means no
+website**). Quark encrypts the connection with a certificate it makes for itself; the warning means no
 public certificate authority countersigned it, which none can do for a device on your own WiFi. The
 [Getting Started guide](/docs/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it at
-length.
+length. It comes back on a new browser, about once a year when the certificate is replaced, and on addresses like
+`quark.lan`; [Connecting](/docs/connecting#the-certificate) explains each.
 
 ### I'm getting an error when I try to install Quark
 
@@ -68,3 +74,6 @@ Trash is a change-your-mind window, not a forever recycle bin. See
 
 **Email** for private matters:
 → [support@autobutler.org](mailto:support@autobutler.org)
+
+When you report a problem, include your Quark's version and your app's version.
+[Versions and release notes](/docs/versions) shows where to find both.

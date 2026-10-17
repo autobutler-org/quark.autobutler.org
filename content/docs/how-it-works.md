@@ -41,6 +41,8 @@ What it is meant to be when it ships: a private path to your box, not a hosted c
 we do not store a copy of them. It stays off until an admin turns it on, each Quark gets its own network rather than
 being pooled with other households, and turning it off again is one switch.
 
+[Remote Access](/docs/remote-access) shows what **Settings → Network** displays today.
+
 ## What Quark stores
 
 When you plug in a drive, Quark keeps things in ordinary folders:
@@ -49,7 +51,9 @@ When you plug in a drive, Quark keeps things in ordinary folders:
 - **Documents** — PDFs, notes, spreadsheets, whatever you keep
 - **Media** — books, videos, and files from any device on your network
 
-Everything is real files in real folders. No proprietary lock-in.
+Everything is real files in real folders. No proprietary lock-in. On a plugged-in drive, those folders sit inside
+`quark/data/files/`, a folder Quark makes for itself. Files already on the drive outside it do not show up in Quark
+until you bring them in. See [Storage and Backups](/docs/storage-and-backups).
 
 ## The files live on the drive, not in the box
 
@@ -61,7 +65,7 @@ to the storage device as normal files in normal folders, and they stay there whe
 So if the box dies, gets replaced, or you simply unplug the drive and carry it to a laptop, your files are still there
 and still readable. Nothing is trapped in a database or a format only we can open. Swap the box, keep the files.
 
-## Backups (coming soon)
+## Backups
 
 Persisting on the drive is not the same as being backed up, and this is the honest tradeoff of keeping your files at
 home: nobody else can read them, and nobody else is quietly keeping a spare copy for you either. Google does that second
@@ -71,13 +75,9 @@ It is a solved problem, though, and you solve it once. Copy the irreplaceable fo
 drive somewhere a bad day cannot reach — a fireproof box, a relative's house. Do that and the tradeoff costs you an
 afternoon rather than your photos.
 
-Quark does not do the copying for you yet. Automatic copies to a second drive is a feature we are building, and we would
-rather ship it late than ship something that quietly stops working and takes your only backup with it. When it lands,
-the shape we are aiming for is:
+Quark can make that second copy for you, when an admin starts it: a **snapshot backup** on **System → Storage**. It
+does not run on a schedule yet, so start one every so often. [Storage and Backups](/docs/storage-and-backups) covers
+the steps and how to get files back.
 
-- A second drive attached to Quark that holds a full copy of what matters
-- Copies that run on their own, on a schedule, without you remembering to start them
-- Somewhere obvious in the app that tells you the last copy actually finished
-
-Until then, the copying is manual and the plan is the ordinary one: a second drive, and a third copy somewhere that is
+The plan is still the ordinary one: a second drive, and a third copy somewhere that is
 not your house. See the [Security Guide](/docs/security-guide) for the 3-2-1 version of that.

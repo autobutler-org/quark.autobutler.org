@@ -187,7 +187,7 @@ export const features = {
       name: "Photos",
       body:
         "Albums, favorites, and full-resolution originals on your own drive — not a " +
-        "compressed copy someone else keeps. On your home network, upload the photos you pick.",
+        "compressed copy someone else keeps. Upload the photos you pick, from your phone or a browser.",
     },
     {
       name: "Documents",
@@ -236,7 +236,7 @@ export const features = {
       name: "Video and audio",
       body:
         "Play what is on the drive in the browser. Trim a clip, save a still frame, or " +
-        "convert a file the rest of your devices refuse to open.",
+        "rewrap a video in another container, like MKV to MP4, without re-encoding it.",
     },
     {
       name: "Apps for your phone",
