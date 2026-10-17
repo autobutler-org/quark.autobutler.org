@@ -15,6 +15,7 @@ network.
 ## What Photos does today
 
 - Browse photos and videos by time
+- Sort and group the library by date taken, and review duplicate groups (marked copies move to Trash)
 - Albums and favorites
 - View full-resolution originals
 - See images that already live on your Quark storage (including ones you uploaded or
