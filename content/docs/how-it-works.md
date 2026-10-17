@@ -41,6 +41,8 @@ What it is meant to be when it ships: a private path to your box, not a hosted c
 we do not store a copy of them. It stays off until an admin turns it on, each Quark gets its own network rather than
 being pooled with other households, and turning it off again is one switch.
 
+[Remote Access](/docs/remote-access) shows what **Settings → Network** displays today.
+
 ## What Quark stores
 
 When you plug in a drive, Quark keeps things in ordinary folders:
