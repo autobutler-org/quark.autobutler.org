@@ -50,7 +50,7 @@ now. See [How It Works](/docs/how-it-works) for what it will do.
 ### I'm having performance issues
 
 1. Open **System** from the app drawer and check the **Health** tab — high disk usage or high temperatures can cause
-   slowdowns
+   slowdowns. [System](/docs/system#when-a-bar-turns-orange-or-red) lists the limits.
 2. Share what you see in a [GitHub issue](https://github.com/autobutler-org/quark/issues) or email it to
    [support@autobutler.org](mailto:support@autobutler.org) and we'll take a look
 
