@@ -3,7 +3,7 @@ title: Slides (Beta)
 description: Make and present slide decks on your Quark, and bring PowerPoint files in and out
 navigation:
   title: Slides (Beta)
-  order: 16
+  order: 17
 ---
 
 # Slides (Beta)

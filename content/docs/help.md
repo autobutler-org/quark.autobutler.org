@@ -56,14 +56,30 @@ now. See [How It Works](/docs/how-it-works) for what it will do.
 
 ### My files aren't showing up after I uploaded them
 
-Try refreshing the page. If they still don't appear, check that your upload completed successfully (the progress
-indicator should have reached 100%). Very large files can take a minute.
+New files show up without a refresh. If one is missing, check the **Upload** chip in the Files top bar. While an
+upload runs, it shows how many files are done, such as `3/10`.
+
+- **The That name is taken dialog is waiting.** The folder already has a file with that name. Choose **Keep both**,
+  **Replace**, or **Cancel**. **Cancel** skips only that file.
+- **A big file stopped partway.** Big files are sent in pieces, and Quark retries on its own. If the page reloaded in
+  the middle, upload the same file to the same folder again. Quark picks up where it stopped.
+- **More than one drive.** Your files went to the drive you picked in **Upload to device**, or to the one Files is
+  filtered to. Look there.
+
+Refreshing the page is the last resort. [Files](/docs/files#uploading) has the details.
 
 ### I deleted a file
 
 Open **Trash** from the app drawer. You can restore it for about 30 days, or delete it permanently.
 Trash is a change-your-mind window, not a forever recycle bin. See
 [Getting Started](/docs/getting-started).
+
+### My drive is still full after I deleted files
+
+Deleting moves files to **Trash**, and Trash still takes up room. Each drive keeps its own trash, on that drive.
+Anything there is deleted for good after 30 days. To free the space now, open **Trash** and choose **Delete
+permanently** on what you don't need, or **Empty trash**. See
+[Trash still uses space](/docs/files#trash-still-uses-space).
 
 ---
 

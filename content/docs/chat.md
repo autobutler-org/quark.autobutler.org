@@ -3,7 +3,7 @@ title: Chat (Beta)
 description: Message the people on your Quark — channels, roles, unlocking on the web, and what the Quark can see
 navigation:
   title: Chat (Beta)
-  order: 15
+  order: 16
 ---
 
 # Chat (Beta)
