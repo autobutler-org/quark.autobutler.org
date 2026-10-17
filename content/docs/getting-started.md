@@ -305,3 +305,5 @@ or browser name to look for.
 - [Docs](/docs/docs-editor) — writing, saving, and exporting documents
 - [Sheets](/docs/sheets) — spreadsheets, and bringing in CSV and Excel files
 - [Sheets formulas](/docs/sheets-formulas) — every function, and where formulas differ from Excel
+- [Chat (Beta)](/docs/chat) — encrypted channels for the people on your Quark
+- [Slides (Beta)](/docs/slides) — presentations, with PowerPoint import and export
