@@ -68,3 +68,6 @@ Trash is a change-your-mind window, not a forever recycle bin. See
 
 **Email** for private matters:
 → [support@autobutler.org](mailto:support@autobutler.org)
+
+When you report a problem, include your Quark's version and your app's version.
+[Versions and release notes](/docs/versions) shows where to find both.
