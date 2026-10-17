@@ -80,8 +80,8 @@ In practice:
 
 - Password-protect your WiFi with WPA2 or WPA3
 - Do not hand your WiFi password to people you do not trust
-- Quark's routine contact with the outside world is checking for software updates, and the code is public if you want to
-  read it
+- Quark's routine contact with the outside world is fetching operating system security fixes. It looks for new Quark
+  versions only when someone opens the Updates tab, and the code is public if you want to read it
 
 Reaching your files from outside the house is not available yet — remote access is coming soon. When it ships, it stays
 off until an admin turns it on, and an admin can turn it back off again — or never touch it at all. Lock Quark down as
@@ -116,6 +116,13 @@ it off and remove any key you do not recognize. Otherwise the response is mostly
    what happened.
 2. Change your WiFi password if the network was the likely way in.
 3. Look through your files for odd deletions, unfamiliar folders, or timestamps that do not match anything you did.
+4. Check the **Sessions** card under **Settings → Account** and use **Sign out everywhere else**. See
+   [Where am I signed in?](/docs/getting-started#where-am-i-signed-in) for what the card shows.
+5. If you are an admin, turn off any account you do not trust with **Disable** on the Users page. See
+   [Turning off and removing accounts](/docs/accounts#turning-off-and-removing-accounts).
+
+Guessing a password is slow. After repeated wrong passwords, Quark refuses that sign-in for a while, even if the next
+try is right.
 
 ---
 
