@@ -64,3 +64,29 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+  # Tell IndexNow engines (Bing, Yandex, ...) which pages exist. Sends only
+  # the public URLs from the sitemap. Never blocks or fails a deploy.
+  indexnow:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs:
+      - deploy
+    continue-on-error: true
+    env:
+      HOST: quark.autobutler.org
+      # Public by design; must match public/<key>.txt.
+      KEY: d92d7cea93995ac79a303a73f3e93aa2
+    steps:
+      - name: Ping IndexNow with sitemap URLs
+        run: |
+          curl -fsSL "https://$HOST/sitemap.xml" \
+            | grep -o '<loc>[^<]*</loc>' \
+            | sed -e 's/<loc>//' -e 's/<\/loc>//' \
+            | jq -R . | jq -s \
+              --arg host "$HOST" --arg key "$KEY" \
+              '{host: $host, key: $key, keyLocation: "https://\($host)/\($key).txt", urlList: .}' \
+            | curl -fsS -X POST https://api.indexnow.org/indexnow \
+                -H 'Content-Type: application/json; charset=utf-8' \
+                --data-binary @- \
+            || echo "::warning::IndexNow ping failed; deploy is unaffected."
