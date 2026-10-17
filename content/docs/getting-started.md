@@ -32,8 +32,8 @@ Steps:
 1. Plug Quark into power and into your router.
 2. Attach any extra storage you want Quark to manage.
 3. Wait a minute for it to come up.
-4. On a phone or computer already on that home WiFi, open a browser and go to **`https://quark.local`** (or the
-   hostname you were given at setup).
+4. On a phone or computer already on that home WiFi, open a browser and go to **`https://quark.local`**. If that
+   doesn't open, [Connecting](/docs/connecting#finding-your-quark) lists the other addresses to try.
 5. Your browser will warn you that the connection is not private. That is expected — see
    [below](#your-browser-warns-you-the-connection-is-not-private). Continue past it.
 6. Read the terms. They are the first screen, before anything else. The page opens with a plain-language summary —
@@ -54,7 +54,8 @@ The terms come up once per Quark. Connect to a different Quark and you are asked
 If a brand-new Quark shows you the sign-in screen instead of setup, click **First time here? Set up this Quark** under
 the form. Setup and sign-in both show which Quark you are connected to, so you can switch if the address is wrong.
 
-If the page won't load: same WiFi as Quark, Quark powered on, try restarting the router once. Still stuck? See
+If the page won't load: same WiFi as Quark, Quark powered on, the address starts with `https://`, try restarting the
+router once. Still stuck? See
 [Help](/docs/help), or [Nerd Notes](/docs/nerd-notes) if you're installing from a release yourself.
 
 ### Your browser warns you the connection is not private
@@ -65,13 +66,16 @@ padlock. Click **Advanced**, then **Proceed**. On Safari, **Show Details**, then
 This is the one place where owning your own hardware is slightly less smooth than renting someone else's, so it is worth
 understanding rather than just clicking through.
 
-Quark encrypts the connection from the moment you plug it in, using a certificate it generates for itself on first boot.
+Quark encrypts the connection from the moment you plug it in, using a certificate it makes for itself.
 The encryption is real. What your browser is objecting to is that nobody _vouched_ for the certificate — normally a
 certificate authority on the public internet does that, and it can only do so for a public address. Your Quark lives on
 your WiFi and has no public address, which is the entire point of it.
 
 So the warning means "this certificate was not countersigned by a stranger," not "this connection is insecure." On your
 own network, talking to your own box, you are the one vouching for it. Your browser will remember once you proceed.
+
+The warning comes back on a new browser or device, and about once a year when Quark replaces its certificate.
+[Connecting](/docs/connecting#the-certificate) lists every time you'll see it. The phone apps never show it.
 
 ---
 
@@ -281,6 +285,7 @@ or browser name to look for.
 ## Next steps
 
 - [Help & Support](/docs/help) — troubleshooting and how to get in touch
+- [Connecting](/docs/connecting) — finding your Quark, the phone apps, and the certificate
 - [Security Guide](/docs/security-guide) — passwords, backups, and limits
 - [How It Works](/docs/how-it-works) — local-first explained plainly
 - [Google Takeout](/docs/google-takeout) — moving Photos/Drive exports onto Quark
