@@ -29,9 +29,9 @@ length.
 
 ### I'm getting an error when I try to install Quark
 
-Make sure you're using the installer for your operating system and architecture. The [nerd notes](/docs/nerd-notes)
-page has installation details. If you're still stuck,
-[open a GitHub issue](https://github.com/autobutler-org/quark/issues) and someone will help.
+There is no installer to download. Releases are Linux archives for `x86_64` and `arm64`, plus a container image.
+[Self-Hosting](/docs/self-hosting) covers both, and what each message from `sudo quark install` means. If you're still
+stuck, [open a GitHub issue](https://github.com/autobutler-org/quark/issues) and someone will help.
 
 ### Quark doesn't work with my VPN
 

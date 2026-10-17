@@ -32,6 +32,9 @@ On first boot it runs database migrations automatically.
 
 ## Installation
 
+For your own Linux machine, the container in depth, and what `quark install` changes, see
+[Self-Hosting](/docs/self-hosting).
+
 ### On a Quark device
 
 The device runs Quark as a systemd service (`quark serve`), set up by `quark install`. It serves HTTPS on `:443`
