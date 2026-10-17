@@ -113,6 +113,8 @@ You'll see your files and folders listed. You can:
   get a details view with **Download** and **Open with…** buttons.
 - **Use the breadcrumb bar** at the top to move back up the folder tree. A member's own folder is as far up as it goes.
 
+[File Types](/docs/file-types) lists which files open in Quark and which only download.
+
 ### Changing the view
 
 - **List** — a compact row-by-row view, good for lots of files
