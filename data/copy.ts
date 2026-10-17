@@ -187,7 +187,7 @@ export const features = {
       name: "Photos",
       body:
         "Albums, favorites, and full-resolution originals on your own drive — not a " +
-        "compressed copy someone else keeps. On your home network, upload the photos you pick.",
+        "compressed copy someone else keeps. Upload the photos you pick, from your phone or a browser.",
     },
     {
       name: "Documents",

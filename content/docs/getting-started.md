@@ -137,7 +137,7 @@ Click the search icon in the top bar and type a filename. Files will search acro
 3. Choose your files from your device
 4. Wait for the upload to complete — a progress indicator will show you how it's going
 
-You can upload multiple files at once. Large files may take a moment depending on your home network speed.
+You can upload multiple files at once. Large files may take a moment, depending on your connection.
 
 ---
 
@@ -201,7 +201,7 @@ Quark can manage multiple storage devices (hard drives, USB drives) connected to
 ## Photos
 
 The Photos section shows your images organized by time. See [Photos](/docs/photos) for browsing and uploading from your
-phone on the home network.
+phone.
 
 ---
 
