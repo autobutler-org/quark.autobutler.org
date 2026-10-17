@@ -102,6 +102,8 @@ extracting, just extract those too — Quark handles zip extraction at any level
 
 **What about Google Docs files?** Google Docs, Sheets, and Slides export as Microsoft Office formats (`.docx`,
 `.xlsx`, `.pptx`) or as `.pdf`. They'll show up in your files just like any other document.
+Open an `.xlsx` in Files and Quark offers to convert it into a spreadsheet you can edit; see
+[Sheets](/docs/sheets#bring-a-spreadsheet-into-quark).
 
 ---
 
