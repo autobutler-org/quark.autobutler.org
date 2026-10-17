@@ -7,11 +7,14 @@ import { features } from "~/data/copy";
     <h2>{{ features.heading }}</h2>
     <ul class="grid">
       <li v-for="feature in features.items" :key="feature.name">
-        <div class="head">
-          <h3>{{ feature.name }}</h3>
-          <span v-if="feature.badge" class="badge">{{ feature.badge }}</span>
-        </div>
-        <p>{{ feature.body }}</p>
+        <details>
+          <summary>
+            <h3>{{ feature.name }}</h3>
+            <span v-if="feature.badge" class="badge">{{ feature.badge }}</span>
+            <span class="toggle" aria-hidden="true"></span>
+          </summary>
+          <p>{{ feature.body }}</p>
+        </details>
       </li>
     </ul>
   </section>
@@ -43,6 +46,7 @@ h2 {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  align-items: start;
   gap: var(--gutter);
   margin: 0;
   padding: 0;
@@ -50,7 +54,6 @@ h2 {
 }
 
 li {
-  padding: 1.75rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-border);
   background: var(--color-surface);
@@ -64,12 +67,34 @@ li:hover {
   box-shadow: var(--shadow-card);
 }
 
-.head {
+summary {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 0.75rem;
   flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.toggle {
+  flex: none;
+  margin-left: auto;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--color-accent);
+  border-bottom: 2px solid var(--color-accent);
+  transform: rotate(45deg);
+  transition: transform var(--transition);
+}
+
+details[open] .toggle {
+  transform: rotate(-135deg);
 }
 
 h3 {
@@ -93,6 +118,7 @@ h3 {
 
 p {
   margin: 0;
+  padding: 0 1.25rem 1.25rem;
   line-height: 1.7;
 }
 </style>
