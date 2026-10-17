@@ -108,8 +108,9 @@ This is not morbid. It is the same reason you leave a spare key with a neighbor.
 
 ## If you think someone got in
 
-Quark has no API keys or app passwords to hunt down and rotate. Access is your username and password, on your own
-network, so the response is mostly physical and it is short:
+Quark has no API keys or app passwords to hunt down. Access is your username and password, on your own network. The
+exception is [SSH access](/docs/ssh): if an admin turned it on, its allowed keys and password are a way in too, so turn
+it off and remove any key you do not recognize. Otherwise the response is mostly physical and it is short:
 
 1. Unplug Quark from the router. Nothing reaches it while it is off the network, and that buys you time to work out
    what happened.
