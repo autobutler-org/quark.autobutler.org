@@ -13,20 +13,29 @@ import { features } from "~/data/copy";
         class="card reveal"
         :class="{ upcoming: feature.upcoming, lead: feature.illustration }"
       >
-        <div class="meta">
-          <span class="index" aria-hidden="true">{{ String(index + 1).padStart(2, "0") }}</span>
-          <span v-if="feature.badge" class="badge">{{ feature.badge }}</span>
-        </div>
-        <div v-if="feature.illustration === 'files'" class="art files" aria-hidden="true">
-          <span v-for="row in 4" :key="row" class="file"
-            ><span class="glyph"></span><span class="line"></span
-          ></span>
-        </div>
-        <div v-else-if="feature.illustration === 'photos'" class="art photos" aria-hidden="true">
-          <span v-for="tile in 6" :key="tile" class="tile"></span>
-        </div>
-        <h3>{{ feature.name }}</h3>
-        <p>{{ feature.body }}</p>
+        <details>
+          <summary>
+            <div class="meta">
+              <span class="index" aria-hidden="true">{{ String(index + 1).padStart(2, "0") }}</span>
+              <span v-if="feature.badge" class="badge">{{ feature.badge }}</span>
+              <span class="toggle" aria-hidden="true"></span>
+            </div>
+            <div v-if="feature.illustration === 'files'" class="art files" aria-hidden="true">
+              <span v-for="row in 4" :key="row" class="file"
+                ><span class="glyph"></span><span class="line"></span
+              ></span>
+            </div>
+            <div
+              v-else-if="feature.illustration === 'photos'"
+              class="art photos"
+              aria-hidden="true"
+            >
+              <span v-for="tile in 6" :key="tile" class="tile"></span>
+            </div>
+            <h3>{{ feature.name }}</h3>
+          </summary>
+          <p>{{ feature.body }}</p>
+        </details>
       </li>
     </ul>
   </section>
@@ -44,6 +53,7 @@ import { features } from "~/data/copy";
 .bento {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  align-items: start;
   gap: 0.75rem;
   margin: 3.5rem 0 0;
   padding: 0;
@@ -65,16 +75,42 @@ import { features } from "~/data/copy";
   box-shadow: var(--shadow-hover);
 }
 
+summary {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
 .meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
   min-height: 1.5rem;
   margin-bottom: 2rem;
 }
 
+.toggle {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--color-text-muted);
+  border-bottom: 2px solid var(--color-text-muted);
+  transform: rotate(45deg);
+  transition: transform var(--duration-fast) ease;
+}
+
+details[open] .toggle {
+  transform: rotate(-135deg);
+}
+
 .index {
+  margin-right: auto;
   font-family: var(--font-mono);
   font-size: var(--text-micro);
   color: var(--color-text-muted);
@@ -186,7 +222,7 @@ import { features } from "~/data/copy";
 }
 
 h3 {
-  margin: 0 0 0.6rem;
+  margin: 0;
   font-family: var(--font-serif);
   font-size: var(--text-h3);
   font-weight: 400;
@@ -196,7 +232,7 @@ h3 {
 }
 
 p {
-  margin: 0;
+  margin: 0.6rem 0 0;
   font-size: 0.9375rem;
   line-height: 1.6;
   color: var(--color-text-muted);

@@ -14,6 +14,14 @@ describe("FeatureGrid", () => {
     expect(names).toEqual(features.items.map((feature) => feature.name));
   });
 
+  it("puts every feature in a collapsible details element named by its summary", () => {
+    const wrapper = mount(FeatureGrid);
+    const summaries = wrapper
+      .findAll("li details > summary")
+      .map((summary) => summary.find("h3").text());
+    expect(summaries).toEqual(features.items.map((feature) => feature.name));
+  });
+
   it("renders the body copy for every feature", () => {
     const wrapper = mount(FeatureGrid);
     const text = wrapper.text();
