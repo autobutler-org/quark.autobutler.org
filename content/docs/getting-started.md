@@ -23,9 +23,10 @@ What you need:
 
 Worth having, though not required to finish setup:
 
-- **A spare USB drive or external hard drive.** Quark works fine without one, but everything then lives on a single
-  device. If that device fails, the files go with it. A second drive you copy the irreplaceable folders onto is the
-  cheapest insurance there is — see the [Security Guide](/docs/security-guide).
+- **A spare USB drive or external hard drive.** Quark works fine without one. Your files live on the external SSD, not
+  in the box, so they survive the box crashing, but without a second drive the SSD holds the only copy. If that drive
+  fails, the files go with it. A second drive you copy the irreplaceable folders onto is the cheapest insurance there
+  is — see the [Security Guide](/docs/security-guide).
 
 Steps:
 

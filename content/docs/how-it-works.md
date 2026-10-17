@@ -76,6 +76,9 @@ on **System → Storage**, then chooses **Back Up**, and Quark copies everything
 copy afterwards.
 
 What it does not do yet is run on its own. Scheduled copies are a feature we are building, and we would rather ship it
-late than ship something that quietly stops working and takes your only backup with it. Until then, start a backup every
-so often, and keep a third copy somewhere that is not your house. See the [Security Guide](/docs/security-guide) for the
-3-2-1 version of that.
+late than ship something that quietly stops running without telling you. Until then, start a backup every so often, and
+keep a third copy somewhere that is not your house. See the [Security Guide](/docs/security-guide) for the 3-2-1 version
+of that.
+
+If the box itself crashes, neither copy goes with it. Your files live on the external SSD and the backup on its own
+drive, so both are still there when the box restarts or gets replaced.
