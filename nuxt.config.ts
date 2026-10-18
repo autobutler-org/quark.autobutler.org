@@ -3,7 +3,17 @@ export default defineNuxtConfig({
   compatibilityDate: "2026-08-01",
   devtools: { enabled: true },
   modules: ["@nuxt/eslint", "@nuxt/content"],
-  css: ["~/assets/main.css"],
+  /*
+   * Fonts are self-hosted: @fontsource packages are bundled into the build, so
+   * no request ever leaves for a font CDN.
+   */
+  css: [
+    "@fontsource-variable/newsreader/opsz.css",
+    "@fontsource-variable/newsreader/opsz-italic.css",
+    "@fontsource-variable/geist",
+    "@fontsource-variable/geist-mono",
+    "~/assets/main.css",
+  ],
   nitro: {
     static: true,
     prerender: {
@@ -47,7 +57,8 @@ export default defineNuxtConfig({
             "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
         },
         { name: "twitter:image", content: "https://quark.autobutler.org/quark.png" },
-        { name: "theme-color", content: "#00bbff" },
+        { name: "theme-color", content: "#f7f6f3", media: "(prefers-color-scheme: light)" },
+        { name: "theme-color", content: "#161615", media: "(prefers-color-scheme: dark)" },
       ],
       link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
     },
@@ -57,9 +68,8 @@ export default defineNuxtConfig({
       markdown: {
         highlight: {
           theme: {
-            default: "catppuccin-mocha",
-            dark: "catppuccin-mocha",
-            light: "catppuccin-mocha",
+            default: "github-light",
+            dark: "github-dark",
           },
           preload: ["bash", "json", "yaml"],
         },

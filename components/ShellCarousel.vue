@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
+import SectionIntro from "./SectionIntro.vue";
 import { shellGallery } from "~/data/copy";
 
 const track = ref<HTMLElement | null>(null);
@@ -34,8 +35,31 @@ function onScroll() {
 
 <template>
   <section class="gallery" aria-roledescription="carousel" :aria-label="shellGallery.heading">
-    <h2>{{ shellGallery.heading }}</h2>
-    <div ref="track" class="track" tabindex="0" @scroll.passive="onScroll">
+    <div class="head">
+      <SectionIntro :eyebrow="shellGallery.eyebrow" :heading="shellGallery.heading" />
+      <div class="controls">
+        <span class="count" aria-live="polite">
+          {{ String(current + 1).padStart(2, "0") }} / {{ shellGallery.slides.length }}
+        </span>
+        <button
+          type="button"
+          :aria-label="shellGallery.previousLabel"
+          :disabled="current === 0"
+          @click="go(current - 1)"
+        >
+          <span aria-hidden="true">&larr;</span>
+        </button>
+        <button
+          type="button"
+          :aria-label="shellGallery.nextLabel"
+          :disabled="current === lastIndex"
+          @click="go(current + 1)"
+        >
+          <span aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
+    <div ref="track" class="track reveal" tabindex="0" @scroll.passive="onScroll">
       <figure
         v-for="(slide, index) in shellGallery.slides"
         :key="slide.src"
@@ -43,37 +67,18 @@ function onScroll() {
         aria-roledescription="slide"
         :aria-label="`${index + 1} of ${shellGallery.slides.length}`"
       >
-        <img
-          :src="slide.src"
-          :alt="slide.alt"
-          :width="slide.width"
-          :height="slide.height"
-          loading="lazy"
-          decoding="async"
-        />
+        <div class="frame">
+          <img
+            :src="slide.src"
+            :alt="slide.alt"
+            :width="slide.width"
+            :height="slide.height"
+            :loading="index === 0 ? 'eager' : 'lazy'"
+            decoding="async"
+          />
+        </div>
         <figcaption>{{ slide.caption }}</figcaption>
       </figure>
-    </div>
-    <div class="controls">
-      <button
-        type="button"
-        :aria-label="shellGallery.previousLabel"
-        :disabled="current === 0"
-        @click="go(current - 1)"
-      >
-        <span aria-hidden="true">&larr;</span>
-      </button>
-      <span class="count" aria-live="polite">
-        {{ current + 1 }} / {{ shellGallery.slides.length }}
-      </span>
-      <button
-        type="button"
-        :aria-label="shellGallery.nextLabel"
-        :disabled="current === lastIndex"
-        @click="go(current + 1)"
-      >
-        <span aria-hidden="true">&rarr;</span>
-      </button>
     </div>
   </section>
 </template>
@@ -83,21 +88,17 @@ function onScroll() {
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 0 var(--gutter) var(--section-gap);
+  padding: 0 var(--gutter);
   box-sizing: border-box;
-  text-align: center;
 }
 
-h2 {
-  margin: 0 0 2rem;
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 600;
-  line-height: 1.2;
-  color: var(--color-text-strong);
-  background: var(--gradient-heading);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 2rem;
+  margin-bottom: 2rem;
 }
 
 .track {
@@ -105,9 +106,7 @@ h2 {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
 }
 
 .track::-webkit-scrollbar {
@@ -115,19 +114,24 @@ h2 {
 }
 
 .track:focus-visible {
-  outline: 2px solid var(--color-accent);
   outline-offset: 4px;
 }
 
 .slide {
-  position: relative;
   flex: 0 0 100%;
   margin: 0;
   scroll-snap-align: start;
-  aspect-ratio: 3 / 2;
 }
 
-.slide img {
+.frame {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-sunken);
+}
+
+.frame img {
   display: block;
   width: 100%;
   height: 100%;
@@ -135,52 +139,52 @@ h2 {
 }
 
 figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 2.5rem var(--gutter) 1rem;
-  background: linear-gradient(transparent, var(--color-bg));
-  color: var(--color-text-bright);
-  font-size: 0.95rem;
-  text-align: left;
+  padding-top: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--color-text-muted);
 }
 
 .controls {
   display: flex;
-  gap: 1rem;
   align-items: center;
-  justify-content: center;
-  margin-top: 1.25rem;
+  gap: 0.5rem;
+}
+
+.count {
+  min-width: 4rem;
+  margin-right: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
 }
 
 button {
   width: 2.75rem;
   height: 2.75rem;
   border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text-strong);
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   cursor: pointer;
   transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast);
+    border-color var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out);
 }
 
 button:hover:not(:disabled) {
-  background: var(--color-surface-hover);
-  border-color: var(--color-accent-border);
+  border-color: var(--color-text-muted);
+}
+
+button:active:not(:disabled) {
+  transform: var(--press);
 }
 
 button:disabled {
   opacity: 0.4;
   cursor: default;
-}
-
-.count {
-  min-width: 3.5rem;
-  color: var(--color-text-muted);
-  font-variant-numeric: tabular-nums;
 }
 </style>

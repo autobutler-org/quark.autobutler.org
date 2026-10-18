@@ -28,19 +28,17 @@ useSeoMeta({
   width: 100%;
   max-width: var(--prose-width);
   margin: 0 auto;
-  padding: 5rem var(--gutter) var(--section-gap);
+  padding: clamp(4rem, 9vw, 7rem) var(--gutter) var(--section-gap);
   box-sizing: border-box;
 }
 
 h1 {
-  margin: 0 0 2rem;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  line-height: 1.2;
+  margin: 0 0 3rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tight);
   color: var(--color-text-strong);
-  background: var(--gradient-heading);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 </style>

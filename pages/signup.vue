@@ -35,46 +35,54 @@ useSeoMeta({
   width: 100%;
   max-width: var(--prose-width);
   margin: 0 auto;
-  padding: 5rem var(--gutter) var(--section-gap);
+  padding: clamp(4rem, 9vw, 7rem) var(--gutter) var(--section-gap);
   box-sizing: border-box;
-  text-align: center;
 }
 
 h1 {
-  margin: 0 0 1rem;
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  line-height: 1.2;
+  margin: 0 0 1.25rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tight);
   color: var(--color-text-strong);
-  background: var(--gradient-heading);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  text-wrap: balance;
 }
 
 .intro {
   max-width: var(--lede-width);
-  margin: 0 auto 2.5rem;
-  font-size: 1.15rem;
-  line-height: 1.6;
+  margin: 0 0 2.5rem;
+  font-size: var(--text-lede);
   color: var(--color-text-muted);
+  text-wrap: pretty;
 }
 
 .launch {
-  max-width: 32rem;
-  margin: 2rem auto 0;
-  padding: 1.5rem;
-  border-radius: var(--radius-lg);
-  background: var(--color-accent-glow);
-  border: 1px solid var(--color-accent-border);
+  margin: 2.5rem 0 0;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-border-strong);
 }
 
 .launch p {
-  margin: 0.4rem 0;
-  color: var(--color-text-bright);
+  margin: 0;
+  color: var(--color-text);
+}
+
+.launch .badge {
+  margin-bottom: 0.9rem;
 }
 
 .badge strong {
-  color: var(--color-accent);
+  display: inline-block;
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-pill);
+  background: var(--pastel-blue);
+  color: var(--pastel-blue-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
 }
 </style>

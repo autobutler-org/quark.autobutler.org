@@ -15,7 +15,24 @@ import ShellCarousel from "./ShellCarousel.vue";
     <ManifestoSection />
     <HowItWorks />
     <FeatureGrid />
-    <CallToAction />
-    <NewsletterSignup />
+    <div class="closing">
+      <CallToAction />
+      <NewsletterSignup />
+    </div>
   </div>
 </template>
+
+<style scoped>
+/* The page's last beat: the sign-up pitch beside the mailing list. */
+.closing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr));
+  gap: 3rem 5rem;
+  align-items: end;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: var(--section-gap) var(--gutter);
+  box-sizing: border-box;
+}
+</style>

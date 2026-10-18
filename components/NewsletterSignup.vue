@@ -13,87 +13,85 @@ withDefaults(defineProps<{ showHeading?: boolean }>(), {
     :aria-label="showHeading ? undefined : newsletter.heading"
   >
     <form class="form" :action="newsletter.action" method="post" target="_blank" novalidate>
-      <h2 v-if="showHeading" id="newsletter-heading">{{ newsletter.heading }}</h2>
-      <p class="powered-by">{{ newsletter.poweredBy }}</p>
-      <div class="field">
-        <label for="mce-EMAIL">Email Address</label>
-        <input id="mce-EMAIL" type="email" name="EMAIL" required />
+      <template v-if="showHeading">
+        <h2 id="newsletter-heading">{{ newsletter.heading }}</h2>
+        <p class="body">{{ newsletter.body }}</p>
+      </template>
+      <label for="mce-EMAIL">{{ newsletter.emailLabel }}</label>
+      <div class="row">
+        <input id="mce-EMAIL" type="email" name="EMAIL" autocomplete="email" required />
+        <button type="submit">{{ newsletter.submitLabel }}</button>
       </div>
       <!-- Anti-bot honeypot: real subscribers never see or fill this in. -->
       <div class="honeypot" aria-hidden="true">
         <input type="text" :name="newsletter.honeypotName" tabindex="-1" value="" />
       </div>
-      <button type="submit">{{ newsletter.submitLabel }}</button>
+      <p class="powered-by">{{ newsletter.poweredBy }}</p>
     </form>
   </section>
 </template>
 
 <style scoped>
 .newsletter {
+  position: relative;
   width: 100%;
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 var(--gutter) var(--section-gap);
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
 }
 
 .form {
-  width: 100%;
-  max-width: 32rem;
-  padding: 2.5rem 2rem;
-  box-sizing: border-box;
-  border-radius: var(--radius-lg);
+  padding: var(--card-pad);
   border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   background: var(--color-surface);
-  text-align: center;
+  text-align: left;
 }
 
 h2 {
   margin: 0 0 0.5rem;
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-snug);
   color: var(--color-text-strong);
-  background: var(--gradient-heading);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-.powered-by {
-  margin: 0 0 1.5rem;
-  font-size: 0.8rem;
-  color: var(--color-text-faint);
-}
-
-.field {
-  margin-bottom: 1.25rem;
-  text-align: left;
+.body {
+  margin: 0 0 1.75rem;
+  color: var(--color-text-muted);
 }
 
 label {
   display: block;
   margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: var(--color-text-bright);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 input[type="email"] {
-  width: 100%;
-  padding: 0.75rem 1rem;
+  flex: 1 1 12rem;
+  min-width: 0;
+  height: 3rem;
+  padding: 0 1rem;
   box-sizing: border-box;
-  background: var(--color-surface-subtle);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-md);
+  background: var(--color-canvas);
   color: var(--color-text-strong);
-  font-size: 1rem;
+  font: inherit;
+  transition: border-color var(--duration-fast) ease;
 }
 
 input[type="email"]:focus {
-  outline: none;
-  background: var(--color-surface-strong);
-  border-color: var(--color-accent-faint);
+  border-color: var(--color-text-muted);
 }
 
 .honeypot {
@@ -102,22 +100,38 @@ input[type="email"]:focus {
 }
 
 button {
-  padding: 0.85rem 2.5rem;
-  border: 1px solid var(--color-accent-border);
+  flex: 0 0 auto;
+  height: 3rem;
+  padding: 0 1.5rem;
+  border: none;
   border-radius: var(--radius-md);
-  background: var(--gradient-accent);
-  color: var(--color-text-strong);
-  font-size: 1.05rem;
-  font-weight: 600;
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  font: inherit;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: var(--shadow-accent);
   transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
+    background-color var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out);
 }
 
 button:hover {
-  transform: var(--lift-sm);
-  box-shadow: var(--shadow-accent-hover);
+  background: var(--color-ink-hover);
+}
+
+button:active {
+  transform: var(--press);
+}
+
+.powered-by {
+  margin: 1rem 0 0;
+  font-size: var(--text-micro);
+  color: var(--color-text-muted);
+}
+
+@media (max-width: 640px) {
+  button {
+    flex-basis: 100%;
+  }
 }
 </style>
