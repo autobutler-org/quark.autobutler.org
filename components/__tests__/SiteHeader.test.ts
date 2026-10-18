@@ -24,6 +24,17 @@ describe("SiteHeader", () => {
     expect(hrefs).toContain("/docs");
   });
 
+  it("keeps sign-up as its own button, outside the collapsible nav", () => {
+    const wrapper = mount(SiteHeader);
+    const navHrefs = wrapper
+      .get("nav")
+      .findAll("a")
+      .map((anchor) => anchor.attributes("href"));
+    expect(navHrefs).not.toContain(masthead.cta.href);
+    const cta = wrapper.findAll("a").find((anchor) => anchor.attributes("href") === "/signup");
+    expect(cta?.text()).toBe(masthead.cta.label);
+  });
+
   it("starts with the mobile menu collapsed", () => {
     const wrapper = mount(SiteHeader);
     expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("false");

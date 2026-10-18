@@ -52,6 +52,14 @@ describe("FeatureGrid", () => {
     expect(bodyOf("Remote access")).toMatch(/not in the app yet/i);
   });
 
+  /* Only an unshipped feature may be drawn as upcoming, and it must say so in words too. */
+  it("marks only Remote access as upcoming", () => {
+    const upcoming = features.items.filter((feature) => feature.upcoming);
+    expect(upcoming.map((feature) => feature.name)).toEqual(["Remote access"]);
+    expect(upcoming[0]?.body).toMatch(/not in the app yet/i);
+    expect(upcoming[0]?.badge).toBeUndefined();
+  });
+
   it("does not present Chat or Calendar as unavailable or promise what is not built", () => {
     const text = mount(FeatureGrid).text();
     expect(text).not.toMatch(/in review|not in your hands|coming soon/i);

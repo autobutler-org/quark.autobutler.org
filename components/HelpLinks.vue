@@ -25,57 +25,59 @@ import { support } from "~/data/copy";
 
 <style scoped>
 .help-links {
-  margin-bottom: 3rem;
+  margin-bottom: 4.5rem;
 }
 
 h2 {
-  margin: 0 0 0.75rem;
-  font-size: 1.4rem;
-  font-weight: 600;
+  margin: 0 0 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: var(--tracking-snug);
   color: var(--color-text-strong);
 }
 
 .help-links > p {
-  margin: 0 0 1.25rem;
+  margin: 0 0 1.75rem;
   color: var(--color-text-muted);
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  gap: 0.75rem;
 }
 
 .card {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  padding: 1.25rem;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  text-decoration: none;
   color: inherit;
+  text-decoration: none;
+  box-shadow: var(--shadow-none);
   transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    transform var(--transition-fast);
+    box-shadow var(--duration-fast) ease,
+    border-color var(--duration-fast) ease;
 }
 
 .card:hover {
-  background: var(--color-surface-hover);
-  border-color: var(--color-accent-border);
-  transform: translateY(-2px);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-hover);
 }
 
 .title {
   font-weight: 600;
+  letter-spacing: var(--tracking-snug);
   color: var(--color-text-strong);
 }
 
 .desc {
-  font-size: 0.85rem;
-  line-height: 1.4;
+  font-size: var(--text-small);
+  line-height: 1.5;
   color: var(--color-text-muted);
 }
 </style>

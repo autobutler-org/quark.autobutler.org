@@ -1,59 +1,92 @@
 <script setup lang="ts">
-import { footer } from "~/data/copy";
+import { footer, hero, masthead } from "~/data/copy";
 </script>
 
 <template>
   <footer class="footer">
-    <p>{{ footer.note }}</p>
-    <nav aria-label="Footer">
-      <a v-for="link in footer.links" :key="link.href" :href="link.href">
-        {{ link.label }}
-      </a>
-    </nav>
-    <p class="fine-print">{{ footer.renderNote }}</p>
+    <div class="inner">
+      <div class="brand">
+        <p class="wordmark">{{ masthead.wordmark }}</p>
+        <p class="tagline">{{ hero.subhead }}</p>
+      </div>
+      <nav aria-label="Footer">
+        <a v-for="link in footer.links" :key="link.href" :href="link.href">
+          {{ link.label }}
+        </a>
+      </nav>
+      <div class="legal">
+        <p>{{ footer.note }}</p>
+        <p>{{ footer.renderNote }}</p>
+      </div>
+    </div>
   </footer>
 </template>
 
 <style scoped>
 .footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  gap: 2.5rem var(--gutter);
   width: 100%;
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 2rem var(--gutter) 3rem;
+  padding: 4rem var(--gutter) 3rem;
   box-sizing: border-box;
-  border-top: 1px solid var(--color-border);
-  color: var(--color-text-faint);
-  font-size: 0.9rem;
 }
 
 p {
   margin: 0;
 }
 
-.fine-print {
-  flex-basis: 100%;
-  font-size: 0.8rem;
+.wordmark {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-text-strong);
+}
+
+.tagline {
+  margin-top: 0.75rem;
+  max-width: 18rem;
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
 }
 
 nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--gutter);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: var(--text-small);
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-text);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: color var(--duration-fast) ease;
 }
 
 a:hover {
-  color: var(--color-accent-hover);
+  color: var(--color-text-strong);
   text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.legal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  grid-column: 1 / -1;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  line-height: 1.6;
+  color: var(--color-text-muted);
 }
 </style>

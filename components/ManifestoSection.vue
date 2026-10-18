@@ -1,73 +1,98 @@
 <script setup lang="ts">
+import SectionIntro from "./SectionIntro.vue";
 import { manifesto } from "~/data/copy";
 </script>
 
 <template>
   <section class="manifesto">
-    <h2>{{ manifesto.heading }}</h2>
-    <p v-for="paragraph in manifesto.paragraphs" :key="paragraph">
-      {{ paragraph }}
-    </p>
-    <hr />
-    <p class="note">{{ manifesto.funding }}</p>
-    <p class="note">
-      <a :href="manifesto.openSource.link.href">
-        {{ manifesto.openSource.link.label }}
-      </a>
-      {{ manifesto.openSource.trailing }}
-    </p>
+    <div class="aside">
+      <SectionIntro :eyebrow="manifesto.eyebrow" :heading="manifesto.heading" />
+    </div>
+    <div class="body reveal">
+      <p v-for="paragraph in manifesto.paragraphs" :key="paragraph">
+        {{ paragraph }}
+      </p>
+      <p class="pull">{{ manifesto.funding }}</p>
+      <p class="note">
+        <a :href="manifesto.openSource.link.href">
+          {{ manifesto.openSource.link.label }}
+        </a>
+        {{ manifesto.openSource.trailing }}
+      </p>
+    </div>
   </section>
 </template>
 
 <style scoped>
 .manifesto {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3rem;
   width: 100%;
-  max-width: var(--prose-width);
+  max-width: var(--content-width);
   margin: 0 auto;
-  padding: var(--section-gap) var(--gutter);
+  padding: var(--section-gap) var(--gutter) 0;
   box-sizing: border-box;
-  border-top: 1px solid var(--color-border);
-  text-align: center;
-  font-size: 1.1rem;
-  line-height: 1.75;
 }
 
-h2 {
-  margin: 0 0 2rem;
-  font-size: clamp(1.4rem, 3vw, 1.9rem);
-  font-weight: 600;
-  line-height: 1.2;
+.body {
+  max-width: var(--prose-width);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+.body p {
+  margin: 0 0 1.5rem;
+  text-wrap: pretty;
+}
+
+.body p:first-child {
+  font-size: var(--text-lede);
+  line-height: 1.6;
   color: var(--color-text-strong);
-  background: var(--gradient-heading);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
-p {
-  margin: 0 0 1.25rem;
+.body .pull {
+  margin: 2.5rem 0;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--color-border-strong);
+  border-bottom: 1px solid var(--color-border-strong);
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  font-style: italic;
+  line-height: 1.25;
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text-strong);
 }
 
-hr {
-  width: 70%;
-  margin: 2.5rem auto;
-  border: none;
-  border-top: 1px solid var(--color-border-soft);
-}
-
-.note {
-  font-size: 1rem;
+.body .note {
+  font-size: var(--text-small);
   color: var(--color-text-muted);
 }
 
 a {
-  color: var(--color-accent);
-  text-decoration: none;
-  transition: color var(--transition-fast);
+  color: var(--color-text-strong);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 0.25em;
+  transition: text-decoration-color var(--duration-fast) ease;
 }
 
 a:hover {
-  color: var(--color-accent-hover);
-  text-decoration: underline;
+  text-decoration-color: currentcolor;
+}
+
+@media (min-width: 960px) {
+  .manifesto {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 5rem;
+  }
+
+  .aside {
+    position: sticky;
+    top: calc(var(--header-height) + 2.5rem);
+    align-self: start;
+  }
 }
 </style>

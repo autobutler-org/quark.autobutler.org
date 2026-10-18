@@ -33,55 +33,55 @@ useSeoMeta({ title: () => `${heading.value} — Quark` });
   width: 100%;
   max-width: var(--prose-width);
   margin: 0 auto;
-  padding: 5rem var(--gutter) var(--section-gap);
+  padding: clamp(4rem, 9vw, 7rem) var(--gutter) var(--section-gap);
   box-sizing: border-box;
 }
 
 .status {
-  margin: 0 0 0.5rem;
-  font-weight: 600;
-  color: var(--color-accent);
+  margin: 0 0 1.25rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
 }
 
 h1 {
-  margin: 0 0 var(--gutter);
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 600;
-  line-height: 1.2;
+  margin: 0 0 1.25rem;
+  font-family: var(--font-serif);
+  font-size: var(--text-h1);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tight);
   color: var(--color-text-strong);
-  background: var(--gradient-heading);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .body {
-  margin: 0 0 2rem;
-  font-size: 1.15rem;
-  line-height: 1.6;
+  margin: 0 0 2.5rem;
+  font-size: var(--text-lede);
   color: var(--color-text-muted);
 }
 
 .links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .links a {
-  padding: 0.75rem 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1.25rem;
+  border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
   background: var(--color-surface);
   color: var(--color-text-strong);
+  font-weight: 500;
   text-decoration: none;
-  transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast);
+  transition: border-color var(--duration-fast) ease;
 }
 
 .links a:hover {
-  background: var(--color-surface-hover);
-  border-color: var(--color-accent-border);
+  border-color: var(--color-text-muted);
 }
 </style>

@@ -13,11 +13,21 @@ export interface Feature {
   readonly body: string;
   /** Shown next to the name, matching the marker the app puts on the feature. */
   readonly badge?: string;
+  /** Not in the app yet: drawn as a dashed, recessed card so it never reads as shipped. */
+  readonly upcoming?: boolean;
+  /** A small decorative sketch for a lead card in the bento grid. */
+  readonly illustration?: "files" | "photos";
 }
 
 export interface Step {
   readonly title: string;
   readonly body: string;
+}
+
+/** One row of a label/value list, e.g. the hero's fact sheet. */
+export interface Fact {
+  readonly label: string;
+  readonly value: string;
 }
 
 /** A paragraph that ends in a link, e.g. "... for transparency." */
@@ -36,8 +46,10 @@ export const masthead = {
     { label: "Support", href: "/support" },
     { label: "Source", href: repoUrl },
     { label: "AutoButler", href: orgSiteUrl },
-    { label: "Sign Up", href: "/signup" },
   ] as readonly Link[],
+  /** Rendered apart from the other links, as the one solid button in the bar. */
+  cta: { label: "Sign up", href: "/signup" } as Link,
+  menuLabel: "Menu",
 } as const;
 
 export const hero = {
@@ -53,6 +65,18 @@ export const hero = {
     "files, and documents, on hardware you own, in a room you can walk into.",
   primary: { label: "Sign up", href: "/signup" } as Link,
   secondary: { label: "See how it works", href: "#how" } as Link,
+  /**
+   * Plain facts about the product and the business, set like a spec sheet
+   * beside the headline. Each one is backed by copy further down the page.
+   */
+  factsLabel: "Quark at a glance",
+  facts: [
+    { label: "Subscription", value: "None" },
+    { label: "Your files live", value: "On a drive in your home" },
+    { label: "Internet", value: "Not needed at home" },
+    { label: "Source code", value: "Public, MIT-0" },
+    { label: "Funding", value: "Customers, not investors" },
+  ] as readonly Fact[],
 } as const;
 
 /** One picture in the shell gallery. Width and height are the file's own, so the page does not shift. */
@@ -70,6 +94,7 @@ export interface Slide {
  * the page.
  */
 export const shellGallery = {
+  eyebrow: "The case",
   heading: "A box that belongs on a shelf.",
   previousLabel: "Previous picture",
   nextLabel: "Next picture",
@@ -127,6 +152,7 @@ export const shellGallery = {
 } as const;
 
 export const manifesto = {
+  eyebrow: "01 — Why Quark",
   heading: "The convenience of the cloud, the privacy of your home.",
   paragraphs: [
     "Why trust your data to anyone besides yourself? Store your photos, documents, " +
@@ -150,6 +176,7 @@ export const manifesto = {
 } as const;
 
 export const howItWorks = {
+  eyebrow: "02 — Setup",
   heading: "Three steps, then it runs itself.",
   steps: [
     {
@@ -175,16 +202,20 @@ export const howItWorks = {
 } as const;
 
 export const features = {
+  eyebrow: "03 — In the app",
   heading: "What you get",
+  lede: "The apps that run on your Quark, against the files on your own drive.",
   items: [
     {
       name: "Files",
+      illustration: "files",
       body:
         "Browse, upload, and organize everything on the drive from any device on the " +
         "network. Drag a folder in from your laptop, pull it down on your phone.",
     },
     {
       name: "Photos",
+      illustration: "photos",
       body:
         "Albums, favorites, and full-resolution originals on your own drive — not a " +
         "compressed copy someone else keeps. Upload the photos you pick, from your phone or a browser.",
@@ -216,6 +247,7 @@ export const features = {
     },
     {
       name: "Remote access",
+      upcoming: true,
       body:
         "Not in the app yet: a private, encrypted path to your Quark from outside the house " +
         "\u2014 not a copy on our servers. Once it ships, it stays off until an admin turns it on.",
@@ -275,6 +307,7 @@ export const features = {
 } as const;
 
 export const callToAction = {
+  eyebrow: "04 — Own it",
   heading: "The cloud, in your home.",
   body:
     "Instead of renting a slice of someone else's data center, you own the whole thing. Pay " +
@@ -297,6 +330,8 @@ export const callToAction = {
  */
 export const newsletter = {
   heading: "Want updates?",
+  body: "Leave your email and we will write when there is news about Quark.",
+  emailLabel: "Email address",
   poweredBy: "Powered by Mailchimp",
   action:
     "https://autobutler.us5.list-manage.com/subscribe/post?u=83e0cf2d6edd852308ba6671f&id=a3382ba074&f_id=00a0c2e1f0",

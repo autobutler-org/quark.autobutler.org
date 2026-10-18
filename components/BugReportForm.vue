@@ -121,65 +121,65 @@ const submitToGitHub = () => {
 <style scoped>
 .report-heading {
   margin: 0 0 0.5rem;
-  font-size: 1.4rem;
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 400;
+  letter-spacing: var(--tracking-snug);
   color: var(--color-text-strong);
 }
 
 .intro {
-  margin: 0 0 2rem;
-  font-size: 1.05rem;
-  line-height: 1.6;
+  margin: 0 0 1.75rem;
   color: var(--color-text-muted);
 }
 
 .intro a {
-  color: var(--color-accent);
-  text-decoration: none;
+  color: var(--color-text-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 0.2em;
 }
 
 .intro a:hover {
-  color: var(--color-accent-hover);
-  text-decoration: underline;
+  text-decoration-color: currentcolor;
 }
 
 .form {
-  padding: 2rem;
+  padding: var(--card-pad);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
 }
 
 .field {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 label,
 .label {
   display: block;
   margin-bottom: 0.5rem;
+  font-size: var(--text-small);
   font-weight: 500;
-  color: var(--color-text-bright);
+  color: var(--color-text-strong);
 }
 
 input[type="text"],
 textarea {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.75rem 0.9rem;
   box-sizing: border-box;
-  background: var(--color-surface-subtle);
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-md);
+  background: var(--color-canvas);
   color: var(--color-text-strong);
-  font-size: 1rem;
-  font-family: inherit;
+  font: inherit;
+  transition: border-color var(--duration-fast) ease;
 }
 
 input[type="text"]:focus,
 textarea:focus {
-  outline: none;
-  border-color: var(--color-accent-faint);
-  background: var(--color-surface-strong);
+  border-color: var(--color-text-muted);
 }
 
 textarea {
@@ -190,53 +190,57 @@ textarea {
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 0.5rem 0;
+  gap: 0.5rem;
 }
 
 .checkbox-label {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-text-bright);
-  font-weight: normal;
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-canvas);
+  color: var(--color-text);
+  font-weight: 400;
   cursor: pointer;
-  font-size: 0.95rem;
+  transition: border-color var(--duration-fast) ease;
+}
+
+.checkbox-label:hover {
+  border-color: var(--color-border-strong);
 }
 
 .checkbox-label input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
   cursor: pointer;
-  width: 1.1rem;
-  height: 1.1rem;
-  accent-color: var(--color-accent);
+  accent-color: var(--color-ink);
 }
 
 button {
   width: 100%;
-  padding: 1rem 2rem;
-  margin-top: 1rem;
-  border: 1px solid var(--color-accent-border);
+  height: 3rem;
+  margin-top: 0.5rem;
+  border: none;
   border-radius: var(--radius-md);
-  background: var(--gradient-accent);
-  color: var(--color-text-strong);
-  font-size: 1.05rem;
-  font-weight: 600;
+  background: var(--color-ink);
+  color: var(--color-on-ink);
+  font: inherit;
+  font-weight: 500;
   cursor: pointer;
-  box-shadow: var(--shadow-accent);
   transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast);
+    background-color var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-out);
 }
 
 button:hover {
-  transform: var(--lift-sm);
-  box-shadow: var(--shadow-accent-hover);
+  background: var(--color-ink-hover);
 }
 
-@media (max-width: 640px) {
-  .checkbox-group {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+button:active {
+  transform: var(--press);
 }
 </style>

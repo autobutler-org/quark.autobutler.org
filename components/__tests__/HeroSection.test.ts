@@ -20,16 +20,28 @@ describe("HeroSection", () => {
     expect(primary.attributes("href")).not.toContain(repoUrl);
   });
 
-  it("renders the brand mark with intrinsic dimensions", () => {
-    const wrapper = mount(HeroSection);
-    const mark = wrapper.get("img");
-    expect(mark.attributes("src")).toBe(hero.logo.src);
-    expect(mark.attributes("width")).toBe("912");
-    expect(mark.attributes("height")).toBe("912");
+  it("offers the in-page how-it-works link as the second action", () => {
+    const hrefs = mount(HeroSection)
+      .findAll("a")
+      .map((anchor) => anchor.attributes("href"));
+    expect(hrefs).toEqual([hero.primary.href, hero.secondary.href]);
   });
 
-  it("marks the logo decorative, since the masthead already names the brand", () => {
+  it("lists every fact as a labelled term and value", () => {
     const wrapper = mount(HeroSection);
-    expect(wrapper.get("img").attributes("alt")).toBe("");
+    const list = wrapper.get("dl");
+    expect(list.attributes("aria-label")).toBe(hero.factsLabel);
+    const terms = list.findAll("dt").map((term) => term.text());
+    const values = list.findAll("dd").map((value) => value.text());
+    expect(terms).toEqual(hero.facts.map((fact) => fact.label));
+    expect(values).toEqual(hero.facts.map((fact) => fact.value));
+  });
+
+  /* The facts sit beside the headline as plain claims; keep them to ones the page backs. */
+  it("states no subscription and an open license in its facts", () => {
+    const text = mount(HeroSection).get("dl").text();
+    expect(text).toMatch(/subscription\s*none/i);
+    expect(text).toContain("MIT-0");
+    expect(text).not.toMatch(/\$|price|free trial/i);
   });
 });
