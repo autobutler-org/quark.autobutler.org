@@ -24,9 +24,9 @@ Reaching Quark when you are away from home is coming soon. When it ships, it sta
 your files still live on your drive — we do not hold a copy. See [How It Works](/docs/how-it-works) for the
 plain-English version.
 
-The only routine contact Quark makes with the public internet is checking for software updates. (Starting an import
-yourself is separate from that default.) Don't take our word for it — the code is public on
-[GitHub](https://github.com/autobutler-org/quark).
+Quark's routine contact with the public internet is fetching security fixes for the operating system underneath. It
+looks for new Quark versions only when someone opens the Updates tab. (Starting an import yourself is separate from
+that default.) Don't take our word for it — the code is public on [GitHub](https://github.com/autobutler-org/quark).
 
 ## How can we trust you?
 
