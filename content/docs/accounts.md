@@ -3,7 +3,7 @@ title: Accounts and Sharing
 description: Admins and members, homes and group folders, sharing levels, and how accounts are added, turned off and removed
 navigation:
   title: Accounts and Sharing
-  order: 19
+  order: 20
 ---
 
 # Accounts and Sharing

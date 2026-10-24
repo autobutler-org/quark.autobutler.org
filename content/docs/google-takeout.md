@@ -67,7 +67,12 @@ Once uploaded, your zip file is sitting in Quark but still compressed. To get yo
 1. Find the uploaded `.zip` file in the Files view
 2. Right-click it (or tap the **⋮** menu)
 3. Select **Extract here**
-4. Quark will unpack the zip in place — this may take a moment for large archives
+4. The menu entry reads **Extracting...** while it works. Large archives take a while.
+
+The contents land in a new folder beside the zip, named after it: `takeout-20240101-001.zip` becomes a
+`takeout-20240101-001` folder. If a folder with that name is already there, Quark never merges into it. The new folder
+gets a number instead, like `takeout-20240101-001_(1)`. Nothing shows up until the whole zip is out. See
+[Archives](/docs/files#extract-here).
 
 > **About Google Photos' nested structure:** Google Photos exports put your photos inside a folder called
 > `Google Photos`, then inside year folders like `Photos from 2022`. Inside each year folder you'll find your photos
@@ -101,6 +106,10 @@ extracting, just extract those too — Quark handles zip extraction at any level
 
 **What about Google Docs files?** Google Docs, Sheets, and Slides export as Microsoft Office formats (`.docx`,
 `.xlsx`, `.pptx`) or as `.pdf`. They'll show up in your files just like any other document.
+Word files don't open inside Quark yet, and [Docs](/docs/docs-editor) can't import them. Download a `.docx` to edit it
+elsewhere, or start new documents in Docs.
+Open a `.pptx` in [Slides (Beta)](/docs/slides#powerpoint-in-and-out) with **Import PowerPoint**, or **Open as
+presentation** from its menu in Files.
 Open an `.xlsx` in Files and Quark offers to convert it into a spreadsheet you can edit; see
 [Sheets](/docs/sheets#bring-a-spreadsheet-into-quark).
 

@@ -3,7 +3,7 @@ title: Settings Reference
 description: Every Settings tab, the admin-only controls, and exactly what Delete account and Reset this Quark erase
 navigation:
   title: Settings Reference
-  order: 17
+  order: 18
 ---
 
 # Settings Reference

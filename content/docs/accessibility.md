@@ -3,7 +3,7 @@ title: Accessibility
 description: What to expect from Quark with large text, a screen reader, a keyboard, high contrast, or reduced motion
 navigation:
   title: Accessibility
-  order: 24
+  order: 25
 ---
 
 # Accessibility

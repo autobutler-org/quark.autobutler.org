@@ -3,7 +3,7 @@ title: Self-Hosting
 description: Run Quark on your own Linux machine or in a container — what it installs, where it keeps data, and fixes
 navigation:
   title: Self-Hosting
-  order: 20
+  order: 21
 ---
 
 # Self-Hosting
