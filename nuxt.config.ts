@@ -60,7 +60,13 @@ export default defineNuxtConfig({
         { name: "theme-color", content: "#f7f6f3", media: "(prefers-color-scheme: light)" },
         { name: "theme-color", content: "#161615", media: "(prefers-color-scheme: dark)" },
       ],
-      link: [{ rel: "icon", type: "image/png", href: "/favicon.png" }],
+      link: [
+        { rel: "icon", href: "/favicon.ico", sizes: "any" },
+        { rel: "icon", type: "image/png", href: "/favicon.png" },
+        { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+        { rel: "icon", type: "image/png", sizes: "192x192", href: "/icon-192.png" },
+        { rel: "icon", type: "image/png", sizes: "512x512", href: "/icon-512.png" },
+      ],
     },
   },
   content: {
