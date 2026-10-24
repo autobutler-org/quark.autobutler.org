@@ -9,7 +9,7 @@ navigation:
 # Nerd Notes
 
 A technical mirror of the [Quark README](https://github.com/autobutler-org/quark).
-If you want to understand what's running in your house, this is the page. It matches Quark 0.55.0.
+If you want to understand what's running in your house, this is the page. It matches Quark 0.56.1.
 
 ---
 
@@ -48,7 +48,7 @@ Every release publishes an image to the GitHub Container Registry, for `linux/am
 
 | Tag                                   | What it is                                                |
 | ------------------------------------- | --------------------------------------------------------- |
-| `ghcr.io/autobutler-org/quark:0.55.0` | One release. The tag is the version without the `v`       |
+| `ghcr.io/autobutler-org/quark:0.56.1` | One release. The tag is the version without the `v`       |
 | `ghcr.io/autobutler-org/quark:latest` | The newest release. It moves each time a release goes out |
 
 The image doesn't build Quark. It downloads that release's Linux archive, checks it against the release's checksums,
@@ -328,7 +328,7 @@ and a recovery with the phrase keeps the vault when the phrase wraps it. There i
 password and your phrase and the vault is gone, and **Start over** deletes it so you can make a new one.
 
 **Remote access.** It's off until an admin turns it on in **Settings → Network**, and it's in release builds from
-0.55.0. When it's on, a private-network node built into the `quark` binary joins a network AutoButler coordinates at
+0.56.1. When it's on, a private-network node built into the `quark` binary joins a network AutoButler coordinates at
 `quark.ts.autobutler.org` and passes requests to Quark over loopback. Nothing is opened on your router. The node keeps
 its state in `/var/lib/quark/tsnet`. [Remote Access](/docs/remote-access) covers what the app shows.
 
