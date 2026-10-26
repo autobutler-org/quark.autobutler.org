@@ -109,8 +109,8 @@ docker run --rm ghcr.io/autobutler-org/quark:latest version
 ```
 
 USB drives need `--privileged`, which gives the container power over the host's devices.
-[Self-Hosting](/docs/nerd-notes/self-hosting#in-a-container) covers that, bind mounts, proxies, PostgreSQL and Kubernetes in
-full. To run your own build instead, see [Development](#development).
+[Self-Hosting](/docs/nerd-notes/self-hosting#in-a-container) covers that, bind mounts, proxies, PostgreSQL and
+Kubernetes in full. To run your own build instead, see [Development](#development).
 
 ### First boot
 

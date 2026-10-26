@@ -65,10 +65,9 @@ describe("internal docs links", () => {
 
 describe("docs redirects", () => {
   it("each send a URL that is no longer a doc to one that is", () => {
-    for (const [from, to] of Object.entries(docsRedirects)) {
-      expect(docs.has(from), from).toBe(false);
-      expect(docs.has(to), `${from} → ${to}`).toBe(true);
-    }
+    const entries = Object.entries(docsRedirects);
+    expect(entries.filter(([from]) => docs.has(from))).toEqual([]);
+    expect(entries.filter(([, to]) => !docs.has(to))).toEqual([]);
   });
 });
 
@@ -107,7 +106,11 @@ describe("docLinks", () => {
   it("finds Markdown links and hrefs, with and without anchors", () => {
     expect(
       docLinks('See [Files](/docs/files#trash) and [Docs](/docs/).\n{ href: "/docs/help" }')
-    ).toEqual([{ path: "/docs/files", anchor: "trash" }, { path: "/docs" }, { path: "/docs/help" }]);
+    ).toEqual([
+      { path: "/docs/files", anchor: "trash" },
+      { path: "/docs" },
+      { path: "/docs/help" },
+    ]);
   });
 
   it("ignores links to other sites and to /assets", () => {

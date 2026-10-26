@@ -115,9 +115,9 @@ hosts**.
 
 ### Why the browser warns you
 
-Quark encrypts every connection with a certificate it makes for itself. No public certificate authority can vouch for
-a device that only exists on your WiFi, so your browser warns you. The encryption is real. The
-[Getting Started guide](/docs/start/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it in full.
+Quark encrypts every connection with a certificate it makes for itself. No public certificate authority can vouch for a
+device that only exists on your WiFi, so your browser warns you. The encryption is real. The [Getting Started
+guide](/docs/start/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it in full.
 
 You see the warning:
 

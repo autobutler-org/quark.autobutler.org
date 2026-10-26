@@ -36,8 +36,8 @@ length. It comes back on a new browser, about once a year when the certificate i
 ### I'm getting an error when I try to install Quark
 
 There is no installer to download. Releases are Linux archives for `x86_64` and `arm64`, plus a container image.
-[Self-Hosting](/docs/nerd-notes/self-hosting) covers both, and what each message from `sudo quark install` means. If you're still
-stuck, [open a GitHub issue](https://github.com/autobutler-org/quark/issues) and someone will help.
+[Self-Hosting](/docs/nerd-notes/self-hosting) covers both, and what each message from `sudo quark install` means. If
+you're still stuck, [open a GitHub issue](https://github.com/autobutler-org/quark/issues) and someone will help.
 
 ### Quark doesn't work with my VPN
 

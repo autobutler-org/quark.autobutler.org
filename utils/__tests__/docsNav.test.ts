@@ -11,7 +11,12 @@ const doc = (path: string, order?: number): NavDoc => ({
 
 describe("docsNav", () => {
   it("follows the app drawer: Start here, Household, Manage, then Help and Nerd Notes", () => {
-    expect(docsNav.map((group) => group.label)).toEqual([undefined, "Household", "Manage", undefined]);
+    expect(docsNav.map((group) => group.label)).toEqual([
+      undefined,
+      "Household",
+      "Manage",
+      undefined,
+    ]);
     expect(docsNav.flatMap((group) => group.categories.map((category) => category.title))).toEqual([
       "Start here",
       "Files",
