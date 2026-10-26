@@ -1,3 +1,5 @@
+import { docsRedirects } from "./data/docsRedirects";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2026-08-01",
@@ -17,9 +19,16 @@ export default defineNuxtConfig({
   nitro: {
     static: true,
     prerender: {
-      routes: ["/sitemap.xml"],
+      // Old docs URLs are prerendered too, so each gets a static meta-refresh page.
+      routes: ["/sitemap.xml", ...Object.keys(docsRedirects)],
     },
   },
+  /*
+   * Docs that moved keep their old URL working. See data/docsRedirects.ts.
+   */
+  routeRules: Object.fromEntries(
+    Object.entries(docsRedirects).map(([from, to]) => [from, { redirect: to }])
+  ),
   app: {
     head: {
       htmlAttrs: { lang: "en" },

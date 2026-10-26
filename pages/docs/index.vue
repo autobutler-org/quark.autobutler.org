@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { docsIndex, docsPreviewCount } from "~/data/copy";
+import { docsIndex } from "~/data/copy";
+import { groupDocs } from "~/utils/docsNav";
 import { searchDocs, searchTerms, sectionsFromBody, type SearchableDoc } from "~/utils/docsSearch";
 
 const { data: docs } = await useAsyncData("docs-index", () =>
@@ -16,14 +17,15 @@ const { data: sections } = await useAsyncData("docs-search-sections", async () =
   return bodies.flatMap((doc) => sectionsFromBody(doc.path, doc.body));
 });
 
+/** The same app-menu categories, in the same order, as the sidebar on every doc page. */
+const groups = computed(() => groupDocs((docs.value ?? []) as unknown as SearchableDoc[]));
+
+/** Search ranks ties in sidebar order, so results read like the menu. */
 const sortedDocs = computed(() =>
-  ((docs.value ?? []) as unknown as SearchableDoc[])
-    .slice()
-    .sort((a, b) => (a.navigation?.order ?? 999) - (b.navigation?.order ?? 999))
+  groups.value.flatMap((group) => group.categories.flatMap((category) => category.docs))
 );
 
-/** The first few by `navigation.order` — a curated set is still an open decision. */
-const previewDocs = computed(() => sortedDocs.value.slice(0, docsPreviewCount));
+const indexPath = (slug: string): string => `/docs/${slug}`;
 
 const query = ref("");
 const isSearching = computed(() => searchTerms(query.value).length > 0);
@@ -96,23 +98,35 @@ useSeoMeta({
     </template>
 
     <template v-else>
-      <h2 class="section-heading">{{ docsIndex.previewHeading }}</h2>
-      <div class="grid">
-        <NuxtLink v-for="doc in previewDocs" :key="doc.path" :to="doc.path" class="card">
-          <h3>{{ doc.navigation?.title || doc.title }}</h3>
-          <p>{{ doc.description }}</p>
-        </NuxtLink>
-      </div>
-
-      <h2 class="section-heading">{{ docsIndex.allHeading }}</h2>
-      <ul class="all-docs">
-        <li v-for="doc in sortedDocs" :key="doc.path">
-          <NuxtLink :to="doc.path" class="row">
-            <span class="row-title">{{ doc.navigation?.title || doc.title }}</span>
-            <span class="row-desc">{{ doc.description }}</span>
-          </NuxtLink>
-        </li>
-      </ul>
+      <section
+        v-for="(group, groupIndex) in groups"
+        :key="group.label ?? groupIndex"
+        class="group"
+        :aria-label="group.label"
+      >
+        <h2 v-if="group.label" class="section-heading">{{ group.label }}</h2>
+        <div class="grid">
+          <section v-for="category in group.categories" :key="category.slug" class="category">
+            <h3>
+              <NuxtLink
+                v-if="category.docs.some((doc) => doc.path === indexPath(category.slug))"
+                :to="indexPath(category.slug)"
+              >
+                {{ category.title }}
+              </NuxtLink>
+              <template v-else>{{ category.title }}</template>
+            </h3>
+            <ul class="category-docs">
+              <li v-for="doc in category.docs" :key="doc.path">
+                <NuxtLink :to="doc.path" class="row">
+                  <span class="row-title">{{ doc.navigation?.title || doc.title }}</span>
+                  <span class="row-desc">{{ doc.description }}</span>
+                </NuxtLink>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
     </template>
   </section>
 </template>
@@ -224,7 +238,7 @@ h1 {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
   gap: 0.75rem;
   margin-bottom: 4.5rem;
 }
@@ -288,30 +302,59 @@ h1 {
   color: var(--pastel-yellow-ink);
 }
 
-.all-docs {
+.group + .group {
+  margin-top: 1rem;
+}
+
+.category {
+  padding: 1.5rem 1.75rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.category h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-snug);
+  color: var(--color-text-strong);
+}
+
+.category h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.category h3 a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 0.2em;
+}
+
+.category-docs {
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--color-text-strong);
+}
+
+.category-docs li + li {
+  border-top: 1px solid var(--color-border);
 }
 
 .row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 0.25rem 2rem;
-  align-items: baseline;
-  padding: 1.1rem 0;
-  border-bottom: 1px solid var(--color-border);
+  gap: 0.2rem;
+  padding: 0.75rem 0;
   color: inherit;
   text-decoration: none;
 }
 
 .row-title {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  letter-spacing: var(--tracking-snug);
+  font-weight: 500;
   color: var(--color-text-strong);
-  transition: color var(--duration-fast) ease;
 }
 
 .row:hover .row-title {
@@ -325,12 +368,6 @@ h1 {
   font-size: var(--text-small);
   line-height: 1.55;
   color: var(--color-text-muted);
-}
-
-@media (min-width: 640px) {
-  .row {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-  }
 }
 
 .empty {

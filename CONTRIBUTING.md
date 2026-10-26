@@ -67,6 +67,13 @@ Only describe features Quark actually ships — check the product repository's
 `README.md` and `docs/user-journeys/` first. Don't invent prices, dates, or
 availability.
 
+## Writing docs
+
+Docs pages live in `content/docs/`, one folder per item in the Quark app's main
+menu. Every page follows [`docs/page-template.md`](docs/page-template.md):
+plain language first, then a `## Nerd Notes` section at the bottom for the
+technical detail.
+
 ## Found a bug or have an idea?
 
 [Open an issue](https://github.com/autobutler-org/quark.autobutler.org/issues/new/choose).
