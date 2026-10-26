@@ -52,7 +52,10 @@ const navTitle = (doc: NavDoc): string => doc.navigation?.title || doc.title;
             v-for="category in group.categories"
             :key="category.slug"
             class="category"
-            :class="{ current: category.slug === currentCategory }"
+            :class="{
+              current: category.slug === currentCategory,
+              'has-index': category.docs.some((doc) => doc.path === indexPath(category.slug)),
+            }"
           >
             <NuxtLink
               v-if="category.docs.some((doc) => doc.path === indexPath(category.slug))"
@@ -210,8 +213,11 @@ a.category-title:hover,
     display: block;
   }
 
-  /* Only the current category's pages stay expanded in the drawer. */
-  .category:not(.current) > .pages {
+  /*
+   * In the drawer, other categories collapse to their own page, which links
+   * the rest. A category without one (Start here) stays expanded.
+   */
+  .category.has-index:not(.current) > .pages {
     display: none;
   }
 }
