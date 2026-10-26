@@ -190,7 +190,7 @@ While presenting:
 | F                              | Toggle fullscreen  |
 | Esc                            | End the show       |
 
-## Calendar (beta)
+## Calendar
 
 In Week and Day view, focus an event with Tab, then:
 
@@ -199,6 +199,8 @@ In Week and Day view, focus an event with Tab, then:
 | Alt+↑ ↓       | Move the event 15 minutes earlier / later     |
 | Alt+← →       | Move the event a day earlier / later          |
 | Alt+Shift+↑ ↓ | Make the event end 15 minutes earlier / later |
+| Esc           | Cancel a drag before you let go               |
+| Ctrl/⌘+Z      | Undo the last move                            |
 
 ## Chat
 
