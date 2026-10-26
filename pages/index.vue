@@ -12,7 +12,7 @@ useHead({
         name: "Quark",
         url: "https://quark.autobutler.org",
         description:
-          "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home.",
+          "Quark plugs into your router and gives you a private home cloud. Keep photos and files on storage in your home.",
         applicationCategory: "UtilitiesApplication",
         codeRepository: "https://github.com/autobutler-org/quark",
         publisher: {
