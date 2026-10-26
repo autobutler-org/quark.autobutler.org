@@ -11,7 +11,7 @@ navigation:
 Sheets is Quark's spreadsheet editor. A spreadsheet is a `.qsheet` file on your Quark, so it sits in Files like
 anything else and opens from any browser or phone on your home network.
 
-Formulas have their own page: [Sheets formulas](/docs/sheets-formulas).
+Formulas have their own page: [Sheets formulas](/docs/sheets/formulas).
 
 ---
 
@@ -229,6 +229,6 @@ A `.qsheet` is an ordinary file in Files. You can move it, rename it, share it w
 
 ## Related
 
-- [Sheets formulas](/docs/sheets-formulas) — every function, and where formulas differ from Excel
-- [Docs](/docs/docs-editor) — the document editor
-- [Google Takeout](/docs/google-takeout) — moving files over from Google
+- [Sheets formulas](/docs/sheets/formulas) — every function, and where formulas differ from Excel
+- [Docs](/docs/docs) — the document editor
+- [Google Takeout](/docs/files/google-takeout) — moving files over from Google

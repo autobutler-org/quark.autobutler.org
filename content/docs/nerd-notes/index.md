@@ -34,13 +34,13 @@ There is no AI in Quark. The binary and the apps carry no models, and nothing ca
 ## Installation
 
 For your own Linux machine, the container in depth, and what `quark install` changes, see
-[Self-Hosting](/docs/self-hosting).
+[Self-Hosting](/docs/nerd-notes/self-hosting).
 
 ### On a Quark device
 
 The device runs Quark as a systemd service (`quark serve`), set up by `quark install`. It serves HTTPS on `:443`
 with a self-signed certificate it generates on first boot. Open `https://quark.local` (or your hostname) and expect a
-certificate warning; [Getting Started](/docs/getting-started) explains why.
+certificate warning; [Getting Started](/docs/start/getting-started) explains why.
 
 ### With Docker
 
@@ -109,7 +109,7 @@ docker run --rm ghcr.io/autobutler-org/quark:latest version
 ```
 
 USB drives need `--privileged`, which gives the container power over the host's devices.
-[Self-Hosting](/docs/self-hosting#in-a-container) covers that, bind mounts, proxies, PostgreSQL and Kubernetes in
+[Self-Hosting](/docs/nerd-notes/self-hosting#in-a-container) covers that, bind mounts, proxies, PostgreSQL and Kubernetes in
 full. To run your own build instead, see [Development](#development).
 
 ### First boot
@@ -330,7 +330,7 @@ password and your phrase and the vault is gone, and **Start over** deletes it so
 **Remote access.** It's off until an admin turns it on in **Settings → Network**, and it's in release builds from
 0.56.1. When it's on, a private-network node built into the `quark` binary joins a network AutoButler coordinates at
 `quark.ts.autobutler.org` and passes requests to Quark over loopback. Nothing is opened on your router. The node keeps
-its state in `/var/lib/quark/tsnet`. [Remote Access](/docs/remote-access) covers what the app shows.
+its state in `/var/lib/quark/tsnet`. [Remote Access](/docs/settings/remote-access) covers what the app shows.
 
 **Updates.** Quark never updates itself, and there's no automatic-update switch. An admin picks a version under
 **Update Quark to version** in **Settings → Updates** and clicks **Start update**, or calls

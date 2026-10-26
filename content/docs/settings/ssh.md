@@ -82,5 +82,5 @@ The helper enables `ssh.service` and keeps `ssh.socket` off. If `ufw` is install
 
 ## Related
 
-- [Security Guide](/docs/security-guide) — what to check if you think someone got in
+- [Security Guide](/docs/help/security-guide) — what to check if you think someone got in
 - [Nerd Notes](/docs/nerd-notes) — how Quark runs on the box

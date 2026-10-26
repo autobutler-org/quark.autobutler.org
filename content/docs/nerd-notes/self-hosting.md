@@ -8,7 +8,7 @@ navigation:
 
 # Self-Hosting
 
-Most people run Quark on a Quark device, and [Getting Started](/docs/getting-started) covers that. This page is for
+Most people run Quark on a Quark device, and [Getting Started](/docs/start/getting-started) covers that. This page is for
 running it on hardware you already have. There are two supported routes:
 
 | Route                                         | Good for                      | How you reach it                     |
@@ -72,7 +72,7 @@ again is safe: it repairs an existing install, and it never overwrites the binar
 
 On a phone or computer on the same network, open `https://<hostname>.local` (with `avahi-daemon` running) or
 `https://<the machine's IP address>`. Your browser warns that the connection is not private. That is expected;
-[Getting Started](/docs/getting-started#your-browser-warns-you-the-connection-is-not-private) explains why. Then you
+[Getting Started](/docs/start/getting-started#your-browser-warns-you-the-connection-is-not-private) explains why. Then you
 get the same first-run setup a Quark device shows: the terms, your owner account, and a theme.
 
 ### Where things live
@@ -306,4 +306,4 @@ Quark exits to finish an update, and nothing started it again. Run the container
 
 - [Nerd Notes](/docs/nerd-notes) — the stack, the API, and building from source
 - [Help & Support](/docs/help) — everyday troubleshooting and how to reach us
-- [Security Guide](/docs/security-guide) — backups and the rest of what every owner should do
+- [Security Guide](/docs/help/security-guide) — backups and the rest of what every owner should do

@@ -136,4 +136,4 @@ A `.qdoc` is an ordinary file in Files. You can move it, rename it, share it wit
 ## Related
 
 - [Sheets](/docs/sheets) — the spreadsheet editor
-- [Getting Started](/docs/getting-started) — Files, sharing, and Trash
+- [Getting Started](/docs/start/getting-started) — Files, sharing, and Trash

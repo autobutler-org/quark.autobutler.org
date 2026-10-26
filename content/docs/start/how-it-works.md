@@ -41,7 +41,7 @@ What it is meant to be when it ships: a private path to your box, not a hosted c
 we do not store a copy of them. It stays off until an admin turns it on, each Quark gets its own network rather than
 being pooled with other households, and turning it off again is one switch.
 
-[Remote Access](/docs/remote-access) shows what **Settings → Network** displays today.
+[Remote Access](/docs/settings/remote-access) shows what **Settings → Network** displays today.
 
 ## What Quark stores
 
@@ -53,7 +53,7 @@ When you plug in a drive, Quark keeps things in ordinary folders:
 
 Everything is real files in real folders. No proprietary lock-in. On a plugged-in drive, those folders sit inside
 `quark/data/files/`, a folder Quark makes for itself. Files already on the drive outside it do not show up in Quark
-until you bring them in. See [Storage and Backups](/docs/storage-and-backups).
+until you bring them in. See [Storage and Backups](/docs/system/storage-and-backups).
 
 ## The files live on the drive, not in the box
 
@@ -76,8 +76,8 @@ drive somewhere a bad day cannot reach — a fireproof box, a relative's house. 
 afternoon rather than your photos.
 
 Quark can make that second copy for you, when an admin starts it: a **snapshot backup** on **System → Storage**. It
-does not run on a schedule yet, so start one every so often. [Storage and Backups](/docs/storage-and-backups) covers
+does not run on a schedule yet, so start one every so often. [Storage and Backups](/docs/system/storage-and-backups) covers
 the steps and how to get files back.
 
 The plan is still the ordinary one: a second drive, and a third copy somewhere that is
-not your house. See the [Security Guide](/docs/security-guide) for the 3-2-1 version of that.
+not your house. See the [Security Guide](/docs/help/security-guide) for the 3-2-1 version of that.

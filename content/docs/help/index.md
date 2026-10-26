@@ -22,21 +22,21 @@ navigation:
   can't open `.local` names
 - On an old browser or tablet, the page may never load: Quark needs TLS 1.3
 - Try restarting your router and your Quark device
-- [Connecting](/docs/connecting#when-it-wont-connect) has the full list, including the phone apps' messages
+- [Connecting](/docs/start/connecting#when-it-wont-connect) has the full list, including the phone apps' messages
 
 ### My browser says the connection is not private
 
 Expected, and safe to continue past. Click **Advanced**, then **Proceed** (on Safari, **Show Details**, then **visit this
 website**). Quark encrypts the connection with a certificate it makes for itself; the warning means no
 public certificate authority countersigned it, which none can do for a device on your own WiFi. The
-[Getting Started guide](/docs/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it at
+[Getting Started guide](/docs/start/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it at
 length. It comes back on a new browser, about once a year when the certificate is replaced, and on addresses like
-`quark.lan`; [Connecting](/docs/connecting#the-certificate) explains each.
+`quark.lan`; [Connecting](/docs/start/connecting#the-certificate) explains each.
 
 ### I'm getting an error when I try to install Quark
 
 There is no installer to download. Releases are Linux archives for `x86_64` and `arm64`, plus a container image.
-[Self-Hosting](/docs/self-hosting) covers both, and what each message from `sudo quark install` means. If you're still
+[Self-Hosting](/docs/nerd-notes/self-hosting) covers both, and what each message from `sudo quark install` means. If you're still
 stuck, [open a GitHub issue](https://github.com/autobutler-org/quark/issues) and someone will help.
 
 ### Quark doesn't work with my VPN
@@ -45,7 +45,7 @@ This is expected. Quark runs on your local network, and connecting through a VPN
 the two conflict. Disable your VPN when accessing Quark on your home network.
 
 Built-in remote access, separate from your VPN, is coming soon — **Settings → Network** shows it as **Coming soon** for
-now. See [How It Works](/docs/how-it-works) for what it will do.
+now. See [How It Works](/docs/start/how-it-works) for what it will do.
 
 ### I'm having performance issues
 
@@ -72,14 +72,14 @@ Refreshing the page is the last resort. [Files](/docs/files#uploading) has the d
 
 Open **Trash** from the app drawer. You can restore it for about 30 days, or delete it permanently.
 Trash is a change-your-mind window, not a forever recycle bin. See
-[Getting Started](/docs/getting-started).
+[Getting Started](/docs/start/getting-started).
 
 ### My drive is still full after I deleted files
 
 Deleting moves files to **Trash**, and Trash still takes up room. Each drive keeps its own trash, on that drive.
 Anything there is deleted for good after 30 days. To free the space now, open **Trash** and choose **Delete
 permanently** on what you don't need, or **Empty trash**. See
-[Trash still uses space](/docs/files#trash-still-uses-space).
+[Trash still uses space](/docs/trash#trash-still-uses-space).
 
 ---
 
@@ -256,4 +256,4 @@ The master password is wrong. There is no reset, so if you forgot it, the vault 
 → [support@autobutler.org](mailto:support@autobutler.org)
 
 When you report a problem, include your Quark's version and your app's version.
-[Versions and release notes](/docs/versions) shows where to find both.
+[Versions and release notes](/docs/settings/versions) shows where to find both.

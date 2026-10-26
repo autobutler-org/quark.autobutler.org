@@ -21,7 +21,7 @@ By default, Quark works on your home network. Devices on your WiFi talk to Quark
 the drive you plugged in.
 
 Reaching Quark when you are away from home is coming soon. When it ships, it stays off until an admin turns it on, and
-your files still live on your drive — we do not hold a copy. See [How It Works](/docs/how-it-works) for the
+your files still live on your drive — we do not hold a copy. See [How It Works](/docs/start/how-it-works) for the
 plain-English version.
 
 Quark's routine contact with the public internet is fetching security fixes for the operating system underneath. It
@@ -37,16 +37,16 @@ We're on Reddit at [r/autobutler](https://www.reddit.com/r/autobutler/) if you w
 
 ## Getting started
 
-Ready? See the [Getting Started](/docs/getting-started) guide.
+Ready? See the [Getting Started](/docs/start/getting-started) guide.
 
 ## Need help?
 
-- **[Getting Started](/docs/getting-started)** — day-to-day use
-- **[How It Works](/docs/how-it-works)** — local-first, explained plainly
+- **[Getting Started](/docs/start/getting-started)** — day-to-day use
+- **[How It Works](/docs/start/how-it-works)** — local-first, explained plainly
 - **[Help & Support](/docs/help)** — troubleshooting and how to reach us
-- **[Security Guide](/docs/security-guide)** — passwords, backups, and what Quark does not do
-- **[Accessibility](/docs/accessibility)** — large text, screen readers, high contrast, and reduced motion
-- **[Keyboard Shortcuts](/docs/keyboard-shortcuts)** — every shortcut, grouped by where you are
+- **[Security Guide](/docs/help/security-guide)** — passwords, backups, and what Quark does not do
+- **[Accessibility](/docs/help/accessibility)** — large text, screen readers, high contrast, and reduced motion
+- **[Keyboard Shortcuts](/docs/help/keyboard-shortcuts)** — every shortcut, grouped by where you are
 
 ## Legal
 

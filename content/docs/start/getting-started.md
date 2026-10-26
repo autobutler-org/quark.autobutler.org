@@ -25,7 +25,7 @@ Worth having, though not required to finish setup:
 
 - **A spare USB drive or external hard drive.** Quark works fine without one, but everything then lives on a single
   device. If that device fails, the files go with it. A second drive you copy the irreplaceable folders onto is the
-  cheapest insurance there is — see the [Security Guide](/docs/security-guide).
+  cheapest insurance there is — see the [Security Guide](/docs/help/security-guide).
 
 Steps:
 
@@ -33,7 +33,7 @@ Steps:
 2. Attach any extra storage you want Quark to manage.
 3. Wait a minute for it to come up.
 4. On a phone or computer already on that home WiFi, open a browser and go to **`https://quark.local`**. If that
-   doesn't open, [Connecting](/docs/connecting#finding-your-quark) lists the other addresses to try.
+   doesn't open, [Connecting](/docs/start/connecting#finding-your-quark) lists the other addresses to try.
 5. Your browser will warn you that the connection is not private. That is expected — see
    [below](#your-browser-warns-you-the-connection-is-not-private). Continue past it.
 6. Read the terms. They are the first screen, before anything else. The page opens with a plain-language summary —
@@ -75,7 +75,7 @@ So the warning means "this certificate was not countersigned by a stranger," not
 own network, talking to your own box, you are the one vouching for it. Your browser will remember once you proceed.
 
 The warning comes back on a new browser or device, and about once a year when Quark replaces its certificate.
-[Connecting](/docs/connecting#the-certificate) lists every time you'll see it. The phone apps never show it.
+[Connecting](/docs/start/connecting#the-certificate) lists every time you'll see it. The phone apps never show it.
 
 ---
 
@@ -117,7 +117,7 @@ You'll see your files and folders listed. You can:
   get a details view with **Download** and **Open with…** buttons.
 - **Use the breadcrumb bar** at the top to move back up the folder tree. A member's own folder is as far up as it goes.
 
-[File Types](/docs/file-types) lists which files open in Quark and which only download.
+[File Types](/docs/files/file-types) lists which files open in Quark and which only download.
 
 ### Changing the view
 
@@ -200,7 +200,7 @@ Items stay recoverable for about **30 days**, then an automatic sweep deletes th
 change-your-mind period, not long-term storage.
 
 Trash still takes up space on the drive until it is emptied. More on bulk restore, multiple drives, and who sees what in
-[Files](/docs/files#trash).
+[Files](/docs/trash).
 
 ---
 
@@ -212,7 +212,7 @@ Quark can manage multiple storage devices (hard drives, USB drives) connected to
 - Set it to **Per-device** to see what's on each drive separately
 - When uploading, you may be prompted to choose which device to upload to
 
-Your drives are listed on the **Storage** tab of the **System** page. See [Storage and Backups](/docs/storage-and-backups)
+Your drives are listed on the **Storage** tab of the **System** page. See [Storage and Backups](/docs/system/storage-and-backups)
 for what Quark does with a plugged-in drive and how to back one up.
 
 ---
@@ -228,7 +228,7 @@ phone.
 
 Quark includes an encrypted password vault on your hardware. See [Vault](/docs/vault) for soft-launch
 setup (master password only — no recovery phrase). Details on limits live in the
-[Security Guide](/docs/security-guide).
+[Security Guide](/docs/help/security-guide).
 
 ---
 
@@ -298,15 +298,15 @@ or browser name to look for.
 
 - [Files](/docs/files) — uploads, downloads and archives, search, Trash, and version history
 - [Help & Support](/docs/help) — troubleshooting and how to get in touch
-- [Connecting](/docs/connecting) — finding your Quark, the phone apps, and the certificate
-- [Security Guide](/docs/security-guide) — passwords, backups, and limits
-- [How It Works](/docs/how-it-works) — local-first explained plainly
-- [Google Takeout](/docs/google-takeout) — moving Photos/Drive exports onto Quark
-- [Accounts and Sharing](/docs/accounts) — admins and members, homes, groups, and sharing
+- [Connecting](/docs/start/connecting) — finding your Quark, the phone apps, and the certificate
+- [Security Guide](/docs/help/security-guide) — passwords, backups, and limits
+- [How It Works](/docs/start/how-it-works) — local-first explained plainly
+- [Google Takeout](/docs/files/google-takeout) — moving Photos/Drive exports onto Quark
+- [Accounts and Sharing](/docs/users) — admins and members, homes, groups, and sharing
 - [Settings Reference](/docs/settings) — every Settings tab, and what Delete account and Reset erase
 - [System](/docs/system) — what Health's readings and limits mean, and what Jobs shows
-- [Docs](/docs/docs-editor) — writing, saving, and exporting documents
+- [Docs](/docs/docs) — writing, saving, and exporting documents
 - [Sheets](/docs/sheets) — spreadsheets, and bringing in CSV and Excel files
-- [Sheets formulas](/docs/sheets-formulas) — every function, and where formulas differ from Excel
+- [Sheets formulas](/docs/sheets/formulas) — every function, and where formulas differ from Excel
 - [Chat (Beta)](/docs/chat) — encrypted channels for the people on your Quark
 - [Slides (Beta)](/docs/slides) — presentations, with PowerPoint import and export

@@ -179,5 +179,5 @@ new file holds the same encoding, so it won't play there either.
 ## Related
 
 - [Files](/docs/files) — uploads, downloads, archives, search, and trash
-- [Getting Started](/docs/getting-started)
+- [Getting Started](/docs/start/getting-started)
 - [Photos](/docs/photos)

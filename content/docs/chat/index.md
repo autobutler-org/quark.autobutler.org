@@ -140,5 +140,5 @@ This switch is not a security measure. It hides chat; it does not protect anythi
 
 ## Related
 
-- [Security Guide](/docs/security-guide) — passwords, backups, and limits
-- [Getting Started](/docs/getting-started)
+- [Security Guide](/docs/help/security-guide) — passwords, backups, and limits
+- [Getting Started](/docs/start/getting-started)

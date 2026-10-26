@@ -88,7 +88,7 @@ These reminders appear in the app only.
 ### Keep a copy somewhere else
 
 A backup drive that stays plugged in next to the Quark goes wherever the Quark goes in a fire, flood, or burglary. Plug
-in, back up, unplug, and keep the drive somewhere else. The [Security Guide](/docs/security-guide) has the 3-2-1 rule
+in, back up, unplug, and keep the drive somewhere else. The [Security Guide](/docs/help/security-guide) has the 3-2-1 rule
 this is part of.
 
 ## What a snapshot keeps
@@ -143,6 +143,6 @@ on every drive attached at that moment, a backup drive included. Unplug your bac
 
 ## Related
 
-- [How It Works](/docs/how-it-works) — why your files live on the drive and not in the box
-- [Security Guide](/docs/security-guide) — the 3-2-1 backup rule
-- [Getting Started](/docs/getting-started) — day-to-day use of Files and Trash
+- [How It Works](/docs/start/how-it-works) — why your files live on the drive and not in the box
+- [Security Guide](/docs/help/security-guide) — the 3-2-1 backup rule
+- [Getting Started](/docs/start/getting-started) — day-to-day use of Files and Trash

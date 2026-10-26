@@ -76,5 +76,5 @@ set `QUARK_TRUSTED_PROXIES`, keep `127.0.0.1,::1` in it: remote access reaches Q
 
 ## Related
 
-- [How It Works](/docs/how-it-works) — why Quark is local first
-- [Security Guide](/docs/security-guide) — what Quark talks to on the internet
+- [How It Works](/docs/start/how-it-works) — why Quark is local first
+- [Security Guide](/docs/help/security-guide) — what Quark talks to on the internet

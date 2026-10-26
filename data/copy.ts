@@ -359,12 +359,12 @@ export const support = {
     {
       title: "Getting Started",
       description: "Set up your Quark for the first time",
-      href: "/docs/getting-started",
+      href: "/docs/start/getting-started",
     },
     {
       title: "Moving from Google",
       description: "Bring your photos and files over with Google Takeout",
-      href: "/docs/google-takeout",
+      href: "/docs/files/google-takeout",
     },
     {
       title: "Troubleshooting",

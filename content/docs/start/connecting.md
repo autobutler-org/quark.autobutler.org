@@ -117,7 +117,7 @@ hosts**.
 
 Quark encrypts every connection with a certificate it makes for itself. No public certificate authority can vouch for
 a device that only exists on your WiFi, so your browser warns you. The encryption is real. The
-[Getting Started guide](/docs/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it in full.
+[Getting Started guide](/docs/start/getting-started#your-browser-warns-you-the-connection-is-not-private) explains it in full.
 
 You see the warning:
 
@@ -182,5 +182,5 @@ If you don't know why it changed, don't forget the certificate. Check that you'r
 
 ## Related
 
-- [Getting Started](/docs/getting-started) — setting up and opening Quark the first time
+- [Getting Started](/docs/start/getting-started) — setting up and opening Quark the first time
 - [Help & Support](/docs/help) — troubleshooting and how to get in touch

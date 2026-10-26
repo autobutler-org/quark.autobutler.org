@@ -54,7 +54,7 @@ Quark stores your files. Quark is also a physical box, and boxes fail, flood, an
 - **1** copy that is not in the same building
 
 Quark does not copy to a second drive on a schedule yet, but an admin can make that copy in the app with a
-[snapshot backup](/docs/storage-and-backups). The offsite copy is on you either way: a drive at a relative's
+[snapshot backup](/docs/system/storage-and-backups). The offsite copy is on you either way: a drive at a relative's
 house that you swap out every so often is enough.
 
 There is no backup strategy that can save you from _no backup at all._
@@ -109,7 +109,7 @@ This is not morbid. It is the same reason you leave a spare key with a neighbor.
 ## If you think someone got in
 
 Quark has no API keys or app passwords to hunt down. Access is your username and password, on your own network. The
-exception is [SSH access](/docs/ssh): if an admin turned it on, its allowed keys and password are a way in too, so turn
+exception is [SSH access](/docs/settings/ssh): if an admin turned it on, its allowed keys and password are a way in too, so turn
 it off and remove any key you do not recognize. Otherwise the response is mostly physical and it is short:
 
 1. Unplug Quark from the router. Nothing reaches it while it is off the network, and that buys you time to work out
@@ -117,9 +117,9 @@ it off and remove any key you do not recognize. Otherwise the response is mostly
 2. Change your WiFi password if the network was the likely way in.
 3. Look through your files for odd deletions, unfamiliar folders, or timestamps that do not match anything you did.
 4. Check the **Sessions** card under **Settings → Account** and use **Sign out everywhere else**. See
-   [Where am I signed in?](/docs/getting-started#where-am-i-signed-in) for what the card shows.
+   [Where am I signed in?](/docs/start/getting-started#where-am-i-signed-in) for what the card shows.
 5. If you are an admin, turn off any account you do not trust with **Disable** on the Users page. See
-   [Turning off and removing accounts](/docs/accounts#turning-off-and-removing-accounts).
+   [Turning off and removing accounts](/docs/users#turning-off-and-removing-accounts).
 
 Guessing a password is slow. After repeated wrong passwords, Quark refuses that sign-in for a while, even if the next
 try is right.

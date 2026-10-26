@@ -49,7 +49,7 @@ If a release turns out to have a serious bug, it is pulled, and it stops being o
 
 Quark does not update itself. Anyone can see the installed version on **Settings → Updates**, but only an admin can
 update: pick a version from **Update Quark to version**, then tap **Start update**. When there is nothing newer, the tab
-says **No updates available**. See [Settings in Getting Started](/docs/getting-started#settings) for the rest of that
+says **No updates available**. See [Settings in Getting Started](/docs/start/getting-started#settings) for the rest of that
 tab.
 
 ---

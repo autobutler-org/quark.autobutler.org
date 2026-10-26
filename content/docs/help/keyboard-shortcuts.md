@@ -219,4 +219,4 @@ computer), and Esc closes it.
 
 ## Related
 
-- [Accessibility](/docs/accessibility) — large text, screen readers, high contrast, and reduced motion
+- [Accessibility](/docs/help/accessibility) — large text, screen readers, high contrast, and reduced motion

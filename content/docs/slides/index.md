@@ -69,7 +69,7 @@ In Files, a PowerPoint file's menu has **Open as presentation**, which does the 
 **Export** — in the editor, tap **Export as PowerPoint (.pptx)**. Quark saves your latest changes first, then gives you
 a `.pptx` file named after the presentation. Nothing in your presentation's folder changes.
 
-So a Google Slides deck from [Google Takeout](/docs/google-takeout), which arrives as `.pptx`, can be opened in Slides.
+So a Google Slides deck from [Google Takeout](/docs/files/google-takeout), which arrives as `.pptx`, can be opened in Slides.
 
 ## Sharing
 
@@ -92,5 +92,5 @@ This switch is not a security measure. It hides Slides; it does not protect anyt
 
 ## Related
 
-- [Getting Started](/docs/getting-started) — Files, sharing, and Settings
-- [Google Takeout](/docs/google-takeout) — moving Google exports onto Quark
+- [Getting Started](/docs/start/getting-started) — Files, sharing, and Settings
+- [Google Takeout](/docs/files/google-takeout) — moving Google exports onto Quark

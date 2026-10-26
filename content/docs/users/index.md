@@ -205,4 +205,4 @@ Set one under **Settings → Account → Profile**: **Choose picture**, or **Rem
 
 - [Settings Reference](/docs/settings) — every Settings tab, Delete account and Reset this Quark
 - [System](/docs/system) — Health, Storage and Jobs
-- [Getting Started](/docs/getting-started)
+- [Getting Started](/docs/start/getting-started)

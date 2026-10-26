@@ -8,9 +8,9 @@ navigation:
 
 # Files
 
-This page goes deeper than [Getting Started](/docs/getting-started#files): how uploads behave, what a folder download
+This page goes deeper than [Getting Started](/docs/start/getting-started#files): how uploads behave, what a folder download
 gives you, what search can and can't find, and how to get something back from Trash or an earlier version. Which kinds
-of file open inside Quark is covered in [File Types](/docs/file-types).
+of file open inside Quark is covered in [File Types](/docs/files/file-types).
 
 ---
 
@@ -222,7 +222,7 @@ called "Before restore". Changed your mind? Restore that one.
 - **No side-by-side compare** yet, and no screen showing how much space versions use. They do count toward your
   drive's used space.
 - **It is not a backup.** Versions live on the same drive as the file. If that drive fails, both go. Keep a copy of
-  what matters on a second drive — see the [Security Guide](/docs/security-guide).
+  what matters on a second drive — see the [Security Guide](/docs/help/security-guide).
 
 Deleting a file to Trash keeps its history. Restore the file and the history comes back with it.
 
@@ -230,7 +230,7 @@ Deleting a file to Trash keeps its history. Restore the file and the history com
 
 ## Related
 
-- [Getting Started](/docs/getting-started) — the Files basics
-- [File Types](/docs/file-types) — which kinds of file open in Quark
+- [Getting Started](/docs/start/getting-started) — the Files basics
+- [File Types](/docs/files/file-types) — which kinds of file open in Quark
 - [Photos](/docs/photos) — uploading and browsing pictures
-- [Google Takeout](/docs/google-takeout) — moving a Google export onto Quark
+- [Google Takeout](/docs/files/google-takeout) — moving a Google export onto Quark

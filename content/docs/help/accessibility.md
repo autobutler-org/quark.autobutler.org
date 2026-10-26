@@ -50,7 +50,7 @@ You can move through Quark with Tab and Shift+Tab. A focused text field or butto
 pixels thick, so focus shows as a change in weight and not only a change in color. With **High contrast** on, the
 outline is 3 pixels.
 
-Several pages have keyboard shortcuts. See [Keyboard shortcuts](/docs/keyboard-shortcuts) for the full list.
+Several pages have keyboard shortcuts. See [Keyboard shortcuts](/docs/help/keyboard-shortcuts) for the full list.
 
 ## High contrast
 

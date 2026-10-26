@@ -117,5 +117,5 @@ So open **System → Health** now and then, especially before a big upload. If s
 ## Related
 
 - [Settings Reference](/docs/settings) — the auto-refresh interval and notification switches
-- [Accounts and Sharing](/docs/accounts) — what admins can do that members cannot
-- [Getting Started](/docs/getting-started)
+- [Accounts and Sharing](/docs/users) — what admins can do that members cannot
+- [Getting Started](/docs/start/getting-started)

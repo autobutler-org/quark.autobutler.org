@@ -15,7 +15,7 @@ Each tab has its own address, such as `/settings/general` or `/settings/account`
 link to it. Items marked **admins only** below do not appear for other accounts, and the Quark refuses those requests
 from them anyway.
 
-Not sure whether you are an admin? See [Accounts and Sharing](/docs/accounts).
+Not sure whether you are an admin? See [Accounts and Sharing](/docs/users).
 
 ---
 
@@ -57,7 +57,7 @@ An IP address, a full name like `nas.example.com`, and `localhost` are tried exa
 
 From top to bottom:
 
-- **Profile** — your profile picture. See [Accounts and Sharing](/docs/accounts#profile-picture).
+- **Profile** — your profile picture. See [Accounts and Sharing](/docs/users#profile-picture).
 - **Change password** — enter your current password, then the new one twice. New passwords need at least 8 characters.
   You stay signed in on this device, and your other sessions stay signed in too. Use **Sign out everywhere else** below
   if you want them to sign in again with the new password.
@@ -148,7 +148,7 @@ everywhere. It cannot be undone.
   "This Quark needs at least one admin. Make someone else an admin first."
 
 To remove someone else's account, an admin uses the Users page instead. See
-[Accounts and Sharing](/docs/accounts#turning-off-and-removing-accounts).
+[Accounts and Sharing](/docs/users#turning-off-and-removing-accounts).
 
 ### Reset this Quark
 
@@ -178,6 +178,6 @@ After a reset, the Quark restarts within a few seconds, so the app may briefly f
 
 ## Related
 
-- [Accounts and Sharing](/docs/accounts) — admins, members, sharing, and the Users page
+- [Accounts and Sharing](/docs/users) — admins, members, sharing, and the Users page
 - [System](/docs/system) — Health, Storage and Jobs
-- [Getting Started](/docs/getting-started)
+- [Getting Started](/docs/start/getting-started)

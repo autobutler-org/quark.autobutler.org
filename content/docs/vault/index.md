@@ -30,5 +30,5 @@ vault data is gone. That is intentional.
 
 ## Related
 
-- [Security Guide](/docs/security-guide) — master password, 3-2-1 backups, limits
-- [Getting Started](/docs/getting-started)
+- [Security Guide](/docs/help/security-guide) — master password, 3-2-1 backups, limits
+- [Getting Started](/docs/start/getting-started)

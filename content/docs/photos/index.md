@@ -11,10 +11,10 @@ navigation:
 Photos shows every image on every drive your account can read. There is no special photo folder: a picture you upload
 in Files, or extract from a Google Takeout zip, shows up here too.
 
-Photos is for images. Videos stay in [Files](/docs/getting-started). The one exception is an iPhone Live Photo, whose
+Photos is for images. Videos stay in [Files](/docs/start/getting-started). The one exception is an iPhone Live Photo, whose
 short motion clip plays inside the photo viewer.
 
-Migrating from Google? See the [Google Takeout guide](/docs/google-takeout).
+Migrating from Google? See the [Google Takeout guide](/docs/files/google-takeout).
 
 ## Where you can use it
 
@@ -98,10 +98,10 @@ A copy added outside Quark shows up once its thumbnail loads, or after your Quar
 - On iPhone or iPad, uploading from **Files** can also offer **Photos** as a source, so you do not have to export into
   Files first.
 - Irreplaceable photos still deserve a second physical copy — see the
-  [Security guide](/docs/security-guide)'s 3-2-1 note.
+  [Security guide](/docs/help/security-guide)'s 3-2-1 note.
 
 ## Related
 
-- [Getting Started](/docs/getting-started)
-- [Google Takeout](/docs/google-takeout)
-- [Security Guide](/docs/security-guide)
+- [Getting Started](/docs/start/getting-started)
+- [Google Takeout](/docs/files/google-takeout)
+- [Security Guide](/docs/help/security-guide)
