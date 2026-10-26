@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 
 import FeatureGrid from "../FeatureGrid.vue";
-import { features } from "~/data/copy";
+import { features, manifesto } from "~/data/copy";
 
 const bodyOf = (name: string): string =>
   features.items.find((feature) => feature.name === name)?.body ?? "";
@@ -44,28 +44,37 @@ describe("FeatureGrid", () => {
   });
 
   /*
-   * Claims the product does not back: the vault is one per Quark and
-   * admin-only, admins can open every folder, Sheets needs a Quark account,
-   * and release builds show remote access as Coming soon (quark #2882), so the
-   * tile must say it is not in the app yet.
+   * Quark v0.56.2: every account has its own vault, opened with the login
+   * password, and an admin cannot open someone else's. Admins can open files,
+   * not a vault or a chat they are not in. Remote access ships and
+   * stays off until an admin turns it on. Spreadsheets still need an account
+   * on the Quark. Never name the remote-access vendor.
    */
-  it("does not overstate the Vault, Accounts, Spreadsheets or Remote access tiles", () => {
-    expect(bodyOf("Vault")).not.toMatch(/only you have/i);
+  it("states the Vault, Accounts, Spreadsheets and Remote access limits", () => {
+    expect(bodyOf("Vault")).toMatch(/own vault/i);
+    expect(bodyOf("Vault")).toMatch(/sign in/i);
     expect(bodyOf("Vault")).toMatch(/admin/i);
-    expect(bodyOf("Accounts and sharing")).not.toMatch(/nothing else is visible/i);
+    expect(bodyOf("Vault")).not.toMatch(/master password/i);
+    expect(bodyOf("Vault")).not.toMatch(/one vault per quark/i);
+    expect(bodyOf("Vault")).not.toMatch(/on the drive/i);
+    expect(bodyOf("Accounts and sharing")).toMatch(/vault/i);
+    expect(bodyOf("Accounts and sharing")).toMatch(/chat/i);
     expect(bodyOf("Accounts and sharing")).toMatch(/admin/i);
+    expect(bodyOf("Accounts and sharing")).not.toMatch(/open everything/i);
+    expect(bodyOf("Accounts and sharing")).not.toMatch(/nothing else is visible/i);
     expect(bodyOf("Spreadsheets")).not.toMatch(/no account required/i);
-    expect(bodyOf("Remote access")).not.toMatch(/from work|from a trip|phone data/i);
     expect(bodyOf("Remote access")).toMatch(/admin/i);
-    expect(bodyOf("Remote access")).toMatch(/not in the app yet/i);
+    expect(bodyOf("Remote access")).toMatch(/settings/i);
+    expect(bodyOf("Remote access")).not.toMatch(/not in the app yet|coming soon/i);
+    expect(bodyOf("Remote access")).not.toMatch(/from work|from a trip|phone data/i);
+    expect(bodyOf("Remote access")).not.toMatch(/tailscale/i);
+    expect(manifesto.paragraphs.join("\n")).not.toMatch(/coming soon/i);
+    expect(manifesto.paragraphs.join("\n")).not.toMatch(/tailscale/i);
   });
 
-  /* Only an unshipped feature may be drawn as upcoming, and it must say so in words too. */
-  it("marks only Remote access as upcoming", () => {
-    const upcoming = features.items.filter((feature) => feature.upcoming);
-    expect(upcoming.map((feature) => feature.name)).toEqual(["Remote access"]);
-    expect(upcoming[0]?.body).toMatch(/not in the app yet/i);
-    expect(upcoming[0]?.badge).toBeUndefined();
+  /* Remote access ships, so no feature tile is drawn as unreleased. */
+  it("marks no feature as upcoming", () => {
+    expect(features.items.filter((feature) => feature.upcoming)).toEqual([]);
   });
 
   it("does not present Chat or Calendar as unavailable or promise what is not built", () => {
