@@ -12,7 +12,7 @@ import {
 
 const docs: readonly SearchableDoc[] = [
   {
-    path: "/docs/welcome",
+    path: "/docs/start/welcome",
     title: "Welcome",
     description: "What Quark is and who it is for",
     navigation: { title: "Welcome", order: 1 },
@@ -32,9 +32,9 @@ const docs: readonly SearchableDoc[] = [
 ];
 
 const sections: readonly DocSection[] = [
-  { id: "/docs/welcome", title: "Welcome", content: "What Quark is and who it is for" },
+  { id: "/docs/start/welcome", title: "Welcome", content: "What Quark is and who it is for" },
   {
-    id: "/docs/welcome#why",
+    id: "/docs/start/welcome#why",
     title: "Why self-host",
     content: "Your files stay on hardware you own.",
   },
@@ -81,7 +81,7 @@ describe("searchDocs", () => {
   it("matches on title, nav title, and description", () => {
     expect(paths("vault")).toEqual(["/docs/vault"]);
     expect(paths("photo library")).toEqual(["/docs/photos"]);
-    expect(paths("who it is for")).toEqual(["/docs/welcome"]);
+    expect(paths("who it is for")).toEqual(["/docs/start/welcome"]);
   });
 
   it("matches text that only appears in a doc's body", () => {
@@ -90,7 +90,7 @@ describe("searchDocs", () => {
   });
 
   it("matches text that only appears in a heading", () => {
-    expect(paths("self-host")).toEqual(["/docs/welcome"]);
+    expect(paths("self-host")).toEqual(["/docs/start/welcome"]);
   });
 
   it("is case-insensitive", () => {
@@ -109,14 +109,14 @@ describe("searchDocs", () => {
   it("ranks title matches above body-only matches", () => {
     const withBodyMention: readonly DocSection[] = [
       ...sections,
-      { id: "/docs/welcome#tour", title: "Tour", content: "Store logins in the vault." },
+      { id: "/docs/start/welcome#tour", title: "Tour", content: "Store logins in the vault." },
     ];
     const ranked = searchDocs(docs, withBodyMention, "vault").map(({ doc }) => doc.path);
-    expect(ranked).toEqual(["/docs/vault", "/docs/welcome"]);
+    expect(ranked).toEqual(["/docs/vault", "/docs/start/welcome"]);
   });
 
   it("keeps the incoming order for equally ranked docs", () => {
-    expect(paths("quark")).toEqual(["/docs/welcome", "/docs/vault"]);
+    expect(paths("quark")).toEqual(["/docs/start/welcome", "/docs/vault"]);
   });
 
   it("still finds docs by title when no body sections are available", () => {
@@ -249,5 +249,23 @@ describe("highlight", () => {
 
   it("returns the text unmarked when nothing matches", () => {
     expect(highlight("nothing here", ["vault"])).toEqual([{ text: "nothing here", match: false }]);
+  });
+});
+
+describe("searchDocs with nested doc paths", () => {
+  const nested: readonly SearchableDoc[] = [
+    { path: "/docs/files", title: "Files" },
+    { path: "/docs/files/file-types", title: "File Types" },
+  ];
+  const nestedSections: readonly DocSection[] = [
+    { id: "/docs/files#uploading", title: "Uploading", content: "Drag files onto the page." },
+    { id: "/docs/files/file-types#video", title: "Video", content: "Videos play in the browser." },
+  ];
+
+  it("keeps a category page's body apart from the pages nested under it", () => {
+    const find = (query: string) =>
+      searchDocs(nested, nestedSections, query).map(({ doc, excerpt }) => [doc.path, excerpt?.to]);
+    expect(find("drag")).toEqual([["/docs/files", "/docs/files#uploading"]]);
+    expect(find("videos")).toEqual([["/docs/files/file-types", "/docs/files/file-types#video"]]);
   });
 });

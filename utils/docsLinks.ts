@@ -33,7 +33,10 @@ export const headingAnchor = (heading: string): string =>
     .replace(/[^\p{L}\p{N}\s-]/gu, "")
     .replace(/\s/g, "-");
 
-/** Every heading anchor in a Markdown document, skipping fenced code. */
+/**
+ * Every heading anchor in a Markdown document, skipping fenced code. A repeated
+ * heading gets `-1`, `-2`, … like GitHub's slugger.
+ */
 export const headingAnchors = (markdown: string): ReadonlySet<string> => {
   const anchors = new Set<string>();
   let inFence = false;
@@ -41,7 +44,11 @@ export const headingAnchors = (markdown: string): ReadonlySet<string> => {
     if (/^\s*(```|~~~)/.test(line)) inFence = !inFence;
     if (inFence) continue;
     const heading = /^#{1,6}\s+(.+?)\s*#*\s*$/.exec(line);
-    if (heading?.[1]) anchors.add(headingAnchor(heading[1]));
+    if (!heading?.[1]) continue;
+    const base = headingAnchor(heading[1]);
+    let anchor = base;
+    for (let n = 1; anchors.has(anchor); n++) anchor = `${base}-${n}`;
+    anchors.add(anchor);
   }
   return anchors;
 };
