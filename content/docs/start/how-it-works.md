@@ -3,7 +3,7 @@ title: How Quark Works
 description: How Quark keeps your files on hardware you control by default — local-first, on your home network
 navigation:
   title: How It Works
-  order: 4
+  order: 3
 ---
 
 # How Quark Works

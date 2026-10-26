@@ -3,7 +3,7 @@ title: Sheets formulas
 description: Every function Sheets supports, its operators and error codes, and where formulas differ from Excel
 navigation:
   title: Sheets formulas
-  order: 15
+  order: 2
 ---
 
 # Sheets formulas

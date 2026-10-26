@@ -3,7 +3,7 @@ title: Photos
 description: Browse the images on your Quark, upload the photos you pick, and sort them into albums
 navigation:
   title: Photos
-  order: 5
+  order: 1
 ---
 
 # Photos

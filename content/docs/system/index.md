@@ -3,7 +3,7 @@ title: System
 description: Read the System page — what each Health reading means and when it turns orange or red, drives, and Jobs
 navigation:
   title: System
-  order: 19
+  order: 1
 ---
 
 # System

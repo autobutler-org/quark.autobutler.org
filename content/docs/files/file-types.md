@@ -3,7 +3,7 @@ title: File Types
 description: Which files open inside Quark, which only download, and the video and audio tools
 navigation:
   title: File Types
-  order: 11
+  order: 2
 ---
 
 # File Types

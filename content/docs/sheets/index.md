@@ -3,7 +3,7 @@ title: Sheets
 description: Spreadsheets on your Quark — tabs, toolbars, filters, freezing, formatting, and bringing in CSV and Excel files
 navigation:
   title: Sheets
-  order: 14
+  order: 1
 ---
 
 # Sheets

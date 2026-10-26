@@ -3,7 +3,7 @@ title: Versions and release notes
 description: Which Quark version these docs describe, how to see the versions you run, and where release notes live
 navigation:
   title: Versions
-  order: 27
+  order: 4
 ---
 
 # Versions and release notes

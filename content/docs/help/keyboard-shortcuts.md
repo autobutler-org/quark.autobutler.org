@@ -3,7 +3,7 @@ title: Keyboard Shortcuts
 description: Every keyboard shortcut in Quark, grouped by where you are
 navigation:
   title: Keyboard Shortcuts
-  order: 26
+  order: 4
 ---
 
 # Keyboard Shortcuts

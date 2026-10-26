@@ -3,7 +3,7 @@ title: SSH Access
 description: How an admin lets a computer on the home network sign in to the Quark over SSH, and what that gives away
 navigation:
   title: SSH Access
-  order: 24
+  order: 3
 ---
 
 # SSH Access

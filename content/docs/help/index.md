@@ -3,7 +3,7 @@ title: Help & Support
 description: Get help and support for Quark
 navigation:
   title: Help
-  order: 3
+  order: 1
 ---
 
 # Help & Support

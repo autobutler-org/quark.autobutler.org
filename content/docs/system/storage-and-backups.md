@@ -3,7 +3,7 @@ title: Storage and Backups
 description: What Quark does with a plugged-in drive, how an admin makes a snapshot backup, and how to get files back
 navigation:
   title: Storage and Backups
-  order: 12
+  order: 2
 ---
 
 # Storage and Backups

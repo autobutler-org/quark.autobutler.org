@@ -3,7 +3,7 @@ title: Vault
 description: Keep passwords on your Quark — encrypted on your drive, unlocked with a master password
 navigation:
   title: Vault
-  order: 9
+  order: 1
 ---
 
 # Vault

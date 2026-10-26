@@ -5,7 +5,7 @@ description:
   warning appears
 navigation:
   title: Connecting
-  order: 22
+  order: 4
 ---
 
 # Connecting to Your Quark

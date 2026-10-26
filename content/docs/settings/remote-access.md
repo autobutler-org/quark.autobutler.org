@@ -3,7 +3,7 @@ title: Remote Access
 description: What Settings → Network shows for remote access today, and what a Quark sends when remote access is on
 navigation:
   title: Remote Access
-  order: 23
+  order: 2
 ---
 
 # Remote Access

@@ -3,7 +3,7 @@ title: Docs
 description: Write documents on your Quark — create, edit, save, find, export to PDF, and print
 navigation:
   title: Docs
-  order: 13
+  order: 1
 ---
 
 # Docs
