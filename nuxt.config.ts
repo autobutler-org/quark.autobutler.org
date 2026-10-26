@@ -1,4 +1,5 @@
 import { docsRedirects } from "./data/docsRedirects";
+import { redirectPage } from "./utils/redirectPage";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -21,6 +22,13 @@ export default defineNuxtConfig({
     prerender: {
       // Old docs URLs are prerendered too, so each gets a static meta-refresh page.
       routes: ["/sitemap.xml", ...Object.keys(docsRedirects)],
+    },
+    hooks: {
+      // Nitro's own redirect page has no canonical link; swap in one that does.
+      "prerender:generate"(route) {
+        const to = docsRedirects[route.route.replace(/\/+$/, "")];
+        if (to && route.contents) route.contents = redirectPage(to);
+      },
     },
   },
   /*
