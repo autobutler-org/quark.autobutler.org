@@ -19,7 +19,7 @@ function closeMenu(): void {
     <div class="bar">
       <a href="/" class="wordmark">
         <img class="mark" :src="hero.logo.src" alt="" width="912" height="912" />
-        {{ masthead.wordmark }}
+        <span class="wordmark-text">{{ masthead.wordmark }}</span>
       </a>
       <nav id="site-nav" aria-label="Site" :class="{ open: menuOpen }">
         <a v-for="link in masthead.links" :key="link.href" :href="link.href" @click="closeMenu">
@@ -82,6 +82,14 @@ function closeMenu(): void {
 .mark {
   width: 1.5rem;
   height: auto;
+}
+
+/*
+ * Trim the text box to cap height so flex centering lines the logo up with
+ * the letters rather than with the font's taller line box.
+ */
+.wordmark-text {
+  text-box: trim-both cap alphabetic;
 }
 
 nav {
