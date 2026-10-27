@@ -71,7 +71,7 @@ from home yet." Then:
 1. Make sure your home internet works. Try opening any website on your home WiFi.
 2. An admin taps **Try again**. If the problem was short-lived, this fixes it.
 
-Still stuck? Tap **Get help**, or see [Help](/docs/help#you-are-away-from-home). An admin can also tap **Turn off**.
+Still stuck? Tap **Get help**, or see [Help](/docs/help). An admin can also tap **Turn off**.
 
 **The app doesn't reach Quark away from home.** Check that remote access shows **On** in **Settings → Network**. Check
 that **Remote access on this phone** isn't paused. If you haven't opened the app at home since remote access was turned
