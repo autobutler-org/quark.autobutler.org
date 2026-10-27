@@ -152,13 +152,7 @@ While you type a formula, a list of matching functions appears.
 | Click a cell      | Insert its reference, such as `B2`              |
 | Drag across cells | Insert the range, such as `B2:D9`               |
 
----
-
-## Beta features
-
-These pages appear once an admin turns them on in **Settings → Features**.
-
-### Slides (beta)
+## Slides
 
 Press **?** or **F1** in the slide editor to see the full list in the app, with a search box.
 
@@ -183,7 +177,8 @@ Press **?** or **F1** in the slide editor to see the full list in the app, with 
 | Enter / Shift+Enter      | In the find bar, next / previous match          |
 
 In a table, the arrow keys move between cells, Shift+arrows grow the cell selection, and Tab moves to the next cell.
-With a chart selected, Enter opens its data.
+With a chart selected, Enter opens its data. After you tap a thumbnail in the slide panel, the arrow keys move between
+slides.
 
 While presenting:
 
@@ -195,7 +190,7 @@ While presenting:
 | F                              | Toggle fullscreen  |
 | Esc                            | End the show       |
 
-### Calendar (beta)
+## Calendar (beta)
 
 In Week and Day view, focus an event with Tab, then:
 
@@ -205,18 +200,34 @@ In Week and Day view, focus an event with Tab, then:
 | Alt+← →       | Move the event a day earlier / later          |
 | Alt+Shift+↑ ↓ | Make the event end 15 minutes earlier / later |
 
-### Chat (beta)
+## Chat
 
-| Keys        | Action                                                       |
-| ----------- | ------------------------------------------------------------ |
-| Enter       | On a computer: send. On a phone or tablet: start a new line. |
-| Shift+Enter | On a computer: start a new line                              |
+| Keys        | Action                            |
+| ----------- | --------------------------------- |
+| Enter       | Send the message, on any keyboard |
+| Shift+Enter | Start a new line                  |
 
-Type `@` to mention someone. A list of names appears: ↑ ↓ move through it, Tab picks a name (so does Enter on a
-computer), and Esc closes it.
+On a phone's on-screen keyboard, the Enter key is a send button.
+
+Type `@` to mention someone. A list of names appears: ↑ ↓ move through it, Tab or Enter picks a name, and Esc closes it.
 
 ---
 
 ## Related
 
 - [Accessibility](/docs/help/accessibility) — large text, screen readers, high contrast, and reduced motion
+
+## Nerd Notes
+
+Checked against quark v0.56.2 (`main` at `c0f4eefc`) by reading every `LogicalKeyboardKey` and `SingleActivator`
+handler in the app.
+
+- Slides: `lib/utils/slide_shortcuts.dart` is the list the in-app dialog shows, documented in Quark's
+  [`docs/slides-keyboard-shortcuts.md`](https://github.com/autobutler-org/quark/blob/main/docs/slides-keyboard-shortcuts.md).
+  Find and replace is `lib/widgets/slides/find/slide_find_shortcuts.dart`; presenting is
+  `lib/widgets/slides/present/slide_present_shortcuts.dart`.
+- Chat: `packages/quark_widgets/lib/src/chat/quark_message_composer.dart`. Since quark #3340, a hardware Enter sends on
+  every platform, and the on-screen keyboard's action is Send.
+- Calendar: `packages/quark_widgets/lib/src/calendar/calendar_time_grid/time_grid_event_mover.dart`.
+- Docs text keys: `lib/utils/editor_shortcuts.dart`. Sheets: `packages/data_table/lib/src/data_sheet/`. The 3D viewer:
+  `packages/quark_widgets/lib/src/model_viewer/quark_model_viewer.dart`.
