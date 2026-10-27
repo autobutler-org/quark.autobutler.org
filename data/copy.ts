@@ -61,8 +61,8 @@ export const hero = {
   headline: "Your family home base",
   subhead: "A private home cloud that plugs into your router.",
   lede:
-    "Quark is a small box that turns a USB drive into your own cloud. Photos, " +
-    "files, and documents, on hardware you own, in a room you can walk into.",
+    "Quark is a small box that gives you your own cloud at home. Keep photos, files, and " +
+    "documents on its built-in storage, or add a USB drive for more room.",
   primary: { label: "Sign up", href: "/signup" } as Link,
   secondary: { label: "See how it works", href: "#how" } as Link,
   /**
@@ -72,7 +72,7 @@ export const hero = {
   factsLabel: "Quark at a glance",
   facts: [
     { label: "Subscription", value: "None" },
-    { label: "Your files live", value: "On a drive in your home" },
+    { label: "Your files live", value: "On storage in your home" },
     { label: "Internet", value: "Not needed at home" },
     { label: "Source code", value: "Public, MIT-0" },
     { label: "Funding", value: "Customers, not investors" },
@@ -155,22 +155,19 @@ export const manifesto = {
   eyebrow: "01 — Why Quark",
   heading: "The convenience of the cloud, the privacy of your home.",
   paragraphs: [
-    "Why trust your data to anyone besides yourself? Store your photos, documents, " +
-      "anything else on devices where you can see them. Quark is the alternative to " +
-      "renting from a cloud provider, or being locked into someone else's subscription.",
-    "By default, your files stay on hardware you own, in your home, and Quark works on " +
-      "your home network without the internet. Remote access stays off until an admin turns " +
-      "it on. At home, Quark works the same either way.",
-    "Quark has no analytics and no tracking. Your files stay on your own drive, so " +
-      "we don't receive them — there is nothing of yours for us to collect, and nothing of " +
-      "yours to train a model on. We don't take money from investors either, so we are free " +
-      "to continue our mission of safe, transparent, honest internet and data. Don't " +
-      "believe us? The code is public — read it yourself.",
+    "Keep your photos, documents, and other files on storage in your home. Quark gives you " +
+      "the convenience of a cloud without renting storage or adding another subscription.",
+    "By default, Quark works on your home network without the internet. Remote access stays " +
+      "off until an admin turns it on in Settings → Network. Once it is on, the iPhone and " +
+      "Android apps can reach Quark away from home. Browsers still work only on your home WiFi.",
+    "Quark has no analytics or tracking. Your files stay on your own storage, so we don't " +
+      "receive them. We don't take venture capital either; customers fund the work. The code " +
+      "is public, so anyone can inspect it.",
   ] as readonly string[],
-  funding: "No venture capital. Funded by ordinary people who wanted this to exist.",
+  funding: "No venture capital. Funded by customers.",
   openSource: {
-    link: { label: "Completely open source, for transparency.", href: repoUrl },
-    trailing: " All of the code is public, and anyone can read it.",
+    link: { label: "Open source, for transparency.", href: repoUrl },
+    trailing: " All of the code is public, and anyone can inspect it.",
   } as LinkedNote,
 } as const;
 
@@ -187,9 +184,8 @@ export const howItWorks = {
     {
       title: "Attach storage",
       body:
-        "Any external USB drive works. Use the one in your desk drawer, or buy a bigger " +
-        "one later and add it. A drive is optional but recommended — it is where your " +
-        "photos and files have room to grow.",
+        "Quark has built-in storage. Connect a supported external USB drive when you want " +
+        "more room, and replace it with a larger one later if you need to.",
     },
     {
       title: "Open the app",
@@ -228,8 +224,14 @@ export const features = {
     {
       name: "Spreadsheets",
       body:
-        "Budgets, inventories, whatever you track. Same editor, same storage, no outside " +
-        "account required.",
+        "Create and edit budgets, inventories, and anything else you track. The files stay " +
+        "on your Quark, and no outside account is required.",
+    },
+    {
+      name: "Books",
+      body:
+        "Find the PDF and EPUB files on Quark's built-in storage in one place, then open " +
+        "them in the file viewer.",
     },
     {
       name: "Vault",
@@ -247,20 +249,21 @@ export const features = {
     {
       name: "Remote access",
       body:
-        "A private way to reach your Quark when you are away from home. It stays off until " +
-        "an admin turns it on in Settings → Network, and your files are not copied to us.",
+        "Use the iPhone and Android apps to reach your Quark away from home. It stays off " +
+        "until an admin turns it on in Settings → Network. Browsers still work only on your " +
+        "home WiFi, and your files are not copied to us.",
     },
     {
       name: "Search",
       body:
-        "Find a file by name, or by what is written inside it. Documents and spreadsheets " +
-        "are searched by their contents, not just their titles.",
+        "Find files by name. In documents, spreadsheets, and presentations, you can also " +
+        "search what is written inside them.",
     },
     {
       name: "Trash",
       body:
-        "Deleting something puts it in the trash instead of destroying it, so a misclick is " +
-        "an inconvenience rather than a loss. Restore it whenever you notice.",
+        "Deleting something puts it in Trash for 30 days before Quark removes it for good. " +
+        "Until then, you can put it back.",
     },
     {
       name: "Video and audio",
@@ -271,8 +274,8 @@ export const features = {
     {
       name: "Apps for your phone",
       body:
-        "iOS and Android apps that find your Quark on the WiFi by themselves, so there is " +
-        "no address to type. Currently in testing.",
+        "iPhone and Android apps that find your Quark on your WiFi, so there is no address " +
+        "to type. The apps are currently in testing.",
     },
     {
       name: "System",
@@ -280,26 +283,18 @@ export const features = {
         "See how much space is left, which drives are attached, and what the Quark is busy " +
         "with, without reading a log file.",
     },
-    /*
-     * Chat and Calendar are on by default in released builds and marked Beta in
-     * the app's drawer, so the badge here matches what a user actually sees.
-     * Drop the badge when the app drops its marker.
-     */
+    /* Chat and Calendar are on by default and have no Beta marker in Quark v0.56.2. */
     {
       name: "Chat",
-      badge: "Beta",
       body:
         "Messaging for your household, end-to-end encrypted. The Quark stores messages it " +
-        "cannot read. Take someone's access away and the channel's key is replaced. An " +
-        "admin can turn chat off for everyone.",
+        "cannot read. Take someone's access away and the channel's key is replaced.",
     },
     {
       name: "Calendar",
-      badge: "Beta",
       body:
         "One calendar the whole household shares, on your own hardware. Day, week and month " +
-        "views, repeating events, and reminders that show up in the app. An admin can turn " +
-        "it off for everyone.",
+        "views, repeating events, and reminders that show up in the app.",
     },
   ] as readonly Feature[],
 } as const;
@@ -308,9 +303,8 @@ export const callToAction = {
   eyebrow: "04 — Own it",
   heading: "The cloud, in your home.",
   body:
-    "Instead of renting a slice of someone else's data center, you own the whole thing. Pay " +
-    "for a repair or an upgrade, or do it yourself. Add a drive, swap a drive, take one out. " +
-    "It is yours to manage as you please.",
+    "Instead of renting storage in someone else's data center, you keep it at home. Add a " +
+    "drive, replace it with a larger one, or take it out. The hardware and the data are yours.",
   /**
    * Deliberately not GitHub: like the hero's primary button, this is a
    * sign-up for a non-technical reader, and the repo is not where they start.
@@ -377,40 +371,45 @@ export const support = {
     },
   ] as readonly HelpLink[],
   reportHeading: "Report an issue",
-  reportIntroPrefix:
-    "Found a bug? Report it directly to our GitHub issue tracker. Or, if you have a feature request, head to",
+  reportIntroPrefix: "Found a bug? Send it to our GitHub issue tracker. For a feature request, use",
   featureRequestLink: {
-    label: "our feature request page",
+    label: "the feature request form",
     href: `${repoUrl}/issues/new?template=feature.yaml`,
   } as Link,
   reportIntroSuffix: ".",
   githubIssuesUrl: `${repoUrl}/issues/new`,
   form: {
-    titleLabel: "Bug/Feature Title *",
-    titlePlaceholder: "Brief description of the bug",
-    componentLabel: "Component(s) Affected",
+    titleLabel: "Bug title *",
+    titlePlaceholder: "A short description of the problem",
+    componentLabel: "Where did it happen?",
     componentOptions: [
       "N/A",
       "Files",
       "Photos",
-      "Documents",
-      "Spreadsheets",
+      "Calendar",
+      "Docs",
+      "Sheets",
+      "Slides",
+      "Books",
+      "Chat",
       "Vault",
+      "Trash",
       "System",
-      "Accounts & Sharing",
+      "Users",
+      "Settings",
       "Remote access",
-      "Mobile app",
+      "Phone app",
       "General UI",
-      "Backend",
+      "Server",
     ] as readonly string[],
     whatHappenedLabel: "What happened? *",
-    whatHappenedPlaceholder: "Describe the bug and what you expected to happen...",
-    browsersLabel: "Browser(s)",
+    whatHappenedPlaceholder: "Describe what happened and what you expected instead",
+    browsersLabel: "Browsers",
     browserOptions: ["Firefox", "Chrome", "Safari", "Microsoft Edge", "Other"] as readonly string[],
-    urlLabel: "URL of Problem",
-    urlPlaceholder: "https://example.com or local URL",
-    logsLabel: "Relevant Log Output",
-    logsPlaceholder: "Paste any error messages or logs here...",
+    urlLabel: "Page address",
+    urlPlaceholder: "The address of the page where it happened",
+    logsLabel: "Error messages or logs",
+    logsPlaceholder: "Paste any error messages or logs here",
     submitLabel: "Open GitHub Issue",
   },
 } as const;
@@ -418,7 +417,7 @@ export const support = {
 export const signup = {
   heading: "Sign up for early access",
   intro:
-    "We're building Quark and opening friends-and-family access in early 2027. Sign up to be notified when we're ready to ship.",
+    "Quark opens to friends and family in early 2027. Join the email list and we'll let you know when early access begins.",
   launch: {
     badge: "Friends & family — early 2027",
     body: "Join the waitlist for Quark. At-cost friends-and-family first; public when it's ready.",
@@ -460,9 +459,9 @@ export const errorPage = {
 } as const;
 
 export const footer = {
-  note: "Quark is built by the AutoButler project. MIT-0 licensed.",
+  note: "Quark is built by AutoButler. MIT-0 licensed.",
   /** Fine print for the case renders in `shellGallery`, kept low on the page. */
-  renderNote: "Case pictures are concept renders. The designs are not final and not for sale yet.",
+  renderNote: "Case pictures are concept renders. The designs are not final.",
   links: [
     { label: "GitHub", href: repoUrl },
     { label: "Contributing", href: `${repoUrl}/blob/main/CONTRIBUTING.md` },

@@ -45,7 +45,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content:
-            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
+            "Quark plugs into your router and gives you a private home cloud. Keep photos and files on storage in your home: open source, no subscription.",
         },
         { property: "og:site_name", content: "Quark" },
         { property: "og:type", content: "website" },
@@ -56,7 +56,7 @@ export default defineNuxtConfig({
         {
           property: "og:description",
           content:
-            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
+            "Quark plugs into your router and gives you a private home cloud. Keep photos and files on storage in your home: open source, no subscription.",
         },
         { property: "og:url", content: "https://quark.autobutler.org" },
         { property: "og:image", content: "https://quark.autobutler.org/quark.png" },
@@ -71,7 +71,7 @@ export default defineNuxtConfig({
         {
           name: "twitter:description",
           content:
-            "Quark plugs into your Wi-Fi router and turns USB storage into a private home cloud. Your photos and files stay at home: open source, no subscription.",
+            "Quark plugs into your router and gives you a private home cloud. Keep photos and files on storage in your home: open source, no subscription.",
         },
         { name: "twitter:image", content: "https://quark.autobutler.org/quark.png" },
         { name: "theme-color", content: "#f7f6f3", media: "(prefers-color-scheme: light)" },

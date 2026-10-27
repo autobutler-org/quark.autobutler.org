@@ -51,4 +51,15 @@ describe("BugReportForm", () => {
       expect(checkboxValues).toContain(option);
     }
   });
+
+  it("names the shipped app pages in plain language", () => {
+    expect(support.form.componentOptions).toEqual(
+      expect.arrayContaining(["Calendar", "Books", "Chat", "Vault", "Remote access"])
+    );
+    expect(support.form.componentOptions).toEqual(
+      expect.arrayContaining(["Docs", "Sheets", "Slides", "Users", "Settings"])
+    );
+    expect(support.form.componentOptions).not.toContain("Accounts & Sharing");
+    expect(support.form.componentOptions).not.toContain("Backend");
+  });
 });
