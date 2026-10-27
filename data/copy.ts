@@ -359,12 +359,12 @@ export const support = {
     {
       title: "Getting Started",
       description: "Set up your Quark for the first time",
-      href: "/docs/getting-started",
+      href: "/docs/start/getting-started",
     },
     {
       title: "Moving from Google",
       description: "Bring your photos and files over with Google Takeout",
-      href: "/docs/google-takeout",
+      href: "/docs/files/google-takeout",
     },
     {
       title: "Troubleshooting",
@@ -433,8 +433,6 @@ export const docsIndex = {
   searchLabel: "Search the docs",
   searchPlaceholder: "Search titles and page text",
   clearLabel: "Clear search",
-  previewHeading: "Start here",
-  allHeading: "All docs",
   resultsHeading: "Results",
   noResults: "No docs match that search.",
   /**
@@ -444,8 +442,12 @@ export const docsIndex = {
   resultCount: (count: number): string => (count === 1 ? "1 doc matches" : `${count} docs match`),
 } as const;
 
-/** How many docs the "Start here" preview shows above the full listing. */
-export const docsPreviewCount = 4;
+/** Labels in the docs sidebar on every doc page. */
+export const docsNavLabels = {
+  all: "All docs",
+  /** The button that opens the sidebar as a drawer on narrow screens. */
+  menu: "Docs menu",
+} as const;
 
 /** Shown by the root `error.vue` for any thrown error, including a missing doc. */
 export const errorPage = {

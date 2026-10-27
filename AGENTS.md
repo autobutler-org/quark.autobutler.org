@@ -93,22 +93,30 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
 - `app.vue`: root layout — the page background/glow, `SiteHeader`,
   `<NuxtPage />`, `SiteFooter`. Composition only, no page content.
 - `pages/index.vue`: the landing page (renders `LandingPage.vue`).
-- `pages/docs/index.vue`: docs listing page.
-- `pages/docs/[...slug].vue`: renders a single doc via `<ContentRenderer>`.
+- `pages/docs/index.vue`: docs listing page, grouped by category.
+- `pages/docs/[...slug].vue`: renders a single doc via `<ContentRenderer>`,
+  beside `DocsSidebar`.
 - `components/`: components, one public component per file. Nuxt
   auto-imports from here, but keep explicit imports in landing-page
   components for now, matching the existing style.
 - `components/__tests__/`: Vitest specs, named `<Component>.test.ts`.
 - `content/docs/`: docs content, one Markdown file per page, with
-  `title`/`description`/`navigation.{title,order}` frontmatter. This is
-  compiled into the site at build time by `@nuxt/content` — do not hand-roll
-  a second content pipeline.
+  `title`/`description`/`navigation.{title,order}` frontmatter, in one folder
+  per category of the Quark app's main menu (`files/`, `settings/`, …). A
+  folder's `index.md` is the category's own page. Every page follows
+  [`docs/page-template.md`](docs/page-template.md). This is compiled into the
+  site at build time by `@nuxt/content` — do not hand-roll a second content
+  pipeline.
+- `data/docsNav.ts`: the docs categories and their group labels, in the app
+  drawer's order. `data/docsRedirects.ts`: every docs URL that moved, mapped
+  to its new path; `nuxt.config.ts` turns it into redirects.
 - `data/copy.ts`: every string that appears on the landing page, plus the
   outbound URLs. Landing-page components import from here; they do not
   hardcode copy. (Docs prose lives in `content/docs/*.md` instead — this
   split exists because docs are long-form Markdown, not short UI strings.)
 - `utils/`: pure TypeScript logic that pages use but that needs no Nuxt
-  runtime (currently `docsSearch.ts`, the docs index search). Keeping it here
+  runtime (`docsSearch.ts`, the docs index search; `docsNav.ts`, grouping
+  docs into categories; `docsLinks.ts`, the internal-link check). Keeping it here
   lets `utils/__tests__/` cover it with plain Vitest.
 - `assets/`: global styles and bundled static assets.
 - `public/`: files copied verbatim into the build (favicon, `quark.png`,
@@ -239,10 +247,15 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
 - Markdown files are linted by `markdownlint-cli2`; see `.markdownlint.yaml`
   for the active rules (that file is the source of truth — currently a
   120-column wrap, MD033/MD041 disabled).
-- Docs content in `content/docs/*.md` needs `title`, `description`, and
-  `navigation: { title, order }` frontmatter — `order` controls sidebar/index
-  ordering. Every doc must be reachable both from `/docs` (the index) and
-  from another doc's nav, or it's effectively unlisted.
+- Docs content in `content/docs/**/*.md` needs `title`, `description`, and
+  `navigation: { title, order }` frontmatter — `order` controls ordering
+  within a category. Every doc must sit in a category folder listed in
+  `data/docsNav.ts`, or it's effectively unlisted.
+- Docs pages follow [`docs/page-template.md`](docs/page-template.md): plain
+  language first, technical material in a closing `## Nerd Notes` section.
+- When a published doc moves, add its old URL to `data/docsRedirects.ts` and
+  update every link to it. `make test` fails on an internal `/docs/…` link or
+  anchor that doesn't match a page.
 - Run `make fix` to apply the mechanical fixes, then reflow long lines by hand.
 
 ## Pull request and commit conventions (always follow this)

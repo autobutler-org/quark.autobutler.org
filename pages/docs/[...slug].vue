@@ -1,9 +1,5 @@
 <script setup lang="ts">
-interface DocSummary {
-  path: string;
-  title: string;
-  navigation?: { title?: string; order?: number };
-}
+import { groupDocs, type NavDoc } from "~/utils/docsNav";
 
 const route = useRoute();
 
@@ -22,13 +18,11 @@ if (!doc.value) {
   throw createError({ statusCode: 404, statusMessage: "Doc not found" });
 }
 
-const { data: allDocs } = await useAsyncData("docs-nav", () => queryCollection("docs").all());
-
-const sortedDocs = computed(() =>
-  ((allDocs.value ?? []) as unknown as DocSummary[])
-    .slice()
-    .sort((a, b) => (a.navigation?.order ?? 999) - (b.navigation?.order ?? 999))
+const { data: allDocs } = await useAsyncData("docs-nav", () =>
+  queryCollection("docs").select("path", "title", "navigation").all()
 );
+
+const navGroups = computed(() => groupDocs((allDocs.value ?? []) as unknown as NavDoc[]));
 
 useSeoMeta({
   title: () => `${doc.value?.title ?? "Docs"} — Quark`,
@@ -44,17 +38,7 @@ useSeoMeta({
 
 <template>
   <article class="doc">
-    <nav class="doc-nav" aria-label="Documentation">
-      <NuxtLink to="/docs">All docs</NuxtLink>
-      <NuxtLink
-        v-for="item in sortedDocs"
-        :key="item.path"
-        :to="item.path"
-        :class="{ current: item.path === docPath }"
-      >
-        {{ item.navigation?.title || item.title }}
-      </NuxtLink>
-    </nav>
+    <DocsSidebar :groups="navGroups" :current-path="docPath" />
     <div class="prose">
       <ContentRenderer v-if="doc" :value="doc" />
     </div>
@@ -64,7 +48,7 @@ useSeoMeta({
 <style scoped>
 .doc {
   display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr);
+  grid-template-columns: 14rem minmax(0, 1fr);
   gap: 5rem;
   align-items: start;
   width: 100%;
@@ -72,46 +56,6 @@ useSeoMeta({
   margin: 0 auto;
   padding: clamp(3rem, 7vw, 5.5rem) var(--gutter) var(--section-gap);
   box-sizing: border-box;
-}
-
-.doc-nav {
-  position: sticky;
-  top: calc(var(--header-height) + 2rem);
-  display: flex;
-  flex-direction: column;
-  max-height: calc(100vh - var(--header-height) - 4rem);
-  overflow-y: auto;
-  border-left: 1px solid var(--color-border);
-  font-size: var(--text-small);
-}
-
-.doc-nav a {
-  margin-left: -1px;
-  padding: 0.35rem 0 0.35rem 1rem;
-  border-left: 1px solid transparent;
-  color: var(--color-text-muted);
-  text-decoration: none;
-  transition:
-    color var(--duration-fast) ease,
-    border-color var(--duration-fast) ease;
-}
-
-.doc-nav a:first-child {
-  margin-bottom: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: var(--text-micro);
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-}
-
-.doc-nav a:hover {
-  color: var(--color-text-strong);
-}
-
-.doc-nav a.current {
-  border-left-color: var(--color-text-strong);
-  color: var(--color-text-strong);
-  font-weight: 500;
 }
 
 .prose {
@@ -300,36 +244,6 @@ useSeoMeta({
   .doc {
     grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;
-  }
-
-  .doc-nav {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    max-height: none;
-    overflow: visible;
-    border-left: none;
-  }
-
-  .doc-nav a {
-    margin: 0;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    background: var(--color-surface);
-  }
-
-  .doc-nav a:first-child {
-    flex-basis: 100%;
-    margin-bottom: 0.25rem;
-    padding: 0;
-    border: none;
-    background: none;
-  }
-
-  .doc-nav a.current {
-    border-color: var(--color-text-strong);
   }
 }
 </style>
