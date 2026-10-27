@@ -8,10 +8,21 @@ navigation:
 
 # Sheets formulas
 
-A cell that starts with `=` is a formula. Sheets works it out and shows the result. This page lists every function
-and operator Sheets understands today, and the places it behaves differently from Excel or Google Sheets.
+A formula lets a cell work something out for you: a total, an average, or a yes or no. Any cell that starts with `=`
+is a formula. Sheets works it out, shows the answer, and updates it when the cells it reads change.
 
-For the rest of the editor, see [Sheets](/docs/sheets).
+This page lists every function and operator Sheets understands today. It also lists the places where Sheets behaves
+differently from Excel or Google Sheets. For the rest of the editor, see [Sheets](/docs/sheets).
+
+## How to use it
+
+1. Click an empty cell.
+2. Type `=` and then the start of a function name, like `su`. A list of matching functions opens.
+3. Pick **SUM** with Tab or Enter, or tap it.
+4. Drag across the cells you want to add up, like `B2:B9`. Sheets writes the range for you.
+5. Type `)` and press **Enter**. The cell shows the total.
+
+To change a formula, select the cell and edit it in the bar above the grid.
 
 ---
 
@@ -180,3 +191,26 @@ You can edit a formula in the cell or in the formula bar above the grid.
   [Bring a spreadsheet into Quark](/docs/sheets#bring-a-spreadsheet-into-quark).
 - **Quark to Excel.** **Export Excel workbook** writes each formula as plain text, like `=SUM(A1:A3)`. Excel shows
   that text rather than working it out.
+
+---
+
+## Related
+
+- [Sheets](/docs/sheets): the rest of the spreadsheet editor
+- [Bring a spreadsheet into Quark](/docs/sheets#bring-a-spreadsheet-into-quark): converting CSV and Excel files
+
+## Nerd Notes
+
+- **Where it lives.** The formula engine is the pure Dart package `packages/quark_formula`: a lexer, a parser, an
+  evaluator, and a dependency graph between cells. The 32 functions are registered in
+  `lib/evaluation/evaluator/builtins.dart`, each with the signature and one-line description the suggestion list
+  shows.
+- **When it runs.** Formulas are worked out in the app, on the device, not on your Quark. A tab is evaluated in
+  dependency order, and a cycle in the graph is reported as `#REF!` on every cell in it.
+- **What is stored.** The `.qsheet` file keeps the formula text, not its result. The content search index therefore
+  holds the formula text too.
+- **Types are strict.** Values are numbers, text, logical values and errors. Operators and most functions do not
+  convert between them, which is where most of the differences from Excel above come from.
+- **Excel.** The `.xlsx` export writes formulas as strings because the dialects differ (`==`, `%`, no `&`) and the
+  server has no evaluator to supply Excel's cached values. The `.xlsx` import keeps each cell's cached value for the
+  same reason.
