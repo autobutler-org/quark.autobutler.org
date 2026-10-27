@@ -64,7 +64,7 @@ In Day or Week, you can move an event without opening it.
 - **With a mouse:** drag the event to a new time, or to another day in Week. Drag its bottom edge to make it longer or
   shorter.
 - **On a phone or tablet:** press and hold the event first, then drag. Hold its bottom edge to change when it ends.
-- **With a keyboard:** see the [Calendar shortcuts](/docs/help/keyboard-shortcuts#calendar-beta).
+- **With a keyboard:** see the [Calendar shortcuts](/docs/help/keyboard-shortcuts#calendar).
 
 Events move in 15-minute steps. If the move can't be saved, Quark tells you and puts the event back.
 
