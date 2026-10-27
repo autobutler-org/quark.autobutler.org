@@ -159,9 +159,8 @@ export const manifesto = {
       "anything else on devices where you can see them. Quark is the alternative to " +
       "renting from a cloud provider, or being locked into someone else's subscription.",
     "By default, your files stay on hardware you own, in your home, and Quark works on " +
-      "your home network without the internet. Remote access is coming soon, and it will stay " +
-      "off until an admin turns it on, so you control how the data moves and lock it down as " +
-      "much as you like.",
+      "your home network without the internet. Remote access stays off until an admin turns " +
+      "it on. At home, Quark works the same either way.",
     "Quark has no analytics and no tracking. Your files stay on your own drive, so " +
       "we don't receive them — there is nothing of yours for us to collect, and nothing of " +
       "yours to train a model on. We don't take money from investors either, so we are free " +
@@ -235,22 +234,21 @@ export const features = {
     {
       name: "Vault",
       body:
-        "A password manager that lives on your hardware. One vault per Quark, for its " +
-        "admins, encrypted on the drive and unlocked with one master password.",
+        "A password manager on your Quark. Every account has its own vault, opened with " +
+        "the password you sign in with, and nobody else can open it, not even an admin.",
     },
     {
       name: "Accounts and sharing",
       body:
         "Everyone in the house gets their own account and a space that is private from the " +
         "other members. Share a folder with a person or the whole household. Admins can " +
-        "open everything on the Quark.",
+        "open files on the Quark, but not another person's vault or a chat they are not in.",
     },
     {
       name: "Remote access",
-      upcoming: true,
       body:
-        "Not in the app yet: a private, encrypted path to your Quark from outside the house " +
-        "\u2014 not a copy on our servers. Once it ships, it stays off until an admin turns it on.",
+        "A private way to reach your Quark when you are away from home. It stays off until " +
+        "an admin turns it on in Settings → Network, and your files are not copied to us.",
     },
     {
       name: "Search",
