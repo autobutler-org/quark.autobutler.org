@@ -11,8 +11,16 @@ navigation:
 # Connecting to Your Quark
 
 Your Quark lives on your home network. This page covers how to find it, how the browser and the phone apps differ,
-and what the certificate warning is about. Everything here is about your own WiFi. Remote access is coming soon and is
-not covered here.
+and what the certificate warning is about. Everything here is about your own WiFi. To use Quark away from home, see
+[Remote Access](/docs/settings/remote-access).
+
+## How to use it
+
+1. Put your phone or computer on the same WiFi as your Quark.
+2. In a browser, go to **`https://quark.local`**. In the iPhone or Android app, the app looks for it for you. If it
+   doesn't find it, tap your Quark in the list it shows.
+3. If the browser warns that the connection is not private, continue past it. [The certificate](#the-certificate)
+   explains why.
 
 ---
 
@@ -29,8 +37,9 @@ You can open Quark in any browser on your home network. The iPhone and Android a
 | Upload a folder     | Yes                 | No                      | No                      |
 | Photo library       | Browser file picker | **Photos** under Upload | In the file picker      |
 
-The browser needs no setup beyond the address: the page you open is served by that Quark. The apps work only on your
-home network for now. The sections below explain each row.
+The browser needs no setup beyond the address: the page you open is served by that Quark. The browser works only on
+your home network. Away from home, the iPhone and Android apps can use
+[remote access](/docs/settings/remote-access), once an admin has turned it on. The sections below explain each row.
 
 ---
 
@@ -159,11 +168,21 @@ If you don't know why it changed, don't forget the certificate. Check that you'r
 - **Old browser or tablet?** Quark accepts only TLS 1.3, the current version of the encryption browsers use. A browser
   or operating system too old for it can't connect at all. You won't see a certificate warning, just a page that never
   loads. Update the browser, or use a newer device.
+- **Away from home?** The browser can't reach Quark from outside your WiFi. Use the iPhone or Android app with
+  [remote access](/docs/settings/remote-access).
 - **Still nothing?** Check that the Quark has power, then restart your router once. [Help](/docs/help) has more.
 
 ---
 
-## For the curious
+## Related
+
+- [Getting Started](/docs/start/getting-started) — setting up and opening Quark the first time
+- [Help & Support](/docs/help) — troubleshooting and how to get in touch
+- [Remote Access](/docs/settings/remote-access) — using Quark away from home
+
+## Nerd Notes
+
+Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
 
 - The certificate is ECDSA P-256, self-signed, issued as "Quark Self-Signed", and valid for 365 days.
 - Quark checks it every time it starts. It makes a new one when there is none, when the current one expires within 30
@@ -177,10 +196,5 @@ If you don't know why it changed, don't forget the certificate. Check that you'r
   name. That's what the phone apps look for.
 - The container image serves plain HTTP on port 8080 instead, with no certificate. See
   [Nerd Notes](/docs/nerd-notes).
-
----
-
-## Related
-
-- [Getting Started](/docs/start/getting-started) — setting up and opening Quark the first time
-- [Help & Support](/docs/help) — troubleshooting and how to get in touch
+- Away from home, the iPhone and Android apps reach the Quark through an on-device proxy, after pairing once at home.
+  The web app has no remote path. [Remote Access](/docs/settings/remote-access#nerd-notes) has the details.
