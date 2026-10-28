@@ -89,7 +89,7 @@ the app cannot reach your Quark at all. See [Connecting](/docs/start/connecting#
 
 ## Nerd Notes
 
-Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
+Checked against quark `1bde8222` (#3786), on top of `c0f4eefc` (v0.56.2).
 
 **What leaves the box.** Only while remote access is on, and each time the Quark starts with it on:
 
@@ -100,6 +100,10 @@ Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
   that is already enrolled reconnects with what it saved and does not fetch a new key.
 - The Quark then joins that network through AutoButler's coordination server and stays connected so your phones can
   find it.
+- The Quark and a paired phone do not upload diagnostic logs or client metrics. The release binary and both phone
+  libraries compile that uploader out, and each turns it off before its node starts (`pkg/util/remoteutil/helpers.go`,
+  `cmd/tsnetbridge/bridge.go`). When a direct connection is not possible, traffic can pass through third-party relay
+  servers. Those servers see IP addresses and cannot read the traffic.
 - Requests that arrive that way are handed to Quark's own server over loopback, so Quark's sign-in still guards every
   one. Your files are not uploaded to AutoButler.
 

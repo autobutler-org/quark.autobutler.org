@@ -223,9 +223,11 @@ each further miss, up to 15 minutes. HTTP Basic shares the same lockout.
 
 **Outbound contact.** Debian's `unattended-upgrades` is set to the security pocket only (`pkg/util/aptutil`). The
 version check, `GET /api/v0/version/available`, runs when the Updates tab opens and may only contact `github.com` and
-`objects.githubusercontent.com` (`allowedUpdateHosts` in `pkg/util/updateutil/updateutil.go`). Remote access contacts
-its provisioning and coordination service only while it is on; [Remote Access](/docs/settings/remote-access) has the
-details. Remote requests reach Quark over loopback, which is why `X-Forwarded-For` is trusted only from loopback (or
+`objects.githubusercontent.com` (`allowedUpdateHosts` in `pkg/util/updateutil/updateutil.go`). Remote access, while it
+is on, contacts its provisioning and coordination service and can use third-party relay servers when a direct
+connection is not possible. Those relays see IP addresses and cannot read the traffic. It does not upload diagnostic
+logs or client metrics. [Remote Access](/docs/settings/remote-access) has the details. Remote requests reach Quark
+over loopback, which is why `X-Forwarded-For` is trusted only from loopback (or
 `QUARK_TRUSTED_PROXIES`), keeping the sign-in lockout keyed on the real client.
 
 **Backups.** The **Storage** tab's protection card reads `GET /api/v0/storage/protection`.
