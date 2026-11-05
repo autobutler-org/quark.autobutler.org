@@ -93,7 +93,8 @@ details, and the albums the photo is in.
 says **Downloaded** and the file's name. If you decline permission, it saves the file another way and tells you why.
 The details are on [Files](/docs/files#downloading).
 
-HEIC and raw camera files open in the viewer too. Your Quark converts them for display. The original stays as it was.
+HEIC photos open in the viewer from a preview the app makes and stores on your Quark. If there is no preview yet, the
+app makes one first. Raw camera files open too: your Quark converts them for display. The original stays as it was.
 
 A picture you open from Files, rather than from this library, steps through that folder by name. See
 [A photo opened from Files](/docs/files#a-photo-opened-from-files).
@@ -153,8 +154,8 @@ page remembers your username and the album. It does not save your password.
 Sign in as the person whose albums should be on that screen. Anyone who can reach the screen sees that account's
 albums. Tap **Sign out** when you are done if other people use the screen.
 
-HEIC photos and raw camera files are shown as ordinary JPEG pictures. Videos in the album are skipped. If an album
-has nothing it can show, the page says so.
+Raw camera files are shown as ordinary JPEG pictures. A HEIC photo is shown from its stored preview, and one with no
+preview yet is skipped. Videos in the album are skipped. If an album has nothing it can show, the page says so.
 
 If the screen can't reach your Quark, it keeps the picture it has, says so, and tries again. If the sign-in has
 ended, it goes back to the sign-in form.
@@ -163,8 +164,8 @@ If the screen is set to reduce motion, photos change without a fade. The page us
 
 ## Limits
 
-- Your Quark won't decode an image over 64 megapixels, such as a stitched panorama. That photo has no thumbnail, and a
-  HEIC that size can't be converted for viewing. The original still downloads as it is.
+- Your Quark won't decode an image over 64 megapixels, such as a stitched panorama. That photo has no thumbnail.
+  The original still downloads as it is.
 - Search matches file names. It does not look at what is in the picture.
 
 ## If something goes wrong
@@ -238,8 +239,9 @@ creates that account's Favorites album on first use. Address options, read by `f
 | `order`    | `shuffle`, `newest`, or `oldest`    | `shuffle` |
 
 `newest` asks `?sort=taken&order=desc`. `oldest` asks `?sort=taken&order=asc`. Shuffle randomizes that list in the
-page. Photos matching `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.bmp`, or `.avif` are shown as they are. `.heic`,
-`.heif`, `.dng`, `.cr2`, `.cr3`, `.nef`, `.arw`, `.orf`, `.rw2`, and `.raf` are requested with `format=jpeg`.
+page. Photos matching `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.bmp`, or `.avif` are shown as they are. `.dng`,
+`.cr2`, `.cr3`, `.nef`, `.arw`, `.orf`, `.rw2`, and `.raf` are requested with `format=jpeg`. `.heic` and `.heif` load
+`/api/v0/thumbnails/<path>?size=lg`, and one with no stored thumbnail is skipped (quark #3915).
 Anything else, including video, is skipped.
 
 The page stores `{ username, album }` in `localStorage` under `quarkFrame`. It does not store the password. The

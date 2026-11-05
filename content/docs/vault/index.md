@@ -20,6 +20,9 @@ over remote access, once an admin has turned that on in **Settings → Network**
 
 ## How to use it
 
+On a phone, **New entry**, **New folder**, **Import**, and **Export** are in the **Manage** menu at the top of the
+vault. On a wider screen they sit in a row above the list.
+
 ### Set it up
 
 1. Open **Vault** from the app drawer.
@@ -82,7 +85,8 @@ Tap **Import** and choose a JSON or CSV file. Quark reads:
 
 - A Quark vault export
 - A Bitwarden CSV
-- A Proton Pass CSV. Logins come in. Notes, aliases, and cards are left out, and Quark tells you how many.
+- A Proton Pass CSV. Logins come in. Notes, aliases, cards, and identities are left out, and Quark tells you how
+  many.
 - A Google Password Manager CSV, or another manager's CSV with the usual columns
 
 A login already in the vault, with the same name and the same site, is skipped. It is not copied again, and it is not
@@ -136,7 +140,7 @@ There is no admin recovery. The logins stay locked on your Quark.
 ## Related
 
 - [Security Guide](/docs/help/security-guide): your password, your recovery phrase, and backups
-- [Remote access](/docs/help/security-guide#remote-access): reaching your Quark when you are away from home
+- [Remote access](/docs/settings/remote-access): reaching your Quark when you are away from home
 - [Storage and Backups](/docs/system/storage-and-backups): snapshot copies of the locked vault
 - [Getting Started](/docs/start/getting-started): the first evening with a new Quark
 

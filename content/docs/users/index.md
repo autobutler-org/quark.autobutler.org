@@ -231,8 +231,9 @@ it up next can open them.
 The last admin cannot leave other accounts without an admin. Quark says "This Quark needs at least one admin. Make
 someone else an admin first."
 
-**Reset this Quark** is different. It is admin-only, and every account goes with it. Read the confirmation before you
-tap it. See [Delete account vs Reset this Quark](/docs/settings#delete-account-vs-reset-this-quark).
+**Reset this Quark** is different. It is admin-only. With **Accounts and settings** ticked, which is how it starts,
+every account goes with it. Untick that box and every account stays. Read the confirmation before you tap it. See
+[Delete account vs Reset this Quark](/docs/settings#delete-account-vs-reset-this-quark).
 
 ### Groups
 

@@ -108,8 +108,9 @@ Older `.xls` workbooks are not converted. They get the details page with **Downl
 JPEG, PNG, GIF, WebP, HEIC, HEIF, BMP, TIFF, AVIF, and raw camera files open in the image viewer. SVG drawings open in
 their own viewer.
 
-- HEIC, HEIF, BMP, TIFF, and the raw formats `.cr2`, `.cr3`, `.nef`, `.arw`, `.dng`, `.orf`, and `.rw2` are turned into
-  a JPEG by your Quark for viewing. The original file is not changed.
+- BMP, TIFF, and the raw formats `.cr2`, `.cr3`, `.nef`, `.arw`, `.dng`, `.orf`, and `.rw2` are turned into a JPEG by
+  your Quark for viewing. The original file is not changed.
+- HEIC and HEIF open from a preview the app makes and stores on your Quark. The original file is not changed.
 - Other raw formats, such as `.raf`, `.pef`, and `.x3f`, are listed as images, but the viewer may not be able to show
   them. Download them to open on your computer.
 - Only JPEG, PNG, GIF, WebP, HEIC, and HEIF get thumbnails in the file list. Other pictures show a plain icon, unless
