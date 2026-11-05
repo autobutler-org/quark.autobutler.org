@@ -50,4 +50,7 @@ empties the drives shown.
 An admin sees everything in Trash. Anyone else sees what they deleted, plus things deleted from folders they can still
 open. If a shared folder stops being shared with you, its deleted items leave your Trash too.
 
+**Empty trash** clears only what you could delete one at a time: what you deleted, and things deleted from folders you
+can edit. An admin's **Empty trash** clears everything shown.
+
 Trash updates live: delete something on your laptop and it shows up in Trash on your phone.

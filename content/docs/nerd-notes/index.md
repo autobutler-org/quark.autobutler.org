@@ -292,7 +292,8 @@ curl -k -OJ --retry 5 "$BASE/files/download?filePath=Photos/2024" -H "$AUTH"
 
 A folder is zipped as it streams, so an interrupted zip starts over. When every zip slot is busy for 10 seconds, Quark
 answers `503` with a `Retry-After` header, which `--retry` honors. A single file downloads as itself and supports
-`Range` requests, so `curl -C -` resumes it. Add `format=jpeg` to get a HEIC photo as a JPEG.
+`Range` requests, so `curl -C -` resumes it. Add `format=jpeg` to get a TIFF, BMP, or raw photo as a JPEG. A HEIC is
+served as stored (quark #3915); fetch `/api/v0/thumbnails/<path>?size=lg` for a JPEG of it.
 
 **Resumable upload.** This is how the app sends files of 8 MiB and up. Open a session, then send chunks with a
 `Content-Range` header. The chunk that reaches the end commits the file:

@@ -151,7 +151,8 @@ To remove someone else's account, an admin uses the Users page instead. See
 
 ### Reset this Quark
 
-Admins only. It returns the Quark to first-time setup. Every account goes, yours included. It can't be undone.
+Admins only. With **Accounts and settings** ticked, it returns the Quark to first-time setup and every account goes,
+yours included. Untick that box and every account stays, and the Quark does not go back to setup. It can't be undone.
 
 You choose what to erase:
 
@@ -166,7 +167,8 @@ one box ticked. A wrong password changes nothing: "That password isn't right. No
 
 Two warnings before you tap:
 
-- **Unticking a box leaves data on the Quark.** Whoever sets it up next will be able to reach whatever you leave.
+- **Unticking a box leaves data on the Quark.** If the accounts go, whoever sets it up next can reach whatever you
+  leave. If they stay, everyone who can still sign in can reach it.
 - **Quark data on attached drives is the one part nothing can bring back.** That includes a backup, if the backup is on
   one of those drives. That's why it starts unticked.
 

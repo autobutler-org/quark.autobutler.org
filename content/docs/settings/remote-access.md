@@ -39,6 +39,8 @@ Remote access works in the iPhone and Android apps.
 
 In a web browser, Quark still works only on your home WiFi.
 
+The desktop app doesn't have remote access yet. **Settings → Network** says so, and at home it works as usual.
+
 ### Pause it on one phone
 
 In the iPhone and Android apps, **Settings → Network** has a **This phone** section. **Remote access on this phone**
