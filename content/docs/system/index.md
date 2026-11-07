@@ -81,8 +81,8 @@ The **Storage** tab is about your drives and your backups:
 - **Each drive**: its name, how full it is, its role, and its health: **Healthy**, **Watch**, **Replace soon** or
   **Unknown**.
 
-Everyone sees the same tab. The buttons that change things are admins only: **Mount**, **Set Role**, **Back Up** and
-**Verify**.
+Everyone sees the same tab. The buttons that change things are admins only: **Mount**, **Set Role**, **Back Up**,
+**Verify**, **Eject**, and **Restore vaults** on a snapshot-backup drive.
 
 [Storage and Backups](/docs/system/storage-and-backups) explains every part of this tab, and walks you through making
 a backup.

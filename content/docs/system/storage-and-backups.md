@@ -21,8 +21,8 @@ To see your drives:
 1. Open **System** from the app menu.
 2. Pick the **Storage** tab.
 
-Everyone can look at this tab. Only admins see the buttons that change things: **Mount**, **Set Role**, **Back Up**
-and **Verify**.
+Everyone can look at this tab. Only admins see the buttons that change things: **Mount**, **Set Role**, **Back Up**,
+**Verify**, **Eject**, and **Restore vaults** on a snapshot-backup drive.
 
 To back up your Quark (admins only):
 
@@ -31,7 +31,8 @@ To back up your Quark (admins only):
 3. Choose **Back Up** on the same card.
 4. The **Snapshot Backup** window says where the copy is going. Choose **Start Backup**.
 
-Backing up doesn't ask for a password. When it's done, unplug the drive and keep it somewhere else.
+Backing up doesn't ask for a password. When it's done, tap **Eject** on the drive's card, wait until it says the
+drive is safe to unplug, then unplug it and keep it somewhere else.
 
 ## What the Storage tab shows
 
@@ -114,7 +115,7 @@ in **Settings → General**. The reminders only appear in the app.
 ### Keep a copy somewhere else
 
 A backup drive that sits next to your Quark can be lost along with it in a fire, a flood or a break-in. Plug in, back
-up, unplug, and keep the drive somewhere else, such as at a relative's house. The [Security
+up, eject, unplug, and keep the drive somewhere else, such as at a relative's house. The [Security
 Guide](/docs/help/security-guide) explains the 3-2-1 rule this is part of.
 
 ## What a backup keeps
@@ -145,13 +146,16 @@ There is no restore button for files. You copy them back yourself, in one of two
 - **Through a computer.** Plug the backup drive into a laptop. Open the **quark** folder, then **data**, then
   **files**, and copy what you need. They are ordinary files, so any computer can open them.
 
-The app can't restore the chat or vault copies yet.
+An admin can restore every account's vault from that backup with **Restore vaults** on the snapshot-backup drive's
+card. The dialog warns that usernames must match letter for letter, that every backed-up vault needs its account on
+this Quark first, and that after a move to new hardware each person unlocks with the password from backup time. Chat
+copies in the backup still cannot be restored from the app.
 
 ### Before you reset your Quark
 
 **Reset this Quark** has an option called **Quark data on attached drives**. It is off unless you turn it on. When
-it's on, the reset erases Quark's folder on every drive plugged in at that moment, a backup drive included. Unplug your
-backup drive before you reset.
+it's on, the reset erases Quark's folder on every drive plugged in at that moment, a backup drive included. **Eject**
+and unplug your backup drive before you reset.
 
 ## What Quark does with a plugged-in drive
 
@@ -168,7 +172,11 @@ Quark makes its own folder on the drive and works inside it. This has two effect
 - **On a computer, your files are easy to find.** Open the **quark** folder on the drive, then **data**, then
   **files**. They are ordinary files in ordinary folders.
 
-There is no **Eject** button. If a backup is running onto a drive, wait for it to finish before you unplug it.
+To unplug a drive safely, an admin taps **Eject** on its card. Quark asks first. On the default storage drive it
+also warns that new uploads will fail until the drive is mounted again. After **Eject**, a message says the drive is
+safe to unplug, and the card reads **Not mounted · safe to unplug** with **Mount**. **Eject** is greyed out while a
+backup runs onto that drive. If the drive's files are still in use, Quark refuses and the page shows the error. The
+built-in drive has no **Eject** button.
 
 ### More than one drive in Files
 
@@ -226,7 +234,9 @@ the client had it, its recovery phrase, so the copy is exactly as private as the
 hold `vault_backup.db`, the retired household vault encrypted under a separate recovery password. This version doesn't
 read it.
 
-Restore functions for both exports exist in the code, but no API route or app screen calls them yet (quark #2428).
+Vault restore is `POST /api/v0/storage/devices/snapshot-backup/restore-vault` (quark #3930, #3946, #3961, v0.58.0).
+It needs the drive serial and the admin's auth key. Chat restore still has no app screen (quark #2428). An older
+`vault_backup.db` cannot be restored. On PostgreSQL the vault route answers 501.
 
 ### Protection and reminders
 
@@ -273,7 +283,8 @@ All paths are under `/api/v0/storage`.
 | `POST /devices/snapshot-backup`           | admin    | `targetDeviceSerial`, `acknowledgeHealth`; returns `jobId`    |
 | `POST /devices/snapshot-backup/verify`    | admin    | `deviceSerial`, `full`; the app sends `full: true`            |
 | `POST /devices/usb/:serial`               | admin    | mount a USB drive                                             |
-| `DELETE /devices/usb/:serial`             | admin    | unmount a USB drive; the app has no **Eject** button yet      |
+| `DELETE /devices/usb/:serial`             | admin    | unmount a USB drive; Storage **Eject**                        |
+| `POST .../snapshot-backup/restore-vault`  | admin    | restore vaults from a snapshot drive (v0.58.0)                |
 | `PATCH /devices/rename`                   | admin    | rename a drive; the app has no button for it                  |
 
 With `full: true`, Verify hashes every file. Without it, only sizes are compared.
