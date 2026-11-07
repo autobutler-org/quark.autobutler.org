@@ -77,7 +77,11 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
 
 - This is a privacy product. The site must not contradict the pitch.
 - Do not add analytics, tag managers, session recording, A/B testing, or
-  fingerprinting.
+  fingerprinting. The one exception is the cookieless page view count in
+  `utils/pageViews.ts` and `plugins/page-views.client.ts`: host, path, and an
+  outside referrer without its query string, sent to GoatCounter, skipped on
+  Do Not Track and Global Privacy Control. Do not add fields, cookies, events,
+  or a second tool to it.
 - Do not add third-party embeds, remote fonts, remote scripts, or tracking
   pixels. Self-host assets under `public/` or `assets/` instead.
 - Forms that send data off-site (newsletter signup, contact) need explicit
@@ -116,7 +120,8 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
   split exists because docs are long-form Markdown, not short UI strings.)
 - `utils/`: pure TypeScript logic that pages use but that needs no Nuxt
   runtime (`docsSearch.ts`, the docs index search; `docsNav.ts`, grouping
-  docs into categories; `docsLinks.ts`, the internal-link check). Keeping it here
+  docs into categories; `docsLinks.ts`, the internal-link check;
+  `pageViews.ts`, what a page view count sends and when). Keeping it here
   lets `utils/__tests__/` cover it with plain Vitest.
 - `assets/`: global styles and bundled static assets.
 - `public/`: files copied verbatim into the build (favicon, `quark.png`,
