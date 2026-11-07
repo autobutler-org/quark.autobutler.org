@@ -99,7 +99,8 @@ An export is an ordinary file. It is not locked, and anyone who has the file can
 somewhere safe, and delete it when you are done with it.
 
 A snapshot backup copies every account's vault too, still locked. A vault in that copy opens only with that account's
-password or recovery phrase. Nobody sets a separate password for the backup. The app cannot restore that copy yet. See
+password or recovery phrase. Nobody sets a separate password for the backup. An admin can restore those vaults from a
+snapshot-backup drive on **System → Storage** with **Restore vaults**. See
 [Storage and Backups](/docs/system/storage-and-backups).
 
 ## If something goes wrong
@@ -146,7 +147,8 @@ There is no admin recovery. The logins stay locked on your Quark.
 
 ## Nerd Notes
 
-Checked against quark v0.56.2. `main` was one commit ahead (`c0f4eefc`), and that commit does not touch the vault.
+Checked against quark v0.58.0 for snapshot vault restore (quark #3930, #3946, #3961). Earlier vault behavior was
+last full-checked at v0.56.2 (`c0f4eefc`).
 
 The household vault, one master password shared by every account, is gone. Migration `038_drop_household_vault` drops
 it. Migration `037_per_account_vault` is the model below. There is no master password.
@@ -211,6 +213,10 @@ errors. A generic CSV does not take a two-factor column. Bitwarden and Proton Pa
 up** for a stored seed and does not derive codes.
 
 **Backups.** A snapshot copies `vault_keys` and `vault_items` as they are into `vault_items_backup.db` and asks for no
-password (`ExportVault`). `backup.ImportVault` restores that file only while no account has a vault item, and no HTTP
-route calls it yet (quark #2428). An older `vault_backup.db`, the household vault, is not read. Nothing in the vault
-routes checks where the request came from, so remote access reaches the same vault once the account is signed in.
+password (`ExportVault`). An admin restores that file with `POST /api/v0/storage/devices/snapshot-backup/restore-vault`
+(quark #3930, #3946, #3961, shipped in v0.58.0). The body carries the drive serial and the admin's auth key. A restore
+needs matching usernames letter for letter, refuses when any target account already has a vault key or vault items
+(409), and answers 501 on PostgreSQL. After a move to new hardware, each restored vault unlocks with its backup-time
+password until the account re-wraps it under the current sign-in password. An older `vault_backup.db`, the household
+vault, is not read. Nothing in the vault routes checks where the request came from, so remote access reaches the same
+vault once the account is signed in.
