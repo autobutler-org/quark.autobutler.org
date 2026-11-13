@@ -35,8 +35,12 @@ before we have had a chance to respond.
 
 ## Our commitments
 
-The site collects nothing. It has no analytics, no tag manager, no session
-recording, no tracking pixels, and no third-party embeds, and it loads no
-scripts, fonts, or stylesheets from other origins. If you find something on the
+The site collects nothing beyond a cookieless page view count: the page, and
+the outside page that linked to it without its query string, sent to our
+GoatCounter server at goatcounter.cloud.autobutler.org and skipped when your
+browser sends Do Not Track or Global Privacy Control. It has no other
+analytics, no tag manager, no session recording, no
+tracking pixels, and no third-party embeds, and it loads no scripts, fonts, or
+stylesheets from other origins. If you find something on the
 published page that contradicts that, treat it as a security issue and report it
 the same way.
