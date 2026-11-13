@@ -79,9 +79,9 @@ setup>` SFCs), statically generated (`nuxt generate`) and served as static
 - Do not add analytics, tag managers, session recording, A/B testing, or
   fingerprinting. The one exception is the cookieless page view count in
   `utils/pageViews.ts` and `plugins/page-views.client.ts`: host, path, and an
-  outside referrer without its query string, sent to GoatCounter, skipped on
-  Do Not Track and Global Privacy Control. Do not add fields, cookies, events,
-  or a second tool to it.
+  outside referrer without its query string, sent to our GoatCounter server at
+  goatcounter.cloud.autobutler.org, skipped on Do Not Track and Global Privacy
+  Control. Do not add fields, cookies, events, or a second tool to it.
 - Do not add third-party embeds, remote fonts, remote scripts, or tracking
   pixels. Self-host assets under `public/` or `assets/` instead.
 - Forms that send data off-site (newsletter signup, contact) need explicit

@@ -36,7 +36,7 @@ describe("pageViewUrl", () => {
         referrer: "",
       })
     );
-    expect(url.origin).toBe("https://autobutler.goatcounter.com");
+    expect(url.origin).toBe("https://goatcounter.cloud.autobutler.org");
     expect([...url.searchParams.keys()]).toEqual(["p"]);
     expect(url.searchParams.get("p")).toBe("quark.autobutler.org/docs/files");
   });
