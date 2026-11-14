@@ -87,8 +87,8 @@ Quark stores your files. Quark is also a physical box, and boxes fail, flood, an
 Quark tells you how you are doing. Open **System** from the app drawer and pick the **Storage** tab. A card at the top
 rates your files **Unprotected**, **Basic**, or **Protected**, and tells you the next step.
 
-Quark does not copy to a backup drive on a schedule yet. An admin makes each copy in the app with a
-[snapshot backup](/docs/system/storage-and-backups). The copy out of the house is up to you. A drive at a relative's
+An admin backs up onto a [backup drive](/docs/system/storage-and-backups) in the app, by hand or on a daily, weekly
+or monthly schedule while the drive is plugged in. The copy out of the house is up to you. A drive at a relative's
 house that you swap every so often is enough.
 
 There is no backup plan that can save you from _no backup at all._

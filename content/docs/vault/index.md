@@ -100,7 +100,8 @@ somewhere safe, and delete it when you are done with it.
 
 A snapshot backup copies every account's vault too, still locked. A vault in that copy opens only with that account's
 password or recovery phrase. Nobody sets a separate password for the backup. An admin can restore those vaults from a
-snapshot-backup drive on **System → Storage** with **Restore vaults**. See
+backup drive on **System → Storage** with **Restore vaults**. The vault copy is tied to the Quark that made it, so a
+Quark set up fresh on new hardware can't restore it, though one moved with `quark bundle` can. See
 [Storage and Backups](/docs/system/storage-and-backups).
 
 ## If something goes wrong

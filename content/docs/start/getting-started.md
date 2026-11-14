@@ -224,7 +224,8 @@ Quark can manage several storage devices (hard drives, USB drives) connected to 
 
 - Set **Grouping** to **Unified** in the views menu to see everything in one place.
 - Set it to **Per-device** to see what's on each drive separately.
-- When you upload, Quark may ask which drive to upload to.
+- Uploads and new folders go to your **Default Storage** drive. To pick another drive, tap the ▾ beside **Upload** or
+  **New folder**, or long-press it on a phone.
 
 Your drives are listed on the **Storage** tab of the **System** page. Each drive shows a health word, from **Healthy**
 to **Replace soon**. A card at the top of the tab says how well protected your files are: **Unprotected**, **Basic**, or

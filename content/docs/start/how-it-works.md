@@ -79,9 +79,9 @@ It is a solved problem, though, and you solve it once. Copy the irreplaceable fo
 drive somewhere a bad day cannot reach — a fireproof box, a relative's house. Do that and the tradeoff costs you an
 afternoon rather than your photos.
 
-Quark can make that second copy for you, when an admin starts it: a **snapshot backup** on **System → Storage**. It
-does not run on a schedule yet, so start one every so often. [Storage and Backups](/docs/system/storage-and-backups) covers
-the steps and how to get files back.
+Quark can make that second copy for you: a backup onto a **backup drive** on **System → Storage**. An admin can start
+one by hand or set the drive to back up daily, weekly or monthly while it is plugged in.
+[Storage and Backups](/docs/system/storage-and-backups) covers the steps and how to get files back.
 
 The plan is still the ordinary one: a second drive, and a third copy somewhere that is
 not your house. See the [Security Guide](/docs/help/security-guide) for the 3-2-1 version of that.

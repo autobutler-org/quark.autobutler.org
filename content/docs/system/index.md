@@ -77,12 +77,13 @@ Health refreshes itself every 15 seconds, but only while the Health tab is on sc
 The **Storage** tab is about your drives and your backups:
 
 - **How protected your files are**: a card at the top rates your files **Unprotected**, **Basic** or **Protected**,
-  depending on how many backup drives hold a recent copy. It also suggests your next step.
+  depending on how many backup drives hold a recent copy of each drive. It also suggests your next step.
 - **Each drive**: its name, how full it is, its role, and its health: **Healthy**, **Watch**, **Replace soon** or
   **Unknown**.
 
-Everyone sees the same tab. The buttons that change things are admins only: **Mount**, **Set Role**, **Back Up**,
-**Verify**, **Eject**, and **Restore vaults** on a snapshot-backup drive.
+Everyone sees the same tab. The buttons that change things are admins only: **Mount**, **Set Role**, **Eject**,
+**Back up now**, and on a backup drive **Back up onto this drive**, **Schedule**, **Verify**, **Restore files**,
+**Restore vaults** and **Restore chat**.
 
 [Storage and Backups](/docs/system/storage-and-backups) explains every part of this tab, and walks you through making
 a backup.
@@ -96,8 +97,9 @@ a backup.
 The **Jobs** tab lists long-running work on the Quark, newest first. Each job shows its progress and where it's at:
 **Queued**, **Running**, **Completed**, **Failed** or **Canceled**.
 
-Today the only kind of job listed here is a video conversion, started with **Convert video** in Files. A backup isn't
-listed here. Its progress shows on the drive's card on the **Storage** tab.
+Jobs listed here include video conversions, started with **Convert video** in Files, backups, and file restores from a
+backup drive. A backup is named after its drives, such as "Back up Built-in storage, Music and 2 more onto Backup".
+A scheduled backup is started by the Quark itself, so only admins see it.
 
 - **Cancel** stops a job that is queued or running.
 - **Retry** runs a failed job again.
