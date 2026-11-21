@@ -1,4 +1,5 @@
 import { docsRedirects } from "./data/docsRedirects";
+import { gitLastModified } from "./scripts/gitLastModified";
 import { redirectPage } from "./utils/redirectPage";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -21,7 +22,7 @@ export default defineNuxtConfig({
     static: true,
     prerender: {
       // Old docs URLs are prerendered too, so each gets a static meta-refresh page.
-      routes: ["/sitemap.xml", ...Object.keys(docsRedirects)],
+      routes: ["/sitemap.xml", "/llms.txt", ...Object.keys(docsRedirects)],
     },
     hooks: {
       // Nitro's own redirect page has no canonical link; swap in one that does.
@@ -29,6 +30,15 @@ export default defineNuxtConfig({
         const to = docsRedirects[route.route.replace(/\/+$/, "")];
         if (to && route.contents) route.contents = redirectPage(to);
       },
+    },
+  },
+  hooks: {
+    // Each doc's "Updated" date, sitemap lastmod and TechArticle dateModified
+    // come from the file's last git commit. See content.config.ts.
+    "content:file:afterParse"(ctx) {
+      if (ctx.collection.name !== "docs") return;
+      const modified = gitLastModified(ctx.file.path);
+      if (modified) ctx.content.modified = modified;
     },
   },
   /*
