@@ -30,7 +30,7 @@ Each tab has its own link, so you can bookmark one or send it to someone in your
 
 - **Backend hosts**: the Quarks this app knows about. Add one, edit it, remove it, or tap one to switch to it. See
   [Adding a Quark by name](#adding-a-quark-by-name) below.
-- **Theme**: **System**, **Light** or **Dark**. Saved on this device only.
+- **Theme**: **System**, **Light** or **Dark**. It belongs to your account, so it follows you to your other devices.
 - **High contrast**: stronger colors and bolder outlines, so text and buttons are easier to see. Saved on this device
   only.
 - **Left-handed mode**: moves the menu button and the menu to the right, and floating buttons to the left. Saved on
@@ -43,8 +43,8 @@ Each tab has its own link, so you can bookmark one or send it to someone in your
 - **Notifications**: admins only. One switch for each backup reminder: **No backup yet** and **Backup out of date**.
   Turning one off affects only you. Other admins still get it.
 - **Auto-refresh interval**: how often pages that update themselves, like Health and the drive list, check for new
-  numbers. It starts at 15 seconds. You can pick anything from 10 seconds to 5 minutes, or **Disabled**. Saved on this
-  device only.
+  numbers. It starts at 15 seconds. You can pick anything from 10 seconds to 5 minutes, or **Disabled**. It belongs to
+  your account, like the theme.
 - **Demo mode**: Photos shows built-in sample photos and albums instead of your library. The samples come with the app,
   so nothing is fetched from your Quark. Your real files are not affected.
 - **Storage devices**: a shortcut to your drives, on the **Storage** tab of the [System](/docs/system) page.
@@ -96,6 +96,9 @@ From top to bottom:
 - **SSH access**: admins only. A command-line login to the Quark, for people comfortable with a terminal. It's off
   until an admin turns it on. Most households never need it. See [SSH Access](/docs/settings/ssh).
 
+Admins also see a folded **Where things live** card on this tab. It says where people, sharing, connected clients,
+disks and passwords are each managed, with a link to each page.
+
 ---
 
 ## Updates
@@ -109,6 +112,19 @@ From top to bottom:
 
 More on versions and release notes: [Versions and release notes](/docs/settings/versions).
 
+### Restart Quark
+
+Admins only. **Restart Quark** turns Quark off and back on, "if something is not working the way it should." Tap it,
+then **Restart** to confirm. Quark is unavailable for a few seconds, and anything in progress, like an upload, stops.
+The section says **Restarting…**, then **Quark is back.**
+
+If Quark hasn't come back after about a minute and a half, it says "Quark didn't come back after restarting. Check
+that it's running on the device, then reload this page." A restart, a repair and an update can't run at the same time.
+
+It only shows on a Quark that something will start again: one installed straight onto its device, or a container set
+up for it. Anywhere else the button isn't there. **Repair installation** restarts Quark too, and also sets its system
+setup right. If you only want a fresh start, use **Restart Quark**.
+
 ---
 
 ## About
@@ -117,6 +133,9 @@ More on versions and release notes: [Versions and release notes](/docs/settings/
 - **Help & Support**: **Visit support page** and **Report an issue**. In the iOS and Android apps it also has **Copy
   app logs**, which copies this device's app log so you can paste it into a bug report. Nothing is sent anywhere.
 - **Terms of Service**.
+- **API Explorer**: "Browse and call this Quark's API as yourself." Any account can open it. It is for the curious: it
+  lists the requests your Quark answers, and lets you try one. It acts as you, with your permissions. A request that
+  changes something really changes it, so the page asks you to confirm first. Most people never need it.
 - **Software Bill of Materials**: every building block Quark is made from, with its version.
 
 ### When a Features tab appears
@@ -189,11 +208,22 @@ After a reset, the Quark restarts within a few seconds, so the app may briefly l
 
 **Tab addresses.** Each tab has its own route: `/settings/general`, `/settings/account`, `/settings/network`,
 `/settings/updates`, `/settings/about`, and `/settings/features` while a beta exists. A link to `/settings/features`
-with no beta registered opens General. **Account and data** is `/settings/account-and-data`.
+with no beta registered opens General. **Account and data** is `/settings/account-and-data`. The API Explorer is
+`/settings/api-explorer`; it needs sign-in and is not admin-only.
 
-**Where each setting lives.** Theme, high contrast, left-handed mode, the Calendar default view, the auto-refresh
-interval and demo mode are stored by the app on the device. Your theme color and your disabled notification types are
-stored on the Quark, per account. The household default color is stored on the Quark.
+**Where each setting lives.** High contrast, left-handed mode, the Calendar default view and demo mode are stored by
+the app on the device. Your theme, theme color, auto-refresh interval, the Docs editor's auto-save and dark page, and
+your disabled notification types are stored on the Quark, per account, behind `GET` / `PUT /api/v0/settings/me`
+(`themeMode` is `system`, `light` or `dark`; `refreshIntervalSeconds` is 0 for off, up to 3600; out-of-range values get
+a `400`). A new account, made or approved by an admin, starts with a one-time copy of that admin's theme, theme color,
+interval and Docs editor choices; after that it keeps its own. An account the Quark has no settings for yet uploads the
+first signed-in device's values. The household default color is stored on the Quark.
+
+**API Explorer.** Built from the Swagger document plus the `/// api:` tags on the app's services
+(`lib/generated/api_explorer_registry.g.dart`). Requests go out as the signed-in account: the bearer token in the apps,
+the session cookie on the web. Anything but a `GET` asks to confirm. A response is cut off at 64 KiB or 10 seconds and
+marked truncated, so a download or `/api/v0/events` can't hang the page. It adds no access: a member gets a member's
+`403`s.
 
 **Names tried when adding a Quark.** A name ending in `.local`, `.lan`, `.home` or `.localdomain`, or with no dot at
 all, is stripped to its base and also tried as `<base>.local`, `<base>.lan` and the bare `<base>`. That covers routers
@@ -231,4 +261,11 @@ over SSH, and an SSH password needs at least 12 characters. [SSH Access](/docs/s
 | Installed and available versions | `GET /api/v0/version`, `GET /api/v0/version/available`                    |
 | Start an update (admin)          | `POST /api/v0/version/update`                                             |
 | Repair installation (admin)      | `GET` / `POST /api/v0/admin/repair`                                       |
+| Restart Quark (admin)            | `GET` / `POST /api/v0/admin/restart`                                      |
 | Software Bill of Materials       | `GET /api/v0/sbom`                                                        |
+
+`GET /api/v0/admin/restart` answers `{"available":bool,"reason":""|"not_supervised"}`. `POST` answers `200`, and the
+process exits about two seconds later for its supervisor to start it again. It answers `409` when nothing would start
+Quark again, or when an update, restart or repair is already under way; `POST /api/v0/admin/repair` gives the same
+second `409`. A container only offers a restart with a restart policy and `QUARK_RESTART_SUPERVISED=1`. See
+[Self-Hosting](/docs/nerd-notes/self-hosting).

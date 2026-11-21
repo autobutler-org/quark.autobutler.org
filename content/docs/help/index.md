@@ -111,8 +111,8 @@ files are done, such as `3/10`.
   **Cancel**. **Cancel** skips only that file. **Keep both** adds a number to the new name.
 - **A large file stopped partway.** Quark sends large files in pieces and tries again on its own. If the page reloaded
   in the middle, upload the same file to the same folder again. Quark continues where it stopped.
-- **More than one drive.** The files went to the drive you picked in **Upload to device**, or to the drive Files is
-  filtered to. Look there.
+- **More than one drive.** The files went to your **Default Storage** drive, unless you picked another with the ▾
+  beside **Upload** (a long press on a phone), or Files was showing only one drive. Look there.
 
 Refreshing the page is the last thing to try. [Files](/docs/files#uploading) has the rest.
 
@@ -201,6 +201,27 @@ not re-encode the picture, so it will not fix a codec this device cannot play. D
 computer. Audio that will not play says "Unable to play this audio file. The format may not be supported by this
 browser." [File types](/docs/files/file-types#playing) has the list.
 
+#### "This video won't play here. It may be damaged, or in a format this browser can't play."
+
+The browser could not play the file, and nothing else explains why. Download it and play it on your computer.
+
+#### "Your Quark can't open this file as a video."
+
+The rest says "It's in a format your Quark doesn't support, or it isn't a video." The file may be a kind of video
+Quark does not read, or not a video at all, such as a document with a video's name. Download it and open it on your
+computer.
+
+#### "This video is damaged or incomplete, so your Quark can't open it."
+
+The file is broken or cut short, perhaps by an upload that stopped partway. Upload it again from the original if you
+still have it.
+
+#### "This video was saved in a streaming layout your Quark can't trim."
+
+Some cameras and apps save videos in pieces. Quark can play them but can't trim them. The same goes for "Your Quark
+can't trim videos in this format." Download the video to edit it on your computer.
+[File types](/docs/files/file-types#playing) says which videos can be trimmed.
+
 #### "You can't save files in that folder."
 
 **Convert…** writes the new file next to the video, so you need permission to save files in that folder. Copy the
@@ -246,12 +267,28 @@ You can see this, and you cannot change it. The message names what you were tryi
 Someone else moved or deleted the item while you had it open. The message names what you were trying to do. Refresh
 the page.
 
+#### "This drive isn't connected to your Quark. Plug it back in, or go back."
+
+The file is on a drive that is not plugged in right now. Plug the drive back into the Quark, or go back.
+
+#### "Quark can't reach this drive until it restarts."
+
+This shows on a drive's card on **System → Storage**. The drive was plugged in after Quark started, and Quark can't use
+it until it starts again. An admin can tap **Restart Quark** on **Settings → Updates**, if it is there. If not, ask
+whoever set up your Quark to restart it.
+
+#### "That job can't be retried."
+
+You tapped **Retry** on a job that can't run again. "The file this job used is missing or can no longer be read." means
+the file was moved, deleted, or is on a drive that is unplugged. "That job no longer exists." means it was cleared
+already. Start the task again from the file.
+
 ### Admins
 
 #### "Only an admin can open that page."
 
-You opened a page only an admin can use. Today that page is **Users**. Quark sends you to **Files** and shows this
-message.
+You opened a page only an admin can use. Those pages are **Users**, and **Health** and **Storage** on the System page.
+Quark sends you to **Files** and shows this message. **Jobs** is open to everyone.
 
 **Vault** is not one of those pages. Every account can open its own.
 
@@ -378,7 +415,8 @@ same "Invalid username or password." sentence (`invalidCredentials`).
 **Sessions.** `sessionDuration` is 30 days from last use. `SessionMaxLifetime` is 90 days from creation
 (`pkg/util/authutil/service.go`).
 
-**Admin gate.** `adminRoutes` in `lib/router.dart` is `/users` and `/settings/features`. Anyone else is sent to Files,
+**Admin gate.** `adminRoutes` in `lib/router.dart` is `/users`, `/settings/features`, `/system/health` and
+`/system/storage`, and the paths under them. Anyone else is sent to Files,
 and a snackbar shows `Errors.adminOnly`. Vault is not in that set. The feature-flag registry in
 `pkg/util/featureflagutil/registry.go` is empty. Chat, calendar, and slides have left beta
 (`TestEnabled_RetiredFlagsAreOff`). The Features tab renders only while that list is non-empty

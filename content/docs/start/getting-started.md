@@ -142,7 +142,9 @@ The views menu in the top bar holds the rest:
 
 - **Filter devices**: choose which drives to show
 - **Layout**: List or Grid again
-- **Grouping**: **Unified** shows all your drives together; **Per-device** lists each drive separately
+- **Grouping**: **Unified** shows all your drives together; **Per-device** lists each drive separately. Each file
+  and folder carries a small colored tag naming the drive it is on. The **(i)** beside **Grouping**, "About these
+  views", explains both.
 
 ### Searching for a file
 
@@ -286,7 +288,7 @@ Settings is split into tabs. Everyone sees **General**, **Account**, **Network**
 - **Account**: **Change password**, **Sign out**, and a list of your **Sessions**, where you can sign out a session you
   no longer use
 - **Network**: remote access and connected devices. Admins also see the Quark's device name and SSH access.
-- **Updates**: the installed version, any newer versions, and where an admin starts an update
+- **Updates**: the installed version, any newer versions, and where an admin starts an update or restarts Quark
 - **About**: Help & Support, the terms, and the list of software Quark is built from
 
 Admins also see a **Features** tab, but only while Quark has a beta feature to try. The current release has none, so
@@ -299,7 +301,8 @@ Deleting your account and resetting the Quark live behind the **Account and data
 tab, so neither is a stray tap away:
 
 - **Delete account**: removes your login from this Quark (separate from wiping the box). Your files stay on the Quark.
-- **Reset this Quark**: admins only. Factory-resets the appliance, for when that is what you actually mean.
+- **Reset this Quark**: admins only. Erases what you tick. With **Accounts and settings** ticked, which is how it
+  starts, every account goes and the Quark goes back to first-time setup. Untick it and the accounts stay.
 
 Deleting an account and resetting the Quark are different on purpose. One removes your login; the other can wipe data on
 the device. Read the confirmations carefully.

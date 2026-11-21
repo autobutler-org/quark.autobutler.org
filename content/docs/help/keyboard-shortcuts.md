@@ -42,6 +42,17 @@ too.
 | ---- | ------------------------------------------ |
 | Esc  | Close the search field while you are in it |
 
+## Video player
+
+These work while a video is open in the viewer.
+
+| Keys  | Action                  |
+| ----- | ----------------------- |
+| Space | Play / pause            |
+| ←     | Back 10 seconds         |
+| →     | Forward 10 seconds      |
+| ?     | Show the shortcuts list |
+
 ## 3D model viewer
 
 STL, OBJ, and PLY files open in a 3D viewer. Click the model first so it has focus.
@@ -233,3 +244,4 @@ handler in the app.
 - Calendar: `packages/quark_widgets/lib/src/calendar/calendar_time_grid/time_grid_event_mover.dart`.
 - Docs text keys: `lib/utils/editor_shortcuts.dart`. Sheets: `packages/data_table/lib/src/data_sheet/`. The 3D viewer:
   `packages/quark_widgets/lib/src/model_viewer/quark_model_viewer.dart`.
+- Video player: `_handleKey` in `lib/widgets/video_viewer/video_surface_with_controls.dart` (skip is 10 seconds).

@@ -107,7 +107,8 @@ one, Quark says "This Quark needs at least one admin. Make someone else an admin
   Those buttons are the admin's.
 - See everyone's jobs on **System → Jobs**
 - In Settings, start an update, use **Repair installation**, turn on [SSH access](/docs/settings/ssh), and set the
-  **Device name**
+  **Device name**. Admins can also **Restart Quark** from **Settings → Updates**, on a Quark that can start itself
+  again.
 - Set **This Quark's default** theme color
 - Get backup reminders under the bell, when the Quark has never been backed up or the last backup is old. The switches
   are **No backup yet** and **Backup out of date**, under **Settings → General → Notifications**. Turning one off
@@ -125,6 +126,10 @@ A member who opens a Users link lands on Files. Quark refuses those requests fro
 member sees "Accounts are managed by an admin" where an admin sees **Users and groups**.
 
 An admin cannot open another person's vault. An admin also cannot read Chat messages in a channel they are not in.
+
+At the top of the Users page, an admin has a folded **Where things live** card. It names the things an admin looks
+after: people, who can access what, connected clients, disks, and passwords. Each has one line and a link to the page
+that manages it. The same card is on **Settings → Network** and **System → Storage**.
 
 Settings has no **Features** tab right now. Nothing is in beta, so there is no switch there to turn a feature off.
 
@@ -253,9 +258,9 @@ with someone or to remove it.
 
 Set one under **Settings → Account → Profile**. Tap **Choose picture**, or **Remove** to go back to your initials.
 
-- Up to 10 MB, in a common image format. A file that is too large, or that Quark cannot read as an image, is refused.
-  The picture you already have stays. The message for a large file is "That picture is larger than 10 MB. Pick a
-  smaller one."
+- Up to 10 MB, as a JPEG, PNG, WebP, GIF, BMP or TIFF picture. A file that is too large, or that Quark cannot read as
+  an image, is refused. The picture you already have stays. The message for a large file is "That picture is larger
+  than 10 MB. Pick a smaller one."
 - Quark crops it square around the center and keeps a 256 by 256 copy it made itself. Details from the original,
   including where the photo was taken, are not kept.
 - Every signed-in account on the Quark can see it, the same way they can see your username. It is not locked the way a
@@ -295,7 +300,7 @@ for you.
 - A username can be used only once on a Quark. A waiting request holds its name until it is denied. If a home folder
   for that name is already there, it becomes theirs, with everything already in it.
 - A username is up to 32 characters: lowercase letters, numbers, dots, dashes, or underscores, and it starts with a
-  letter or a number.
+  letter or a number. Nobody can take the name `everyone`, because **@everyone** in Chat means the whole channel.
 - **Sessions**, **Connected devices**, and drives are three different lists. Sessions are the places your account is
   signed in. Connected devices is the browsers and apps an admin can tidy. Drives are on **System → Storage**.
 
@@ -338,14 +343,18 @@ hides **Move/Rename** and **Delete** on those folders, and hides **Share…** on
 
 A username matches `ErrInvalidUsername`: up to 32 lowercase letters, numbers, dots, dashes, or underscores, starting
 with a letter or a number. A group name is 1 to 64 characters, is not `.` or `..`, and has no slashes, line breaks, or
-tabs (`ErrInvalidGroupName`). Names are unique ignoring case.
+tabs (`ErrInvalidGroupName`). Names are unique ignoring case. Setup, `POST /admin/users` and
+`POST /auth/request-account` refuse the name `everyone` with `400` "that username is reserved: @everyone mentions
+everyone in a chat channel" (`ErrReservedUsername`). An account that already has that name keeps it.
 
-An admin action on the caller's own account is refused with "use Settings to change your own account." Removing or
-deleting the last active admin is 409, shown as "This Quark needs at least one admin. Make someone else an admin
-first."
+**Disable** and **Delete** on the caller's own account are refused with "use Settings to change your own account."
+(`ErrSelfAction`). Promote and demote have no such check: the API lets an admin demote themselves while another active
+admin exists. The app offers no actions on your own row. Demoting, disabling or deleting the last active admin is
+409, shown as "This Quark needs at least one admin. Make someone else an admin first."
 
 **Delete.** `DELETE /api/v0/admin/users/:username` hands owned paths to the admin who deleted the account, then
-deletes that account's sessions, chat keys, vault items, vault key, and profile picture. Files stay. A self-delete
+deletes that account's sessions, chat keys, vault items, vault key, and profile picture. Its answers to anonymous
+polls are found by their voter tags and deleted too, since no cascade reaches them. Files stay. A self-delete
 hands the paths to the longest-standing active admin (`DeleteUser` in `pkg/util/authutil/authutil.go`, with
 `ActorUserID` 0). When no accounts remain, the Quark returns to setup. The admin dialog says the files stay and
 become theirs. It does not mention the vault. The vault rows are deleted in that same function.
@@ -359,7 +368,8 @@ characters. Sessions last 30 days from last use and end 90 days after they were 
 **Disable** ends that account's sessions. There is no admin route that sets another account's password. Recovery is
 `POST /api/v0/auth/recover`. `PUT /api/v0/auth/recovery-key` replaces the phrase.
 
-**Profile pictures.** `PUT /api/v0/users/me/avatar` accepts up to 10 MiB (`avatarutil.MaxUploadBytes`), center-crops,
+**Profile pictures.** `PUT /api/v0/users/me/avatar` accepts JPEG, PNG, WebP, GIF, BMP or TIFF, up to 10 MiB
+(`avatarutil.MaxUploadBytes`). A HEIC upload is a `400` "the upload is not a supported image". It center-crops,
 and stores a 256×256 re-encode (`avatarutil.Size`). EXIF does not survive. The app tells the person "That picture is
 larger than 10 MB. Pick a smaller one." `GET /api/v0/users/:id/avatar` serves the picture to any signed-in account.
 `DELETE /api/v0/users/me/avatar` clears it. Files live at `avatars/<user id>` in the data directory, outside every
