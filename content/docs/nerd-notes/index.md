@@ -11,7 +11,7 @@ navigation:
 Each feature's page ends with a Nerd Notes section. That section holds the detail the rest of the page leaves out.
 This page lists those sections. It also covers how Quark is built, when that does not belong on one feature.
 
-These notes match Quark 0.56.2.
+These notes match Quark 0.63.0.
 
 ## How to use it
 
@@ -81,8 +81,7 @@ A page that will not open, or a file that seems missing, is on [Help](/docs/help
 
 ## Nerd Notes
 
-Checked against quark v0.56.2. `main` was one commit ahead (`c0f4eefc`), a test-only change that does not alter the
-behavior below.
+Checked against quark v0.63.0.
 
 ### Stack
 
@@ -103,8 +102,9 @@ There is no AI in Quark. The binary and the apps carry no models, and nothing ca
 ### On a Quark device
 
 The device runs Quark as a systemd service (`quark serve`), set up by `quark install`. It serves HTTPS on `:443` with
-a self-signed certificate it generates on first boot. Open `https://quark.local` (or your hostname) and expect a
-certificate warning. [Getting Started](/docs/start/getting-started) explains why.
+a self-signed certificate it generates on first boot. To serve your own certificate instead, give `quark serve`
+`--tls-cert` and `--tls-key` (or `QUARK_TLS_CERT` and `QUARK_TLS_KEY`). Open `https://quark.local` (or your
+hostname) and expect a certificate warning. [Getting Started](/docs/start/getting-started) explains why.
 
 On first boot, the web UI shows a setup screen. Create your owner account there. A container shows that same screen.
 
@@ -114,17 +114,18 @@ Every release publishes an image to the GitHub Container Registry, for `linux/am
 
 | Tag                                   | What it is                                           |
 | ------------------------------------- | ---------------------------------------------------- |
-| `ghcr.io/autobutler-org/quark:0.56.2` | One release. The tag is the version without the `v`  |
+| `ghcr.io/autobutler-org/quark:0.63.0` | One release. The tag is the version without the `v`  |
 | `ghcr.io/autobutler-org/quark:latest` | The newest release. It moves when a release goes out |
 
 The image doesn't build Quark. It downloads that release's Linux archive, checks it against the release's checksums,
 and copies the binary in. So the container runs the same binary as a Quark device.
-[Self-Hosting](/docs/nerd-notes/self-hosting#nerd-notes) records the v0.56.2 image check. This is the short recipe.
+[Self-Hosting](/docs/nerd-notes/self-hosting#nerd-notes) is the long guide. This is the short recipe.
 
 With `docker run`:
 
 ```bash
 docker run -d --name quark --restart unless-stopped -p 8080:8080 \
+  -e QUARK_RESTART_SUPERVISED=1 \
   -v quark-data:/var/lib/quark ghcr.io/autobutler-org/quark:latest
 ```
 
@@ -135,6 +136,8 @@ services:
   quark:
     image: ghcr.io/autobutler-org/quark:latest
     restart: unless-stopped
+    environment:
+      QUARK_RESTART_SUPERVISED: "1"
     ports:
       - "8080:8080"
     volumes:
@@ -156,19 +159,26 @@ What the image expects:
 - **One port, `8080`.** It's plain HTTP. Put a reverse proxy in front for HTTPS, and don't expose 8080 to the
   internet.
 - **The user it ships with.** The container runs as `quark` (uid 999). Don't pass `-u` or `user:`: Quark keeps its
-  data in `/var/lib/quark` only when the user is named `quark`, and comes up empty otherwise.
-- **A restart policy.** Quark exits to finish an update from Settings, so it needs `unless-stopped` or `always` to
-  come back.
+  data in `/var/lib/quark` only when the user is named `quark`. A uid the image doesn't know, such as `-u 1000`,
+  stops Quark from starting at all (`mkdir /quark: permission denied` in `docker logs`), and the container restarts
+  in a loop. A user with a home folder, such as root, starts with its data outside the volume, so Quark comes up
+  empty. A numeric `999` is fine where a platform needs one.
+- **A restart policy.** Quark exits to finish an update from Settings, or when an admin uses **Restart Quark**, so
+  it needs `unless-stopped` or `always` to come back. `QUARK_RESTART_SUPERVISED=1` tells Quark that something will
+  start it again, which shows **Restart Quark** in **Settings → Updates**. The image can't see its own restart
+  policy, so it doesn't set this. Without a restart policy, leave it unset, or that button stops Quark for good.
 
 The image already sets `PORT=8080`, `QUARK_INSECURE=true`, `QUARK_UPDATE_DIR=/var/lib/quark/bin` and
 `GIN_MODE=release`. You set nothing for a basic install. These are the ones you might add:
 
-| Variable                | When to set it                                                                      |
-| ----------------------- | ----------------------------------------------------------------------------------- |
-| `QUARK_TRUSTED_PROXIES` | Behind a reverse proxy: its IP or range, so sign-in limits apply per real client    |
-| `QUARK_DB_BACKEND`      | `postgres` to keep the database in PostgreSQL instead of SQLite                     |
-| `QUARK_DATABASE_URL`    | The `postgres://` URL of an empty database, with `QUARK_DB_BACKEND=postgres`        |
-| `QUARK_INSECURE`        | `false`, with `HTTPS_PORT` (such as `8443`), to serve Quark's own self-signed HTTPS |
+| Variable                   | When to set it                                                                      |
+| -------------------------- | ----------------------------------------------------------------------------------- |
+| `QUARK_TRUSTED_PROXIES`    | Behind a reverse proxy: its IP or range, so sign-in limits apply per real client    |
+| `QUARK_DB_BACKEND`         | `postgres` to keep the database in PostgreSQL instead of SQLite                     |
+| `QUARK_DATABASE_URL`       | The `postgres://` URL of an empty database, with `QUARK_DB_BACKEND=postgres`        |
+| `QUARK_INSECURE`           | `false`, with `HTTPS_PORT` (such as `8443`), to serve Quark's own self-signed HTTPS |
+| `QUARK_TLS_CERT`           | With `QUARK_TLS_KEY` and `QUARK_INSECURE=false`: your own PEM certificate and key   |
+| `QUARK_RESTART_SUPERVISED` | `1` beside a restart policy, so an admin can use **Restart Quark**                  |
 
 The entrypoint is `quark` and the default command is `serve`, so other commands work too:
 
@@ -176,7 +186,8 @@ The entrypoint is `quark` and the default command is `serve`, so other commands 
 docker run --rm ghcr.io/autobutler-org/quark:latest version
 ```
 
-USB drives need `--privileged`, which gives the container power over the host's devices.
+USB drives need `--privileged`, which gives the container power over the host's devices. Without it, a drive is
+still listed, but its card says "Quark can't reach this drive until it restarts." and it can't be mounted.
 [Self-Hosting](/docs/nerd-notes/self-hosting#in-a-container) covers that, bind mounts, proxies, PostgreSQL and
 Kubernetes in full. To run your own build instead, see [Development](#development).
 
@@ -225,22 +236,24 @@ hex characters). A session lasts 30 days without use, and at most 90 days from s
 
 ### Key endpoints
 
-| Method | Path                                             | What it does                                   |
-| ------ | ------------------------------------------------ | ---------------------------------------------- |
-| GET    | `/api/v0/health`                                 | System health (CPU, memory, disk, temperature) |
-| GET    | `/api/v0/files`                                  | List files                                     |
-| POST   | `/api/v0/files/upload/{rootDir}`                 | Upload files to a directory                    |
-| GET    | `/api/v0/storage/devices/status`                 | List storage devices                           |
-| PATCH  | `/api/v0/storage/devices/rename?serial={serial}` | Rename a device                                |
-| GET    | `/api/v0/version`                                | Installed version                              |
-| POST   | `/api/v0/version/update`                         | Update to a given release (admin)              |
+| Method | Path                                             | What it does                                             |
+| ------ | ------------------------------------------------ | -------------------------------------------------------- |
+| GET    | `/api/v0/health`                                 | System health (CPU, memory, disk, temperature, database) |
+| GET    | `/api/v0/files`                                  | List files                                               |
+| POST   | `/api/v0/files/upload/{rootDir}`                 | Upload files to a directory                              |
+| GET    | `/api/v0/storage/devices/status`                 | List storage devices                                     |
+| PATCH  | `/api/v0/storage/devices/rename?serial={serial}` | Rename a device                                          |
+| GET    | `/api/v0/version`                                | Installed version                                        |
+| POST   | `/api/v0/version/update`                         | Update to a given release (admin)                        |
 
 Every route sits under `/api/v0/`. The `v0` is part of the path, so keep it in your scripts. The full parameter list
-for every route is in Swagger at `/swagger` on your Quark. This page covers what Swagger can't show, plus the routes
-that have no feature page of their own.
+for every route is in Swagger at `/swagger` on your Quark. The same reference is in the app, under
+**Settings → About → API Explorer**: browse every route, and try one signed in as yourself, with your own
+permissions. Anything other than a `GET` asks before it is sent, because it really changes things. This page
+covers what Swagger can't show, plus the routes that have no feature page of their own.
 
-**Document previews** (v0.56.0) are read-only, and none of them is admin-only. Each one needs read access on the file
-and writes nothing:
+**Document previews** (v0.56.0, slides in v0.58.0) are read-only, and none of them is admin-only. Each one
+needs read access on the file and writes nothing:
 
 - `GET /api/v0/previews/document` streams a `.docx`, `.docm`, or `.odt` as blocks.
 - `GET /api/v0/previews/part` returns one image that stream names.
@@ -248,6 +261,11 @@ and writes nothing:
   metadata entry, not the body. The extensions are the ones `formatForName` in `pkg/util/docpropsutil/helpers.go`
   accepts: `.docx`, `.docm`, `.dotx`, `.dotm`, `.pptx`, `.pptm`, `.ppsx`, `.potx`, `.xlsx`, `.xlsm`, `.xltx`,
   `.xltm`, `.odt`, `.ott`, `.odp`, `.otp`, `.ods`, `.ots`, and `.rtf`.
+- `GET /api/v0/previews/slides` turns a `.pptx`, `.pptm`, or `.ppsx` into `.qslide` JSON for the read-only
+  presentation viewer. It is what opening the deck as Quark slides would write, but nothing is saved beside the
+  file. Pictures are named `part:ppt/media/…`, and `/previews/part` serves them. Macros are never opened. The
+  `X-Quark-Import-Warnings` header counts what the import left out or approximated. A server busy converting other
+  documents answers `503`.
 
 Calendar and Books are not in this table. [Calendar](/docs/calendar) and [Books](/docs/books#nerd-notes) have their
 own pages.
@@ -278,8 +296,12 @@ A name that's already taken is a `409`, unless you pass `overwrite=true` to repl
 `files` part, Quark answers `400`:
 
 ```json
-{ "error": "no files in upload; send each file as a multipart part named files" }
+{ "error": "no files in upload; send each file as a multipart part named files", "landed": [] }
 ```
+
+Every upload error carries `landed`: the paths saved before the batch stopped. A `409` for a taken name is
+`{"error":"vfs: conflict","landed":[…]}`. When a multi-file upload fails partway, resend only the files `landed`
+doesn't list.
 
 A body that also contains a `files` part answers `200`, and only the `files` parts are saved. A `files` part with
 empty contents still counts: a new empty file is a file. Add more `-F files=@…` parts to send several files at once.
@@ -353,7 +375,8 @@ are left out, and no `deviceSerial` means internal storage.
 The kinds, by group (`pkg/util/eventbus/eventbus.go`):
 
 - **Files:** `upload`, `delete`, `move`, `new_folder`, `trash_changed`
-- **Backups:** `backup_started`, `backup_progress`, `backup_completed`, `backup_failed`. These go to admins only.
+- **Backups:** `backup_started`, `backup_progress`, `backup_completed`, `backup_failed`, `backup_deleted` (a backup
+  deleted by hand or to make room), `backup_schedule_changed`. These go to admins only.
 - **Background jobs:** `job_queued`, `job_started`, `job_progress`, `job_completed`, `job_failed`, `job_canceled`
 - **Vault:** `vault_changed`, when an account's vault key or one of its items changes. See
   [Vault](/docs/vault#nerd-notes).
@@ -361,7 +384,14 @@ The kinds, by group (`pkg/util/eventbus/eventbus.go`):
 - **Accounts and settings:** `account_changed`, `access_changed`, `feature_flag_changed`,
   `public_settings_changed`, `hostname_changed`
 - **Chat:** `chat_channel_changed`, `chat_key_needed`, `chat_key_granted`, `chat_message_created`,
-  `chat_message_deleted`, `chat_reaction_changed`, `chat_read_marker_changed`
+  `chat_message_deleted`, `chat_message_edited`, `chat_reaction_changed`, `chat_read_marker_changed`, `chat_typing`
+- **Chat polls:** `chat_poll_answer_changed` (someone answered a poll that shows names, or changed their answer),
+  `chat_poll_answers_changed` (an anonymous poll's answers changed; it carries no answer, so fetch again), and
+  `chat_poll_closed` (the author closed a poll; a poll that closes on its timer sends nothing)
+- **Your own account:** `feed_changed`, when the account subscribes to, renames, files, or drops a feed. It never
+  carries the feed's address, which can hold a private token. `upload_session_changed`, when one of the account's
+  resumable uploads opens, makes progress, finishes, fails, or is canceled. It's a hint:
+  `GET /api/v0/files/upload-sessions` is the source of truth.
 - **Calendar:** `calendar_changed`, when an event is created, updated, or deleted. The calendar is shared, so every
   signed-in account hears it. [Calendar](/docs/calendar) is its page.
 - **Photos:** `photo_index_changed`, when the library index pass starts, finishes, pauses, resumes, or reports
@@ -373,8 +403,10 @@ Books has no event of its own. [Books](/docs/books#nerd-notes) builds its list o
 
 The rules (`FilterEvent` in `pkg/util/accessutil/accessutil.go`):
 
-- Admins hear every event except chat messages, reactions, and read markers, which go only to the people they
-  concern, and `vault_changed`, which goes only to the account whose vault it is.
+- Being an admin adds nobody to these: chat messages, edits, reactions, poll events, and typing go only to the
+  people in that channel. Key requests and grants go only to the members they concern. Every event about a direct
+  message goes only to the people in it. A read marker, `vault_changed`, `feed_changed`, and
+  `upload_session_changed` go only to the account they belong to. Admins hear every other event.
 - Everyone else hears an event about a path only when they can read that path. Trash changes, account and settings
   changes, hostname changes, `calendar_changed`, `music_library_changed`, and `resync` go to every signed-in account.
   Backup events go to admins only. A chat channel event goes to that channel's members, and to admins.
@@ -394,11 +426,19 @@ can't: accounts and sessions, sharing, albums and favorites, job history, settin
 that's SQLite, in `quark.db` in the data directory. Migrations run on startup, so an upgrade needs no manual step.
 
 To keep it in PostgreSQL instead, set `QUARK_DB_BACKEND=postgres` and
-`QUARK_DATABASE_URL=postgres://user:password@host:5432/quark` before Quark starts. A PostgreSQL install starts empty:
-there's no tool yet to move an existing SQLite install across. Content search and snapshot backups answer `501` on
-PostgreSQL. Chat and vault backup and restore are refused for the same reason, because a snapshot includes them. The
-product's [docs/architecture/data.md](https://github.com/autobutler-org/quark/blob/v0.56.2/docs/architecture/data.md)
-lists them. [Self-Hosting](/docs/nerd-notes/self-hosting#postgresql) has the container form.
+`QUARK_DATABASE_URL=postgres://user:password@host:5432/quark` before Quark starts. A new PostgreSQL install starts
+empty. To move an existing SQLite install across, stop the service and run `quark move-to-postgres`. It copies every
+table into an empty PostgreSQL database in one transaction, checks the row counts, and never changes the SQLite
+file. It is one-way. `quark bundle export` and `quark bundle import` start a new install from an old one, on either
+database.
+
+Content search works on both: FTS5 on SQLite, PostgreSQL's full-text search on PostgreSQL, which ranks results a
+little differently. Snapshot backups work on both too. On PostgreSQL a snapshot copies your files and its manifest,
+but not `chat_backup.db` or `vault_items_backup.db`: the chat and the vault are in the database, so back it up with
+`pg_dump`. Music search still answers `501` on PostgreSQL, and the database is chosen with environment variables
+only. The product's
+[docs/architecture/data.md](https://github.com/autobutler-org/quark/blob/v0.63.0/docs/architecture/data.md) has the
+list. [Self-Hosting](/docs/nerd-notes/self-hosting#postgresql) has the container form.
 
 **Device detection.** On Linux, Quark finds its own disk from `/proc/mounts` and USB drives from
 `/sys/bus/usb/devices`. The service runs as the unprivileged `quark` user. It mounts and unmounts drives through a
@@ -436,14 +476,19 @@ fetches only from `quarkrelease.blob.core.windows.net`, `github.com`, and `objec
 are published for Linux on `arm64` and `x86_64`.
 
 Once the archive checks out, Quark renames the new binary over the running one in one atomic step and exits, and
-systemd starts it again. Expect a short outage. Before every start, the systemd unit runs `quark install
---system-only` as root. So a release that changes the service account, the sudoers rule, the unit, the
-security-update settings, or the kernel hold reaches your device on the restart that finishes the update.
+systemd starts it again. Expect a short outage. **Restart Quark**, under **Maintenance** in **Settings → Updates**,
+exits the same way without changing the binary (`GET` and `POST /api/v0/admin/restart`, admin only). It shows only
+where something will start Quark again: the installed Linux service, or a container with
+`QUARK_RESTART_SUPERVISED=1`. A restart, a repair, and an update can't run at once: the second answers `409`.
+
+Before every start, the systemd unit runs `quark install --system-only` as root. So a release that changes the
+service account, the sudoers rule, the unit, the security-update settings, or the kernel hold reaches your device on
+the restart that finishes the update.
 
 In the container, the update is written to `/var/lib/quark/bin` in the data volume, and runs on the next start when
 it's newer than the image's own binary. A newer image wins over an older update in the volume. Quark exits to finish
-an update, so run the container with `--restart unless-stopped` (or under a Kubernetes Deployment), or it stays
-stopped.
+an update or a restart, so run the container with `--restart unless-stopped` (or under a Kubernetes Deployment), or
+it stays stopped.
 
 Separately, `quark install` turns on Debian security-only unattended upgrades and holds the kernel and board
 packages at the version the device booted.
@@ -459,9 +504,10 @@ the `quark-data` volume.
 | Trash                                   | `trash/` beside `files/`, on the same drive                       |
 | Accounts, sharing, albums, jobs, search | `quark.db` in the data directory, or your PostgreSQL database     |
 | Settings, sessions, favorites           | The same database                                                 |
-| Each account's vault, as ciphertext     | The same database; snapshot backups copy it as ciphertext         |
+| Each account's vault, as ciphertext     | The same database; on SQLite, snapshot backups copy it as is      |
 | Remote-access state                     | Beside `data/`, under `/var/lib/quark`, once an admin turns it on |
 | HTTPS certificate and key               | `certs/` in the data directory                                    |
+| The key behind anonymous poll answers   | `secrets/` in the data directory; never in a backup or bundle     |
 | Uploads in progress                     | `tmp/upload-sessions/`, emptied on every start                    |
 | Logs                                    | The systemd journal (`journalctl -u quark`), or `docker logs`     |
 
