@@ -66,7 +66,8 @@ Each message has a menu. Long-press it on a phone or tablet, right-click it on a
 at its end. The menu has **Copy text**, **Add reaction** and, if you are allowed, **Delete**. On a computer you can
 also drag across messages to select the text.
 
-**Reactions.** Tap the reaction button on a message and pick an emoji. Tap a reaction under a message to add yours.
+**Reactions.** Tap the reaction button on a message and pick an emoji. **More emoji** opens the full set, with a
+search box. Tap a reaction under a message to add yours.
 Tap it again to take it back.
 
 **Mentions.** Type `@` and the first letters of a name, then pick the person from the list. Their name is highlighted
@@ -118,6 +119,11 @@ since. Older messages say "Waiting for the key to read this message". Nothing is
 someone in the channel opens Quark, and the channel opens by itself. Your Quark can't hand you the key. Only a member
 of the channel can.
 
+If the person who has the key may not be back for a while, an admin who can read the channel can tap the key button on
+that notice, **Regenerate channel keys**. It makes a new key and shares it with every member who has set up chat, so
+the channel can be used again. Messages sent before stay unreadable until the person who had the old key opens
+Quark.
+
 **"You are not a member of this conversation."** You can see the channel, but not read it. An admin sees this in a
 private channel they are not in. Those are listed under **Other channels**.
 
@@ -149,6 +155,14 @@ Messages they already downloaded stay with them.
 
 Being an admin doesn't open old messages. An admin who adds themselves to a channel gets no key to what was said
 before, and the members see them join.
+
+### Backups
+
+A backup of your Quark copies chat as it is stored, still locked. If chat on a Quark is empty, an admin can bring it
+back from a backup drive with **Restore chat** on **System → Storage**. The backup does not hold accounts, so an admin
+makes everyone's account first, with the same usernames. Each person then unlocks chat with the password they had when
+the backup was made. A Quark whose chat already has messages or channels refuses the restore and changes nothing. See
+[Storage and Backups](/docs/system/storage-and-backups).
 
 ### Limits to know about
 
@@ -201,8 +215,8 @@ carries `unreadCount`.
 per account and per route: a burst of 100, then 10 a second (`ChatWriteRate`, `ChatWriteBurst` in `pkg/util/deputil`).
 Over that is a 429. The limits live in memory and reset when the Quark restarts.
 
-**API.** Everything is under `/api/v0/chat` (`internal/server/api/v0/chat/`). No route is admin-only, and a channel the
-caller may not see is a 404.
+**API.** Everything is under `/api/v0/chat` (`internal/server/api/v0/chat/`). The only admin-only route is
+`POST /chat/channels/:id/keys/regenerate`, and a channel the caller may not see is a 404.
 
 - `GET /api/v0/chat/channels`, plus create, rename, delete, and member routes under `/chat/channels/:id`
 - `GET`/`PUT /api/v0/chat/keys/me` and `GET /api/v0/chat/keys/:userId`
@@ -212,6 +226,22 @@ caller may not see is a 404.
 - `DELETE /api/v0/chat/messages/:id`
 - `POST /api/v0/chat/messages/:id/reactions` and `DELETE /api/v0/chat/reactions/:id`
 - `PUT /api/v0/chat/channels/:id/read`
+- `POST /api/v0/chat/dms` (`{userIds, fromChannelId?}`; 200 for an existing direct message, 201 for a new one)
+- `PUT /api/v0/chat/messages/:id` edits a message (`{ciphertext, keyVersion}`, its author only; a poll is a 409)
+- `POST /api/v0/chat/channels/:id/typing` (no body, 204, needs `send_messages`)
+- Polls: `PUT /api/v0/chat/messages/:id/answer`, `GET /api/v0/chat/messages/:id/answers`,
+  `POST /api/v0/chat/messages/:id/close`. A closed poll, or a second answer when changing is off, is a 409.
+- Attachments: `PUT` / `GET /api/v0/chat/channels/:id/attachments/:attachmentId`
+- `POST /api/v0/chat/channels/:id/keys/regenerate` (admin, and the admin must hold `read_messages`; another member gets
+  403). It makes the next key version even when `rotationNeeded` is false, and shares the key-version rate limit.
+
+**Backups.** A snapshot writes `chat_backup.db`: channels, members, keys, grants, events, messages, reactions and
+polls, all as the ciphertext they already are, plus a `.mac` that binds it to this Quark. The poll voter key in
+`secrets/` is not copied. `POST /api/v0/storage/devices/snapshot-backup/restore-chat` (admin, body
+`{deviceSerial, run, password}`, where `password` is the admin's auth key) restores it into an empty chat only: a chat
+with messages or channels other than `general` gets `409`. Accounts are matched by username; `unmatchedUsers` names the
+ones missing here, whose messages keep no author and whose memberships, reactions and chat keys are not restored. A
+backup another Quark wrote, or one changed since, is refused. On PostgreSQL the route answers 501.
 
 **Known gaps** (from `docs/chat-security.md`, "What it doesn't protect against"): public keys are not verified out of
 band; the web app's crypto code is served by the Quark; a compromised Quark can claim an account is `legacy` once to

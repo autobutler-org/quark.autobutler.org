@@ -237,7 +237,7 @@ export const features = {
       name: "Vault",
       body:
         "A password manager on your Quark. Every account has its own vault, opened with " +
-        "the password you sign in with, and nobody else can open it, not even an admin.",
+        "the password you sign in with, and no one else can open it in Quark, not even an admin.",
     },
     {
       name: "Accounts and sharing",
