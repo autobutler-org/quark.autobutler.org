@@ -81,8 +81,8 @@ The **Storage** tab is about your drives and your backups:
 - **Each drive**: its name, how full it is, its role, and its health: **Healthy**, **Watch**, **Replace soon** or
   **Unknown**.
 
-Everyone sees the same tab. The buttons that change things are admins only: **Mount**, **Set Role**, **Back Up** and
-**Verify**.
+The buttons that change things are admins only: **Mount**, **Set Role**, **Eject**, and on a backup drive **Back up
+onto this drive**, **Schedule**, **Verify**, **Restore files**, **Restore vaults** and **Restore chat**.
 
 [Storage and Backups](/docs/system/storage-and-backups) explains every part of this tab, and walks you through making
 a backup.
@@ -106,6 +106,12 @@ An admin sees everyone's jobs. Everyone else sees the jobs they started, for fil
 
 Quark keeps each person's last 100 finished jobs, for up to 30 days. Jobs that are queued or running are never
 cleared.
+
+Your uploads are listed here too, above the jobs, from every device you use. Each one shows how much has been sent, how
+fast, and how long is left. It also says whether the upload is still going, has stalled, finished, failed, was
+canceled or timed out. You can cancel an upload that is still going, even one started on another device. Finished
+uploads stay on the list for a day. Uploads count toward the badge in the top bar, and while one runs, the **Upload**
+button's menu in Files has **Show progress**, which opens this tab.
 
 ### Ways into Jobs
 
@@ -146,21 +152,28 @@ So open **System → Health** now and then, especially before a big upload.
 `pkg/util/healthutil`: CPU 90%, memory 95%, disk 90%, temperature 80 °C. The bars warn at 75% of each limit; the
 per-core chips warn at a whole 67%. The server raises its CPU alert only after `CPUSustainedDuration`, 60 seconds at or
 above the limit. Temperature is the hottest thermal zone, and the card is hidden when that reads 0. The Disk bar
-measures the filesystem holding the Quark's data directory.
+measures the filesystem holding the Quark's data directory. Every call also pings the database. If it doesn't answer
+within 2 seconds, `healthy` is `false` and the alert "The SQLite database is not answering" (or "The PostgreSQL
+database …") is added (`healthutil.CheckDatabase`).
 
-**Auto-refresh.** The interval is stored on the device, defaults to 15 seconds, and only runs while the tab is visible.
+**Auto-refresh.** The interval belongs to the account: it is `refreshIntervalSeconds` in `GET`/`PUT
+/api/v0/settings/me` (0, off, through 3600), so it follows you to your other devices. It defaults to 15 seconds and
+only runs while the tab is visible.
 
-**Jobs.** `GET /api/v0/jobs?kind=…` lists jobs (the app asks for `video-transcode`), `GET /api/v0/jobs/{id}` reads
-one, `DELETE /api/v0/jobs/{id}` cancels, and `POST /api/v0/jobs/{id}/retry` retries. Retention is
+**Jobs.** `GET /api/v0/jobs?kind=…` lists jobs (the app asks for `video-transcode`, `snapshot-backup`,
+`snapshot-restore` and `photo-export`, `JobKinds.all` in `lib/models/job.dart`), `GET /api/v0/jobs/{id}` reads one,
+`DELETE /api/v0/jobs/{id}` cancels, and `POST /api/v0/jobs/{id}/retry` retries. Retention is
 `MaxFinishedJobsPerAccount = 100` and `FinishedJobMaxAge = 30 days` in `pkg/util/jobutil`. Live progress arrives as
-`job_*` events on the event socket. A snapshot backup runs as its own `snapshot-backup` kind and reports through the
-`backup_*` events instead.
+`job_*` events on the event socket; a snapshot backup also sends `backup_*` events for the drive card. A scheduled
+backup runs as the system, so only admins see it. Uploads come from `GET /api/v0/files/upload-sessions`: the caller's
+own sessions in flight, then those that ended in the last 24 hours, at most 50, refetched on each
+`upload_session_changed` event. Sessions live in the server's memory, so a restart empties that list.
 
 **Notifications.** `GET /api/v0/notifications` derives the list on each request; nothing is stored. An admin gets
-`backup_due` while there is no completed snapshot backup on record, and `backup_stale` once the last one is 30 days
-old; other accounts get neither. A type listed in your `disabledNotifications` (`PUT /api/v0/settings/me`) is left
-out. Quark has no push, email or SMS channel: there is no notification service dependency in `go.mod` or
-`pubspec.yaml`.
+`backup_due` while no backup drive holds a complete backup run, and `backup_stale` once the newest run is 30 days old;
+other accounts get neither. Runs are the record, so deleting or pruning the last one brings `backup_due` back. A type
+listed in your `disabledNotifications` (`PUT /api/v0/settings/me`) is left out. Quark has no push, email or SMS
+channel: there is no notification service dependency in `go.mod` or `pubspec.yaml`.
 
 **Storage.** The Storage tab's endpoints, drive health readings and backup layout are in the
 [Storage and Backups Nerd Notes](/docs/system/storage-and-backups#nerd-notes).

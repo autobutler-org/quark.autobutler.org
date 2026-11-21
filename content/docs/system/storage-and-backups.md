@@ -21,19 +21,28 @@ To see your drives:
 1. Open **System** from the app menu.
 2. Pick the **Storage** tab.
 
-Everyone can look at this tab. Only admins see the buttons that change things: **Mount**, **Set Role**, **Back Up**
-and **Verify**.
+Only admins see the buttons that change things: **Mount**, **Set Role** and **Eject** on a drive, and on a backup
+drive **Back up onto this drive**, **Schedule**, **Verify**, **Restore files**, **Restore vaults** and **Restore
+chat**.
 
 To back up your Quark (admins only):
 
 1. Plug in the drive you want to back up onto.
-2. On its card, choose **Set Role**, then **Snapshot Backup**. Enter your username and password when asked.
-3. Choose **Back Up** on the same card.
-4. The **Snapshot Backup** window says where the copy is going. Choose **Start Backup**.
+2. On its card, choose **Set Role**, then **Backup drive**. Enter your username and password when asked.
+3. Choose **Back up onto this drive** on the same card.
+4. The window lists your other drives, all ticked. Untick any you want to leave out, then choose **Start Backup**.
 
-Backing up doesn't ask for a password. When it's done, unplug the drive and keep it somewhere else.
+Backing up doesn't ask for a password. When it's done, choose **Eject** on the drive's card. Once Quark says the drive
+is safe to unplug, unplug it and keep it somewhere else.
+
+**Upgraded from Quark v0.58 or earlier?** Backups are now kept differently, and a backup made before the upgrade is
+no longer read. Back up again after you upgrade.
 
 ## What the Storage tab shows
+
+At the top, admins get a folded **Where things live** card. Open it for one line each on people, who can open what,
+connected devices, disks and passwords, with a link to the page that looks after each. This tab is the **Disks** one,
+marked "You are here".
 
 ### How protected your files are
 
@@ -81,31 +90,42 @@ Quark looks out for you here. If you try to store files or a backup on a **Repla
 A role tells Quark what a drive is for. An admin sets it with **Set Role** on the drive's card, which opens **Set Device
 Role**. Changing a role asks for your username and password.
 
-- **Default Storage**: uploads and new folders start here. Only one drive can have this role. If a plugged-in drive has
-  it, the storage inside your Quark is also copied onto it as you go.
-- **Snapshot Backup**: "Plug in, back up everything, unplug." This is a backup drive. Only a plugged-in drive can have
-  this role.
+- **Default Storage**: uploads and new folders go here, without asking. Only one drive can have this role. If a
+  plugged-in drive has it, the storage inside your Quark is also copied onto it as you go.
+- **Backup drive**: your other drives are copied onto it when you back up. A plugged-in drive or the storage inside
+  your Quark can have this role.
 - **Unassigned**: no special role.
 
-The storage inside your Quark can be **Default Storage** or **Unassigned**. Giving it **Default Storage** takes the role
-back from a plugged-in drive.
+Making the storage inside your Quark the backup drive helps if a plugged-in drive fails. Its own files are not copied
+anywhere, though, because they are on the same disk. For those, use a plugged-in backup drive.
 
 ## Making a backup
 
-A backup copies the files from every other drive on your Quark onto the backup drive. Your chat and every account's
-vault are copied too, still locked with the same encryption. A vault in the backup opens only with the password or
-recovery phrase of the account it belongs to. Nobody sets a separate backup password.
+A backup copies your other drives onto the backup drive: all of them, or only the ones you leave ticked. One backup
+drive is never copied onto another. Your chat and every account's vault are copied too, still locked with the same
+encryption. A vault in the backup stays locked under the password its account had when the backup was made, and its
+recovery phrase if it had one. Nobody sets a separate backup password.
 
-While the backup runs, a progress card shows **Preparing backup...**, **Scanning files...**, then **Copying files** with
-a percentage. It ends with **Backup complete** or **Backup failed**.
+While the backup runs, the backup drive's card shows its progress, naming the drives being copied and how far along
+it is. When it ends, Quark says "Backup completed successfully", or tells you it failed.
 
 The Quark does the work, not your phone or computer. You can close the app, and the backup keeps going. Only one backup
 can run onto a drive at a time.
 
-### Back up again every so often
+### Back up on a schedule
 
-Backups don't run on a schedule. To keep your copy current, choose **Back Up** again from time to time. Later backups
-only copy what is new or changed, so they are quicker than the first.
+An admin can have a backup drive back up by itself:
+
+1. On the backup drive's card, choose **Schedule**.
+2. Pick **Daily**, **Weekly** or **Monthly**, and tick the drives to copy.
+3. Choose **Save**.
+
+Quark checks every 15 minutes whether a backup is due. A drive that is unplugged when its backup comes due says "Due,
+will run when plugged in." and starts soon after you plug it back in. A drive that reads **Replace soon** is skipped.
+Choose **Off** to stop the schedule.
+
+Without a schedule, choose **Back up onto this drive** again from time to time. Later backups are quicker than the
+first.
 
 Quark reminds admins with the bell at the top of the app. **Back up this Quark** appears while there has never been a
 backup. **Your backup is out of date** appears once the last one is 30 days old. An admin can turn either reminder off
@@ -114,49 +134,62 @@ in **Settings → General**. The reminders only appear in the app.
 ### Keep a copy somewhere else
 
 A backup drive that sits next to your Quark can be lost along with it in a fire, a flood or a break-in. Plug in, back
-up, unplug, and keep the drive somewhere else, such as at a relative's house. The [Security
+up, eject, unplug, and keep the drive somewhere else, such as at a relative's house. The [Security
 Guide](/docs/help/security-guide) explains the 3-2-1 rule this is part of.
 
 ## What a backup keeps
 
-On the backup drive, each drive you backed up gets its own folder. The storage inside your Quark is in a folder called
-**internal**. Each plugged-in drive's folder starts with that drive's name. Inside, your files sit in the same folders
-they had on Quark.
+Each backup is its own complete copy, in a folder named for the date and time it started, inside a **backups**
+folder on the backup drive. In it, each drive you backed up has a folder: **Built-in storage** for the storage inside
+your Quark, and the drive's name with "(USB …)" for a plugged-in drive. Your files sit in the same folders they had on
+Quark. A file that hasn't changed since the last backup takes no extra space on most drives. On a FAT32 or exFAT drive
+it is copied again.
 
-A backup only adds and updates. It never removes anything from the backup drive. If you delete or rename a file on
-Quark, the backup keeps the old copy under its old name. That helps when you need something you deleted months ago. It
-also means the backup drive slowly fills up, so clear out what you no longer need by hand.
+Older backups stay, so you can get back a file you deleted or changed months ago. To make room:
+
+- **Delete a backup yourself.** An admin sees the drive's backups on its card and can choose **Delete backup**. It is
+  gone for good, not moved to the trash.
+- **Let Quark make room.** When the drive is short of space, a new backup first deletes the oldest backups, one at a
+  time. It never deletes the newest one. If there still isn't room, the backup fails and says to delete old backups or
+  use a bigger drive.
 
 ## Checking a backup with Verify
 
-**Verify** on a backup drive's card reads every file on it. It compares each one with the list Quark wrote when the
-last backup finished. You'll see **Backup verified** with how many files are fine, or **Issues found** with how many
-are missing or damaged.
+**Verify** on a backup drive's card reads every file in its newest backup. It compares each one with the list Quark
+wrote when that backup finished. It tells you which backup it checked and how many files are fine, or how many are
+missing or damaged.
 
-Verify only checks. It doesn't fix or restore anything. If you removed files from the backup drive yourself, choose
-**Back Up** again first so the list matches what is there.
+Verify only checks. It doesn't fix or restore anything. On a drive with no backup yet, it asks you to back up onto it
+first.
 
 ## Getting files back
 
-There is no restore button for files. You copy them back yourself, in one of two ways:
+An admin can choose **Restore files** on the backup drive's card. The window, **Restore files from this drive**, says
+which backup it reads, and lets you pick another when the drive holds several. It puts each drive's files back onto
+that drive. A file that is already there is never overwritten. Files deleted since the backup come back too. If a
+drive the files came from isn't plugged in any more, tick the box to put its files on the storage inside your Quark
+instead. The restore runs on the Quark and shows on the **Jobs** tab.
 
-- **Through Quark.** Plug the backup drive into your Quark. An admin can open it in **Files** like any other drive,
-  find the file in the **internal** folder or the drive's folder, and copy it back where it belongs.
-- **Through a computer.** Plug the backup drive into a laptop. Open the **quark** folder, then **data**, then
-  **files**, and copy what you need. They are ordinary files, so any computer can open them.
+You can also copy files back yourself. Plug the backup drive into a laptop, open the **quark** folder, then **data**,
+**files**, **backups**, the dated folder you want, and the drive's folder. They are ordinary files, so any computer can
+open them.
 
 The app can't restore the chat or vault copies yet.
 
 ### Before you reset your Quark
 
 **Reset this Quark** has an option called **Quark data on attached drives**. It is off unless you turn it on. When
-it's on, the reset erases Quark's folder on every drive plugged in at that moment, a backup drive included. Unplug your
-backup drive before you reset.
+it's on, the reset erases Quark's folder on every drive plugged in at that moment, a backup drive included. Eject and
+unplug your backup drive before you reset.
 
 ## What Quark does with a plugged-in drive
 
 Quark checks for new drives every few seconds and sets them up on its own. You don't need to press anything. If a
 drive is listed but not ready, an admin can press **Mount** on its card to try again.
+
+Sometimes a card says "Quark can't reach this drive until it restarts." in place of **Mount**. An admin can choose
+**Restart Quark** in **Settings → Updates**. After the restart, the drive can be mounted. On a normal Quark box this is
+rare.
 
 Most drives come formatted as exFAT, FAT32 or NTFS. Quark can use all three. It has no button to format or erase a
 drive.
@@ -168,9 +201,16 @@ Quark makes its own folder on the drive and works inside it. This has two effect
 - **On a computer, your files are easy to find.** Open the **quark** folder on the drive, then **data**, then
   **files**. They are ordinary files in ordinary folders.
 
-There is no **Eject** button. If a backup is running onto a drive, wait for it to finish before you unplug it.
+To unplug a drive safely, an admin chooses **Eject** on its card. Quark asks **Eject drive?** first. On the default
+storage drive it also warns that new uploads will fail until the drive is mounted again. Afterwards Quark says the
+drive is safe to unplug, and the card reads **Not mounted · safe to unplug** with **Mount**. **Eject** is greyed out
+while a backup runs. If the drive's files are in use, Quark refuses and shows why. The storage inside your Quark has no
+**Eject**.
 
 ### More than one drive in Files
+
+Every file and folder in **Files** has a small colored tag naming the drive it is on. Each drive keeps its own color.
+Hover over a tag, or press and hold it, to see the drive's name.
 
 With more than one drive, the views menu in **Files** has a **Grouping** switch. **Unified** shows all your drives
 together. **Per-device** lists each drive separately. **Filter devices**, in the same menu, picks which drives Files
@@ -182,11 +222,15 @@ shows. When you upload, Quark may ask which drive to put the files on.
   are still there, outside that folder. Upload or copy them in.
 - **"My drive doesn't show up."** Wait a few seconds, then refresh the **Storage** tab. If the card is there but the
   drive isn't ready, an admin can press **Mount**. If there's no card at all, try another USB port or cable.
-- **"I don't see Back Up."** It appears only for admins, and only on a drive with the **Snapshot Backup** role.
+- **"I don't see Back up onto this drive."** It appears only for admins, and only on a drive with the **Backup
+  drive** role.
+- **"Restore can't find my backup."** A backup made before Quark v0.59 is no longer read. Back up again.
 - **"My protection level dropped."** Your last backup is probably more than 30 days old, or the backup drive now reads
   **Replace soon**. Back up again, or onto a healthier drive.
 - **"A drive says Unknown."** Quark couldn't read its health. The drive may still work, but don't count on it as your
   only copy.
+- **"The card says Quark can't reach this drive until it restarts."** An admin can choose **Restart Quark** in
+  **Settings → Updates**, then mount the drive.
 
 ## Related
 
@@ -204,6 +248,15 @@ beside it in `quark/data/trash/`. Nothing outside `quark/data` is shown in Files
 
 USB drives are polled every 5 seconds and auto-mounted. exFAT, FAT (`vfat`) and NTFS (`ntfs`, `ntfs3`, `ntfs-3g`) are
 mounted with the Quark service user's uid and gid so it can write to them.
+
+A drive Quark sees in sysfs but has no `/dev` node for is listed with `needsRestart: true` on
+`GET /api/v0/storage/devices/status`, and Quark never runs `mount` on it (quark #4268). Its card shows the restart line
+in place of **Mount**. In a container this is the normal case without `--privileged`, and a restart alone won't fix it;
+see [Self-Hosting](/docs/nerd-notes/self-hosting).
+
+Chat attachments are stored as ciphertext in `chat-attachments/` in the Quark's data directory, beside `files/`, not
+inside it. A snapshot copies the `files/` area of each drive, and `chat_backup.db` holds only the `chat_attachments`
+rows, so the attachment files themselves are not in a backup (quark `docs/chat-security.md`).
 
 ### Snapshot layout
 
@@ -226,7 +279,7 @@ the client had it, its recovery phrase, so the copy is exactly as private as the
 hold `vault_backup.db`, the retired household vault encrypted under a separate recovery password. This version doesn't
 read it.
 
-Restore functions for both exports exist in the code, but no API route or app screen calls them yet (quark #2428).
+Restore has app buttons and routes now: **Restore files**, **Restore vaults** and **Restore chat**.
 
 ### Protection and reminders
 
@@ -273,7 +326,7 @@ All paths are under `/api/v0/storage`.
 | `POST /devices/snapshot-backup`           | admin    | `targetDeviceSerial`, `acknowledgeHealth`; returns `jobId`    |
 | `POST /devices/snapshot-backup/verify`    | admin    | `deviceSerial`, `full`; the app sends `full: true`            |
 | `POST /devices/usb/:serial`               | admin    | mount a USB drive                                             |
-| `DELETE /devices/usb/:serial`             | admin    | unmount a USB drive; the app has no **Eject** button yet      |
+| `DELETE /devices/usb/:serial`             | admin    | unmount a USB drive; the card's **Eject**                     |
 | `PATCH /devices/rename`                   | admin    | rename a drive; the app has no button for it                  |
 
 With `full: true`, Verify hashes every file. Without it, only sizes are compared.
