@@ -24,7 +24,13 @@ withDefaults(defineProps<{ showHeading?: boolean }>(), {
       </div>
       <!-- Anti-bot honeypot: real subscribers never see or fill this in. -->
       <div class="honeypot" aria-hidden="true">
-        <input type="text" :name="newsletter.honeypotName" tabindex="-1" value="" />
+        <input
+          type="text"
+          :name="newsletter.honeypotName"
+          tabindex="-1"
+          autocomplete="off"
+          value=""
+        />
       </div>
       <p class="powered-by">{{ newsletter.poweredBy }}</p>
     </form>

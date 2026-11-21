@@ -22,4 +22,11 @@ describe("SiteFooter", () => {
       expect(hrefs).toContain(link.href);
     }
   });
+
+  it("links to the docs and support pages, not just the header", () => {
+    const wrapper = mount(SiteFooter);
+    const hrefs = wrapper.findAll("a").map((anchor) => anchor.attributes("href"));
+    expect(hrefs).toContain("/docs");
+    expect(hrefs).toContain("/support");
+  });
 });

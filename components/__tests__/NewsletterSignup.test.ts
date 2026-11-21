@@ -26,6 +26,19 @@ describe("NewsletterSignup", () => {
     expect(honeypot.attributes("tabindex")).toBe("-1");
   });
 
+  it("hides the honeypot from screen readers, leaving only the labeled email field", () => {
+    const wrapper = mount(NewsletterSignup);
+    const honeypot = wrapper.get(`input[name="${newsletter.honeypotName}"]`);
+    expect(honeypot.element.closest('[aria-hidden="true"]')).not.toBeNull();
+    expect(honeypot.attributes("autocomplete")).toBe("off");
+    const exposed = wrapper
+      .findAll("input")
+      .filter((input) => input.element.closest('[aria-hidden="true"]') === null);
+    expect(exposed).toHaveLength(1);
+    const label = wrapper.get(`label[for="${exposed[0]?.attributes("id")}"]`);
+    expect(label.text()).toBe(newsletter.emailLabel);
+  });
+
   it("does not load any remote Mailchimp script or stylesheet", () => {
     const wrapper = mount(NewsletterSignup);
     expect(wrapper.html()).not.toContain("mailchimp.com");

@@ -122,7 +122,7 @@ details[open] .toggle {
   background: var(--pastel-yellow);
   color: var(--pastel-yellow-ink);
   font-family: var(--font-mono);
-  font-size: 0.6875rem;
+  font-size: var(--text-micro);
   font-weight: 500;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;

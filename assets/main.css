@@ -23,7 +23,8 @@
   --text-lede: clamp(1.125rem, 1rem + 0.45vw, 1.3rem);
   --text-body: 1rem;
   --text-small: 0.875rem;
-  --text-micro: 0.75rem;
+  /* Smallest text on the site; 13px keeps mono labels legible for older eyes. */
+  --text-micro: 0.8125rem;
   --tracking-tight: -0.03em;
   --tracking-snug: -0.015em;
   --tracking-wide: 0.06em;
@@ -56,6 +57,9 @@
 
   /* Focus ring */
   --color-focus: #1f6c9f;
+
+  /* Dims the page behind an open menu */
+  --color-scrim: rgba(17, 17, 17, 0.4);
 
   /* Muted pastels, for tags and small accents only */
   --pastel-red: #fdebec;
@@ -115,6 +119,7 @@
     --color-on-ink: #161615;
 
     --color-focus: #8cc7ee;
+    --color-scrim: rgba(0, 0, 0, 0.6);
 
     --pastel-red: #3a2323;
     --pastel-red-ink: #f2aaa7;
