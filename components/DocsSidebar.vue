@@ -185,6 +185,8 @@ a.category-title:hover,
 
   .toggle {
     display: flex;
+    min-height: 2.75rem;
+    box-sizing: border-box;
     flex-wrap: wrap;
     gap: 0.25rem 0.75rem;
     align-items: baseline;
@@ -211,6 +213,20 @@ a.category-title:hover,
 
   .menu.open {
     display: block;
+  }
+
+  /* In the drawer every link gets a 44px row, so each one is an easy tap. */
+  .all,
+  .category-title,
+  .pages a {
+    display: flex;
+    align-items: center;
+    min-height: 2.75rem;
+    box-sizing: border-box;
+  }
+
+  .all {
+    margin-bottom: 0.5rem;
   }
 
   /*

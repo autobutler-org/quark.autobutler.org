@@ -67,4 +67,28 @@ describe("SiteHeader", () => {
     expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("false");
     expect(wrapper.get("nav").classes()).not.toContain("open");
   });
+
+  it("shows no backdrop while the menu is closed", () => {
+    const wrapper = mount(SiteHeader);
+    expect(wrapper.find("button.scrim").exists()).toBe(false);
+  });
+
+  it("dims the page behind the open menu, and tapping the backdrop closes it", async () => {
+    const wrapper = mount(SiteHeader);
+    await wrapper.get("button.menu-toggle").trigger("click");
+    const scrim = wrapper.get("button.scrim");
+    expect(scrim.attributes("aria-label")).toBe(masthead.closeMenuLabel);
+    expect(scrim.attributes("tabindex")).toBe("-1");
+    await scrim.trigger("click");
+    expect(wrapper.get("button.menu-toggle").attributes("aria-expanded")).toBe("false");
+    expect(wrapper.find("button.scrim").exists()).toBe(false);
+  });
+
+  it("closes the menu with the Escape key", async () => {
+    const wrapper = mount(SiteHeader);
+    const button = wrapper.get("button.menu-toggle");
+    await button.trigger("click");
+    await button.trigger("keydown", { key: "Escape" });
+    expect(button.attributes("aria-expanded")).toBe("false");
+  });
 });

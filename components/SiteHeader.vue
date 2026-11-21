@@ -15,7 +15,7 @@ function closeMenu(): void {
 </script>
 
 <template>
-  <header class="masthead">
+  <header class="masthead" @keydown.esc="closeMenu">
     <div class="bar">
       <a href="/" class="wordmark">
         <img class="mark" :src="hero.logo.src" alt="" width="912" height="912" />
@@ -41,6 +41,20 @@ function closeMenu(): void {
       </div>
     </div>
   </header>
+  <!--
+    Dims the page behind the open phone menu; tapping it closes the menu.
+    Kept out of the tab order: the Menu button and Escape already close it.
+    A sibling of the header, not a child: the header's backdrop-filter would
+    otherwise trap this fixed layer inside the header's own box.
+  -->
+  <button
+    v-if="menuOpen"
+    type="button"
+    class="scrim"
+    tabindex="-1"
+    :aria-label="masthead.closeMenuLabel"
+    @click="closeMenu"
+  ></button>
 </template>
 
 <style scoped>
@@ -118,7 +132,7 @@ nav a:hover {
 .cta {
   display: inline-flex;
   align-items: center;
-  height: 2.25rem;
+  height: 2.75rem;
   padding: 0 1rem;
   border-radius: var(--radius-md);
   background: var(--color-ink);
@@ -144,8 +158,8 @@ nav a:hover {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   padding: 0;
   border: 1px solid var(--color-border-strong);
   border-radius: var(--radius-md);
@@ -171,6 +185,10 @@ nav a:hover {
   position: absolute;
   left: 0;
   top: 0.35rem;
+}
+
+.scrim {
+  display: none;
 }
 
 @media (max-width: 760px) {
@@ -199,6 +217,19 @@ nav a:hover {
 
   nav.open {
     display: flex;
+  }
+
+  .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    /* Just under the sticky header (z-index 10), over the page. */
+    z-index: 9;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: var(--color-scrim);
+    cursor: pointer;
   }
 
   nav a {

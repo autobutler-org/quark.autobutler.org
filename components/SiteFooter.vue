@@ -61,11 +61,14 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.6rem;
   font-size: var(--text-small);
 }
 
+/* A 44px row per link, so each one is an easy tap on a phone. */
 a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   color: var(--color-text);
   text-decoration: none;
   transition: color var(--duration-fast) ease;

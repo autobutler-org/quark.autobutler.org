@@ -50,7 +50,12 @@ export const masthead = {
   /** Rendered apart from the other links, as the one solid button in the bar. */
   cta: { label: "Sign up", href: "/signup" } as Link,
   menuLabel: "Menu",
+  /** Names the dimmed backdrop behind the open phone menu, which closes it. */
+  closeMenuLabel: "Close menu",
 } as const;
+
+/** The first thing a keyboard user reaches on every page: a jump past the header. */
+export const skipLink = { label: "Skip to main content", href: "#main" } as Link;
 
 export const hero = {
   /**
@@ -463,6 +468,8 @@ export const footer = {
   /** Fine print for the case renders in `shellGallery`, kept low on the page. */
   renderNote: "Case pictures are concept renders. The designs are not final.",
   links: [
+    { label: "Docs", href: "/docs" },
+    { label: "Support", href: "/support" },
     { label: "GitHub", href: repoUrl },
     { label: "Contributing", href: `${repoUrl}/blob/main/CONTRIBUTING.md` },
     { label: "autobutler.org", href: orgSiteUrl },
