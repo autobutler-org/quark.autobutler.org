@@ -53,8 +53,9 @@ thirty-character monster you lose in a week.
 The [vault](/docs/vault) is where Quark keeps your saved logins. Everyone on your Quark has their own vault, and it opens
 with the same password you sign in with. There is no second password to remember.
 
-Your vault is locked on your own phone or computer before anything is saved to the Quark. The Quark only ever holds the
-locked version. That means nobody else can open your vault: not another person in your house, not an admin, and not us.
+Your vault is locked on your own phone or computer before anything is saved to the Quark. The Quark only holds the
+locked version. Nobody else can open your vault through Quark: not another person in your house, not an admin, and not
+us.
 
 The other side of that is simple. If you lose both your password and your recovery phrase, your vault is gone. Nobody
 can get it back for you. You can then start a fresh, empty vault with **Start over**.
@@ -87,8 +88,8 @@ Quark stores your files. Quark is also a physical box, and boxes fail, flood, an
 Quark tells you how you are doing. Open **System** from the app drawer and pick the **Storage** tab. A card at the top
 rates your files **Unprotected**, **Basic**, or **Protected**, and tells you the next step.
 
-Quark does not copy to a backup drive on a schedule yet. An admin makes each copy in the app with a
-[snapshot backup](/docs/system/storage-and-backups). The copy out of the house is up to you. A drive at a relative's
+An admin backs up onto a [backup drive](/docs/system/storage-and-backups) in the app, by hand or on a daily, weekly or
+monthly schedule. A backup drive at home is still not the copy out of the house. That one is up to you. A drive at a relative's
 house that you swap every so often is enough.
 
 There is no backup plan that can save you from _no backup at all._
@@ -178,6 +179,9 @@ To be direct about the limits:
 - It does not scan uploads for viruses. It stores what you give it.
 - It does not stop someone carrying the box out of your house. Vaults stay locked, but ordinary files on the drive
   could be read by whoever is holding it. A vault export you saved is ordinary too.
+- It does not protect your vault or chat from an app that has been tampered with. Both stay locked only as long as the
+  app you type your password into is honest. In a web browser, that app comes from your Quark, so someone who controls
+  the Quark itself could change it. The phone and desktop apps don't come from your Quark.
 - It does not make your WiFi password safe to share. Someone on your network can reach Quark's sign-in screen, but
   that is where they stop. Seeing your files still means knowing your password.
 
@@ -213,7 +217,9 @@ yet"}`.
 - `DELETE /api/v0/vault`: **Start over**.
 - `PUT /api/v0/auth/password` sends the vault key re-wrapped under the new password, in the same transaction.
 - Exports (`quark_vault.json`, `quark_vault.csv`) are written in the app, in plaintext.
-- A snapshot backup copies the ciphertext and wrapped keys into `vault_items_backup.db`.
+- A snapshot backup copies the ciphertext and wrapped keys into `vault_items_backup.db` in each run folder, with a
+  `vault_items_backup.db.mac` that binds the file to the Quark that wrote it. Chat goes the same way, into
+  `chat_backup.db` and its `.mac`. On PostgreSQL neither file is written; the database backup covers them.
 
 **Sessions and lockout.** Sessions last 30 days. `GET /api/v0/auth/sessions` lists them and
 `DELETE /api/v0/auth/sessions/:id` signs one out. `PUT /api/v0/auth/password` signs out every other session of the
@@ -222,8 +228,11 @@ After five wrong sign-ins, the next one gets **429** with `Retry-After`. The wai
 each further miss, up to 15 minutes. HTTP Basic shares the same lockout.
 
 **Outbound contact.** Debian's `unattended-upgrades` is set to the security pocket only (`pkg/util/aptutil`). The
-version check, `GET /api/v0/version/available`, runs when the Updates tab opens and may only contact `github.com` and
-`objects.githubusercontent.com` (`allowedUpdateHosts` in `pkg/util/updateutil/updateutil.go`). Remote access, while it
+version check, `GET /api/v0/version/available`, runs when the Updates tab opens. It lists releases on the Azure storage
+account `quarkrelease` (`quarkrelease.blob.core.windows.net`) first, and falls back to
+`api.github.com/repos/autobutler-org/quark/releases` if that fails (`DefaultUpdateSources` in
+`pkg/util/updateutil/updateutil.go`). Downloading an update may only contact `github.com`,
+`objects.githubusercontent.com` and `quarkrelease.blob.core.windows.net` (`allowedUpdateHosts`). Remote access, while it
 is on, contacts its provisioning and coordination service and can use third-party relay servers when a direct
 connection is not possible. Those relays see IP addresses and cannot read the traffic. It does not upload diagnostic
 logs or client metrics. [Remote Access](/docs/settings/remote-access) has the details. Remote requests reach Quark

@@ -12,8 +12,9 @@ The vault is where you keep logins you would rather not memorize. Each person on
 with the password you already use to sign in. There is no second password, and there is no vault shared by the
 household.
 
-Quark locks each login on your phone or computer before it saves anything. Your Quark keeps only that locked copy. It
-cannot read what you stored. Neither can anyone else in the house, an admin included.
+Quark locks each login on your phone or computer before it saves anything. Your Quark keeps only that locked copy, and
+nobody, an admin included, can open it through Quark. That protection assumes the app you type your password into
+hasn't been tampered with. The [Security Guide](/docs/help/security-guide#what-quark-does-not-do) explains.
 
 You can open the vault whenever you are signed in. At home, that is your own WiFi. Away from home, it is the same vault
 over remote access, once an admin has turned that on in **Settings → Network**.
@@ -194,8 +195,9 @@ path can answer 200 with the web app's HTML, so check `Content-Type` before trus
   or 426.
 - `GET /api/v0/vault/items` returns that account's ciphertext. An account with no items gets `[]`.
 - `POST /api/v0/vault/items` and `GET`, `PUT`, and `DELETE /api/v0/vault/items/:id` are one ciphertext item.
-- `DELETE /api/v0/vault` is **Start over**. The body must include `password` (the auth key). A missing password is 400
-  `password is required`. A wrong one is 403 and nothing is deleted. A raw password is 426. It shares the sign-in rate
+- `DELETE /api/v0/vault` is **Start over**. The body carries the auth key as `password`. A wrong or missing key, `{}`
+  included, is 403 `incorrect password`, and nothing is deleted. A body that isn't JSON is 400 `password is required`.
+  A raw password is 426. An account with no vault gets 204, like a successful delete. It shares the sign-in rate
   limit, so a session alone cannot wipe a vault (v0.55.1, quark #3653). The dialog title is **Delete your vault?**.
 - `POST /api/v0/auth/recover/vault-key` fetches the wrapped key during recovery and needs no session. No vault is 404.
 - `POST /api/v0/vault/unlock` and `POST /api/v0/vault/import-backup` are gone.
