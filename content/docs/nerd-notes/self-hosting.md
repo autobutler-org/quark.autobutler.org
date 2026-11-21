@@ -33,14 +33,14 @@ The commands, addresses, and settings are in Nerd Notes. A shorter container rec
 - **The installer prints a message.** [Nerd Notes](#messages-from-sudo-quark-install) lists what each one means.
 - **The page will not open.** Something else may be using the address, or Quark did not start. See
   [Quark won't start](#quark-wont-start-failed-to-bind-tls-listener-on-443).
-- **A container is empty after a restart.** Its data was not kept. Nerd Notes explains
-  [how to keep that data](#mount-the-whole-varlibquark) and
+- **A container is empty after a restart, or keeps restarting.** Its data was not kept, or it runs as the wrong user.
+  Nerd Notes explains [how to keep that data](#mount-the-whole-varlibquark) and
   [which user the container runs as](#dont-override-the-user).
 - **Everyone is locked out of sign-in behind a proxy.** See [Behind a proxy](#behind-a-proxy).
 - **An update from Settings leaves a container stopped.** Something has to start it again. See
   [I updated from Settings and the container is gone](#i-updated-from-settings-and-the-container-is-gone).
-- **Mounting a drive in a container is refused.** See
-  [Mounting a drive in the container](#mounting-a-drive-in-the-container-says-permission-denied).
+- **A drive in a container says it needs a restart.** See
+  [A drive in the container can't be reached](#a-drive-in-the-container-says-quark-cant-reach-it-until-it-restarts).
 
 ## Related
 
@@ -53,10 +53,9 @@ The commands, addresses, and settings are in Nerd Notes. A shorter container rec
 
 ## Nerd Notes
 
-Checked against quark v0.56.2. `main` was one commit ahead (`c0f4eefc`), a performance-test change that does not touch
-install, rate limits, or the container. The published image `ghcr.io/autobutler-org/quark:0.56.2` and `:latest` share
-one manifest (`sha256:9f35e163…`), for `linux/amd64` and `linux/arm64`. The image label
-`org.opencontainers.image.version` is `0.56.2`.
+Checked against quark v0.63.0: its source, its `Dockerfile`, and the product's
+[container guide](https://github.com/autobutler-org/quark/blob/v0.63.0/docs/container.md). The image is published as
+`ghcr.io/autobutler-org/quark:0.63.0` and `:latest`, for `linux/amd64` and `linux/arm64`.
 
 | Route                                     | Good for                      | How you reach it                     |
 | ----------------------------------------- | ----------------------------- | ------------------------------------ |
@@ -65,8 +64,8 @@ one manifest (`sha256:9f35e163…`), for `linux/amd64` and `linux/arm64`. The im
 
 Both run the same binary from the same release. Releases are built for Linux on `x86_64` and `arm64` only. There is no
 macOS, Windows, or 32-bit server build (`.goreleaser.yaml` builds `linux` / `amd64` and `arm64`). The `.AppImage`
-files on a release page are the Linux desktop app, not the server. v0.56.2 publishes
-`quark_Linux_x86_64.tar.gz`, `quark_Linux_arm64.tar.gz`, and `quark_0.56.2_checksums.txt`, plus the AppImage files.
+files on a release page are the Linux desktop app, not the server. v0.63.0 publishes
+`quark_Linux_x86_64.tar.gz`, `quark_Linux_arm64.tar.gz`, and `quark_0.63.0_checksums.txt`, plus the AppImage files.
 
 ### Your Linux machine
 
@@ -131,7 +130,7 @@ you get the same first-run setup a Quark device shows: the terms, your owner acc
 | The binary                  | `/opt/quark/bin/quark`, linked from `/usr/local/bin/quark` |
 | Database                    | `/var/lib/quark/data/quark.db`                             |
 | Your files                  | `/var/lib/quark/data/files/`                               |
-| The self-signed certificate | `/var/lib/quark/data/certs/`                               |
+| The self-signed certificate | `/var/lib/quark/data/certs/`, unless you give your own     |
 | Logs                        | The journal: `journalctl -u quark`                         |
 | Remote-access state         | `/var/lib/quark/tsnet`, once an admin has turned it on     |
 
@@ -144,6 +143,10 @@ in `~/quark/data` instead, and you see an empty Quark.
 An admin updates from **Settings → Updates**: pick a version under **Update Quark to version** and click **Start
 update**. Quark downloads the archive, checks it against the release's checksums, replaces its own binary, and exits.
 systemd starts the new version. Updates are manual. An admin starts each one.
+
+On this route, **Settings → Updates** also has a **Maintenance** group with **Repair installation** and **Restart
+Quark**. Restart only turns Quark off and on. Repair restarts and also re-runs the setup below. Use Restart when
+something just seems stuck. Neither runs while an update is finishing.
 
 ### What `quark install` sets up
 
@@ -227,6 +230,7 @@ in short form.
 
 ```bash
 docker run -d --name quark --restart unless-stopped -p 8080:8080 \
+  -e QUARK_RESTART_SUPERVISED=1 \
   -v quark-data:/var/lib/quark ghcr.io/autobutler-org/quark:latest
 ```
 
@@ -237,6 +241,8 @@ services:
   quark:
     image: ghcr.io/autobutler-org/quark:latest
     restart: unless-stopped
+    environment:
+      QUARK_RESTART_SUPERVISED: "1"
     ports:
       - "8080:8080"
     volumes:
@@ -251,14 +257,20 @@ volume, so it survives restarts. The image sets `PORT=8080`, `QUARK_INSECURE=tru
 `QUARK_UPDATE_DIR=/var/lib/quark/bin`, and `GIN_MODE=release`. The entrypoint is `quark` and the default command is
 `serve`, so other commands work too: `docker run --rm ghcr.io/autobutler-org/quark:latest version`.
 
+The image does not set `QUARK_RESTART_SUPERVISED`, because it can't see the container's restart policy. Set it to
+`1` (or `true`) beside `--restart`, and admins get **Restart Quark** in **Settings → Updates**. Without a restart
+policy, leave it unset, or that button stops Quark for good.
+
 You set nothing else for a basic install. These are the ones you might add:
 
-| Variable                | When to set it                                                                      |
-| ----------------------- | ----------------------------------------------------------------------------------- |
-| `QUARK_TRUSTED_PROXIES` | Behind a reverse proxy: its IP or range, so sign-in limits apply per real client    |
-| `QUARK_DB_BACKEND`      | `postgres` to keep the database in PostgreSQL instead of SQLite                     |
-| `QUARK_DATABASE_URL`    | The `postgres://` URL of an empty database, with `QUARK_DB_BACKEND=postgres`        |
-| `QUARK_INSECURE`        | `false`, with `HTTPS_PORT` (such as `8443`), to serve Quark's own self-signed HTTPS |
+| Variable                   | When to set it                                                                      |
+| -------------------------- | ----------------------------------------------------------------------------------- |
+| `QUARK_TRUSTED_PROXIES`    | Behind a reverse proxy: its IP or range, so sign-in limits apply per real client    |
+| `QUARK_DB_BACKEND`         | `postgres` to keep the database in PostgreSQL instead of SQLite                     |
+| `QUARK_DATABASE_URL`       | The `postgres://` URL of an empty database, with `QUARK_DB_BACKEND=postgres`        |
+| `QUARK_INSECURE`           | `false`, with `HTTPS_PORT` (such as `8443`), to serve Quark's own self-signed HTTPS |
+| `QUARK_TLS_CERT`           | With `QUARK_TLS_KEY` and `QUARK_INSECURE=false`: your own PEM certificate and key   |
+| `QUARK_RESTART_SUPERVISED` | `1` beside a restart policy, so an admin can use **Restart Quark**                  |
 
 `quark install` does not run in a container. Nothing on the host is changed. The image's sudoers file allows `mount`
 and `umount` under `/var/lib/quark/data/mounts/` and nothing else. It does not include the SSH, rename, or drive-health
@@ -276,8 +288,16 @@ a new volume, and Quark comes up empty.
 #### Don't override the user
 
 The container runs as the user named `quark`, uid 999, gid 999, shell `/usr/sbin/nologin`. Quark keeps its data under
-`/var/lib/quark` only for that user name. Run it as anyone else (`docker run -u`, or `runAsUser` in Kubernetes) and
-the data goes to a folder outside your mount, so Quark comes up empty on every restart.
+`/var/lib/quark` only for that user name (`isRunningAsServiceUser` in `pkg/util/storageutil/dir.go`). Anything else
+uses `$HOME/quark/data`, which has two outcomes:
+
+- **A uid the image doesn't know** (`docker run -u 1000`, or `runAsUser: 1000` in Kubernetes): Quark doesn't start.
+  `docker logs` shows `failed to create data directory: mkdir /quark: permission denied`, and with a restart policy
+  the container restarts in a loop.
+- **A user with a home folder, such as root:** Quark starts, but its data goes to a folder outside your mount, so it
+  comes up empty on every restart.
+
+If your platform needs a numeric user, `999` resolves to `quark` and works.
 
 If a host folder gives a permission error, fix its ownership instead of changing the user:
 
@@ -291,6 +311,12 @@ The image serves plain HTTP on port 8080 (`QUARK_INSECURE=true`). Put your rever
 in front for HTTPS. Do not expose port 8080 straight to the internet. To use Quark's own self-signed certificate
 instead, set `QUARK_INSECURE=false` and `HTTPS_PORT` (for example `8443`). Only the value `true` turns TLS off, so
 unsetting `QUARK_INSECURE` does the same thing (`cmd/quark/serve/serve.go`).
+
+To serve a certificate of your own, such as one from an internal CA, also set `QUARK_TLS_CERT` and `QUARK_TLS_KEY` to
+the PEM certificate and key, or pass `quark serve --tls-cert <path> --tls-key <path>`. Quark then writes no
+self-signed pair. A pair replaced on disk is picked up without a restart, so replace both files together. One
+without the other, a pair that won't load, or either one with `QUARK_INSECURE=true` stops `quark serve` at startup
+with an error naming the flag. The same flags work on a Linux machine.
 
 #### Behind a proxy
 
@@ -312,11 +338,14 @@ error naming it. Do not set it wider than your proxy: anything inside the range 
 
 #### USB drives
 
-Mounting a USB drive (**System → Storage**, then **Mount**) needs `--privileged`. Without it the mount fails with
-`permission denied`, and everything else works. `--privileged` gives the container root's power over the host's
-devices, so leave it off if you do not need drives.
+Mounting a USB drive (**System → Storage**, then **Mount**) needs `--privileged`. Without it the container gets no
+`/dev/sdX` nodes. Quark still sees the drive, so it is listed, but its card says "Quark can't reach this drive until
+it restarts." in place of a **Mount** button, and `GET /api/v0/storage/devices/status` marks it `needsRestart: true`.
+Restarting won't help until the container is `--privileged`. Everything else works without it. `--privileged` gives
+the container root's power over the host's devices, so leave it off if you do not need drives.
 
-- A drive plugged in after the container starts appears only after `docker restart quark`.
+- A drive plugged in after the container starts is listed right away with the same message, because Docker copies
+  `/dev` only at start. After `docker restart quark` it can be mounted.
 - The image's `quark` user is in the `disk` group, gid 6, so it can read a drive's type. If the host's `disk` group
   isn't gid 6, add `--group-add <gid>`.
 
@@ -326,7 +355,8 @@ Two ways, and they mix:
 
 - **Settings → Updates.** The new binary goes into the volume (`QUARK_UPDATE_DIR`, `/var/lib/quark/bin`), and Quark
   exits to switch to it. Something has to start it again, so run with `--restart unless-stopped` or `always` (a
-  Kubernetes Deployment restarts it on its own).
+  Kubernetes Deployment restarts it on its own). **Restart Quark** exits the same way, and shows only with
+  `QUARK_RESTART_SUPERVISED=1`.
 - **A newer image.** Pull it and recreate the container. A newer image wins over an older update in the volume.
 
 #### PostgreSQL
@@ -336,19 +366,29 @@ Quark uses SQLite in the volume by default. To use a PostgreSQL database instead
 to start if the URL is missing, the backend name is wrong, or the database already holds tables it did not make. Keep
 the volume mounted anyway: your files, the certificate, and remote-access state still live there.
 
-Content search and snapshot backup answer 501 on PostgreSQL. Chat and vault backup and restore are refused for the
-same reason: a snapshot includes them. One replica is still the rule. The product's
-[container guide](https://github.com/autobutler-org/quark/blob/v0.56.2/docs/container.md#postgresql) lists them, and
-so does the
-[data notes](https://github.com/autobutler-org/quark/blob/v0.56.2/docs/architecture/data.md).
-There is no tool yet to move an existing SQLite install across.
+Content search works on PostgreSQL, with PostgreSQL's own full-text search, which ranks a little differently from
+SQLite. Music search still answers 501. One replica is still the rule.
+
+Snapshot backups work too, but on PostgreSQL a snapshot holds your files and its manifest only, with no
+`chat_backup.db` or `vault_items_backup.db`. The chat and the vault are in the database, so back it up with
+`pg_dump --format=custom` and restore it with `pg_restore`. A dump restores onto PostgreSQL only.
+
+To move an existing SQLite install across, stop Quark and run `quark move-to-postgres` against the same volume. The
+PostgreSQL database must be empty. The command copies every table in one transaction, checks the row counts, and
+never changes the SQLite file. A failed run leaves PostgreSQL empty, so running it again is safe. There is no way
+back in place. `quark bundle export` and `quark bundle import` start a new install from an old one, on either
+database. The product's
+[container guide](https://github.com/autobutler-org/quark/blob/v0.63.0/docs/container.md#postgresql) has the steps.
+Its line that content search answers 501 is out of date. The
+[data notes](https://github.com/autobutler-org/quark/blob/v0.63.0/docs/architecture/data.md) have the current list.
 
 #### Kubernetes
 
 Run one replica with `strategy: Recreate`, on a `ReadWriteOnce` volume mounted at `/var/lib/quark`. A second copy
 writing the same files would corrupt them, and scaling out is not supported, with PostgreSQL or without. The product's
-[container guide](https://github.com/autobutler-org/quark/blob/v0.56.2/docs/container.md) has a full manifest. Set
-`QUARK_TRUSTED_PROXIES` to the ingress range, and keep `127.0.0.1,::1` in that list for remote access.
+[container guide](https://github.com/autobutler-org/quark/blob/v0.63.0/docs/container.md) has a full manifest. Set
+`QUARK_TRUSTED_PROXIES` to the ingress range, and keep `127.0.0.1,::1` in that list for remote access. Set
+`QUARK_RESTART_SUPERVISED=1` in the Deployment's `env`, since the Deployment starts Quark again.
 
 ### Troubleshooting
 
@@ -383,18 +423,24 @@ Check that it's running, then try again."
 
 #### Something on the machine has drifted
 
-An admin can open **Settings → Updates** and click **Repair installation**. Quark asks **Repair installation?**, then
-restarts, and the setup above re-runs. If the page says "This Quark was installed before it could repair itself," run
-`sudo quark install` once on the machine. The button is hidden when Quark is not the installed Linux service.
+An admin can open **Settings → Updates** and, under **Maintenance**, click **Repair installation**. Quark asks
+**Repair installation?**, then restarts, and the setup above re-runs. If the page says "This Quark was installed
+before it could repair itself," run `sudo quark install` once on the machine. The button is hidden when Quark is not
+the installed Linux service.
 
 #### The container comes up empty after a restart
 
 The container is running as a different user, or the host path is relative. See
 [Don't override the user](#dont-override-the-user) and [Mount the whole `/var/lib/quark`](#mount-the-whole-varlibquark).
 
-#### Mounting a drive in the container says `permission denied`
+#### The container keeps restarting: `mkdir /quark: permission denied`
 
-The container isn't `--privileged`. See [USB drives](#usb-drives).
+The container runs as a uid the image doesn't know, such as `-u 1000` or a Kubernetes `runAsUser`. Remove the
+override, or use `999`. See [Don't override the user](#dont-override-the-user).
+
+#### A drive in the container says Quark can't reach it until it restarts
+
+The container isn't `--privileged`, or the drive was plugged in after it started. See [USB drives](#usb-drives).
 
 #### Behind my proxy, everyone is locked out of sign-in
 
@@ -404,3 +450,4 @@ The container isn't `--privileged`. See [USB drives](#usb-drives).
 #### I updated from Settings and the container is gone
 
 Quark exits to finish an update, and nothing started it again. Run the container with `--restart unless-stopped`.
+**Restart Quark** does the same thing, which is why it shows only with `QUARK_RESTART_SUPERVISED=1`.
