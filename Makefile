@@ -104,6 +104,13 @@ test/watch: ## Run tests in watch mode
 	fi
 	$(JS_EXEC) run test:watch
 
+.PHONY: check/generated
+check/generated: ## Check the generated site (run after make generate)
+	if ! [[ -d ./node_modules ]]; then \
+		$(JS_EXEC) $(JS_INSTALL); \
+	fi
+	REQUIRE_GENERATED=1 $(JS_EXEC) exec -- vitest run scripts/__tests__/generated.test.ts
+
 ##@ Dependencies
 
 .PHONY: deps

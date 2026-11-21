@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { isoDay, updatedLabel } from "~/utils/docDates";
 import { groupDocs, type NavDoc } from "~/utils/docsNav";
+import { docsBreadcrumbs, jsonLdScript, techArticle } from "~/utils/structuredData";
 
 const route = useRoute();
 
@@ -34,12 +36,30 @@ useSeoMeta({
   twitterTitle: () => `${doc.value?.title ?? "Docs"} — Quark`,
   twitterDescription: () => doc.value?.description ?? undefined,
 });
+
+const updated = computed(() => updatedLabel(doc.value?.modified));
+const updatedDay = computed(() => isoDay(doc.value?.modified));
+
+useHead({
+  script: computed(() => {
+    const article = {
+      path: docPath,
+      title: doc.value?.title ?? "Docs",
+      description: doc.value?.description,
+      modified: doc.value?.modified,
+    };
+    return [jsonLdScript(techArticle(article)), jsonLdScript(docsBreadcrumbs(article))];
+  }),
+});
 </script>
 
 <template>
   <article class="doc">
     <DocsSidebar :groups="navGroups" :current-path="docPath" />
     <div class="prose">
+      <p v-if="updated" class="updated">
+        <time :datetime="updatedDay">{{ updated }}</time>
+      </p>
       <ContentRenderer v-if="doc" :value="doc" />
     </div>
   </article>
@@ -64,6 +84,14 @@ useSeoMeta({
   font-size: 1.0625rem;
   line-height: 1.75;
   color: var(--color-text);
+}
+
+.updated {
+  margin: 0 0 1rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-muted);
 }
 
 .prose :deep(h1),
