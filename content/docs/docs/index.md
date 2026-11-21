@@ -40,7 +40,9 @@ Type in the search box at the top. Quark looks at names and at the words inside 
 
 Only Docs, Sheets and Slides search inside files. The search in Files looks at names only.
 
-Each row has a menu with **Rename**.
+Each row has a menu with **Rename** and **Delete**. **Delete** asks first, then moves the document to
+[Trash](/docs/trash), the same as deleting it in Files. A member sees **Delete** only on documents in their own home
+folder. An admin sees it on every document in the list. A row listed only under **Content matches** has no menu.
 
 ---
 
@@ -88,7 +90,7 @@ On a narrow screen the toolbar scrolls sideways.
 Auto-save is on to start with. Quark saves about 2 seconds after you stop typing.
 
 - The cloud button in the top bar turns auto-save off and on. Its tooltip says **Auto-save on** or **Auto-save off**.
-  Quark remembers this choice on the device you are using, not for your account.
+  The choice belongs to your account, so it follows you to your other phones and computers.
 - **Save** saves now. It only appears while you are editing.
 - The strip under the page shows **Unsaved** or **Saved**, plus a word count. A dot after the title also means there
   are unsaved changes.
@@ -127,7 +129,7 @@ Click **More options** (the three dots) in the top bar to open **Export or print
 ## Dark page
 
 The sun and moon button at the bottom left of the page switches the page between light and dark. It does not change
-the rest of the app. Quark remembers your choice on the device you are using.
+the rest of the app. The choice belongs to your account, so it follows you to your other devices.
 
 ---
 
@@ -153,8 +155,8 @@ and Slides search.
 **I can't find a document I just wrote.** Search for a word from inside it, not only its name. If you made it from
 Files, it is in the folder you were looking at then, not your home folder.
 
-**My changes are gone.** Check whether auto-save was off on that device: the cloud button's tooltip says **Auto-save
-off**. Turn it back on, or click **Save** before you leave.
+**My changes are gone.** Check whether auto-save was off: the cloud button's tooltip says **Auto-save off**. Turn it
+back on, or click **Save** before you leave.
 
 **I can't open Docs away from home.** Use the iPhone or Android app, and check that an admin has turned on
 [remote access](/docs/settings/remote-access). In a web browser, Quark works only on your home WiFi.
@@ -175,8 +177,12 @@ off**. Turn it back on, or click **Save** before you leave.
 - **Address.** A document opens at `/docs/` followed by its path, for example `/docs/reports/q1.qdoc`.
 - **New documents.** **New document** uploads an empty `.qdoc` to the caller's home folder, or to the files root for
   an admin.
-- **Auto-save.** A 2-second debounce after the last edit. The on/off choice and the dark page are stored per device,
-  not per account.
+- **Auto-save.** A 2-second debounce after the last edit. The on/off choice and the dark page are stored per account,
+  as `documentAutoSave` and `documentDarkPage` in `GET`/`PUT /api/v0/settings/me` (quark #3932). A field the account
+  never set is left out, and the app then keeps its own value. A new account starts with a copy of the settings of the
+  admin who created or approved it.
+- **Row menu.** **Delete** (quark #3844) moves the file to Trash through the same delete Files uses. The app offers it
+  when `canWritePath` allows: always for an admin, and for a member only inside their home on the internal drive.
 - **PDF export.** Rendered on the device at A4.
 - **Word files.** The server has `POST /api/v0/files/convert/document`, which turns a `.docx`, `.docm` or `.odt` into
   a sibling `.qdoc`. Tables become tab-separated lines and images are dropped. The app does not call it yet, so the
@@ -185,5 +191,6 @@ off**. Turn it back on, or click **Save** before you leave.
   stops, and lists up to 50 hits. The server uses SQLite FTS5 and only returns files the caller can read. For a
   `.qdoc` it indexes the text pulled out of the Delta, not the JSON around it, and reads the first 512 KB of a file.
   The same index covers `.qsheet`, `.qslide` and plain-text formats such as `.txt`, `.md` and `.csv`. The Docs page
-  shows only the `.qdoc` and `.qsheet` hits. The Files search (`GET /api/v0/files/search`) matches names only. On a
-  PostgreSQL backend, content search answers 501 and the page shows name matches alone.
+  shows only the `.qdoc` and `.qsheet` hits. The Files search (`GET /api/v0/files/search`) matches names only. On
+  SQLite the index is FTS5. On PostgreSQL it is a `tsvector` column ranked with `ts_rank`, so results can come back in
+  a different order (quark #3847).

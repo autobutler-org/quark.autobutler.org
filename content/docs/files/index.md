@@ -53,10 +53,30 @@ files using the button above, or drag and drop here."
 
 ### More than one drive
 
-If your Quark has more than one drive switched on, an **Upload to device** sheet asks where the files should go. It
-starts on your default drive, if you have set one. A drive that is plugged in but not switched on is listed as
-unavailable, with a note to mount it under **System → Storage**. If you've filtered Files to a single drive, uploads go
-there without asking.
+Uploads and new folders go to your Quark's default drive without asking. That is the drive an admin gave the
+**Default Storage** role under **System → Storage**. If you've filtered Files to a single drive, they go there instead.
+
+To put them on another drive, ask for the choice:
+
+- **On a wide screen**, tap the **▾** beside **Upload** or **New folder**. Where **Upload** opens a menu, pick **Choose
+  device** in it.
+- **On a phone**, press and hold **New folder**, or an upload row in the **Create** sheet.
+
+An **Upload to device** sheet then asks which drive. With only one drive there is nothing to choose, and the **▾** is
+not there.
+
+The sheet also opens on its own when there is no default drive to use. A line at the top says why: "No default storage
+device is connected." or "The default storage device is not enabled." It starts on the drive you picked last time. A
+drive that is plugged in but not switched on is listed as unavailable, with a note to mount it under **System →
+Storage**.
+
+In the file list, each file and folder has a colored tag naming the drive it is on. Each drive keeps its own color.
+Hover over a tag, or press and hold it, to see the drive's name. The **(i)** button beside the **Unified** or
+**Per-device** switch explains the two views:
+
+- **Unified** shows all your drives together. A folder that is on more than one drive appears once.
+- **Per-device** lists each drive in its own section, in the list, the grid, and search results. A folder on several
+  drives appears under each of them.
 
 ### When the name is already taken
 
@@ -82,7 +102,9 @@ that file. In a web browser, if the page reloads in the middle of a big upload, 
 again and Quark picks up where it stopped instead of starting over.
 
 While an upload runs, the **Upload** chip shows how many files are done out of the total, such as `3/10`. Its menu then
-offers **Cancel upload**.
+offers **Show progress** and **Cancel upload**. **Show progress** opens **Jobs**, which lists your uploads from every
+phone and computer, with how much is sent, the speed, and the time left. You can cancel an upload there, even one
+started on another device.
 
 Keep Quark powered on until a big upload finishes. Your home network speed decides how long it takes.
 
@@ -213,6 +235,23 @@ drive you just plugged in may take a while before its contents turn up.
 
 Photo search, which also looks at file names and does not stop at 500, is on the [Photos](/docs/photos) page.
 
+## Moving several things at once
+
+1. Tap **Select** in the Files top bar, and pick the files and folders you want to move.
+2. Tap the **Move selected** button in the bar.
+3. Go to the folder you want them in. If your Quark has more than one drive, you can pick another drive too.
+4. Tap **Move**. To make a new folder for them instead, tap **New folder**, name it, and confirm. Quark makes the folder
+   and moves everything into it in one step.
+
+Each item keeps its own name. If a file with the same name is already in that folder, the moved file replaces it. A
+folder whose name is taken is not moved.
+
+Some things stay where they are, and Quark names them: anything inside an archive, and the folders Quark keeps for
+each person and group, unless you are an admin. A folder can't go inside itself.
+
+If some items could not move, the rest still move, and a message says how many failed. Selection stays on until every
+item has moved.
+
 ## Trash
 
 Deleted files wait in [Trash](/docs/trash), for about 30 days, before they are removed for good.
@@ -262,7 +301,8 @@ Deleting a file to Trash keeps its history. Restore the file and the history com
 
 - **The file I uploaded isn't there.** Look at the **Upload** chip. A name clash offers **Keep both**, **Replace**, or
   **Cancel**. A large file that stopped can be continued by uploading the same file to the same folder again. If you
-  have more than one drive, look on the drive you picked.
+  have more than one drive, look on the default drive, or on the drive you picked. **Show progress** in the chip's
+  menu lists each upload in **Jobs**.
 - **Download went to Files, not Photos.** On a phone, that happens when photo permission was declined, or when the
   photo library won't take that format. The message on screen says which.
 - **A photo won't step to the next one.** The folder list didn't load, or the neighbors aren't pictures in that same
@@ -284,15 +324,23 @@ Deleting a file to Trash keeps its history. Restore the file and the history com
 Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
 
 **Uploads.** `POST /api/v0/files/upload/<folder>?keepBoth=true` takes a multipart field named `files`. A resumed
-upload sends the same file to the same folder. The **Upload** chip's `3/10` count is the client upload queue.
+upload sends the same file to the same folder. The **Upload** chip's `3/10` count is the client upload queue. Since
+v0.58.0 an upload error carries `landed` beside `error`: the files-relative paths that were saved before the batch
+failed, so a script knows which to skip on retry. `GET /api/v0/files/upload-sessions` lists the account's uploads
+from every device, and the `upload_session_changed` event says when to fetch it again. The destination drive is
+picked in the app (`resolveUploadSerial` in `lib/utils/upload_destination.dart`), not by the server.
 
 **Name search.** `GET /api/v0/files/search?query=` returns at most `MaxSearchResults` (500) readable files, from
 `pkg/util/fileutil/list.go`. An empty query returns an empty list. `serial` limits the search to one drive. This does
 not read file contents.
 
-**Content search.** `GET /api/v0/files/search/content?q=` is FTS5 over indexed text. `searchutil.MaxExtractBytes` is
+**Drives on a folder.** In `GET /api/v0/files`, a folder merged from several drives carries a `devices` array naming
+each one, such as `[{"serial":"","name":"Built-in storage"}]` for the internal drive.
+
+**Content search.** `GET /api/v0/files/search/content?q=` is FTS5 over indexed text on SQLite, and a `tsvector`
+column ranked with `ts_rank` on PostgreSQL, so the order can differ (quark #3847). `searchutil.MaxExtractBytes` is
 512 KB, so bytes past that are not indexed. `limit` defaults to 50 and caps at 200. PDF, Office, EPUB, images, video,
-and audio are not indexed. The Docs, Sheets, and Slides pages call this. The PostgreSQL backend answers 501.
+and audio are not indexed. The Docs, Sheets, and Slides pages call this.
 
 **Photo stepping.** `FileViewerPage` in `lib/pages/file_viewer_page.dart` lists the photo's folder on that file's
 drive only, keeps entries whose `fileKindForName` is `FileKind.image`, and sorts names with `toLowerCase`. SVG is
@@ -311,7 +359,10 @@ total, depth 128. Password-protected archives are refused. The extension list mi
 **Versions.** Automatic snapshots run only for `.qdoc`, `.qsheet`, and `.qslide` (`IsVersioned` in
 `pkg/util/fileversionutil/fileversionutil.go`), including the upload `BeforeSave` hook. The menu still offers
 **Version history** for any non-directory file on the internal drive (empty serial), outside an archive.
-`POST /api/v0/versions` snapshots, `GET /api/v0/versions?path=` lists, and restore is
-`POST /api/v0/versions/<id>/restore`. Retention is 50 automatic versions, 90 days, and 256 MiB per file, with at most
-one automatic snapshot every 10 minutes. Preview refuses kinds without a viewer, and anything over 25 MB
+`POST /api/v0/versions` with `{path, kind, label}` snapshots. `kind` defaults to `named`, and a named version needs a
+`label` of up to 100 characters, or the answer is 400. Content identical to the newest version is not copied again,
+and the answer says `created: false`. `GET /api/v0/versions?path=` lists. `POST /api/v0/versions/<id>/restore?path=`,
+`GET /api/v0/versions/<id>/content?path=`, and `DELETE /api/v0/versions/<id>?path=` each need the file's path.
+Retention is 50 automatic versions, 90 days, and 256 MiB per file, with at most one automatic snapshot every 10
+minutes. Preview refuses kinds without a viewer, and anything over 25 MB
 (`FileVersionsSheet.maxPreviewBytes`). Stores live beside the file, so they are not a second copy.
