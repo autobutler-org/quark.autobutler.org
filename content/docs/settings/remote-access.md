@@ -64,6 +64,17 @@ on." Once it is on, the card says "Only admins can change this. It affects every
 
 Remote access does not skip signing in. Everyone still signs in with their own account, just as at home.
 
+Away from home, the phone tries to reach your Quark directly. When it cannot, the connection goes through a relay.
+A relayed connection can be slower. Either way the traffic is encrypted. A relay can see network addresses. It
+cannot read your files. The app records which path it used. It does not label the connection **Direct** or
+**Relayed** on screen. At home the card says you are on your home network. Away from home it says you are connected
+through remote access.
+
+If remote access was turned off and back on, a phone that was already set up pairs again the next time it can reach
+your Quark. Open the app once on your home WiFi if it still cannot connect away from home. The app keeps trying to
+reconnect on its own, including after the phone app comes back from the background. There is no separate reconnect
+button.
+
 ## If something goes wrong
 
 **The card says Couldn't connect.** Remote access is still switched on, but your Quark could not connect. The card
@@ -77,7 +88,7 @@ Still stuck? Tap **Get help**, or see [Help](/docs/help). An admin can also tap 
 
 **The app doesn't reach Quark away from home.** Check that remote access shows **On** in **Settings → Network**. Check
 that **Remote access on this phone** isn't paused. If you haven't opened the app at home since remote access was turned
-on, do that once.
+on, or since it was turned off and on again, do that once. The phone sets itself up again there.
 
 **The card shows an error with Retry.** The app could not read the card. Tap **Retry**. If it says **Not connected**,
 the app cannot reach your Quark at all. See [Connecting](/docs/start/connecting#when-it-wont-connect).
@@ -91,7 +102,9 @@ the app cannot reach your Quark at all. See [Connecting](/docs/start/connecting#
 
 ## Nerd Notes
 
-Checked against quark `1bde8222` (#3786), on top of `c0f4eefc` (v0.56.2).
+Checked against quark v0.63.0 (`64f9789e`). The pairing work in `1bde8222` (#3786) is still the base. Direct and
+relayed paths are recorded in v0.61.1 (`#4276`, `#4286`). Re-pair when the stored address no longer matches is
+`#4272`, also in v0.61.1.
 
 **What leaves the box.** Only while remote access is on, and each time the Quark starts with it on:
 
@@ -115,7 +128,12 @@ None of this happens while remote access is off.
 `POST /api/v0/settings/remote-access/devices`. That returns a single-use key for the phone and the Quark's private
 address. The app keeps them in platform secure storage and starts its own embedded node, with an on-device proxy in
 front of the Quark (`lib/controllers/connection_controller.dart`, `lib/services/device_pairing_store.dart`). The app
-probes the home address first and the remote address second. The remote address is never shown on screen. The web app
+probes the home address first and the remote address second. The remote address is never shown on screen. The app
+records whether the phone's node path is direct or relayed (`peerStatus` on the phone, and an admin
+`GET /api/v0/settings/remote-access/paths`). `docs/remote-access-path.md` in the product repo says none of that is
+shown to users. The connection sheet copy is "Connected on your home network", "Connected through remote access", or
+offline. If the stored pairing's quark address differs from `status.remoteUrl` while connected, the phone drops the
+pairing and pairs again (`connection_controller.dart`, `#4272`). The web app
 does nothing here: the page is already on whatever address the browser used. Pausing on one phone stops only that
 phone's node and never calls the Quark.
 

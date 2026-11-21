@@ -74,7 +74,7 @@ Your photos and documents now live on your Quark, at home. Anyone in your househ
 share with them.
 
 - Browse everything in **Files**.
-- See your pictures in **Photos**. Quark finds them in your files on its own. Videos stay in **Files**.
+- See your pictures and videos in **Photos**. Quark finds them in your files on its own.
 
 ## Tips
 
@@ -120,7 +120,7 @@ Still stuck? See [Help & Support](/docs/help).
 
 ## Nerd Notes
 
-Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
+Checked against quark v0.63.0 (`64f9789e`).
 
 **Where Extract here puts things.** `POST /api/v0/files/extract` unpacks into a hidden staging folder, then moves it
 into place beside the archive, named after the archive without its extension (double extensions such as `.tar.gz`
@@ -144,5 +144,6 @@ modified.
 **Word.** The server has a `POST /api/v0/files/convert/document` endpoint and a document preview, but the app doesn't
 call either in v0.56.2, so a `.docx` opens the generic file viewer.
 
-**Photos.** Photos lists every readable `image/*` file, HEIC included (`pkg/util/photoutil/list.go`). Videos are read
-only to pair Live Photos, and are never listed.
+**Photos.** Photos lists every readable `image/*` file, HEIC included, and `video/*` when the client sends
+`includeVideos=true` (`pkg/util/photoutil/list.go`). The app does. A Live Photo's companion video is still not its
+own row.

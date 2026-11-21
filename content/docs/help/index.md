@@ -129,7 +129,8 @@ need, or **Empty trash**. See [Trash still uses space](/docs/trash#trash-still-u
 
 ### I'm having performance issues
 
-Open **System** from the app menu. It opens on **Health**. A bar that has turned orange or red is running high. A
+An admin opens **System** from the app menu. It opens on **Health**. A bar that has turned orange or red is running
+high. A
 short spike while a photo uploads is normal. A temperature bar near the top of its scale means the Quark needs more
 air around it.
 
@@ -353,8 +354,8 @@ About → Copy app logs** copies this device's app log so you can paste it into 
 
 ## Nerd Notes
 
-Checked against quark v0.56.2. `main` was one commit ahead (`c0f4eefc`), a performance-test change that does not touch
-these screens.
+Checked against quark v0.63.0 (`64f9789e`). The v0.56.2 notes below still match these screens. **System** Health is
+admin-only.
 
 **Reaching the box.** With TLS on, the server accepts TLS 1.3 only (`MinVersion` in `internal/server/server.go`) and
 listens on the HTTPS port, 443 by default (`ServerHttpsPort` in `pkg/util/serverutil/serverutil.go`). Nothing listens

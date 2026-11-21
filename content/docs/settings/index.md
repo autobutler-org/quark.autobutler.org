@@ -47,7 +47,21 @@ Each tab has its own link, so you can bookmark one or send it to someone in your
   device only.
 - **Demo mode**: Photos shows built-in sample photos and albums instead of your library. The samples come with the app,
   so nothing is fetched from your Quark. Your real files are not affected.
-- **Storage devices**: a shortcut to your drives, on the **Storage** tab of the [System](/docs/system) page.
+
+### Photos on this device
+
+On the iPhone, Android, and desktop apps, **Settings → General** has **Photos on this device**. Photos you open are
+kept on this device, so they open quickly and without a connection. They stay private to this app. A menu sets how
+much room the smaller previews may take: **Up to 256.0 MB**, **Up to 512.0 MB**, **Up to 1.0 GB**, **Up to 2.0 GB**,
+or **Up to 4.0 GB**. It starts at **Up to 1.0 GB**. The line under the title says how much is in use now. **Clear
+cached photos** removes them. Signing out, deleting your account, or removing this Quark from the list of Quarks
+also removes that account's cached photos. Removing the Quark removes every account's cached photos for it. The
+full-size copies have their own limit, about 500 MB, and the oldest go when that fills up. A copy nobody opens for a
+year is dropped. On an iPhone this cache is left out of iCloud backup. A web browser does not show this setting. The
+browser keeps its own copies, if it keeps any.
+
+- **Storage devices**: a shortcut to the **Storage** tab of the [System](/docs/system) page. That tab is for admins.
+  A member who taps it is sent to Files.
 
 ### Adding a Quark by name
 
@@ -74,8 +88,9 @@ From top to bottom:
 - **Sessions**: every place your account is signed in. Sign out one of them, or tap **Sign out everywhere else**.
 - **Users and groups**: admins only. A shortcut to the Users page. Everyone else sees **Accounts are managed by an
   admin** here instead.
-- **Account and data**: set apart at the bottom. It opens a page with **Delete account** and, for admins, **Reset this
-  Quark**. Both are explained [below](#delete-account-vs-reset-this-quark).
+- **Account and data**: set apart at the bottom. It opens a page with **Delete account**. For an admin, the row still
+  says "Delete your account or reset this Quark." The reset button is not on this page. It is under
+  [Updates → Maintenance](#reset-this-quark).
 
 ---
 
@@ -107,6 +122,10 @@ From top to bottom:
 - **Repair installation**: admins only, on a Quark installed straight onto its device. It restarts Quark, which sets
   its system setup right again. Quark is unavailable for a few seconds. Use it when support asks you to.
 
+Admins also get a **Maintenance** section on this tab, after the update controls. **Repair installation** is there
+when this Quark can repair itself. **Restart Quark** is there when something can start Quark again. **Reset this
+Quark** is last, in a red box. It is explained [below](#reset-this-quark).
+
 More on versions and release notes: [Versions and release notes](/docs/settings/versions).
 
 ---
@@ -131,8 +150,8 @@ switch hides a feature; it doesn't lock data away.
 
 ## Delete account vs Reset this Quark
 
-Both live on **Settings → Account → Account and data**. They do very different things, so read the confirmations
-carefully.
+**Delete account** is on **Settings → Account → Account and data**. **Reset this Quark** is on **Settings → Updates →
+Maintenance**, and only an admin sees it. They do very different things, so read the confirmations carefully.
 
 ### Delete account
 
@@ -151,7 +170,8 @@ To remove someone else's account, an admin uses the Users page instead. See
 
 ### Reset this Quark
 
-Admins only. With **Accounts and settings** ticked, it returns the Quark to first-time setup and every account goes,
+Admins only. Open **Settings → Updates → Maintenance**. **Reset this Quark** is the last entry, in a red box. With
+**Accounts and settings** ticked, it returns the Quark to first-time setup and every account goes,
 yours included. Untick that box and every account stays, and the Quark does not go back to setup. It can't be undone.
 
 You choose what to erase:
@@ -187,6 +207,8 @@ After a reset, the Quark restarts within a few seconds, so the app may briefly l
 
 ## Nerd Notes
 
+Checked against quark v0.63.0 (`64f9789e`).
+
 **Tab addresses.** Each tab has its own route: `/settings/general`, `/settings/account`, `/settings/network`,
 `/settings/updates`, `/settings/about`, and `/settings/features` while a beta exists. A link to `/settings/features`
 with no beta registered opens General. **Account and data** is `/settings/account-and-data`.
@@ -205,7 +227,18 @@ transaction it re-wraps the account's chat identity and vault key under the new 
 session of the account. The session that made the change stays signed in. This has been the behavior since v0.53.0.
 
 **Features.** `GET /api/v0/settings/features` lists the registered beta flags; `PUT /api/v0/settings/features/:key`
-flips one (admin only). In v0.56.2 the registry is empty, so the tab is hidden.
+flips one (admin only). In v0.63.0 the registry is empty, so the tab is hidden.
+
+**Photo cache.** `PhotoCacheSetting` is shown when `kIsWeb` is false. Preview budgets are 256, 512, 1024, 2048, and
+4096 MiB (`PhotoDiskCacheConfig.previewBudgetChoices`); the default is 1024 MiB. Originals are a fixed 500 MiB
+(`originalsBudgetBytes`) and are not in the dropdown. `stalePeriod` is 365 days. Stores are `quarkPreviews` and
+`quarkOriginals`. The key is host, account, serial, and path, not the session token. `logout` and account deletion
+call `PhotoDiskCache.forget` before the username is dropped. Removing a host forgets every account on that host.
+iOS marks the folder with `excludeFromBackup`. A separate in-memory cache (64 MB) lives only for the process.
+
+**Reset.** `ResetQuarkSection` is rendered from `settings_updates_tab.dart` under **Maintenance**, admins only. The
+Account tab subtitle for an admin still says "Delete your account or reset this Quark"
+(`settings_account_tab.dart`). The account-and-data page no longer mounts the reset section.
 
 **Delete account and reset.** Both are `DELETE /api/v0/auth/account`, with the password's auth key in the JSON body,
 never the URL. Delete account sends `account=true` and nothing else. Reset sends `database`, `files` and `devices`

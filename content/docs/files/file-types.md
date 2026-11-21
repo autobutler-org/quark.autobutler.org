@@ -113,8 +113,8 @@ their own viewer.
 - HEIC and HEIF open from a preview the app makes and stores on your Quark. The original file is not changed.
 - Other raw formats, such as `.raf`, `.pef`, and `.x3f`, are listed as images, but the viewer may not be able to show
   them. Download them to open on your computer.
-- Only JPEG, PNG, GIF, WebP, HEIC, and HEIF get thumbnails in the file list. Other pictures show a plain icon, unless
-  the tile says why a preview is missing. See [Photos](/docs/photos#if-something-goes-wrong).
+- JPEG, PNG, GIF, WebP, HEIC, HEIF, BMP, and TIFF get thumbnails in the file list. Other pictures show a plain icon,
+  unless the tile says why a preview is missing. See [Photos](/docs/photos#if-something-goes-wrong).
 
 For albums and favorites, see [Photos](/docs/photos).
 
@@ -218,7 +218,7 @@ The new file holds the same encoding, so it won't play there either.
 
 ## Nerd Notes
 
-Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
+Checked against quark v0.63.0 (`64f9789e`).
 
 **Routing.** The client extension table is `lib/utils/file_kind.dart`. The server's `fileType` is a hint for older
 clients and is not what picks a viewer. `viewerRouteFor` in `lib/router.dart` sends Markdown to `/markdown/…`, source
@@ -250,5 +250,6 @@ parts it reaches are decompressed, and those decompressed bytes are held to the 
 
 **Code viewer.** `CodeViewerConfig.pageBytes` is 256 KB.
 
-**Pictures.** `serverConvertedImageExtensions` are the formats asked for as JPEG. `thumbnailImageExtensions` are the
-ones that get a file-list thumbnail. Stepping through a folder is `FileKind.image` only, so SVG does not step.
+**Pictures.** `serverConvertedImageExtensions` are the formats asked for as JPEG, and include `.tif`, `.tiff`, and
+`.bmp`. `thumbnailImageExtensions` are the ones that get a file-list thumbnail, and include those three as well.
+Stepping through a folder is `FileKind.image` only, so SVG does not step.

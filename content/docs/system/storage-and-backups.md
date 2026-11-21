@@ -18,12 +18,13 @@ page shows you how to make one, how to check it, and how to get files back from 
 
 To see your drives:
 
-1. Open **System** from the app menu.
+1. Open **System** from the app menu. The row is there for admins.
 2. Pick the **Storage** tab.
 
-Everyone can look at this tab. Only admins see the buttons that change things: **Mount**, **Set Role**, **Eject**,
-**Back up now**, and on a backup drive **Back up onto this drive**, **Schedule**, **Verify**, **Restore files**,
-**Restore vaults** and **Restore chat**.
+Only an admin can open this tab. A member who follows a link to it lands on Files, and Quark says "Only an admin can
+open that page." The buttons on the tab are **Mount**, **Set Role**, **Eject**, **Back up now**, and on a backup
+drive **Back up onto this drive**, **Schedule**, **Verify**, **Restore files**, **Restore vaults** and **Restore
+chat**.
 
 To back up your Quark (admins only):
 
@@ -276,6 +277,8 @@ Storage drive is plugged in and enabled, Quark asks which drive to use.
 - [Getting Started](/docs/start/getting-started): day-to-day use of Files and Trash
 
 ## Nerd Notes
+
+Checked against quark v0.63.0 (`64f9789e`).
 
 ### Where files live on a drive
 

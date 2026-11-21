@@ -9,13 +9,19 @@ navigation:
 # System
 
 The **System** page tells you how your Quark is doing: how hard it's working, which drives it can see, how well your
-files are backed up, and what long jobs it's busy with. Everyone in your household can open it.
+files are backed up, and what long jobs it's busy with.
 
-It's a good place to look now and then, and before a big upload.
+**Health** and **Storage** are for admins. Other accounts do not see **System** in the app menu. A link to those tabs
+sends them to Files, and Quark says "Only an admin can open that page."
+
+**Jobs** is open to everyone. While a job is running, a badge in the top bar counts the running jobs. Tap it to open
+Jobs. An admin can also open **System** and pick the **Jobs** tab.
+
+It's a good place for an admin to look now and then, and before a big upload.
 
 ## How to use it
 
-1. Open **System** from the app drawer.
+1. Open **System** from the app drawer. This row is there for admins.
 2. It opens on the **Health** tab. Pick **Storage** or **Jobs** along the top to switch.
 3. Tap the refresh button in the top bar for fresh numbers right away.
 
@@ -81,14 +87,14 @@ The **Storage** tab is about your drives and your backups:
 - **Each drive**: its name, how full it is, its role, and its health: **Healthy**, **Watch**, **Replace soon** or
   **Unknown**.
 
-Everyone sees the same tab. The buttons that change things are admins only: **Mount**, **Set Role**, **Eject**,
-**Back up now**, and on a backup drive **Back up onto this drive**, **Schedule**, **Verify**, **Restore files**,
-**Restore vaults** and **Restore chat**.
+Only an admin can open this tab. The buttons that change things are **Mount**, **Set Role**, **Eject**, **Back up
+now**, and on a backup drive **Back up onto this drive**, **Schedule**, **Verify**, **Restore files**, **Restore
+vaults** and **Restore chat**.
 
 [Storage and Backups](/docs/system/storage-and-backups) explains every part of this tab, and walks you through making
 a backup.
 
-**Settings → General → Storage devices** opens this tab too.
+**Settings → General → Storage devices** opens this tab too. A member who taps it is sent to Files.
 
 ---
 
@@ -97,8 +103,9 @@ a backup.
 The **Jobs** tab lists long-running work on the Quark, newest first. Each job shows its progress and where it's at:
 **Queued**, **Running**, **Completed**, **Failed** or **Canceled**.
 
-Jobs listed here include video conversions, started with **Convert video** in Files, backups, and file restores from a
-backup drive. A backup is named after its drives, such as "Back up Built-in storage, Music and 2 more onto Backup".
+Jobs listed here include video conversions, started with **Convert video** in Files, photo exports from Photos,
+backups, and file restores from a backup drive. A backup is named after its drives, such as "Back up Built-in
+storage, Music and 2 more onto Backup".
 A scheduled backup is started by the Quark itself, so only admins see it.
 
 - **Cancel** stops a job that is queued or running.
@@ -128,7 +135,7 @@ Quark only tells you things inside the app. It doesn't send emails, text message
 - **Everything else shows up on this page.** A full disk or a hot Quark turns a bar orange or red on the **Health**
   tab. Nobody gets a message about it.
 
-So open **System → Health** now and then, especially before a big upload.
+So an admin opens **System → Health** now and then, especially before a big upload.
 
 ---
 
@@ -141,8 +148,13 @@ So open **System → Health** now and then, especially before a big upload.
 
 ## Nerd Notes
 
+Checked against quark v0.63.0 (`64f9789e`).
+
 **Tab addresses.** Each tab has its own route: `/system/health`, `/system/storage` and `/system/jobs`. A bare
 `/system` opens Health. Older `/health`, `/devices` and `/jobs` links still work and open the matching tab.
+`adminRoutes` in `lib/router.dart` gates Health and Storage, and the bare `/system` path with them. `/system/jobs` is
+not gated. A member who opens a gated page is sent to Files with the snackbar "Only an admin can open that page."
+The drawer **System** row is admin-only. The jobs badge still opens Jobs for every account.
 
 **Health.** `GET /api/v0/health` returns the readings and the Quark's own alerts. The limits are constants in
 `pkg/util/healthutil`: CPU 90%, memory 95%, disk 90%, temperature 80 °C. The bars warn at 75% of each limit; the

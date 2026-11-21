@@ -265,8 +265,9 @@ steps, and the [Security Guide](/docs/help/security-guide#the-vault) for what ha
 
 ## Health
 
-Health is a tab on the **System** page. Open **System** from the app drawer. It has three tabs: **Health**, **Storage**,
-and **Jobs**. The Health tab shows how Quark is doing:
+Health is a tab on the **System** page, and it is for admins. Open **System** from the app drawer. It has three tabs:
+**Health**, **Storage**, and **Jobs**. A member does not see **System**. They can still open **Jobs** from the jobs
+badge in the top bar. The Health tab shows how Quark is doing:
 
 - **CPU**: how busy the processor is
 - **Memory**: how much memory is in use
@@ -296,8 +297,8 @@ the tab doesn't show.
 **Change password** asks for your current password, then the new one twice. You stay signed in on the device you're
 using, and every other session is signed out. Your vault keeps working with the new password.
 
-Deleting your account and resetting the Quark live behind the **Account and data** row at the bottom of the **Account**
-tab, so neither is a stray tap away:
+**Delete account** is behind the **Account and data** row at the bottom of the **Account** tab, so it is not a stray
+tap. **Reset this Quark** is under **Settings → Updates → Maintenance**, and only an admin sees it.
 
 - **Delete account**: removes your login from this Quark (separate from wiping the box). Your files stay on the Quark.
 - **Reset this Quark**: admins only. Factory-resets the appliance, for when that is what you actually mean.
@@ -362,7 +363,8 @@ or browser name to look for.
 
 ## Nerd Notes
 
-Everything below was checked against Quark `main` at v0.56.2. Paths are relative to `/api/v0`, and every call except
+Everything below was checked against Quark v0.63.0 (`64f9789e`). The first-run and session notes still match v0.56.2.
+Paths are relative to `/api/v0`, and every call except
 setup needs `Authorization: Bearer <token>`. An unknown `/api/v0/...` path answers `200` with the web app's HTML, not a
 `404`, so check `Content-Type` before trusting a `200`.
 
