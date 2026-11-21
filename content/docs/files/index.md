@@ -102,8 +102,11 @@ drive are skipped. SVG drawings open in their own viewer and are not part of thi
 
 If the folder can't be listed, you only see that one photo.
 
-Albums, favorites, and the month view are on the [Photos](/docs/photos) page. This stepping is only the folder you
-opened the picture from.
+The picture you are looking at loads as a screen-sized preview first. Zoom in and Quark loads the original. A photo
+Quark has no preview for, such as a HEIC, loads the original (or its stored preview) from the start.
+
+Albums, favorites, and the month view are on the [Photos](/docs/photos) page. Videos in the library are there too.
+This stepping is only the folder you opened the picture from.
 
 ## Downloading
 
@@ -127,10 +130,15 @@ videos such as MP4 and MOV go to the library.
 
 On a computer, or in a web browser, **Download** uses the ordinary save dialog.
 
+A HEIC or HEIF photo in the viewer also has **Download as JPEG**. That saves a JPEG the phone or the browser makes,
+with the same name. The desktop apps do not offer it. A browser that cannot read HEIC saves the original and says
+so. A folder zip always contains the files as they are stored.
+
 If your Quark is already zipping other folders, it may turn a folder download away. Try again in a moment.
 
-There is no download or move for several files at once yet. **Select** in the Files top bar offers **Delete
-selected**. To get a lot of files in one go, download the folder they are in.
+**Select** in the Files top bar offers **Move selected** and **Delete**. There is no download of several picked
+files at once from Files. To get a lot of files in one go, download the folder they are in. In Photos, **Download**
+on a selection saves one zip. See [Select several photos](/docs/photos#select-several-photos).
 
 ## Archives
 
@@ -274,14 +282,14 @@ Deleting a file to Trash keeps its history. Restore the file and the history com
 
 - [Getting Started](/docs/start/getting-started): the Files basics
 - [File types](/docs/files/file-types): which kinds of file open in Quark
-- [Photos](/docs/photos): uploading and browsing pictures
+- [Photos](/docs/photos): browsing pictures and videos, and uploading pictures
 - [Trash](/docs/trash): putting a deleted file back
 - [Google Takeout](/docs/files/google-takeout): moving a Google export onto Quark
 - [Remote Access](/docs/settings/remote-access): using the phone apps away from home
 
 ## Nerd Notes
 
-Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
+Checked against quark v0.63.0 (`64f9789e`).
 
 **Uploads.** `POST /api/v0/files/upload/<folder>?keepBoth=true` takes a multipart field named `files`. A resumed
 upload sends the same file to the same folder. The **Upload** chip's `3/10` count is the client upload queue.
@@ -297,7 +305,12 @@ and audio are not indexed. The Docs, Sheets, and Slides pages call this. The Pos
 **Photo stepping.** `FileViewerPage` in `lib/pages/file_viewer_page.dart` lists the photo's folder on that file's
 drive only, keeps entries whose `fileKindForName` is `FileKind.image`, and sorts names with `toLowerCase`. SVG is
 `FileKind.svg`, so it is not in the sequence. A failed list, or a name missing from the list, leaves `onLoadImage`
-null and the viewer on that one photo.
+null and the viewer on that one photo. The first image is `size=preview` (long edge at most 2048, JPEG).
+`loadOriginal` runs on zoom. A photo with no preview, HEIC included, falls back to the original bytes
+(`#4220`).
+
+**Selection zip.** `POST /api/v0/files/download-selection` can stream 1–2000 files as `selection.zip`. The Files
+selection bar does not call it. Photos **Download** does. `FileSelectionBar` offers **Move selected** and delete.
 
 **Phone downloads.** `downloadDestinationFor` in `lib/services/download_destination.dart` sends `.jpg`, `.jpeg`,
 `.png`, `.gif`, `.heic`, `.heif`, `.webp`, `.tif`, `.tiff`, `.bmp`, and `.dng` to the photo library as images, and

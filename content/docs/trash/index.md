@@ -26,8 +26,11 @@ need, or **Empty trash**.
 - **Restore** puts an item back where it was. If something new now sits there, move or rename it first. Restore never
   overwrites.
 - **Delete permanently** removes it now, after you confirm.
-- **Empty trash** clears everything shown, after you confirm. It sits at the top level of Trash only, and is grayed out
-  when Trash is empty.
+- **Empty trash** clears everything shown, after you confirm. It is only at the top of Trash, not inside a folder you
+  opened there. On a wide window it is in the top bar, and it is grayed out when Trash is empty. On a phone, when
+  Trash has items, a note above the list says how long they stay and that **Restore** puts each one back in the
+  folder it came from. **Empty trash** is a button under the list, and it is not shown when Trash is empty or while
+  you are selecting.
 
 To act on several things at once, tap **Select** in the top bar, pick items or **Select all**, then restore or delete
 them together. A message tells you how many were done.

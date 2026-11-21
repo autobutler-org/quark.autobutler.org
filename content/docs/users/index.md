@@ -93,7 +93,8 @@ one, Quark says "This Quark needs at least one admin. Make someone else an admin
 - Use their own home folder, their groups' folders, and anything shared with them
 - Share what they own
 - Open their own vault. See [Vault](/docs/vault)
-- Open **System**: Health, the list of drives, and the jobs they started on files they can still open
+- Open **Jobs** from the jobs badge, for the jobs they started on files they can still open. **Health** and **Storage**
+  are admin-only.
 - Change their own password, profile picture, and theme color
 - See where they are signed in, and sign a session out
 - Delete their own account
@@ -103,9 +104,10 @@ one, Quark says "This Quark needs at least one admin. Make someone else an admin
 - Open every folder in Files, including other people's homes. Files opens at the top for an admin, with an **All
   files** shortcut.
 - Use the **Users** page: add accounts, approve requests, turn accounts off, delete them, and manage groups
-- On **System → Storage**, use **Mount**, **Set Role**, **Back Up**, and **Verify**. Everyone can see the drives.
-  Those buttons are the admin's.
-- See everyone's jobs on **System → Jobs**
+- Open **System**. **Health** and **Storage** are admin-only. On **Storage**, use **Mount**, **Set Role**, **Back Up**,
+  and **Verify**. A member does not see **System** in the menu. A link to Health or Storage sends them to Files.
+- See everyone's jobs on **System → Jobs**. Jobs itself is open to every account from the jobs badge in the top bar.
+  A member sees the jobs they started.
 - In Settings, start an update, use **Repair installation**, turn on [SSH access](/docs/settings/ssh), and set the
   **Device name**
 - Set **This Quark's default** theme color
@@ -116,10 +118,10 @@ one, Quark says "This Quark needs at least one admin. Make someone else an admin
   device out, and the device shows up again the next time it connects. To sign a device out, use **Sessions** on the
   Account tab.
 - Turn remote access on or off in **Settings → Network**
-- **Reset this Quark**
+- **Reset this Quark**, under **Settings → Updates → Maintenance**
 - In Chat, see private channels they are not in. Those are listed apart, with the name and the topic. An admin can
   rename one, change its members, or delete it. Opening it shows the members and the settings. It does not show the
-  messages.
+  messages. A direct message is not in that list. An admin who is not in the conversation does not see it.
 
 A member who opens a Users link lands on Files. Quark refuses those requests from a member either way. In Settings, a
 member sees "Accounts are managed by an admin" where an admin sees **Users and groups**.
@@ -213,7 +215,8 @@ Setup, **Add user**, and account requests all ask for the password twice, so a t
 ## Turning off and removing accounts
 
 These live in the actions menu on each row of the Users page. Your own row is marked **You** and has no actions. You
-change your own account from Settings. Quark tells an admin who tries anyway to use Settings.
+change your own account from Settings. Quark tells an admin who tries anyway to use Settings. An active account's
+menu also has **Message**, which opens a [direct message](/docs/chat#message-one-person-or-a-few) with them.
 
 - **Disable** signs that person out everywhere. Signing in then says "This account is turned off. Ask an admin of this
   Quark." Their files and shares stay as they were. You cannot turn off your own account here, and you cannot turn off
@@ -231,7 +234,8 @@ it up next can open them.
 The last admin cannot leave other accounts without an admin. Quark says "This Quark needs at least one admin. Make
 someone else an admin first."
 
-**Reset this Quark** is different. It is admin-only. With **Accounts and settings** ticked, which is how it starts,
+**Reset this Quark** is different. It is admin-only, under **Settings → Updates → Maintenance**. With **Accounts and
+settings** ticked, which is how it starts,
 every account goes with it. Untick that box and every account stays. Read the confirmation before you tap it. See
 [Delete account vs Reset this Quark](/docs/settings#delete-account-vs-reset-this-quark).
 
@@ -309,8 +313,9 @@ for you.
 
 ## Nerd Notes
 
-Checked against quark v0.56.2. `main` was one commit ahead (`c0f4eefc`, perf upload stress files). That commit does
-not touch accounts, sharing, sessions, or the vault.
+Checked against quark v0.63.0 (`64f9789e`). The v0.56.2 account, sharing, session, and vault behavior below still
+holds. **System** Health and Storage are admin routes (`adminRoutes` in `lib/router.dart`). **Message** on a user row
+opens that account's direct message.
 
 **Where files live.** On the internal drive, a home is `users/<username>` and a group's folder is
 `groups/<group name>`. The built-in group is `groups/everyone`. Members land on their home. Admins land at the drive
