@@ -110,7 +110,10 @@ their own viewer.
 
 - BMP, TIFF, and the raw formats `.cr2`, `.cr3`, `.nef`, `.arw`, `.dng`, `.orf`, and `.rw2` are turned into a JPEG by
   your Quark for viewing. The original file is not changed.
-- HEIC and HEIF open from a preview the app makes and stores on your Quark. The original file is not changed.
+- HEIC and HEIF open from a preview the app makes and stores on your Quark. Your Quark can't read these itself. The
+  iPhone and Android apps, and Safari, make the preview the first time they open the photo. Until one of them has, a
+  computer app or another browser may show no picture. The preview is small, 400 pixels on its longest side, so
+  zooming in adds no detail. The original file is not changed, and **Download** saves it as it is.
 - Other raw formats, such as `.raf`, `.pef`, and `.x3f`, are listed as images, but the viewer may not be able to show
   them. Download them to open on your computer.
 - Only JPEG, PNG, GIF, WebP, HEIC, and HEIF get thumbnails in the file list. Other pictures show a plain icon, unless
@@ -126,9 +129,9 @@ scroll and zoom. **Download** sits in the top bar, and the phone apps also have 
 
 ### Books
 
-**Books**, in the app menu, lists every PDF and EPUB you can open on the Quark's internal drive, whatever folder it is
+**Books**, in the app menu, lists every PDF and EPUB you can open on your Quark, on any drive, whatever folder it is
 in. A PDF opens in the PDF viewer. An EPUB gets the details page with **Download**, because Quark has no EPUB reader.
-[Books](/docs/books) has the rest, including books on a USB drive.
+[Books](/docs/books) has the rest.
 
 ## 3D models
 
@@ -144,6 +147,19 @@ A model over 64 MB, with more than 2 million triangles, or that takes too long t
 A `.gltf` file can name other files in the same folder, and those count toward the 64 MB cap. Quark does not follow a
 reference outside that folder.
 
+Under the model, the viewer shows its size along each side, its surface area, and its volume. If the model has gaps in
+its surface, the volume says so, because it is then only an estimate. A model file does not record whether it is in
+millimeters or inches, so the numbers start without a unit. The **Units** chip picks **File units**, **Millimeters**,
+or **Inches**. It only labels the numbers. It doesn't convert them.
+
+The **Bed** chip checks whether the model fits on a 3D printer: **Prusa MINI**, **Creality Ender-3**, **Prusa MK4**, or
+**Bambu Lab X1 / P1**. It checks the model standing the way the file has it, and turned a quarter on the bed if that
+helps. In file units, it reads the numbers as millimeters and says "if in mm".
+
+STL, OBJ, and PLY models get a picture in the Files list and grid. The app draws it the first time someone opens the
+model, or when its tile first comes up empty, and stores it on your Quark. That takes permission to change the file.
+A model too big for the viewer keeps the plain file icon. 3MF and glTF models show the icon too.
+
 ## Video and audio
 
 ### Playing
@@ -157,8 +173,14 @@ play in Quark either:
 
 - For a `.mov`, `.avi`, `.mkv`, `.wmv`, `.flv`, or `.3gp` that won't play, the player says the format isn't supported
   for in-browser playback and offers **Download**.
-- Other videos that won't play say "Unable to play this media. The file may use an unsupported codec/profile."
+- A video that opens but shows no picture says its codec isn't supported for in-browser playback, and offers
+  **Download**.
+- Any other video that won't play says "This video won't play here. It may be damaged, or in a format this browser
+  can't play."
 - Audio that won't play says "Unable to play this audio file. The format may not be supported by this browser."
+
+In the video player, **Space** plays and pauses, and the left and right arrow keys skip back and forward 10 seconds.
+Press `?` for the list.
 
 A download from one of these viewers says **Downloaded** and the file's name. On a phone, a picture or a supported
 video goes to Apple Photos or the gallery. See [Downloading](/docs/files#downloading).
@@ -178,7 +200,10 @@ change the original. You need permission to save files in the video's folder.
 **Trim Clip** lets you pick a start and an end. **Save Clip** writes the piece as a new file named like
 `holiday_trimmed.mp4`, and **Cancel** leaves trim mode. Trimming copies the video without re-encoding it, so it is
 fast and keeps full quality. If a video can't be cut at exactly the point you chose, Quark says where the clip starts
-instead. MPEG-TS (`.ts`) videos and some MP4s recorded in fragments can't be trimmed.
+instead. MPEG-TS (`.ts`) videos and some MP4s recorded in fragments can't be trimmed. On a `.ts`, Quark says so as soon
+as you pick **Trim Clip**. Otherwise it says which case it hit when you save: "This video was saved in a streaming
+layout your Quark can't trim." or "Your Quark can't trim videos in this format." Download the video to edit it on your
+computer.
 
 **Convert…** moves the video into a different container: MP4, MOV, MKV, WebM, M4V, 3GP, 3G2, or TS. It's also on a
 video's file menu in Files, as **Convert video**. Quark offers only the containers that can hold that video as it is.
@@ -213,7 +238,7 @@ The new file holds the same encoding, so it won't play there either.
 
 - [Files](/docs/files): uploads, downloads, archives, search, and Trash
 - [Photos](/docs/photos): albums, favorites, and a slideshow on a spare screen
-- [Books](/docs/books): every PDF and EPUB on the internal drive
+- [Books](/docs/books): every PDF and EPUB on your Quark
 - [Getting Started](/docs/start/getting-started): the first hour with Quark
 
 ## Nerd Notes
@@ -246,7 +271,15 @@ alt text.
 moves, the viewer draws at most 150,000 triangles. A `.gltf` may pull sibling files in the same folder. Those bytes
 plus the file count toward the cap (`quarkModelResources`). A 3MF zip is read with random access. Only the model
 parts it reaches are decompressed, and those decompressed bytes are held to the same cap
-(`parseQuarkModel` in `packages/quark_widgets`).
+(`parseQuarkModel` in `packages/quark_widgets`). The measurements and print-bed check (v0.56.5, quark #3841) are
+`model_viewer_stats.dart`, `quark_print_bed.dart`, `quark_model_unit.dart`, and `measure_mesh.dart` in
+`packages/quark_widgets`. Thumbnails for STL, OBJ, and PLY (v0.58.0, quark #3948) are drawn by the client
+(`lib/services/model_thumbnails.dart`) and sent with `PUT /api/v0/thumbnails/<path>`, which needs write access. Until
+then `GET /api/v0/thumbnails/<path>` is a 404 with `"clientRender": true`.
+
+**Video keys.** `_handleKey` in `lib/widgets/video_viewer/video_surface_with_controls.dart`: Space, ←/→ by 10 seconds,
+and `?` for the shortcut list. A trim refused by the Quark is a 422 whose `reason` is `fragmented` or `cannot_trim`
+(`Errors._videoRefusal` in `lib/utils/error_text.dart`).
 
 **Code viewer.** `CodeViewerConfig.pageBytes` is 256 KB.
 

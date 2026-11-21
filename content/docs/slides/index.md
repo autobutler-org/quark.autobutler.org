@@ -44,6 +44,9 @@ The Slides page lists every presentation you can open, newest first.
 - **Search** finds presentation names straight away. After a short pause it also finds words inside slides and speaker
   notes, listed under **Content matches**.
 - Tap a presentation to open it. You can also open one straight from Files.
+- Each presentation's menu has **Rename**, **Share**, and **Delete**. **Delete** asks first, then moves the
+  presentation to [Trash](/docs/trash). A member sees **Delete** only on presentations in their own home folder. An
+  admin sees it on every one.
 - An admin's new presentation goes at the top of the Quark. A member's goes in their own folder.
 
 ## Editing
@@ -115,7 +118,7 @@ If two people edit the same presentation at once, the last save wins. Quark does
 
 ## Nerd Notes
 
-Checked against quark v0.56.2 (`main` at `c0f4eefc`). The user journeys are
+Checked against quark v0.56.2 (`main` at `c0f4eefc`), with later additions marked by release. The user journeys are
 [`docs/user-journeys/slides.md`](https://github.com/autobutler-org/quark/blob/main/docs/user-journeys/slides.md); the
 shortcut list is
 [`docs/slides-keyboard-shortcuts.md`](https://github.com/autobutler-org/quark/blob/main/docs/slides-keyboard-shortcuts.md).
@@ -138,6 +141,13 @@ audio, SmartArt, embedded objects, ink, linked pictures, picture fills, unreadab
 rows, 100 columns or 5000 cells, oversized pictures, transitions with no match, other shadows, and embedded fonts by name
 (#3660). Imported pictures are kept out of Photos (#3669). A damaged or oversized file reads "Quark couldn't read that
 PowerPoint file. It may be damaged or too large to import."
+
+**Preview without importing.** `GET /api/v0/previews/slides?filePath=…` (optional `serial`; v0.58.0, quark #3945) turns
+a `.pptx`, `.pptm` or `.ppsx` into `.qslide` JSON with the same converter as the import, and writes nothing beside the
+file. Pictures are named `part:ppt/media/…`, which `GET /api/v0/previews/part` serves. Macros are never opened. The
+`X-Quark-Import-Warnings` header counts what was left out or approximated. It needs read access. A missing file is a
+404, a file that isn't what its name says is a 400, and a Quark busy converting other documents answers 503. The app
+does not call it yet.
 
 **Export.** `GET /api/v0/files/export/pptx` streams the download. It carries the aspect ratio, shapes, lines, text and
 formatting, pictures, groups, rotation, stacking order, backgrounds, speaker notes, and fade, push, wipe and zoom

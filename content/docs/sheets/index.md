@@ -43,7 +43,9 @@ formulas:
 
 Only Docs, Sheets and Slides search inside files. The search in Files looks at names only.
 
-Each row has a menu with **Rename**.
+Each row has a menu with **Rename** and **Delete**. **Delete** asks first, then moves the spreadsheet to
+[Trash](/docs/trash), the same as deleting it in Files. A member sees **Delete** only on spreadsheets in their own home
+folder. An admin sees it on every spreadsheet in the list. A row listed only under **Content matches** has no menu.
 
 ---
 

@@ -43,8 +43,12 @@ Migrating from Google? See the [Google Takeout guide](/docs/files/google-takeout
   library), or **Favorites**.
 
 Pictures that belong to a slideshow are not in this library. Importing a PowerPoint puts them in a folder next to the
-slideshow, with `_media` in the folder name. They stay in Files and in the slideshow. Move or rename the slideshow
-away from that folder, and those pictures start showing up here.
+slideshow, with `_media` in the folder name. They stay in Files and in the slideshow. They stay out of this library,
+its search, and Duplicates even after you move or rename the slideshow.
+
+On a computer, drag the edge between the album sidebar and the grid to make the sidebar wider or narrower. Tap
+**Hide sidebar** to make room for more photos, and **Show sidebar** to bring it back. Quark remembers both on that
+device. The details panel in the photo viewer resizes the same way.
 
 ## Adding photos
 
@@ -55,8 +59,9 @@ away from that folder, and those pictures start showing up here.
 
 Upload is something you do, one pick at a time. Quark does not back up your camera roll on its own.
 
-- With more than one drive turned on, Quark asks which device the photos go to. They land in the top level of that
-  drive.
+- Photos go to your Quark's default drive, the one an admin set as **Default Storage**. They land in the top level of
+  that drive. With more than one drive, the **▾** beside **Upload** (or a long press on a phone) lets you pick another
+  drive first. Quark asks on its own only when there is no default drive to use.
 - A dropped file that is not a photo is left out, and Quark tells you how many were skipped.
 - If a photo has the same name as one already there, Quark keeps both.
 - With one of your albums open, the photos you upload join that album too.
@@ -110,6 +115,9 @@ On All photos, tap **Duplicates**. Quark groups copies as **Identical copies** (
 3. Tap **Delete N photos** and confirm. The marked copies move to the Trash. Nothing is deleted for good.
 
 A copy added outside Quark shows up once its thumbnail loads, or after your Quark restarts.
+
+A HEIC photo can be found as a **Similar photo** only once the iPhone or Android app, or Safari, has made its preview.
+Your Quark can't read HEIC itself.
 
 ### While Quark is still reading photos
 
@@ -165,7 +173,8 @@ If the screen is set to reduce motion, photos change without a fade. The page us
 ## Limits
 
 - Your Quark won't decode an image over 64 megapixels, such as a stitched panorama. That photo has no thumbnail.
-  The original still downloads as it is.
+  The original still downloads as it is. Most large TIFF files are the exception: Quark reads them from a smaller
+  copy.
 - Search matches file names. It does not look at what is in the picture.
 
 ## If something goes wrong
@@ -215,8 +224,10 @@ of them (`TestPhotoSearch_PagesSixHundredMatches`). Sort keys are `taken`, `adde
 
 **Slideshow media.** `ListPhotos` in `pkg/util/photoutil/list.go` drops any image whose directory is one
 `pptxutil.MediaDirsOf` names for a `.qslide`. An import of `Talk.pptx` writes `Talk.qslide` and `Talk_media/`. A
-renamed `Talk_(1).qslide` still claims both `Talk_(1)_media` and `Talk_media`. Moving the `.qslide` away leaves the
-pictures in the library again.
+renamed `Talk_(1).qslide` still claims both `Talk_(1)_media` and `Talk_media`. Since v0.61.1 (quark #4283) an import
+also marks its media as owned by the document, a move carries that mark (across drives too), and an older `_media`
+folder a `.qslide` still references is adopted and marked. So the pictures stay out after the deck is moved or
+renamed. Only a `_media` folder no deck ever owned is listed.
 
 **Index status.** Admins only. `GET /api/v0/photos/index-status`, `POST /api/v0/photos/index/pause`, and
 `POST /api/v0/photos/index/resume`. A non-admin gets 403, and `PhotoIndexStatusSection` renders nothing unless
@@ -226,7 +237,9 @@ missing converter, too large, unreadable, or unknown.
 **Thumbnails.** `ThumbnailIssue` in `quark_thumbnail_unavailable.dart` maps to the short labels **No preview on this
 device**, **Couldn't read this file**, **No preview**, and **Couldn't load preview**.
 
-**Decode cap.** `photoutil.MaxDecodePixels` is 64,000,000.
+**Decode cap.** `photoutil.MaxDecodePixels` is 64,000,000, and `MaxDecodeBytes` is 256 MiB. Since quark #4199 and #4309,
+a TIFF over either is read from a copy whose long side is 4096 (`LargeImageLongSide`), unless it uses JPEG
+compression, separate color planes, CMYK, or floating-point samples.
 
 **Frame.** `internal/server/frame` serves `GET /frame` and `/frame/<asset>` as a small static page, ahead of the
 Flutter app. It signs in with the same `POST /api/v0/auth/login` as the app and lists `GET /api/v0/albums`, which
