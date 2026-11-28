@@ -21,6 +21,7 @@ describe("docsNav", () => {
       "Start here",
       "Files",
       "Photos",
+      "Music",
       "Calendar",
       "Docs",
       "Sheets",

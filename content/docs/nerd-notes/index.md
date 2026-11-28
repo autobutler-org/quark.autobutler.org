@@ -11,7 +11,7 @@ navigation:
 Each feature's page ends with a Nerd Notes section. That section holds the detail the rest of the page leaves out.
 This page lists those sections. It also covers how Quark is built, when that does not belong on one feature.
 
-These notes match Quark 0.63.0.
+These notes match Quark 0.63.0, except the Music link, which matches 0.65.0.
 
 ## How to use it
 
@@ -34,6 +34,7 @@ These notes match Quark 0.63.0.
 - [File Types](/docs/files/file-types#nerd-notes): which files open inside Quark
 - [Google Takeout Guide](/docs/files/google-takeout#nerd-notes): bringing a Google export onto Quark
 - [Photos](/docs/photos#nerd-notes): the picture library, and playing an album on a spare screen
+- [Music](/docs/music#nerd-notes): songs, albums, artists, and genres read from the audio files on your Quark
 - [Calendar](/docs/calendar): one shared calendar for the household
 - [Docs](/docs/docs#nerd-notes): writing documents on your Quark
 - [Sheets](/docs/sheets#nerd-notes): spreadsheets
@@ -81,7 +82,7 @@ A page that will not open, or a file that seems missing, is on [Help](/docs/help
 
 ## Nerd Notes
 
-Checked against quark v0.63.0.
+Checked against quark v0.65.0 (`43eecd35`) for the Music link. Earlier sections were checked against v0.63.0.
 
 ### Stack
 

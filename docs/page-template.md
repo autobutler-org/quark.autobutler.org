@@ -11,7 +11,7 @@ pages about that feature sit beside it (`/docs/settings/ssh`).
 The sidebar and the `/docs` index list the categories in drawer order, from [`data/docsNav.ts`](../data/docsNav.ts):
 
 - **Start here**: first-run pages (`start/`)
-- **Household**: Files, Photos, Calendar, Docs, Sheets, Slides, Books, Chat, Vault
+- **Household**: Files, Photos, Music, Calendar, Docs, Sheets, Slides, Books, Chat, Vault
 - **Manage**: Trash, System, Users, Settings
 - **Help**, then **Nerd Notes**: pages that aren't about one feature (`help/`, `nerd-notes/`)
 
