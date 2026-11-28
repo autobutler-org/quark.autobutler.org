@@ -229,8 +229,9 @@ video to a folder you can change, then convert it there.
 
 #### "1 file isn't a photo, so it wasn't uploaded."
 
-You dropped files onto **Photos** that are not images. Photos only takes images. Upload the others in **Files**. With
-more than one, the message names the count instead of 1.
+You dropped a file onto **Photos** that is not a picture. A drop keeps pictures and leaves the rest out, a video
+included. **Upload** on Photos can add a video. Other files go in **Files**. With more than one, the message names
+the count instead of 1.
 
 #### "There's already an album with that name here." or "Album names can't contain a slash."
 
@@ -390,8 +391,8 @@ About → Copy app logs** copies this device's app log so you can paste it into 
 
 ## Nerd Notes
 
-Checked against quark v0.56.2. `main` was one commit ahead (`c0f4eefc`), a performance-test change that does not touch
-these screens.
+Checked against quark v0.65.0 (`43eecd35`) for the Photos drop message. The rest of this page was last checked against
+v0.56.2 (`c0f4eefc`).
 
 **Reaching the box.** With TLS on, the server accepts TLS 1.3 only (`MinVersion` in `internal/server/server.go`) and
 listens on the HTTPS port, 443 by default (`ServerHttpsPort` in `pkg/util/serverutil/serverutil.go`). Nothing listens

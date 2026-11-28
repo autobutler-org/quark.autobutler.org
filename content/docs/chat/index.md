@@ -36,6 +36,36 @@ Your message shows up straight away. Messages from others arrive while you watch
 
 Two channels can't share a name, even with different capital letters.
 
+On a new channel, **Anonymous** is off until you turn it on. The switch says members see each other only by an alias,
+that admins and people who manage members still see who is who, and that this can't be changed later. **Message
+someone** has no such switch. A conversation with one person is never anonymous.
+
+### Anonymous channels
+
+Anonymous means anonymous to the other members. It does not mean anonymous to the Quark, to an admin, or to anyone
+who can manage that channel's members.
+
+What other members see:
+
+- Each person is listed by an alias, such as **Anonymous 4821**, until someone renames it. There is no profile
+  picture, only initials, and no **Message** button.
+- Messages, reactions, and mentions use that alias.
+- A member can rename their own alias. The pencil is only on their own row.
+
+What an admin sees, and what a member with **Manage members** sees:
+
+- Each row shows the alias and the real account name beside it.
+- They can rename anyone's alias, not only their own. Being given **Manage members** reveals every member.
+
+An alias has to be unique in that channel, ignoring capitals, and it can't be someone's username. A member can pick
+a name that hints at who they are. That is their choice. The channel stays anonymous, or not, for good. You can't
+turn it off later.
+
+The text of a message is still locked on your device, the same way as in any other channel. The Quark stores who
+sent it, and it stores which account is behind each alias. Anyone with the database, or with a backup of it, can
+read that mapping. Per-channel keys, described in [Nerd Notes](#nerd-notes), stop other members from matching a
+public key to an account. They do not hide the account from the Quark or from an admin.
+
 ### Message one person
 
 1. In Chat, tap **Message someone** in the top bar.
@@ -84,6 +114,33 @@ A few things chat does not do:
 - If you send a lot of messages very fast, chat asks you to wait: "Too many requests. Wait a moment and try again."
 
 If a message can't be sent, a row above the box says so, with **Retry** and **Discard**.
+
+### Side conversations
+
+A side conversation is a thread on one message. It stays out of the channel until you choose otherwise.
+
+1. Open the menu on a text message and tap **Start side conversation**. You need to be allowed to send in the
+   channel. A viewer can read one, but not start one.
+2. On a wide window it opens beside the channel. On a phone it opens as a sheet. The original message is at the
+   top, and the box says **Reply**.
+3. Send a reply. Until there is a reply, closing the panel leaves nothing behind.
+
+Under a message that has replies, a line such as **2 replies, last 5m ago** opens the same panel. A dot on that
+line means replies you have not read. **Side conversations** in the channel header lists them. One with no reply
+in the last week is folded under **Quiet**. Unfold that heading to see it. A side conversation whose replies were
+all deleted is not listed.
+
+A side conversation is one level deep. A reply in one has no **Start side conversation**.
+
+**Also send to channel**, under the reply box, posts the same text in the channel as well, as an ordinary message.
+Editing or deleting one does not change the other. The box is not there while you are editing.
+
+If you wrote the message the thread is on, or you have replied in it, new replies count as unread on the channel,
+including the dot beside **Chat** in the app menu. Reading the channel does not mark the thread read, and reading
+the thread does not mark the channel read. A mention of you in a thread you have not joined shows on that channel
+in the channel list. It does not, by itself, light the **Chat** dot in the app menu.
+
+Deleting the original message keeps the replies. The panel then says the original message is unavailable.
 
 ## Roles in a channel
 
@@ -144,8 +201,9 @@ What you search for never leaves your device at all.
 
 These are not locked. Your Quark, and anyone who controls it, can see them:
 
-- who is in which channel
-- who sent a message, in which channel, when, and roughly how long it was
+- who is in which channel, and, in an anonymous channel, which account is behind each alias
+- who sent a message, in which channel, when, and roughly how long it was, including a reply in a side conversation
+  and which message it branches from
 - who reacted to which message, and when
 - how far each person has read in each channel
 - channel names and topics. Admins can see the names and topics of private channels they are not in.
@@ -161,7 +219,8 @@ before, and the members see them join.
 A backup of your Quark copies chat as it is stored, still locked. If chat on a Quark is empty, an admin can bring it
 back from a backup drive with **Restore chat** on **System → Storage**. The backup does not hold accounts, so an admin
 makes everyone's account first, with the same usernames. Each person then unlocks chat with the password they had when
-the backup was made. A Quark whose chat already has messages or channels refuses the restore and changes nothing. See
+the backup was made. A Quark whose chat already has messages or channels refuses the restore and changes nothing. A
+chat copy with no proof file beside it is refused too, on every drive, and nothing is restored. See
 [Storage and Backups](/docs/system/storage-and-backups).
 
 ### Limits to know about
@@ -184,7 +243,7 @@ Chat is honest about what it can't protect against yet:
 
 ## Nerd Notes
 
-Checked against quark v0.56.2 (`main` at `c0f4eefc`). Quark's own write-up is
+Checked against quark v0.65.0 (`43eecd35`). Quark's own write-up is
 [`docs/chat-security.md`](https://github.com/autobutler-org/quark/blob/main/docs/chat-security.md); the user journeys
 are [`docs/user-journeys/chat.md`](https://github.com/autobutler-org/quark/blob/main/docs/user-journeys/chat.md).
 
@@ -241,7 +300,34 @@ polls, all as the ciphertext they already are, plus a `.mac` that binds it to th
 `{deviceSerial, run, password}`, where `password` is the admin's auth key) restores it into an empty chat only: a chat
 with messages or channels other than `general` gets `409`. Accounts are matched by username; `unmatchedUsers` names the
 ones missing here, whose messages keep no author and whose memberships, reactions and chat keys are not restored. A
-backup another Quark wrote, or one changed since, is refused. On PostgreSQL the route answers 501.
+backup another Quark wrote, one changed since, or one with no `.mac` proof file beside it, is refused on every
+drive (quark #4444). On PostgreSQL the route answers 501.
+
+**Side conversations.** A reply stores `rootId` in the clear and is sealed under the channel key with additional
+data `quark-chat-msg-v2`, the channel id, the key version, and the root id (`docs/chat-security.md`). The Quark
+learns which message a reply belongs to, who sent it, and when. It does not learn the text. A root that is itself
+a reply is 409. A poll in a thread is 400. **Also send to channel** stores a second message, a normal channel
+message quoting the root, and nothing ties the two rows together. `GET /api/v0/chat/messages/:id/replies` pages a
+thread. `GET /api/v0/chat/channels/:id/branches` lists roots that still have a reply. Each channel message may
+carry `branch` (`replyCount`, `lastReplyAt`, and for the caller `unreadCount` and `involved`). Quiet is
+`ChatConfig.quietBranchAfter`, seven days, and only changes what the list draws.
+
+**Anonymous channels.** Create with `anonymous: true`. The flag never changes, and a direct message cannot set it.
+Each account gets a per-channel pseudonym and an alias in `chat_channel_pseudonyms`. A member without
+`manage_members` is served the pseudonym as the id and the alias as the name, with no avatar, and no other
+account's username. An admin, and anyone with `manage_members`, gets the account beside `pseudonymId` and `alias`,
+and may rename any alias with `PUT /api/v0/chat/channels/:id/members/alias`. Every member may rename their own.
+Message `authorId`, reactions, and events carry the pseudonym for every viewer, admins included. The account
+behind it is the member list.
+
+Per-channel keys are only this: the app derives an X25519 and Ed25519 pair for that channel from the account's
+chat seeds and the channel id (`ChatCrypto.channelIdentity`, HKDF-SHA256, labels
+`quark-chat-anon-box-v1:<channelId>` and `quark-chat-anon-sign-v1:<channelId>`), and publishes the public halves
+with `PUT /api/v0/chat/channels/:id/keys/me`. The Quark
+stores them on the pseudonym's row and uses them for grants and events in that channel. They are not a second lock
+on the message text, which stays under the channel key. They do not stop the Quark, an admin, or a database backup
+from mapping the pseudonym to the account. A signature still verifies against the key the Quark stored, the same
+trust as account keys. A channel that is not anonymous rejects that publish with 400.
 
 **Known gaps** (from `docs/chat-security.md`, "What it doesn't protect against"): public keys are not verified out of
 band; the web app's crypto code is served by the Quark; a compromised Quark can claim an account is `legacy` once to

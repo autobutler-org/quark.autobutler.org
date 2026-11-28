@@ -125,6 +125,12 @@ It only shows on a Quark that something will start again: one installed straight
 up for it. Anywhere else the button isn't there. **Repair installation** restarts Quark too, and also sets its system
 setup right. If you only want a fresh start, use **Restart Quark**.
 
+### Music library
+
+Admins only, under **Maintenance** on this tab. **Rescan music library** looks through every drive for music again
+when a song is missing from [Music](/docs/music). Quark says "Scan queued. Its progress shows in Jobs." Other
+accounts do not see Maintenance, so they do not see this button.
+
 ---
 
 ## About

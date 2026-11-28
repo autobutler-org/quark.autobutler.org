@@ -1,6 +1,6 @@
 ---
 title: Photos
-description: Browse the pictures on your Quark, upload the ones you pick, and play an album on a spare screen
+description: Browse the pictures and videos on your Quark, upload the ones you pick, and play an album on a spare screen
 navigation:
   title: Photos
   order: 1
@@ -8,11 +8,11 @@ navigation:
 
 # Photos
 
-Photos gathers the pictures your account can open, from every drive, into one library. There is no special photo
-folder. A picture you upload in Files, or unpack from a Google Takeout zip, shows up here too.
+Photos gathers the pictures and videos your account can open, from every drive, into one library. There is no
+special photo folder. A picture or video you upload in Files, or unpack from a Google Takeout zip, shows up here too.
 
-Photos is for images. Videos stay in [Files](/docs/files). The one exception is an iPhone Live Photo, whose short
-motion clip plays inside the photo viewer.
+An iPhone Live Photo's short motion clip stays part of the photo and plays inside the photo viewer. That companion
+clip is not listed as its own video.
 
 You use Photos at home in a web browser, and in the iPhone and Android apps. Away from home, those phone apps reach
 your library once an admin turns on remote access in **Settings → Network**. A web browser still works only on your
@@ -25,8 +25,9 @@ Migrating from Google? See the [Google Takeout guide](/docs/files/google-takeout
 1. Open **Photos** from the app menu.
 2. Scroll the grid. Months are the headings when you sort by date.
 3. Tap **Search** and type part of a file name.
-4. Tap a photo to open it. In the viewer you can move to the next photo in this view.
-5. Tap **Upload** and pick the pictures you want. Quark does not copy your camera roll on its own.
+4. Tap a photo to open it. In the viewer you can move to the next photo in this view. Tap a video and it plays in
+   the video player.
+5. Tap **Upload** and pick the pictures or videos you want. Quark does not copy your camera roll on its own.
 
 ## Browsing
 
@@ -37,8 +38,8 @@ Migrating from Google? See the [Google Takeout guide](/docs/files/google-takeout
   capture date stored in the photo, and falls back to the date added when there is none. Under a name sort there are
   no month headers. Quark remembers your choice.
 - The column slider, with **Larger photos** and **Smaller photos** at its ends, changes the grid size.
-- **Search** finds every photo whose file name contains what you typed. Capitals don't matter. It does not stop after
-  a few hundred matches.
+- **Search** finds every picture or video whose file name contains what you typed. Capitals don't matter. It does not
+  stop after a few hundred matches.
 - In the phone app, the **Showing** list picks **All**, **Quark** (photos on your Quark), **Mobile** (the phone's own
   library), or **Favorites**.
 
@@ -54,15 +55,16 @@ device. The details panel in the photo viewer resizes the same way.
 
 1. Open Quark and sign in.
 2. Go to **Photos**.
-3. Tap **Upload** and pick the photos you want. In a browser you can also drag photos, or a folder of them, onto the
-   page.
+3. Tap **Upload** and pick the pictures or videos you want. The picker includes both. In a browser you can also drag
+   pictures, or a folder of them, onto the page.
 
 Upload is something you do, one pick at a time. Quark does not back up your camera roll on its own.
 
 - Photos go to your Quark's default drive, the one an admin set as **Default Storage**. They land in the top level of
   that drive. With more than one drive, the **▾** beside **Upload** (or a long press on a phone) lets you pick another
   drive first. Quark asks on its own only when there is no default drive to use.
-- A dropped file that is not a photo is left out, and Quark tells you how many were skipped.
+- A file dropped onto the page is uploaded only when it is a picture. A video dropped that way is left out, and Quark
+  tells you how many files were skipped. Use **Upload** to add a video.
 - If a photo has the same name as one already there, Quark keeps both.
 - With one of your albums open, the photos you upload join that album too.
 
@@ -87,12 +89,19 @@ out. You can't rename Favorites or put another album inside it.
 
 ## A photo's menu and the viewer
 
-A photo's menu has **Add to album**, **Favorite** (or **Unfavorite**), **Download**, **Share…**, **Make a copy**, and
-**Delete**. **Delete** asks first, then moves the photo to the Trash.
+A photo's menu has **Add to album**, **Favorite** (or **Unfavorite**), **Download**, **Share…**, **Copy**,
+**Duplicate**, and **Delete**. **Delete** asks first, then moves the photo to the Trash.
 
 Tap a photo to open it full size. In the viewer you can rotate it 90° clockwise (or press **R**), and the rotation is
 saved on your Quark. The info panel shows the date and time, the location and camera when the photo has them, file
 details, and the albums the photo is in.
+
+On a phone the photo fills the screen. A row under it has **Share**, **Favorite** (or **Unfavorite**), **Info**, and
+**Delete**. **Info** opens a sheet with those same details. On a computer the details stay in the side panel.
+
+A video in the grid carries a play mark and its length, when Quark could read the length. Tap it and it plays in the
+video player. Swiping through the viewer onto a video shows a play button for the same player. A video's menu leaves
+out **Copy** and **Duplicate**. Rotate and the info sheet are for photos.
 
 **Download** on a phone saves a JPEG, PNG, GIF, WebP, HEIC, TIFF, BMP, or DNG into Apple Photos or the gallery. Quark
 says **Downloaded** and the file's name. If you decline permission, it saves the file another way and tells you why.
@@ -189,7 +198,7 @@ A tile with no picture is not always a missing photo. The badge says which:
 
 Other snags:
 
-- **The library looks empty.** There are no images you can open. Upload one, or check Files.
+- **The library looks empty.** There are no pictures or videos you can open. Upload one, or check Files.
 - **A picture from a slideshow is missing.** It lives in the folder next to the slideshow. Photos leaves that folder
   out on purpose.
 - **Duplicates look unfinished.** If you are an admin, read the panel at the top. A pass may still be running. Pause
@@ -216,11 +225,20 @@ Other snags:
 
 ## Nerd Notes
 
-Checked against quark `main` at `c0f4eefc` (v0.56.2 plus one test-only commit).
+Checked against quark v0.65.0 (`43eecd35`).
 
-**Library.** `GET /api/v0/photos` lists one page. `q` matches the file name, case-insensitive, and `total` is the
-full match count. The old file-name search stopped at 500. This listing pages, so a search of 600 names returns all
-of them (`TestPhotoSearch_PagesSixHundredMatches`). Sort keys are `taken`, `added`, and `name`.
+**Library.** `GET /api/v0/photos` lists one page. The app always sends `includeVideos=true` (quark #4341 and #4267,
+issue #3428), so videos are listed beside pictures. A video carries `isVideo` and, when its headers parse,
+`durationMs`, drawn as the length on the tile. A Live Photo's companion video is not listed on its own; it sets
+`hasLiveVideo` on the photo. `q` matches the file name, case-insensitive, and `total` is the full match count. The
+old file-name search stopped at 500. This listing pages, so a search of 600 names returns all of them
+(`TestPhotoSearch_PagesSixHundredMatches`). Sort keys are `taken`, `added`, and `name`. Videos sort by date added
+under `taken`.
+
+**Phone viewer.** Below the desktop breakpoint the photo opens full screen and the details drawer starts closed
+(#4397, #4235). `PhotoViewerActionBar` is **Share**, **Favorite**, **Info**, **Delete**. **Info** opens the drawer.
+A video tile calls the video player directly. Stepping onto a video inside the photo viewer shows a play card and
+does not download the file as a picture.
 
 **Slideshow media.** `ListPhotos` in `pkg/util/photoutil/list.go` drops any image whose directory is one
 `pptxutil.MediaDirsOf` names for a `.qslide`. An import of `Talk.pptx` writes `Talk.qslide` and `Talk_media/`. A

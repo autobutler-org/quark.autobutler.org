@@ -174,7 +174,9 @@ You can also copy files back yourself. Plug the backup drive into a laptop, open
 **files**, **backups**, the dated folder you want, and the drive's folder. They are ordinary files, so any computer can
 open them.
 
-The app can't restore the chat or vault copies yet.
+**Restore chat** and **Restore vaults** put those locked copies back. A chat or vault copy with no proof file beside
+it is refused, on every drive, and nothing is restored. A chat that already has messages or channels is refused too,
+and a vault restore is refused while anyone here already has vault items.
 
 ### Before you reset your Quark
 
@@ -262,13 +264,15 @@ rows, so the attachment files themselves are not in a backup (quark `docs/chat-s
 
 A snapshot copies every managed device except the target into the target's `quark/data/files/`:
 
-| Entry                   | What it is                                                                      |
-| ----------------------- | ------------------------------------------------------------------------------- |
-| `internal/`             | the built-in storage's files                                                    |
-| `<name>_<serial>/`      | each USB drive's files: its name, `_`, and the first 8 characters of its serial |
-| `chat_backup.db`        | the chat tables, as the ciphertext they already are                             |
-| `vault_items_backup.db` | every account's wrapped vault key and vault items, as ciphertext                |
-| `backup_manifest.json`  | the SHA-256 and size of every file above, which **Verify** checks against       |
+| Entry                       | What it is                                                                      |
+| --------------------------- | ------------------------------------------------------------------------------- |
+| `internal/`                 | the built-in storage's files                                                    |
+| `<name>_<serial>/`          | each USB drive's files: its name, `_`, and the first 8 characters of its serial |
+| `chat_backup.db`            | the chat tables, as the ciphertext they already are                             |
+| `chat_backup.db.mac`        | the proof that this Quark wrote `chat_backup.db`                                |
+| `vault_items_backup.db`     | every account's wrapped vault key and vault items, as ciphertext                |
+| `vault_items_backup.db.mac` | the proof that this Quark wrote `vault_items_backup.db`                         |
+| `backup_manifest.json`      | the SHA-256 and size of every file above, which **Verify** checks against       |
 
 A file is skipped when the target already has it with the same size and a modification time no older than the source.
 Nothing on the target is deleted, apart from the temp files the copy itself makes. The rest of the main database
@@ -279,7 +283,9 @@ the client had it, its recovery phrase, so the copy is exactly as private as the
 hold `vault_backup.db`, the retired household vault encrypted under a separate recovery password. This version doesn't
 read it.
 
-Restore has app buttons and routes now: **Restore files**, **Restore vaults** and **Restore chat**.
+Restore has app buttons and routes now: **Restore files**, **Restore vaults** and **Restore chat**. A chat or vault
+file with no `.mac` beside it is refused on every drive, and nothing is restored (quark #4444). The same refusal
+covers a file this Quark did not write, or one changed after the snapshot.
 
 ### Protection and reminders
 

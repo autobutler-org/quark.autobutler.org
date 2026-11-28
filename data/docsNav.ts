@@ -29,6 +29,7 @@ export const docsNav: readonly DocsGroup[] = [
     categories: [
       { slug: "files", title: "Files" },
       { slug: "photos", title: "Photos" },
+      { slug: "music", title: "Music" },
       { slug: "calendar", title: "Calendar" },
       { slug: "docs", title: "Docs" },
       { slug: "sheets", title: "Sheets" },
